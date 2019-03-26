@@ -10,7 +10,7 @@ class MainPage extends Component {
       <Carousel
         className="m-1"
         withoutControls={true}
-        //autoplay={true}
+        autoplay={true}
         wrapAround={true}
         // renderAnnounceSlideMessage={({currentSlide, slideCount }) =>
         //   `Slide ${currentSlide + 1} of ${slideCount}`

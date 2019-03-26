@@ -1,8 +1,8 @@
 export const categories = [
-  { _id: "5b21ca3eeb7f6fbccd471818", title: "Mugs" },
-  { _id: "5b21ca3eeb7f6fbccd471814", title: "Plates" },
-  { _id: "5b21ca3eeb7f6fbccd471820", title: "Notepads" },
-  { _id: "5b21ca3eeb7f6fbccd471851", title: "T-shirts" }
+  { _id: "1", title: "Mugs" },
+  { _id: "2", title: "Plates" },
+  { _id: "3", title: "Notepads" },
+  { _id: "4", title: "T-shirts" }
 ];
 
 export function getCategories() {

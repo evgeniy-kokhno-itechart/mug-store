@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./components/navbar";
 // import logo from "./logo.svg";
 import MainPage from "./components/main";
-import Catalog from "./components/catalog";
+import Catalog from "./components/catalog/catalog";
 import NotFound from "./components/common/notFound";
 import "./App.css";
 
