@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-regular-svg-icons": "^5.8.1",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "bootstrap": "^4.3.1",
@@ -12,7 +13,9 @@
     "nuka-carousel": "^4.5.3",
     "popper.js": "^1.14.7",
     "react": "^16.8.5",
+    "react-addons-test-utils": "^0.14.8",
     "react-dom": "^16.8.5",
+    "react-lines-ellipsis": "^0.14.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8"
   },

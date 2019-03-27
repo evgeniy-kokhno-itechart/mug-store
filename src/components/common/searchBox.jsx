@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class SearchBox extends Component {
   state = { data: { query: "" } };
@@ -28,7 +27,7 @@ class SearchBox extends Component {
           aria-label="Search"
         />
         <button className="btn btn-outline-secondary">
-          <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon="search" />
         </button>
       </form>
     );

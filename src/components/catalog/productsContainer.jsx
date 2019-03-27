@@ -6,12 +6,16 @@ import ProductsTable from "./productsTable";
 class ProductsContainer extends Component {
   state = {
     searchQuery: "",
-    sortKey: ""
+    sortColumn: { path: "title", order: "asc" }
   };
 
   handleSearch = (e, query) => {
-    console.log(e);
     e.preventDefault();
+    if (!query) {
+      console.log("query is empty");
+      return;
+    }
+    console.log(e);
     console.log("searchQuery", query);
     this.setState({ searchQuery: query });
   };
@@ -21,6 +25,8 @@ class ProductsContainer extends Component {
   };
 
   render() {
+    const { sortColumn, productsOnPage } = this.state;
+
     return (
       <React.Fragment>
         <div className="row justify-content-between">
@@ -34,7 +40,10 @@ class ProductsContainer extends Component {
             <SortBox onChange={this.handleSort} />
           </div>
         </div>
-        <ProductsTable />
+        <ProductsTable
+          sortColumn={sortColumn}
+          productsOnPage={productsOnPage}
+        />
         {/* <Pagination /> */}
       </React.Fragment>
     );
