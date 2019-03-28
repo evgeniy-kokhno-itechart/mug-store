@@ -4,14 +4,7 @@ import _ from "lodash";
 import Dropdown from "./dropdown";
 
 const Pagination = props => {
-  const {
-    itemsCount,
-    pageSize,
-    currentPage,
-    itemsCountOptions,
-    onPageChange,
-    onItemsCountChange
-  } = props;
+  const { itemsCount, pageSize, currentPage, onPageChange } = props;
 
   const pagesCount = Math.ceil(itemsCount / pageSize);
   const pages = _.range(1, pagesCount + 1);
@@ -24,7 +17,7 @@ const Pagination = props => {
           {pages.map(p => (
             <li
               key={p}
-              className={currentPage === p ? "page-item active" : "page-item"}
+              className={currentPage === p ? "page-item active" : "page-item "}
             >
               <a onClick={() => onPageChange(p)} className="page-link">
                 {p}
@@ -33,17 +26,6 @@ const Pagination = props => {
           ))}
         </ul>
       </nav>
-      <div className="justify-content-end">
-        <Dropdown
-          name="itemsOnPage"
-          label="Items on page"
-          options={itemsCountOptions}
-          defaultValue={pageSize}
-          isOnelineElement={true}
-          defaultText={null}
-          onItemsCountChange={onItemsCountChange}
-        />
-      </div>
     </div>
   );
 };

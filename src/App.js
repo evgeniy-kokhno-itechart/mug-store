@@ -7,6 +7,7 @@ import Navbar from "./components/navbar";
 import MainPage from "./components/main";
 import Catalog from "./components/catalog/catalog";
 import NotFound from "./components/common/notFound";
+import ProductForm from "./components/forms/productForm";
 import "./App.css";
 
 library.add(faSearch, faCartArrowDown);
@@ -16,8 +17,9 @@ class App extends Component {
     return (
       <React.Fragment>
         <Navbar />
-        <div className="container">
+        <div id="bootstrap-overrides" className="container">
           <Switch>
+            <Route path="/products/:id" component={ProductForm} />
             <Route path="/catalog" component={Catalog} />
             <Route path="/main" component={MainPage} />
             <Route path="/not-found" component={NotFound} />

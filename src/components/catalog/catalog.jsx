@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import { getCategories } from "../../services/categoriesService";
 import { getProducts } from "./../../services/productsService";
+import { paginate } from "./../../utils/paginate";
 import ListGroup from "../common/listGroup";
 import SearchBox from "../common/searchBox";
 import SortBox from "./sortBox";
 import Pagination from "./../common/pagination";
 import ProductsTable from "./productsTable";
-import _ from "lodash";
+import Dropdown from "./../common/dropdown";
 
 class Catalog extends Component {
   state = {
@@ -15,7 +17,7 @@ class Catalog extends Component {
     currentCatergory: null,
     searchQuery: "",
     sortColumn: { path: "title", order: "asc" },
-    pageSize: 4,
+    pageSize: 10,
     currentPage: 1
   };
 
@@ -23,6 +25,15 @@ class Catalog extends Component {
     { _id: "5", name: "5" },
     { _id: "10", name: "10" },
     { _id: "15", name: "15" }
+  ];
+
+  sortOptions = [
+    { _id: "price_asc", name: "Price A-Z" },
+    { _id: "price_desc", name: "Price Z-A" },
+    { _id: "title_asc", name: "Title A-Z" },
+    { _id: "title_desc", name: "Title Z-A" },
+    { _id: "rate_asc", name: "Rate 1-5" },
+    { _id: "rate_desc", name: "Rate 5-1" }
   ];
 
   getPagedData = () => {
@@ -36,24 +47,23 @@ class Catalog extends Component {
     } = this.state;
 
     let filtered = allProducts;
+    // console.log("filtered", filtered);
+    // console.log("search", searchQuery);
     if (searchQuery)
       filtered = allProducts.filter(m =>
-        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+        m.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
     else if (currentCatergory && currentCatergory._id)
       filtered = allProducts.filter(
         m => m.category._id === currentCatergory._id
       );
 
-    const productsOnPage = _.orderBy(
-      filtered,
-      [sortColumn.path],
-      [sortColumn.order]
-    );
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+    console.log("path", sortColumn.path);
+    console.log("order", sortColumn.order);
+    const productsOnPage = paginate(sorted, currentPage, pageSize);
 
-    //const productsOnPage = paginate(sorted, currentPage, pageSize);
-
-    return { productsOnPage };
+    return { totalCount: filtered.length, productsOnPage };
   };
 
   componentDidMount() {
@@ -62,14 +72,21 @@ class Catalog extends Component {
       ...getCategories()
     ];
     const products = getProducts();
+    for (var i = 0; i < products.length; i++) {
+      products[i].price = +products[i].price;
+    }
     this.setState({
       categories: categoriesPopulated,
       products
     });
   }
 
-  onItemSelect = item => {
-    this.setState({ currentCatergory: item });
+  handleItemSelect = category => {
+    this.setState({
+      currentCatergory: category,
+      searchQuery: "",
+      currentPage: 1
+    });
   };
 
   handlePageChange = page => {
@@ -84,7 +101,11 @@ class Catalog extends Component {
     console.log(e);
     e.preventDefault();
     console.log("searchQuery", query);
-    this.setState({ searchQuery: query });
+    this.setState({
+      searchQuery: query,
+      currentCatergory: null,
+      currentPage: 1
+    });
   };
 
   handleSort = detailsToBeSplitted => {
@@ -92,6 +113,26 @@ class Catalog extends Component {
       const sortInfo = detailsToBeSplitted.split("_");
       this.setState({ sortColumn: { path: sortInfo[0], order: sortInfo[1] } });
     } else this.setState({ sortColumn: { path: "title", order: "asc" } });
+  };
+
+  handleItemsCountChange = pageSizeString => {
+    const pageSize = +pageSizeString;
+    this.setState({ pageSize });
+  };
+
+  handleBuyNow = (product, quantity) => {
+    let cart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : {};
+    let id = product._id.toString();
+    cart[id] = cart[id] ? cart[id] : 0;
+    let qty = cart[id] + parseInt(quantity);
+    // if (this.props.product.available_quantity < qty) {
+    //   cart[id] = this.props.product.available_quantity;
+    // } else {
+    cart[id] = qty;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
   };
 
   render() {
@@ -104,8 +145,7 @@ class Catalog extends Component {
       currentPage
     } = this.state;
 
-    const { length: count } = this.state.products;
-    const { productsOnPage } = this.getPagedData();
+    const { totalCount, productsOnPage } = this.getPagedData();
 
     return (
       <div className="row mt-3">
@@ -113,32 +153,56 @@ class Catalog extends Component {
           <ListGroup
             items={categories}
             selectedItem={currentCatergory}
-            onItemSelect={this.onItemSelect}
+            onItemSelect={this.handleItemSelect}
           />
         </div>
 
         <div className="col col-lg-10">
           <div className="row justify-content-between">
             <div className="col-sm-4">
-              <SearchBox value={searchQuery} onSubmit={this.handleSearch} />
+              <SearchBox
+                value={searchQuery}
+                onSubmit={this.handleSearch}
+                key={searchQuery}
+              />
             </div>
             <div className="justify-content-end">
-              <SortBox onChange={this.handleSort} />
+              <SortBox
+                sortOptions={this.sortOptions}
+                onChange={this.handleSort}
+              />
             </div>
           </div>
           <ProductsTable
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}
+            onBuyNow={this.handleBuyNow}
           />
-          <Pagination
-            itemsCount={count}
-            pageSize={pageSize}
-            onPageChange={this.handlePageChange}
-            currentPage={currentPage}
-            itemsCountOptions={this.pageSizeOptions}
-            onPageChange={this.handlePageChange}
-            onItemsCountChange={this.onItemsCountChange}
-          />
+          <div className="row justify-content-between">
+            <div>
+              <Pagination
+                itemsCount={totalCount}
+                pageSize={pageSize}
+                onPageChange={this.handlePageChange}
+                currentPage={currentPage}
+                pageSizeOptions={this.pageSizeOptions}
+                // onPageChange={this.handlePageChange}
+                // onItemsCountChange={this.handleItemsCountChange}
+              />
+            </div>
+            <div className="justify-content-end">
+              <Dropdown
+                name="itemsOnPage"
+                label="Items on page"
+                options={this.pageSizeOptions}
+                value={pageSize}
+                isOnelineElement={true}
+                onChange={e =>
+                  this.handleItemsCountChange(e.currentTarget.value)
+                }
+              />
+            </div>
+          </div>
         </div>
       </div>
     );

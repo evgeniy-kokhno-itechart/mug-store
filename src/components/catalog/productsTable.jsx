@@ -10,14 +10,20 @@ class ProductsTable extends Component {
     {
       key: "image",
       label: "",
-      content: product => <img src={product.imageLink} alt={product.title} />,
+      content: product => (
+        <Link to={`/products/${product._id}`} className="clickable">
+          <img src={product.imageLink} alt={product.title} />
+        </Link>
+      ),
       style: { width: "20%" }
     },
     {
       path: "title",
       label: "Title",
       content: product => (
-        <Link to={`/products/${product._id}`}>{product.title}</Link>
+        <Link to={`/products/${product._id}`} className="clickable">
+          {product.title}
+        </Link>
       ),
       style: { width: "10%" }
     },
@@ -45,7 +51,7 @@ class ProductsTable extends Component {
     {
       path: "price",
       label: "Price",
-      content: product => product.price + " " + product.currency,
+      content: product => product.price,
       style: { width: "5%" }
     },
     {
@@ -53,7 +59,7 @@ class ProductsTable extends Component {
       content: product => (
         <button
           className="bth btn-secondary btn-sm"
-          onClick={() => this.props.onBuyNow(product)}
+          onClick={() => this.props.onBuyNow(product, 1)}
         >
           <FontAwesomeIcon icon="cart-arrow-down" />
         </button>
@@ -66,7 +72,7 @@ class ProductsTable extends Component {
     {
       key: "edit",
       content: product => (
-        <Link to={`/products/edit/${product._id}`}>
+        <Link to={`/edit/products/${product._id}`}>
           <button className="bth btn-warning btn-sm">Edit</button>
         </Link>
       )

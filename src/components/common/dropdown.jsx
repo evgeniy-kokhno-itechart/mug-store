@@ -20,7 +20,7 @@ const Dropdown = ({
         onChange={onChange}
         className="form-control ml-2"
       >
-        <option value="">{defaultText}</option>
+        {defaultText && <option value="">{defaultText}</option>}
         {options.map(o => (
           <option key={o._id} value={o._id}>
             {o.name}

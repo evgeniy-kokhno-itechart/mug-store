@@ -1,28 +1,26 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class SearchBox extends Component {
-  state = { data: { query: "" } };
+class SearchBox extends PureComponent {
+  state = { query: this.props.value };
 
   handleChange = e => {
-    const clonedData = { ...this.state.data };
-    clonedData[e.currentTarget.name] = e.currentTarget.value;
-    this.setState({ data: clonedData });
+    this.setState({ query: e.currentTarget.value });
   };
 
   render() {
-    const { value, onSubmit } = this.props;
+    const { onSubmit } = this.props;
     return (
       <form
         className="form-inline"
-        onSubmit={e => onSubmit(e, this.state.data.query)}
+        onSubmit={e => onSubmit(e, this.state.query)}
       >
         <input
           className="form-control mr-2"
           type="text"
           name="query"
           placeholder="Search..."
-          value={this.state.data.query}
+          value={this.state.query}
           onChange={this.handleChange}
           aria-label="Search"
         />
