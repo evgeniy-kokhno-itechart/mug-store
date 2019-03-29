@@ -90,11 +90,9 @@ class ProductsTable extends Component {
     }
   ];
 
-  constructor() {
-    super();
-    const user = { name: "admin", roles: ["admin"] }; //!!! USER HARDCODED
-    if (user && user.roles.indexOf("admin") >= 0) {
-      // const clonedRegularColumns = [...this.columns];
+  componentDidMount() {
+    const { user } = this.props;
+    if (user && user.roles.includes("admin")) {
       this.columns = [...this.columns, ...this.adminColumns];
     }
   }

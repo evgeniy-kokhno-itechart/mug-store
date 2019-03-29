@@ -8,7 +8,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "1", name: "Mugs" },
     price: "3",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "Best Kitchenware",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -21,7 +21,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "1", name: "Mugs" },
     price: "4",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "Best Kitchenware",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -34,7 +34,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "1", name: "Mugs" },
     price: "5",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "East Side Kitchenware",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -47,7 +47,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "2", name: "Plates" },
     price: "3",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "Best Kitchenware",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -60,7 +60,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "2", name: "Plates" },
     price: "3",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "East Side Kitchenware",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -73,7 +73,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "3", name: "Notepads" },
     price: "7",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "Notepads inc.",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -86,7 +86,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "3", name: "Notepads" },
     price: "10",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "A4",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -99,7 +99,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "3", name: "Notepads" },
     price: "12",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "Notepads inc.",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -112,7 +112,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "4", name: "T-shirts" },
     price: "15",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "Conte inc.",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -125,7 +125,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "4", name: "T-shirts" },
     price: "17",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "Conte inc.",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -138,7 +138,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "4", name: "T-shirts" },
     price: "19",
-    currency: "BYN",
+    currencyId: "1", // "BYN"
     discount: "0",
     producer: "MF",
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -151,7 +151,7 @@ const products = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
     category: { _id: "4", name: "T-shirts" },
     price: "21",
-    currency: "BYN",
+    currencyId: "1", // 1="BYN", 2="USD"
     discount: "0",
     producer: "MF",
     publishDate: "2018-01-03T19:04:28.809Z",

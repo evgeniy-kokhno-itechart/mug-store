@@ -68,7 +68,7 @@ class Catalog extends Component {
 
   componentDidMount() {
     const categoriesPopulated = [
-      { _id: "", title: "All Products" },
+      { _id: "", name: "All Products" },
       ...getCategories()
     ];
     const products = getProducts();
@@ -147,6 +147,8 @@ class Catalog extends Component {
 
     const { totalCount, productsOnPage } = this.getPagedData();
 
+    const { user } = this.props;
+
     return (
       <div className="row mt-3">
         <div className="col col-lg-2">
@@ -176,6 +178,7 @@ class Catalog extends Component {
           <ProductsTable
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}
+            user={user}
             onBuyNow={this.handleBuyNow}
           />
           <div className="row justify-content-between">

@@ -12,13 +12,15 @@ const Dropdown = ({
 }) => {
   return (
     <div className={isOnelineElement ? "form-group form-inline" : "form-group"}>
-      <label htmlFor={name}>{label}</label>
+      <label className="mr-2" htmlFor={name}>
+        {label}
+      </label>
       <select
         name={name}
         id={name}
         value={value}
         onChange={onChange}
-        className="form-control ml-2"
+        className="form-control"
       >
         {defaultText && <option value="">{defaultText}</option>}
         {options.map(o => (

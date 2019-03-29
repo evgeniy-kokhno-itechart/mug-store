@@ -1,8 +1,8 @@
 export const categories = [
-  { _id: "1", title: "Mugs" },
-  { _id: "2", title: "Plates" },
-  { _id: "3", title: "Notepads" },
-  { _id: "4", title: "T-shirts" }
+  { _id: "1", name: "Mugs" },
+  { _id: "2", name: "Plates" },
+  { _id: "3", name: "Notepads" },
+  { _id: "4", name: "T-shirts" }
 ];
 
 export function getCategories() {

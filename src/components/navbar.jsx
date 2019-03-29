@@ -1,15 +1,8 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { getCurrentUser } from "./../services/authService";
 
 class Navbar extends Component {
-  state = {
-    userName: ""
-  };
-
-  componentDidMount() {
-    this.setState({ userName: "Test Name" });
-  }
-
   render() {
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -40,28 +33,44 @@ class Navbar extends Component {
             </NavLink>
           </div>
         </div>
-        <p className="nav navbar-text mr-3">{this.state.userName}</p>
-        <div className="dropdown">
-          <button
-            className="btn btn-dark dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Profile
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <Link className="dropdown-item" to="/myprofile">
-              My Profile
+        {this.props.user ? (
+          <React.Fragment>
+            <p className="nav navbar-text mr-3">{this.props.user.name}</p>
+            <div className="dropdown">
+              <button
+                className="btn btn-dark dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Profile
+              </button>
+              <div
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <Link className="dropdown-item" to="/myprofile">
+                  My Profile
+                </Link>
+                <div className="dropdown-divider" />
+                <Link className="dropdown-item" to="/logout">
+                  Logout
+                </Link>
+              </div>
+            </div>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Link to="/login" className="nav navbar-text mr-2 clickable">
+              Login
             </Link>
-            <div className="dropdown-divider" />
-            <Link className="dropdown-item" to="/logout">
-              Logout
+            <Link to="/register" className="nav navbar-text ml-2 clickable">
+              Register
             </Link>
-          </div>
-        </div>
+          </React.Fragment>
+        )}
       </nav>
     );
   }

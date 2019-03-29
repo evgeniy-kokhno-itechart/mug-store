@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
 import Dropdown from "./dropdown";
+import TextArea from "./textArea";
 
 class Form extends Component {
   state = {
@@ -31,6 +32,7 @@ class Form extends Component {
     e.preventDefault();
     const errors = this.validate();
     console.log(errors);
+    console.log(e);
     this.setState({ errors: errors || {} });
     if (errors) return;
     this.doSubmit();
@@ -47,7 +49,7 @@ class Form extends Component {
   };
 
   renderButton(label) {
-    console.log(this.validate());
+    console.log("submitButton errors", this.validate());
     return (
       <button disabled={this.validate()} className="btn btn-primary">
         {label}
@@ -71,12 +73,25 @@ class Form extends Component {
 
   renderDropdown(name, label, options) {
     const { data, errors } = this.state;
-    console.log("renderDropdown", data[name]);
+    console.log("renderDropdownMethod", data);
     return (
       <Dropdown
         name={name}
         label={label}
         options={options}
+        value={data[name]}
+        error={errors[name]}
+        onChange={this.handleChange}
+      />
+    );
+  }
+
+  renderTextArea(name, label) {
+    const { data, errors } = this.state;
+    return (
+      <TextArea
+        name={name}
+        label={label}
         value={data[name]}
         error={errors[name]}
         onChange={this.handleChange}
