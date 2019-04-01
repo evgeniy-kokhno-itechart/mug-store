@@ -192,3 +192,13 @@ export function deleteProduct(id) {
   products.splice(products.indexOf(productInDb), 1);
   return productInDb;
 }
+
+export function getProductsInCart() {
+  const cartInfo = JSON.parse(localStorage.getItem("cart"));
+  let products = [];
+  let prodInCart = {};
+  for (var i = 0; i < cartInfo.length; i++) {
+    prodInCart = { ...this.getProduct(cartInfo[i]), ...cartInfo[i] };
+    products.push(prodInCart);
+  }
+}

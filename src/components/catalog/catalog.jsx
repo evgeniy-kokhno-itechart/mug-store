@@ -158,7 +158,6 @@ class Catalog extends Component {
             onItemSelect={this.handleItemSelect}
           />
         </div>
-
         <div className="col col-lg-10">
           <div className="row justify-content-between">
             <div className="col-sm-4">

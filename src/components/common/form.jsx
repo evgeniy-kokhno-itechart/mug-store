@@ -21,10 +21,15 @@ class Form extends Component {
     return errors;
   };
 
-  validateProperty = ({ name, value }) => {
+  validateProperty = (input, matchedInputName) => {
+    const { name, value } = input;
     const obj = { [name]: value };
     const schema = { [name]: this.schema[name] };
-    const { error } = Joi.validate(obj, schema);
+    let { error } = Joi.validate(obj, schema);
+    if (matchedInputName) {
+      if (value !== this.state.data[matchedInputName])
+        return `The value does not match to ${matchedInputName}`;
+    }
     return error ? error.details[0].message : null;
   };
 
@@ -38,11 +43,13 @@ class Form extends Component {
     this.doSubmit();
   };
 
-  handleChange = ({ currentTarget: input }) => {
+  handleChange = (e, matchedInputName) => {
     const errors = { ...this.state.errors };
-    const errorMessage = this.validateProperty(input);
+    const { currentTarget: input } = e;
+    const errorMessage = this.validateProperty(input, matchedInputName);
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name];
+
     const newdata = { ...this.state.data };
     newdata[input.name] = input.value;
     this.setState({ data: newdata, errors });
@@ -51,13 +58,13 @@ class Form extends Component {
   renderButton(label) {
     console.log("submitButton errors", this.validate());
     return (
-      <button disabled={this.validate()} className="btn btn-primary">
+      <button disabled={this.validate()} className="btn btn-secondary">
         {label}
       </button>
     );
   }
 
-  renderInput(name, label, type = "text") {
+  renderInput(name, label, type = "text", matchedInputName) {
     const { data, errors } = this.state;
     return (
       <Input
@@ -66,7 +73,7 @@ class Form extends Component {
         label={label}
         value={data[name]}
         error={errors[name]}
-        onChange={this.handleChange}
+        onChange={e => this.handleChange(e, matchedInputName)}
       />
     );
   }

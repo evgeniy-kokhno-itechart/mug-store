@@ -9,9 +9,11 @@ class RegisterForm extends Form {
     data: {
       username: "",
       name: "",
+      country: "",
+      city: "",
       address: "",
       password: "",
-      passwordConfirmation: ""
+      confirmPassword: ""
     },
     errors: {}
   };
@@ -20,19 +22,33 @@ class RegisterForm extends Form {
     username: Joi.string()
       .email()
       .required()
+      .max(100)
       .label("Username"),
     name: Joi.string()
       .required()
+      .max(100)
       .label("Name"),
+    country: Joi.string()
+      .required()
+      .max(100)
+      .label("Country"),
+    city: Joi.string()
+      .required()
+      .max(100)
+      .label("City"),
     address: Joi.string()
       .required()
+      .max(250)
       .label("Address"),
     password: Joi.string()
       .required()
       .min(5)
+      .max(200)
       .label("Password"),
-    passwordConfirmation: Joi.string()
-      .valid(Joi.ref("password"))
+    confirmPassword: Joi.string()
+      .required()
+      .min(5)
+      .max(200)
       .label("Confirm Password")
   };
 
@@ -53,9 +69,18 @@ class RegisterForm extends Form {
       <div>
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username")}
-          {this.renderInput("password", "Password", "password")}
+          {this.renderInput("username", "Username (a valid E-mail)")}
           {this.renderInput("name", "Name")}
+          {this.renderInput("country", "Country")}
+          {this.renderInput("city", "City")}
+          {this.renderInput("address", "Address")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderInput(
+            "confirmPassword",
+            "Confirm Password",
+            "password",
+            "password"
+          )}
           {this.renderButton("Register")}
         </form>
       </div>

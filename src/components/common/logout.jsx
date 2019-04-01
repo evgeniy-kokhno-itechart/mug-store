@@ -3,6 +3,7 @@ import { logoutUser } from "../../services/authService";
 
 class Logout extends Component {
   componentDidMount() {
+    localStorage.removeItem("cart");
     logoutUser();
     window.location = "/";
   }
