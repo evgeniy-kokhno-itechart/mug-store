@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import LinesEllipsis from "react-lines-ellipsis";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "../common/table";
 
 class CartTable extends Component {
@@ -14,7 +17,7 @@ class CartTable extends Component {
           <img src={product.imageLink} alt={product.title} />
         </Link>
       ),
-      style: { width: "25%" }
+      style: { width: "20%" }
     },
     {
       path: "title",
@@ -40,20 +43,21 @@ class CartTable extends Component {
       ),
       style: { width: "50%" }
     },
+    { path: "qty", label: "Quantity", style: { width: "5%" } },
     {
       path: "cost",
       label: "Cost",
-      content: product => product.quantity * product.price,
+      content: product => product.qty * product.price,
       style: { width: "10%" }
     },
     {
-      key: "buyNow",
+      key: "deleteFromCart",
       content: product => (
         <button
           className="bth btn-secondary btn-sm"
           onClick={() => this.props.onDeleteFromCart(product, 1)}
         >
-          <FontAwesomeIcon icon="cart-arrow-down" />
+          <FontAwesomeIcon icon="trash" />
         </button>
       ),
       style: { width: "10%" }

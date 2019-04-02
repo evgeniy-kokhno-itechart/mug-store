@@ -4,7 +4,7 @@ export function loginUser(username, password) {
   if (username === "superadmin" && password === "12345") {
     //SuperAdmin token
     const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXX0.H41ge6kcTIBz7WKYNLTxwPWIhlInmLY7jUnFP6WfO14";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxIiwidXNlcm5hbWUiOiJhZG1pbkBhZG1pbi5jb20iLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJyb2xlcyI6WyJhZG1pbiIsInVzZXIiXSwiY291bnRyeSI6IkJlbGFydXMiLCJjaXR5IjoiTWluc2siLCJhZGRyZXNzIjoiTWVzbmlrb3ZhIHN0ciwgNSAtMTEiLCJwaG9uZSI6IiszNzUyOTAwMDAwMDAiLCJpYXQiOjE1MTYyMzkwMjJ9.MQDSQynD3lZ4MQV0SGpkUW_Hnv19PI2rEeSzMav14nQ";
     localStorage.setItem("token", token);
   } else throw new Error("Incorrect username or password");
 }

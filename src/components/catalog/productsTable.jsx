@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LinesEllipsis from "react-lines-ellipsis";
+import { getCurrentUser } from "../../services/authService";
 import Table from "./../common/table";
 import Rate from "./../common/rate";
 
@@ -90,8 +91,9 @@ class ProductsTable extends Component {
     }
   ];
 
-  componentDidMount() {
-    const { user } = this.props;
+  constructor() {
+    super();
+    const user = getCurrentUser();
     if (user && user.roles.includes("admin")) {
       this.columns = [...this.columns, ...this.adminColumns];
     }

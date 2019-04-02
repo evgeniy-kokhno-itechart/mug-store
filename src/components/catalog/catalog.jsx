@@ -123,14 +123,26 @@ class Catalog extends Component {
   handleBuyNow = (product, quantity) => {
     let cart = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
-      : {};
+      : [];
     let id = product._id.toString();
-    cart[id] = cart[id] ? cart[id] : 0;
-    let qty = cart[id] + parseInt(quantity);
+
+    let existedProduct = cart.find(prod => prod._id === id);
+    if (existedProduct)
+      existedProduct.qty = existedProduct.qty + parseInt(quantity);
+    else cart.push({ _id: id, qty: quantity });
+
+    // let currentProduct = cart.find(prod => prod._id === id)
+    //   ? cart.find(prod => prod._id === id)
+    //   : { _id: id, qty: 0 };
+    // currentProduct.qty = currentProduct.qty + parseInt(quantity);
+    // cart.push(currentProduct);
+
+    // cart[id] = cart[id] ? cart[id] : 0;
+    // let qty = cart[id] + parseInt(quantity);
     // if (this.props.product.available_quantity < qty) {
     //   cart[id] = this.props.product.available_quantity;
     // } else {
-    cart[id] = qty;
+    // cart[id] = qty;
 
     localStorage.setItem("cart", JSON.stringify(cart));
   };
@@ -146,8 +158,6 @@ class Catalog extends Component {
     } = this.state;
 
     const { totalCount, productsOnPage } = this.getPagedData();
-
-    const { user } = this.props;
 
     return (
       <div className="row mt-3">
@@ -177,7 +187,6 @@ class Catalog extends Component {
           <ProductsTable
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}
-            user={user}
             onBuyNow={this.handleBuyNow}
           />
           <div className="row justify-content-between">

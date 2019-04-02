@@ -13,6 +13,8 @@ class TableBody extends Component {
 
   render() {
     const { items, columns } = this.props;
+    console.log("props", this.props);
+    // return <h1>carttable</h1>;
     return (
       <tbody>
         {items.map(item => (
