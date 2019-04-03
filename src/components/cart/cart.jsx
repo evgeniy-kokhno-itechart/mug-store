@@ -14,22 +14,84 @@ class Cart extends Component {
 
   componentDidMount() {
     const products = this.getProductsInCart();
+    const totalCost = this.getTotalCost(products);
+    const user = getCurrentUser();
+    this.setState({ products, totalCost, user });
+  }
+
+  getTotalCost = products => {
     const totalCost = products.reduce(
       (sum, currentItem) =>
         sum + parseInt(currentItem.price) * parseInt(currentItem.qty),
       0
     );
-    const user = getCurrentUser();
-    this.setState({ products, totalCost, user });
-  }
+    return totalCost;
+  };
 
   handleDeleteFromCart = product => {
     let products = this.state.products.filter(item => item._id !== product._id);
     let cart = JSON.parse(localStorage.getItem("cart"));
-    cart.splice(cart.indexOf(product), 1);
+    cart.splice(cart.findIndex(p => p._id === product._id), 1);
     localStorage.setItem("cart", JSON.stringify(cart));
     let totalCost = this.state.totalCost - product.qty * product.price;
     this.setState({ products, totalCost });
+  };
+
+  changeProductQuantity(productId, newValue, delta) {
+    const { products } = this.state;
+
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    let prodInCart = cart.find(p => p._id === productId);
+    let prodInState = products.find(p => p._id === productId);
+
+    if (newValue) {
+      prodInState.qty = newValue;
+      prodInCart.qty = newValue;
+    } else {
+      if (prodInCart.qty > 1 || delta > 0) {
+        prodInState.qty += delta;
+        prodInCart.qty += delta;
+      }
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    const totalCost = this.getTotalCost(products);
+    this.setState({ products, totalCost });
+  }
+
+  handleIncrementClick = productId => {
+    this.changeProductQuantity(productId, null, 1);
+
+    // let products = this.state.products.filter(item => item._id !== productId);
+    // this.setState(state => ({ quantity: state.quantity + 1 }));
+  };
+
+  handleDecrementClick = productId => {
+    this.changeProductQuantity(productId, null, -1);
+    // const { products } = this.state;
+
+    // let cart = JSON.parse(localStorage.getItem("cart"));
+    // let prodInCart = cart.find(p => p._id === productId);
+    // prodInCart.qty > 1 ? prodInCart.qty-- : (prodInCart.qty = 1);
+    // localStorage.setItem("cart", JSON.stringify(cart));
+
+    // let prodInStateClone = { ...products.find(p => p._id === productId) };
+    // const index = products.findIndex(p => p._id === productId);
+    // prodInStateClone.qty > 1
+    //   ? prodInStateClone.qty--
+    //   : (prodInStateClone.qty = 1);
+    // products[index] = prodInStateClone;
+    // const totalCost = this.getTotalCost(products);
+    // this.setState({ products, totalCost });
+
+    // this.setState(state =>
+    //   state.quantity > 1 ? { quantity: state.quantity - 1 } : { quantity: 1 }
+    // );
+  };
+
+  handleQuantityChange = (value, productId) => {
+    let quantity = parseInt(value);
+    if (isNaN(quantity) || quantity < 1) return;
+    else this.changeProductQuantity(productId, quantity, null);
   };
 
   getProductsInCart() {
@@ -55,18 +117,23 @@ class Cart extends Component {
           sortColumn={sortColumn}
           productsInCart={products}
           onDeleteFromCart={this.handleDeleteFromCart}
+          onIncrementClick={this.handleIncrementClick}
+          onDecrementClick={this.handleDecrementClick}
+          onQuantityChange={this.handleQuantityChange}
         />
 
         <div className="row justify-content-between">
           <h3 className="col-4">
             {totalCost ? `Total cost: ${totalCost}` : ""}
           </h3>
-          <Link
-            className="btn btn-secondary m-2 justify-content-end"
-            to={user ? "/order/mycart" : "/order"}
-          >
-            Order Now!
-          </Link>
+          <div>
+            <Link
+              className="btn btn-secondary m-2 justify-content-end"
+              to={user ? "/order/mycart" : "/order"}
+            >
+              Order Now!
+            </Link>
+          </div>
         </div>
       </React.Fragment>
     ) : (

@@ -8,3 +8,7 @@ export function registerUser(user) {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJuYW1lIjoiVXNlciBVc2VyIiwicm9sZXMiOlsidXNlciJdfQ.HHrGj7GXhRFCOF5cRqwpW4zdCGafxybLUHGKahr4vTE";
   return token;
 }
+
+export function saveUser() {
+  return;
+}

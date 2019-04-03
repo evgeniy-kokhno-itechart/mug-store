@@ -1,6 +1,8 @@
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -23,6 +25,31 @@ code {
   border-color: gray;
 }
 
-/* .navbar .navbar-expand-lg .navbar-dark .bg-dark {
-  color: red;
-} */
+#form-button-right {
+  border-radius: 0 4px 4px 0;
+  line-height: 1.2em;
+  font-size: 1em;
+}
+
+#form-button-left {
+  border-radius: 4px 0 0 4px;
+  line-height: 1.2em;
+  font-size: 1em;
+}
+
+#form-input {
+  height: 1.8em;
+  vertical-align: top;
+}
+
+#content-wrap {
+  padding-bottom: 3.5rem;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3rem;
+  color: #ffffff;
+}

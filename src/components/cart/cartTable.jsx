@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LinesEllipsis from "react-lines-ellipsis";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "../common/table";
+import Increment from "../common/increment";
 
 class CartTable extends Component {
   state = {
@@ -43,7 +44,20 @@ class CartTable extends Component {
       ),
       style: { width: "50%" }
     },
-    { path: "qty", label: "Quantity", style: { width: "5%" } },
+    {
+      key: "qty",
+      label: "Quantity",
+      content: product => (
+        <Increment
+          quantity={product.qty}
+          productId={product._id}
+          onIncrementClick={this.props.onIncrementClick}
+          onDecrementClick={this.props.onDecrementClick}
+          onQuantityChange={this.props.onQuantityChange}
+        />
+      ),
+      style: { width: "15%" }
+    },
     {
       path: "cost",
       label: "Cost",
@@ -55,7 +69,7 @@ class CartTable extends Component {
       content: product => (
         <button
           className="bth btn-secondary btn-sm"
-          onClick={() => this.props.onDeleteFromCart(product, 1)}
+          onClick={() => this.props.onDeleteFromCart(product)}
         >
           <FontAwesomeIcon icon="trash" />
         </button>

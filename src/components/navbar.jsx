@@ -4,7 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+        {/* sticky-top"> */}
         <button
           className="navbar-toggler"
           type="button"
@@ -35,7 +36,7 @@ class Navbar extends Component {
         {this.props.user ? (
           <React.Fragment>
             <p className="nav navbar-text mr-3">{this.props.user.name}</p>
-            <div className="dropdown">
+            <div className="dropleft">
               <button
                 className="btn btn-dark dropdown-toggle"
                 type="button"
