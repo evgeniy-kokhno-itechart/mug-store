@@ -12,7 +12,7 @@ class InformationItem extends Component {
     return (
       <div className="row">
         <span className="col-md-2 text-right">{label}</span>
-        {console.log("field.label", label)}
+        {/* {console.log("field.label", label)} */}
         <span className="col-md-5 text-left">{info}</span>
       </div>
     );

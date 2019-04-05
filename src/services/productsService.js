@@ -162,6 +162,7 @@ export function saveProduct(product) {
     g => g._id === product.categoryId
   );
   productInDb.price = product.price;
+  productInDb.description = product.description;
   productInDb.discount = product.discount;
   productInDb.producer = product.producer;
   productInDb.publishDate = Date.now();

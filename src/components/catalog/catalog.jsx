@@ -75,6 +75,7 @@ class Catalog extends Component {
     ];
     const products = getProducts();
     const currentCurrency = getCurrentCurrency();
+    console.log("products", products);
     for (var i = 0; i < products.length; i++) {
       products[i].price[currentCurrency.name] = +products[i].price[
         currentCurrency.name

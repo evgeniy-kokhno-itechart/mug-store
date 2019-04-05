@@ -12,8 +12,8 @@ class ProductForm extends Form {
       title: "",
       description: "",
       categoryId: "1",
-      price: "",
-      currencyId: "",
+      // ["price.BYN"]: "",
+      // ["price.USD"]: "",
       discount: "",
       producer: "",
       publishDate: "",
@@ -36,12 +36,6 @@ class ProductForm extends Form {
     categoryId: Joi.string()
       .required()
       .label("Category"),
-    price: Joi.number()
-      .required()
-      .label("Price"),
-    currencyId: Joi.string()
-      .required()
-      .label("Currency"),
     discount: Joi.number()
       .min(0)
       .max(100)
@@ -58,6 +52,23 @@ class ProductForm extends Form {
       .label("Rate")
   };
 
+  constructor() {
+    super();
+    const currencies = getCurrencies();
+    currencies.forEach(
+      currency =>
+        (this.schema["price." + currency.name] = Joi.number()
+          .required()
+          .label("Price, " + currency.name))
+    );
+    this.state.currencies = currencies;
+
+    const currNames = currencies.map(curr => curr.name);
+    let obj = {};
+    currNames.forEach(name => (obj["price." + name] = ""));
+    Object.assign(this.state.data, obj);
+  }
+
   componentDidMount() {
     const categories = getCategories();
     const currencies = getCurrencies();
@@ -71,27 +82,45 @@ class ProductForm extends Form {
   }
 
   mapToViewModel(product) {
-    return {
+    const currNames = this.state.currencies.map(curr => curr.name);
+    let obj = {};
+    currNames.forEach(name => (obj["price." + name] = product.price[name]));
+    let dataForReturn = {
       _id: product._id,
       title: product.title,
       description: product.description,
       categoryId: product.category._id,
-      price: product.price,
-      currencyId: product.currencyId,
       discount: product.discount,
       producer: product.producer,
       publishDate: product.publishDate,
       rate: product.rate
     };
+    Object.assign(dataForReturn, obj);
+    console.log("dataForReturn!!!!!!!!!!!!!!!", dataForReturn);
+    return dataForReturn;
+  }
+
+  mapFromViewModel(data) {
+    return {
+      title: data.title,
+      description: data.description,
+      categoryId: data.categoryId,
+      price: { BYN: data["price.BYN"], USD: data["price.USD"] },
+      discount: data.discount,
+      producer: data.producer,
+      rate: data.rate
+    };
   }
 
   doSubmit = () => {
-    saveProduct(this.state.data);
-    console.log(this.state.data);
+    const product = this.mapFromViewModel(this.state.data);
+    saveProduct(product);
+    console.log("doSubmit ProductForm", product);
     this.props.history.push("/catalog");
   };
 
   render() {
+    console.log("state.data FROM render method!!!", this.state.data);
     return (
       <React.Fragment>
         <h1>Product Info</h1>
@@ -99,8 +128,15 @@ class ProductForm extends Form {
           {this.renderInput("title", "Title")}
           {this.renderTextArea("description", "Details")}
           {this.renderDropdown("categoryId", "Category", this.state.categories)}
-          {this.renderInput("price", "Price")}
-          {this.renderDropdown("currencyId", "Currency", this.state.currencies)}
+
+          {this.state.currencies.map(currency =>
+            this.renderInput(
+              "price." + currency.name,
+              "Price, " + currency.name
+            )
+          )}
+          {/* {this.renderDropdown("currencyId", "Currency", this.state.currencies)} */}
+
           {this.renderInput("discount", "Dicount, %")}
           {this.renderInput("producer", "Producer")}
           {this.renderInput("rate", "Rate")}

@@ -3,6 +3,7 @@ import { getProduct } from "../../services/productsService";
 import { Link } from "react-router-dom";
 import InformationItem from "./../common/informationItem";
 import _ from "lodash";
+import { getCurrentCurrency } from "./../../services/payService";
 
 class ProductDetails extends Component {
   state = {
@@ -15,7 +16,8 @@ class ProductDetails extends Component {
       discount: "0",
       producer: "",
       rate: ""
-    }
+    },
+    currentCurrency: { _id: "", name: "" }
   };
 
   fields = [
@@ -26,10 +28,8 @@ class ProductDetails extends Component {
     {
       label: "Price",
       content: (product, currency) => {
-        const priceObj = product.prices.find(
-          price => price.currencyName === currency
-        );
-        return priceObj ? priceObj.value : "";
+        const priceObj = product.price;
+        return priceObj ? priceObj[currency.name] : "";
       }
     }
   ];
@@ -37,8 +37,8 @@ class ProductDetails extends Component {
   componentDidMount() {
     const productId = this.props.match.params.id;
     const product = getProduct(productId);
-    console.log("product", product);
-    this.setState({ product });
+    const currentCurrency = getCurrentCurrency();
+    this.setState({ product, currentCurrency });
   }
 
   getInfo = (item, path) => {
@@ -50,9 +50,11 @@ class ProductDetails extends Component {
     if (!field.content) {
       fieldInfo = this.getInfo(this.state.product, field.path);
     } else {
-      fieldInfo = field.content(this.state.product, "USD"); //HARDCODED!!! get currencyName from props or local storage
+      fieldInfo = field.content(this.state.product, this.state.currentCurrency);
     }
-    return <InformationItem label={field.label} info={fieldInfo} />;
+    return (
+      <InformationItem key={field.label} label={field.label} info={fieldInfo} />
+    );
   };
 
   render() {

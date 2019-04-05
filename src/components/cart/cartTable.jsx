@@ -63,8 +63,11 @@ class CartTable extends Component {
     {
       path: "cost",
       label: "Cost",
-      content: product =>
-        product.qty * product.price[this.state.currentCurrency.name],
+      content: product => {
+        const cost =
+          product.qty * product.price[this.state.currentCurrency.name];
+        return cost.toString();
+      },
       style: { width: "10%" }
     },
     {

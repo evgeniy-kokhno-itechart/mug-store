@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
+import _ from "lodash";
 import Input from "./input";
 import Dropdown from "./dropdown";
 import TextArea from "./textArea";
@@ -66,13 +67,14 @@ class Form extends Component {
 
   renderInput(name, label, type = "text", matchedInputName) {
     const { data, errors } = this.state;
-    // console.log("renderInput data", data);
+    console.log("renderInput data", [_.get(data, name), name, data]);
     return (
       <Input
+        key={name}
         type={type}
         name={name}
         label={label}
-        value={data[name]}
+        value={_.get(data, name)} //{data[name]}
         error={errors[name]}
         onChange={e => this.handleChange(e, matchedInputName)}
       />
