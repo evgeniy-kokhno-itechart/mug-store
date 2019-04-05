@@ -8,6 +8,8 @@ class TableBody extends Component {
   };
 
   createKey = (item, column) => {
+    // console.log("item_id", item._id);
+    // console.log("column.path/key", column.path || column.key);
     return item._id + (column.path || column.key);
   };
 

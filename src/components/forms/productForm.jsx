@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Form from "./../common/form";
 import Joi from "joi-browser";
 import { getCategories } from "../../services/categoriesService";
 import { getProduct } from "../../services/productsService";
 import { saveProduct } from "./../../services/productsService";
+import { getCurrencies } from "./../../services/payService";
 
 class ProductForm extends Form {
   state = {
@@ -19,7 +20,7 @@ class ProductForm extends Form {
       rate: ""
     },
     categories: [],
-    currencies: [{ _id: 1, name: "BYN" }, { _id: 2, name: "USD" }],
+    currencies: [],
     errors: {}
   };
 
@@ -59,7 +60,8 @@ class ProductForm extends Form {
 
   componentDidMount() {
     const categories = getCategories();
-    this.setState({ categories });
+    const currencies = getCurrencies();
+    this.setState({ categories, currencies });
     console.log("params.id", this.props.match.params.id);
     const productId = this.props.match.params.id;
     if (productId === "new") return;

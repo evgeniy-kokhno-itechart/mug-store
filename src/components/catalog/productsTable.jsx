@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LinesEllipsis from "react-lines-ellipsis";
 import { getCurrentUser } from "../../services/authService";
+import { getCurrentCurrency } from "./../../services/payService";
 import Table from "./../common/table";
 import Rate from "./../common/rate";
 
 class ProductsTable extends Component {
+  state = { currentCurrency: {} };
+
   columns = [
     {
       key: "image",
@@ -50,9 +53,11 @@ class ProductsTable extends Component {
       style: { width: "10%" }
     },
     {
-      path: "price",
+      path: "price." + this.state.currentCurrency.name,
       label: "Price",
-      content: product => product.price,
+      content: product => {
+        return product.price[this.state.currentCurrency.name];
+      },
       style: { width: "5%" }
     },
     {
@@ -97,6 +102,11 @@ class ProductsTable extends Component {
     if (user && user.roles.includes("admin")) {
       this.columns = [...this.columns, ...this.adminColumns];
     }
+  }
+
+  componentDidMount() {
+    const currentCurrency = getCurrentCurrency();
+    this.setState({ currentCurrency });
   }
 
   render() {

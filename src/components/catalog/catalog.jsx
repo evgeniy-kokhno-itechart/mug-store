@@ -9,12 +9,14 @@ import SortBox from "./sortBox";
 import Pagination from "./../common/pagination";
 import ProductsTable from "./productsTable";
 import Dropdown from "./../common/dropdown";
+import { getCurrentCurrency } from "../../services/payService";
 
 class Catalog extends Component {
   state = {
     categories: [],
     products: [],
     currentCatergory: null,
+    currentCurrency: {},
     searchQuery: "",
     sortColumn: { path: "title", order: "asc" },
     pageSize: 10,
@@ -72,12 +74,16 @@ class Catalog extends Component {
       ...getCategories()
     ];
     const products = getProducts();
+    const currentCurrency = getCurrentCurrency();
     for (var i = 0; i < products.length; i++) {
-      products[i].price = +products[i].price;
+      products[i].price[currentCurrency.name] = +products[i].price[
+        currentCurrency.name
+      ];
     }
     this.setState({
       categories: categoriesPopulated,
-      products
+      products,
+      currentCurrency
     });
   }
 
@@ -111,6 +117,8 @@ class Catalog extends Component {
   handleSort = detailsToBeSplitted => {
     if (detailsToBeSplitted) {
       const sortInfo = detailsToBeSplitted.split("_");
+      if (sortInfo[0] === "price")
+        sortInfo[0] = sortInfo[0] + "." + this.state.currentCurrency.name;
       this.setState({ sortColumn: { path: sortInfo[0], order: sortInfo[1] } });
     } else this.setState({ sortColumn: { path: "title", order: "asc" } });
   };

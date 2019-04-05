@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
 import { getProduct } from "../../services/productsService";
 import Form from "./../common/form";
 import OrderTable from "./orderTable";
 import { getCurrentUser } from "../../services/authService";
-import { Redirect } from "react-router-dom";
-import OrderConfirmed from "./orderConfirmation";
+import { getCurrentCurrency } from "./../../services/payService";
 
 class OrderForm extends Form {
   state = {
@@ -49,9 +48,10 @@ class OrderForm extends Form {
 
   componentDidMount() {
     const orderList = this.getProductsInCartBriefly();
+    const currentCurrency = getCurrentCurrency();
     const totalCost = orderList.reduce(
       (sum, currentItem) =>
-        sum + parseInt(currentItem.price) * parseInt(currentItem.qty),
+        sum + currentItem.price[currentCurrency.name] * currentItem.qty,
       0
     );
     if (this.props.location.pathname !== "/order") {

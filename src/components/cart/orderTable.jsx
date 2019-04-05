@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Table from "../common/table";
+import { getCurrentCurrency } from "./../../services/payService";
 
 class OrderTable extends Component {
+  state = { currentCurrency: {} };
+
   columns = [
     {
       path: "title",
@@ -22,10 +25,17 @@ class OrderTable extends Component {
       key: "cost",
       path: "cost",
       label: "Cost",
-      content: product => product.qty * product.price,
+      content: product =>
+        product.qty * product.price[this.state.currentCurrency.name],
       style: { width: "10%" }
     }
   ];
+
+  componentDidMount() {
+    const currentCurrency = getCurrentCurrency();
+    this.setState({ currentCurrency });
+  }
+
   render() {
     const { products, sortColumn } = this.props;
 

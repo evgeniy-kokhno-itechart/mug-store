@@ -23,6 +23,7 @@ import Cart from "./components/cart/cart";
 import OrderForm from "./components/cart/orderForm";
 import ProtectedRoute from "./components/common/protectedRoute";
 import OrderConfirmation from "./components/cart/orderConfirmation";
+import ProductDetails from "./components/catalog/productDetails";
 import About from "./components/about";
 import "./App.css";
 
@@ -44,7 +45,11 @@ class App extends Component {
         <div id="bootstrap-overrides" className="container">
           <div id="content-wrap">
             <Switch>
-              <ProtectedRoute path="/products/:id" component={ProductForm} />
+              <ProtectedRoute
+                path="/edit/products/:id"
+                component={ProductForm}
+              />
+              <ProtectedRoute path="/products/:id" component={ProductDetails} />
               <Route path="/logout" component={Logout} />
               <Route path="/login" component={LoginForm} />
               <ProtectedRoute path="/myprofile" component={RegisterForm} />

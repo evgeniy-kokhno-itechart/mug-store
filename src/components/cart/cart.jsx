@@ -3,6 +3,7 @@ import CartTable from "./cartTable";
 import { getProduct } from "./../../services/productsService";
 import { getCurrentUser } from "../../services/authService";
 import { Link } from "react-router-dom";
+import { getCurrentCurrency } from "./../../services/payService";
 
 class Cart extends Component {
   state = { products: [], totalCost: 0, user: {} };
@@ -20,9 +21,10 @@ class Cart extends Component {
   }
 
   getTotalCost = products => {
+    const currentCurrency = getCurrentCurrency();
     const totalCost = products.reduce(
       (sum, currentItem) =>
-        sum + parseInt(currentItem.price) * parseInt(currentItem.qty),
+        sum + currentItem.price[currentCurrency.name] * currentItem.qty,
       0
     );
     return totalCost;
@@ -33,7 +35,7 @@ class Cart extends Component {
     let cart = JSON.parse(localStorage.getItem("cart"));
     cart.splice(cart.findIndex(p => p._id === product._id), 1);
     localStorage.setItem("cart", JSON.stringify(cart));
-    let totalCost = this.state.totalCost - product.qty * product.price;
+    let totalCost = this.getTotalCost(products);
     this.setState({ products, totalCost });
   };
 

@@ -1,8 +1,33 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import {
+  getCurrencies,
+  setCurrentCurrency,
+  getCurrentCurrency
+} from "../services/payService";
 
 class Navbar extends Component {
+  state = { currentCurrency: { _id: "", name: "" }, currencyOptions: [] };
+
+  componentDidMount() {
+    const currencyOptions = getCurrencies();
+    const currentCurrency = getCurrentCurrency();
+    this.setState({ currencyOptions, currentCurrency });
+  }
+
+  handleCurrencyChange = e => {
+    const currency = {
+      _id: e.currentTarget.value,
+      name: e.currentTarget.selectedOptions[0].text
+    };
+    window.location.reload();
+    setCurrentCurrency(currency);
+    this.setState({ currentCurrency: currency });
+  };
+
   render() {
+    const { currentCurrency, currencyOptions } = this.state;
+    console.log("currentCurrency", currentCurrency);
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         {/* sticky-top"> */}
@@ -33,13 +58,29 @@ class Navbar extends Component {
             </NavLink>
           </div>
         </div>
+
+        <p className="nav navbar-text mr-1">Currency:</p>
+        <select
+          className="btn btn-dark dropdown-toggle mr-4"
+          type="dropdown"
+          id="dropdownMenuButton"
+          value={currentCurrency._id}
+          onChange={e => this.handleCurrencyChange(e)}
+        >
+          {currencyOptions.map(option => (
+            <option key={option._id} value={option._id}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+
         {this.props.user ? (
           <React.Fragment>
             <p className="nav navbar-text mr-3">{this.props.user.name}</p>
             <div className="dropleft">
               <button
                 className="btn btn-dark dropdown-toggle"
-                type="button"
+                type="dropdown"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
                 aria-haspopup="true"

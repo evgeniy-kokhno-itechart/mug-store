@@ -1,5 +1,5 @@
 export function registerUser(user) {
-  const { username, name, address, password } = user;
+  const { username, password } = user;
   console.log(
     `User with name: ${username} and password ${password} regirstered`
   );

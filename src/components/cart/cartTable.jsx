@@ -4,10 +4,12 @@ import LinesEllipsis from "react-lines-ellipsis";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "../common/table";
 import Increment from "../common/increment";
+import { getCurrentCurrency } from "./../../services/payService";
 
 class CartTable extends Component {
   state = {
-    sortColumn: "title"
+    sortColumn: "title",
+    currentCurrency: {}
   };
   columns = [
     {
@@ -61,7 +63,8 @@ class CartTable extends Component {
     {
       path: "cost",
       label: "Cost",
-      content: product => product.qty * product.price,
+      content: product =>
+        product.qty * product.price[this.state.currentCurrency.name],
       style: { width: "10%" }
     },
     {
@@ -77,6 +80,12 @@ class CartTable extends Component {
       style: { width: "10%" }
     }
   ];
+
+  componentDidMount() {
+    const currentCurrency = getCurrentCurrency();
+    this.setState({ currentCurrency });
+  }
+
   render() {
     const { productsInCart, sortColumn } = this.props;
     return (
