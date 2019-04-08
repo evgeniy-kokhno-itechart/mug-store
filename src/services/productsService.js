@@ -3,6 +3,7 @@ import * as categoriesAPI from "./categoriesService";
 const products = [
   {
     _id: "1",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Small Mug",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -15,6 +16,7 @@ const products = [
   },
   {
     _id: "2",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Medium Mug",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -27,6 +29,7 @@ const products = [
   },
   {
     _id: "3",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Big Mug",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -39,6 +42,7 @@ const products = [
   },
   {
     _id: "4",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Small Plate",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -51,6 +55,7 @@ const products = [
   },
   {
     _id: "5",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Big Plate",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -63,6 +68,7 @@ const products = [
   },
   {
     _id: "6",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Small Notepad",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -75,6 +81,7 @@ const products = [
   },
   {
     _id: "7",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Medium Notepad",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -87,6 +94,7 @@ const products = [
   },
   {
     _id: "8",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "Big Notepad",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -99,6 +107,7 @@ const products = [
   },
   {
     _id: "9",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "T-shirt S size",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -111,6 +120,7 @@ const products = [
   },
   {
     _id: "10",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "T-shirt M size",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -123,6 +133,7 @@ const products = [
   },
   {
     _id: "11",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "T-shirt X size",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -135,6 +146,7 @@ const products = [
   },
   {
     _id: "12",
+    imageLink: "https://picsum.photos/150/100?image=30",
     title: "T-shirt XL size",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
@@ -159,7 +171,7 @@ export function saveProduct(product) {
   let productInDb = products.find(m => m._id === product._id) || {};
   productInDb.title = product.title;
   productInDb.category = categoriesAPI.categories.find(
-    g => g._id === product.categoryId
+    c => c._id === product.categoryId
   );
   productInDb.price = product.price;
   productInDb.description = product.description;
@@ -178,6 +190,6 @@ export function saveProduct(product) {
 
 export function deleteProduct(id) {
   let productInDb = products.find(m => m._id === id);
-  products.splice(products.indexOf(productInDb), 1);
+  products.splice(products.findIndex(p => p._id === productInDb._id), 1);
   return productInDb;
 }

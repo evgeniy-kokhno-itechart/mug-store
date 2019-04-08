@@ -6,6 +6,7 @@ import { getCurrentUser } from "../../services/authService";
 import { getCurrentCurrency } from "./../../services/payService";
 import Table from "./../common/table";
 import Rate from "./../common/rate";
+import Modal from "../common/modal";
 
 class ProductsTable extends Component {
   state = { currentCurrency: {} };
@@ -37,7 +38,7 @@ class ProductsTable extends Component {
       content: product => (
         <LinesEllipsis
           text={product.description}
-          maxLine="1"
+          maxLine="3"
           ellipsis="..."
           trimRight
           basedOn="words"
@@ -50,7 +51,7 @@ class ProductsTable extends Component {
       content: product => (
         <Rate rate={product.rate} /> // onClick={this.props.onRateClick(product)} />
       ),
-      style: { width: "10%" }
+      style: { width: "11%" }
     },
     {
       path: "price." + this.state.currentCurrency.name,
@@ -64,7 +65,7 @@ class ProductsTable extends Component {
       key: "buyNow",
       content: product => (
         <button
-          className="bth btn-secondary btn-sm"
+          className="btn btn-secondary btn-sm"
           onClick={() => this.props.onBuyNow(product, 1)}
         >
           <FontAwesomeIcon icon="cart-arrow-down" />
@@ -79,19 +80,33 @@ class ProductsTable extends Component {
       key: "edit",
       content: product => (
         <Link to={`/edit/products/${product._id}`}>
-          <button className="bth btn-warning btn-sm">Edit</button>
+          <button className="btn btn-warning btn-sm">Edit</button>
         </Link>
       )
     },
     {
       key: "delete",
       content: product => (
-        <button
-          onClick={() => this.props.onDelete(product)}
-          className="bth btn-danger btn-sm"
-        >
-          Delete
-        </button>
+        <Modal
+          id="product-deletion-confirmation" //{product._id + product.title.replace(/\s/g, "")}
+          buttonLabel="Delete"
+          buttonClasses="btn btn-danger btn-sm"
+          title="Confirm product deletion"
+          text={
+            "You are about to completely delete" +
+            product.title +
+            "from the database?"
+          }
+          textConfirm="Confirm"
+          textAbort="Dismiss"
+          onConfirm={() => this.props.onDelete(product._id)}
+        />
+        // <button
+        //   onClick={() => this.props.onDelete(product._id)}
+        //   className="bth btn-danger btn-sm"
+        // >
+        //   Delete
+        // </button>
       )
     }
   ];

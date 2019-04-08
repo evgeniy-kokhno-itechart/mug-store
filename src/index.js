@@ -6,6 +6,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap/dist/css/bootstrap.css";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 ReactDOM.render(
   <BrowserRouter>

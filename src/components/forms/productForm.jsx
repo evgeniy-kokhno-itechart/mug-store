@@ -102,6 +102,7 @@ class ProductForm extends Form {
 
   mapFromViewModel(data) {
     return {
+      _id: data._id,
       title: data.title,
       description: data.description,
       categoryId: data.categoryId,

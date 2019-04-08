@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { getCategories } from "../../services/categoriesService";
-import { getProducts } from "./../../services/productsService";
+import { getProducts, deleteProduct } from "./../../services/productsService";
 import { paginate } from "./../../utils/paginate";
 import ListGroup from "../common/listGroup";
 import SearchBox from "../common/searchBox";
@@ -129,31 +129,11 @@ class Catalog extends Component {
     this.setState({ pageSize });
   };
 
-  handleBuyNow = (product, quantity) => {
-    let cart = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [];
-    let id = product._id.toString();
-
-    let existedProduct = cart.find(prod => prod._id === id);
-    if (existedProduct)
-      existedProduct.qty = existedProduct.qty + parseInt(quantity);
-    else cart.push({ _id: id, qty: quantity });
-
-    // let currentProduct = cart.find(prod => prod._id === id)
-    //   ? cart.find(prod => prod._id === id)
-    //   : { _id: id, qty: 0 };
-    // currentProduct.qty = currentProduct.qty + parseInt(quantity);
-    // cart.push(currentProduct);
-
-    // cart[id] = cart[id] ? cart[id] : 0;
-    // let qty = cart[id] + parseInt(quantity);
-    // if (this.props.product.available_quantity < qty) {
-    //   cart[id] = this.props.product.available_quantity;
-    // } else {
-    // cart[id] = qty;
-
-    localStorage.setItem("cart", JSON.stringify(cart));
+  handleDelete = productId => {
+    console.log("deleted", productId);
+    // deleteProduct(productId);
+    const products = this.state.products.filter(p => p._id !== productId);
+    this.setState({ products });
   };
 
   render() {
@@ -167,7 +147,12 @@ class Catalog extends Component {
     } = this.state;
 
     const { totalCount, productsOnPage } = this.getPagedData();
-
+    if (productsOnPage.length === 0)
+      return (
+        <h2 className="m-2 text-center">
+          There are no products in the catalog
+        </h2>
+      );
     return (
       <div className="row mt-3">
         <div className="col col-lg-2">
@@ -196,7 +181,8 @@ class Catalog extends Component {
           <ProductsTable
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}
-            onBuyNow={this.handleBuyNow}
+            onBuyNow={this.props.onBuyNow}
+            onDelete={this.handleDelete}
           />
           <div className="row justify-content-between">
             <div>

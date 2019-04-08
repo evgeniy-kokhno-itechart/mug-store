@@ -10,10 +10,12 @@ class InformationItem extends Component {
   render() {
     const { label, info } = this.props;
     return (
-      <div className="row">
-        <span className="col-md-2 text-right">{label}</span>
+      <div className="row m-2">
+        <span className="col-md-2 offset-1 text-right">
+          <b>{label}</b>
+        </span>
         {/* {console.log("field.label", label)} */}
-        <span className="col-md-5 text-left">{info}</span>
+        <span className="col-md-6 text-left">{info}</span>
       </div>
     );
   }

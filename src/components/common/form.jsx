@@ -67,7 +67,7 @@ class Form extends Component {
 
   renderInput(name, label, type = "text", matchedInputName) {
     const { data, errors } = this.state;
-    console.log("renderInput data", [_.get(data, name), name, data]);
+    // console.log("renderInput data", [_.get(data, name), name, data]);
     return (
       <Input
         key={name}

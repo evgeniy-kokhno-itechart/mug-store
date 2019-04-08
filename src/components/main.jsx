@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Carousel from "nuka-carousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import cupAndPlateChristmasCrop from "../../src/images/CupAndPlateChristmasCrop.png";
 import cupAndPlateCrop from "../../src/images/CupAndPlateCrop.png";
 
@@ -7,18 +7,51 @@ class MainPage extends Component {
   state = {};
   render() {
     return (
-      <Carousel
-        className="m-1"
-        withoutControls={true}
-        autoplay={true}
-        wrapAround={true}
-        // renderAnnounceSlideMessage={({currentSlide, slideCount }) =>
-        //   `Slide ${currentSlide + 1} of ${slideCount}`
-        // }
+      <div
+        id="mainCarouselControls"
+        className="carousel slide m-3"
+        data-ride="carousel"
       >
-        <img src={cupAndPlateChristmasCrop} alt="1" />
-        <img src={cupAndPlateCrop} alt="2" />
-      </Carousel>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img
+              src={cupAndPlateChristmasCrop}
+              className="d-block w-100"
+              alt="1"
+            />
+          </div>
+          <div className="carousel-item">
+            <img src={cupAndPlateCrop} className="d-block w-100" alt="2" />
+          </div>
+        </div>
+        <a
+          className="carousel-control-prev"
+          href="#mainCarouselControls"
+          role="button"
+          data-slide="prev"
+        >
+          <FontAwesomeIcon
+            style={{ fontSize: "1.5rem", color: "black" }}
+            icon="arrow-left"
+          />
+          <span className="sr-only">Previous</span>
+        </a>
+        <a
+          className="carousel-control-next"
+          href="#mainCarouselControls"
+          role="button"
+          data-slide="next"
+        >
+          <FontAwesomeIcon
+            style={{
+              fontSize: "1.5rem",
+              color: "black"
+            }}
+            icon="arrow-right"
+          />
+          <span className="sr-only">Next</span>
+        </a>
+      </div>
     );
   }
 }
