@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 import { getCategories } from "../../services/categoriesService";
-import { getProducts, deleteProduct } from "./../../services/productsService";
+import { getProducts } from "./../../services/productsService";
+import { getCurrentCurrency } from "../../services/payService";
+import { getCurrentUser } from "../../services/authService";
 import { paginate } from "./../../utils/paginate";
 import ListGroup from "../common/listGroup";
 import SearchBox from "../common/searchBox";
@@ -9,7 +12,6 @@ import SortBox from "./sortBox";
 import Pagination from "./../common/pagination";
 import ProductsTable from "./productsTable";
 import Dropdown from "./../common/dropdown";
-import { getCurrentCurrency } from "../../services/payService";
 
 class Catalog extends Component {
   state = {
@@ -17,6 +19,7 @@ class Catalog extends Component {
     products: [],
     currentCatergory: null,
     currentCurrency: {},
+    currentUser: {},
     searchQuery: "",
     sortColumn: { path: "title", order: "asc" },
     pageSize: 10,
@@ -75,6 +78,7 @@ class Catalog extends Component {
     ];
     const products = getProducts();
     const currentCurrency = getCurrentCurrency();
+    const currentUser = getCurrentUser();
     console.log("products", products);
     for (var i = 0; i < products.length; i++) {
       products[i].price[currentCurrency.name] = +products[i].price[
@@ -84,7 +88,8 @@ class Catalog extends Component {
     this.setState({
       categories: categoriesPopulated,
       products,
-      currentCurrency
+      currentCurrency,
+      currentUser
     });
   }
 
@@ -143,7 +148,8 @@ class Catalog extends Component {
       sortColumn,
       searchQuery,
       pageSize,
-      currentPage
+      currentPage,
+      currentUser
     } = this.state;
 
     const { totalCount, productsOnPage } = this.getPagedData();
@@ -171,6 +177,13 @@ class Catalog extends Component {
                 key={searchQuery}
               />
             </div>
+            <div>
+              {currentUser && (
+                <Link to="/edit/products/new" className="btn btn-secondary">
+                  Add New Product
+                </Link>
+              )}
+            </div>
             <div className="justify-content-end">
               <SortBox
                 sortOptions={this.sortOptions}
@@ -178,6 +191,7 @@ class Catalog extends Component {
               />
             </div>
           </div>
+
           <ProductsTable
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}

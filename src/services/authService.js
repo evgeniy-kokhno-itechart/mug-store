@@ -21,7 +21,7 @@ export function getCurrentUser() {
   try {
     const jwt = localStorage.getItem("token"); //getting the users from Local Storage!!!
     const currentUser = jwtDecode(jwt);
-    console.log("currentUserFromStorage", currentUser);
+    // console.log("currentUserFromStorage", currentUser);
     return currentUser;
   } catch (ex) {
     return null;

@@ -17,7 +17,7 @@ class CartTable extends Component {
       label: "",
       content: product => (
         <Link to={`/products/${product._id}`} className="clickable">
-          <img src={product.imageLink} alt={product.title} />
+          <img src={product.imageURL} alt={product.title} />
         </Link>
       ),
       style: { width: "20%" }
@@ -65,7 +65,9 @@ class CartTable extends Component {
       label: "Cost",
       content: product => {
         const cost =
-          product.qty * product.price[this.state.currentCurrency.name];
+          product.qty *
+          product.price[this.state.currentCurrency.name] *
+          (1 - product.discount / 100);
         return cost.toString();
       },
       style: { width: "10%" }
@@ -74,7 +76,7 @@ class CartTable extends Component {
       key: "deleteFromCart",
       content: product => (
         <button
-          className="bth btn-secondary btn-sm"
+          className="btn btn-secondary btn-sm"
           onClick={() => this.props.onDeleteFromCart(product)}
         >
           <FontAwesomeIcon icon="trash" />

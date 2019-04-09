@@ -36,6 +36,7 @@ class Cart extends Component {
     cart.splice(cart.findIndex(p => p._id === product._id), 1);
     localStorage.setItem("cart", JSON.stringify(cart));
     let totalCost = this.getTotalCost(products);
+    this.props.onCartChange();
     this.setState({ products, totalCost });
   };
 
@@ -57,6 +58,7 @@ class Cart extends Component {
     }
     localStorage.setItem("cart", JSON.stringify(cart));
     const totalCost = this.getTotalCost(products);
+    this.props.onCartChange();
     this.setState({ products, totalCost });
   }
 
@@ -93,7 +95,10 @@ class Cart extends Component {
   handleQuantityChange = (value, productId) => {
     let quantity = parseInt(value);
     if (isNaN(quantity) || quantity < 1) return;
-    else this.changeProductQuantity(productId, quantity, null);
+    else {
+      this.changeProductQuantity(productId, quantity, null);
+      this.props.onCartChange();
+    }
   };
 
   getProductsInCart() {

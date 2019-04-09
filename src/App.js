@@ -40,17 +40,30 @@ library.add(
 );
 
 class App extends Component {
-  state = { user: null };
+  state = { user: null, cartCount: 0 };
 
   componentDidMount() {
     const user = getCurrentUser();
-    this.setState({ user: user });
+    const cartCount = this.getCartQuantity();
+    this.setState({ user, cartCount });
   }
 
-  handleBuyNow = (product, quantity) => {
+  getCartQuantity(cart) {
+    return this.getCart().reduce(
+      (sumQty, currentProduct) => sumQty + currentProduct.qty,
+      0
+    );
+  }
+
+  getCart = () => {
     let cart = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : [];
+    return cart;
+  };
+
+  handleBuyNow = (product, quantity) => {
+    let cart = this.getCart();
     let id = product._id.toString();
 
     let existedProduct = cart.find(prod => prod._id === id);
@@ -70,15 +83,19 @@ class App extends Component {
     //   cart[id] = this.props.product.available_quantity;
     // } else {
     // cart[id] = qty;
-
     localStorage.setItem("cart", JSON.stringify(cart));
+    this.setState({ cartCount: this.getCartQuantity() });
+  };
+
+  handleCartChange = () => {
+    this.setState({ cartCount: this.getCartQuantity() });
   };
 
   render() {
-    const { user } = this.state;
+    const { user, cartCount } = this.state;
     return (
       <React.Fragment>
-        <Navbar user={user} />
+        <Navbar user={user} cartCount={cartCount} />
         <div id="bootstrap-overrides" className="container">
           <div id="content-wrap">
             <Switch>
@@ -86,7 +103,7 @@ class App extends Component {
                 path="/edit/products/:id"
                 component={ProductForm}
               />
-              <ProtectedRoute
+              <Route
                 path="/products/:id"
                 render={props => (
                   <ProductDetails {...props} onBuyNow={this.handleBuyNow} />
@@ -103,8 +120,21 @@ class App extends Component {
               <Route path="/about" component={About} />
               <Route path="/order/mycart" component={OrderForm} />
               <Route path="/order" component={OrderForm} />
-              <Route path="/orderconfirm" component={OrderConfirmation} />
-              <Route path="/cart" component={Cart} />
+              <Route
+                path="/orderconfirm"
+                render={props => (
+                  <OrderConfirmation
+                    {...props}
+                    onCartChange={this.handleCartChange}
+                  />
+                )}
+              />
+              <Route
+                path="/cart"
+                render={props => (
+                  <Cart {...props} onCartChange={this.handleCartChange} />
+                )}
+              />
               <Route path="/main" component={MainPage} />
               <Route path="/not-found" component={NotFound} />
               <Redirect from="/" exact to="/main" />

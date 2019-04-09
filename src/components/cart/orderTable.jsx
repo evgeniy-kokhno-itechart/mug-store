@@ -26,7 +26,9 @@ class OrderTable extends Component {
       path: "cost",
       label: "Cost",
       content: product =>
-        product.qty * product.price[this.state.currentCurrency.name],
+        product.qty *
+        product.price[this.state.currentCurrency.name] *
+        (1 - product.discount / 100),
       style: { width: "10%" }
     }
   ];

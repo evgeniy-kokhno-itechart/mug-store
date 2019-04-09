@@ -17,7 +17,7 @@ class ProductsTable extends Component {
       label: "",
       content: product => (
         <Link to={`/products/${product._id}`} className="clickable">
-          <img src={product.imageLink} alt={product.title} />
+          <img src={product.imageURL} alt={product.title} />
         </Link>
       ),
       style: { width: "20%" }
@@ -57,7 +57,10 @@ class ProductsTable extends Component {
       path: "price." + this.state.currentCurrency.name,
       label: "Price",
       content: product => {
-        return product.price[this.state.currentCurrency.name];
+        return (
+          product.price[this.state.currentCurrency.name] *
+          (1 - product.discount / 100)
+        );
       },
       style: { width: "5%" }
     },
@@ -93,9 +96,9 @@ class ProductsTable extends Component {
           buttonClasses="btn btn-danger btn-sm"
           title="Confirm product deletion"
           text={
-            "You are about to completely delete" +
+            "You are about to completely delete " +
             product.title +
-            "from the database?"
+            " from the database?"
           }
           textConfirm="Confirm"
           textAbort="Dismiss"
@@ -117,12 +120,14 @@ class ProductsTable extends Component {
     if (user && user.roles.includes("admin")) {
       this.columns = [...this.columns, ...this.adminColumns];
     }
+    const currentCurrency = getCurrentCurrency();
+    this.state.currentCurrency = currentCurrency;
   }
 
-  componentDidMount() {
-    const currentCurrency = getCurrentCurrency();
-    this.setState({ currentCurrency });
-  }
+  // componentDidMount() {
+  //   const currentCurrency = getCurrentCurrency();
+  //   this.setState({ currentCurrency });
+  // }
 
   render() {
     const { productsOnPage, sortColumn } = this.props;

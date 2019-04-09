@@ -27,10 +27,10 @@ class Navbar extends Component {
 
   render() {
     const { currentCurrency, currencyOptions } = this.state;
-    console.log("currentCurrency", currentCurrency);
+    const { cartCount } = this.props;
+    // console.log("currentCurrency", currentCurrency);
     return (
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-        {/* sticky-top"> */}
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <button
           className="navbar-toggler"
           type="button"
@@ -55,6 +55,9 @@ class Navbar extends Component {
             </NavLink>
             <NavLink to="/cart" className="nav-item nav-link">
               Cart
+              {cartCount !== 0 ? (
+                <span className="badge badge-warning ml-1">{cartCount}</span>
+              ) : null}
             </NavLink>
           </div>
         </div>

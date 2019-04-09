@@ -10,13 +10,14 @@ class ProductForm extends Form {
   state = {
     data: {
       title: "",
+      imageURL: "",
       description: "",
       categoryId: "1",
       // ["price.BYN"]: "",
       // ["price.USD"]: "",
       discount: "",
       producer: "",
-      publishDate: "",
+      // publishDate: "",
       rate: ""
     },
     categories: [],
@@ -26,6 +27,9 @@ class ProductForm extends Form {
 
   schema = {
     _id: Joi.string(),
+    imageURL: Joi.string()
+      .min(5)
+      .label("Image URL"),
     title: Joi.string()
       .required()
       .min(3)
@@ -88,6 +92,7 @@ class ProductForm extends Form {
     let dataForReturn = {
       _id: product._id,
       title: product.title,
+      imageURL: product.imageURL,
       description: product.description,
       categoryId: product.category._id,
       discount: product.discount,
@@ -104,6 +109,7 @@ class ProductForm extends Form {
     return {
       _id: data._id,
       title: data.title,
+      imageURL: data.imageURL,
       description: data.description,
       categoryId: data.categoryId,
       price: { BYN: data["price.BYN"], USD: data["price.USD"] },
@@ -127,6 +133,7 @@ class ProductForm extends Form {
         <h1>Product Info</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
+          {this.renderInput("imageURL", "Image URL")}
           {this.renderTextArea("description", "Details")}
           {this.renderDropdown("categoryId", "Category", this.state.categories)}
 

@@ -51,7 +51,10 @@ class OrderForm extends Form {
     const currentCurrency = getCurrentCurrency();
     const totalCost = orderList.reduce(
       (sum, currentItem) =>
-        sum + currentItem.price[currentCurrency.name] * currentItem.qty,
+        sum +
+        currentItem.price[currentCurrency.name] *
+          currentItem.qty *
+          (1 - currentItem.discount / 100),
       0
     );
     if (this.props.location.pathname !== "/order") {
@@ -78,6 +81,7 @@ class OrderForm extends Form {
         _id: prodInCart._id,
         title: prodInCart.title,
         price: prodInCart.price,
+        discount: prodInCart.discount,
         qty: cartInfo[i].qty
       };
       products.push(prodInCart);
