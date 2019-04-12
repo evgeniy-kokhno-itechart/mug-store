@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import _ from "lodash";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getProduct } from "../../services/productsService";
 import { getCurrentCurrency } from "./../../services/payService";
 import { getProductImageURLs } from "./../../services/imageService";
 import InformationItem from "./../common/informationItem";
+import * as actionTypes from "../store/actions";
 
 class ProductDetails extends Component {
   state = {
@@ -198,4 +200,14 @@ class ProductDetails extends Component {
   }
 }
 
-export default ProductDetails;
+const mapDispatchToProps = dispatch => {
+  return {
+    onBuyNow: (product, quantity) =>
+      dispatch({ type: actionTypes.ADD_TO_CART, cart: { product, quantity } })
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ProductDetails);

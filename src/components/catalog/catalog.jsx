@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { getCategories } from "../../services/categoriesService";
 import { getProducts } from "./../../services/productsService";
 import { getCurrentCurrency } from "../../services/payService";
@@ -12,6 +13,7 @@ import SortBox from "./sortBox";
 import Pagination from "./../common/pagination";
 import ProductsTable from "./productsTable";
 import Dropdown from "./../common/dropdown";
+import * as actionTypes from "../store/actions";
 
 class Catalog extends Component {
   state = {
@@ -79,12 +81,12 @@ class Catalog extends Component {
     const products = getProducts();
     const currentCurrency = getCurrentCurrency();
     const currentUser = getCurrentUser();
-    console.log("products", products);
-    for (var i = 0; i < products.length; i++) {
-      products[i].price[currentCurrency.name] = +products[i].price[
-        currentCurrency.name
-      ];
-    }
+    // console.log("products", products);
+    // for (var i = 0; i < products.length; i++) {
+    //   products[i].price[currentCurrency.name] = +products[i].price[
+    //     currentCurrency.name
+    //   ];
+    // }
     this.setState({
       categories: categoriesPopulated,
       products,
@@ -161,7 +163,7 @@ class Catalog extends Component {
       );
     return (
       <div className="row mt-3">
-        <div className="col col-lg-2">
+        <div className="col-2">
           <ListGroup
             items={categories}
             selectedItem={currentCatergory}
@@ -184,7 +186,7 @@ class Catalog extends Component {
                 </Link>
               )}
             </div>
-            <div className="justify-content-end">
+            <div className="justify-content-end mr-2">
               <SortBox
                 sortOptions={this.sortOptions}
                 onChange={this.handleSort}
@@ -210,7 +212,7 @@ class Catalog extends Component {
                 // onItemsCountChange={this.handleItemsCountChange}
               />
             </div>
-            <div className="justify-content-end">
+            <div className="justify-content-end mr-2">
               <Dropdown
                 name="itemsOnPage"
                 label="Items on page"
@@ -229,4 +231,20 @@ class Catalog extends Component {
   }
 }
 
-export default Catalog;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onBuyNow: (product, quantity) =>
+      dispatch({ type: actionTypes.ADD_TO_CART, cart: { product, quantity } })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Catalog);

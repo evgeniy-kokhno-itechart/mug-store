@@ -1,5 +1,6 @@
 import React from "react";
 import Joi from "joi-browser";
+import { connect } from "react-redux";
 import { getProduct } from "../../services/productsService";
 import Form from "./../common/form";
 import OrderTable from "./orderTable";
@@ -72,7 +73,7 @@ class OrderForm extends Form {
   }
 
   getProductsInCartBriefly() {
-    const cartInfo = JSON.parse(localStorage.getItem("cart"));
+    const cartInfo = this.props.cart;
     let products = [];
     let prodInCart = {};
     for (var i = 0; i < cartInfo.length; i++) {
@@ -127,4 +128,10 @@ class OrderForm extends Form {
   }
 }
 
-export default OrderForm;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  };
+};
+
+export default connect(mapStateToProps)(OrderForm);

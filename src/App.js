@@ -10,6 +10,7 @@ import {
   faArrowRight,
   faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
 import { getCurrentUser } from "./services/authService";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -44,78 +45,70 @@ class App extends Component {
 
   componentDidMount() {
     const user = getCurrentUser();
-    const cartCount = this.getCartQuantity();
-    this.setState({ user, cartCount });
+    // const cartCount = this.getCartQuantity();
+    this.setState({ user });
   }
 
-  getCartQuantity(cart) {
-    return this.getCart().reduce(
-      (sumQty, currentProduct) => sumQty + currentProduct.qty,
-      0
-    );
-  }
+  // getCartQuantity(cart) {
+  //   return this.getCart().reduce(
+  //     (sumQty, currentProduct) => sumQty + currentProduct.qty,
+  //     0
+  //   );
+  // }
 
-  getCart = () => {
-    let cart = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [];
-    return cart;
-  };
+  // getCart = () => {
+  //   const reduxState = this.props.cart;
+  //   console.log("reduxState", reduxState);
+  //   console.log("reduxState.length", reduxState.length);
+  //   const cart = reduxState; //reduxState.length === 0 ? reduxState : [];
+  //   return cart;
+  // };
 
-  handleBuyNow = (product, quantity) => {
-    let cart = this.getCart();
-    let id = product._id.toString();
+  // handleBuyNow = (product, quantity) => {
+  //   let cart = this.getCart();
+  //   let id = product._id.toString();
 
-    let existedProduct = cart.find(prod => prod._id === id);
-    if (existedProduct)
-      existedProduct.qty = existedProduct.qty + parseInt(quantity);
-    else cart.push({ _id: id, qty: quantity });
+  //   let existedProduct = cart.find(prod => prod._id === id);
+  //   if (existedProduct)
+  //     existedProduct.qty = existedProduct.qty + parseInt(quantity);
+  //   else cart.push({ _id: id, qty: quantity });
 
-    // let currentProduct = cart.find(prod => prod._id === id)
-    //   ? cart.find(prod => prod._id === id)
-    //   : { _id: id, qty: 0 };
-    // currentProduct.qty = currentProduct.qty + parseInt(quantity);
-    // cart.push(currentProduct);
+  //   // localStorage.setItem("cart", JSON.stringify(cart));
+  //   this.props.onBuyNowTriggered(cart);
+  //   // this.setState({ cartCount: this.getCartQuantity() });
+  // };
 
-    // cart[id] = cart[id] ? cart[id] : 0;
-    // let qty = cart[id] + parseInt(quantity);
-    // if (this.props.product.available_quantity < qty) {
-    //   cart[id] = this.props.product.available_quantity;
-    // } else {
-    // cart[id] = qty;
-    localStorage.setItem("cart", JSON.stringify(cart));
-    this.setState({ cartCount: this.getCartQuantity() });
-  };
-
-  handleCartChange = () => {
-    this.setState({ cartCount: this.getCartQuantity() });
-  };
+  // handleCartChange = () => {
+  //   this.setState({ cartCount: this.getCartQuantity() });
+  // };
 
   render() {
-    const { user, cartCount } = this.state;
+    const { cartCount, onBuyNowTriggered } = this.props;
+    const { user } = this.state;
     return (
       <React.Fragment>
         <Navbar user={user} cartCount={cartCount} />
-        <div id="bootstrap-overrides" className="container">
+        <div id="bootstrap-overrides" className="container-fluid">
           <div id="content-wrap">
             <Switch>
               <ProtectedRoute
                 path="/edit/products/:id"
                 component={ProductForm}
               />
-              <Route
+              <Route path="/products/:id" component={ProductDetails} />
+              {/* <Route
                 path="/products/:id"
                 render={props => (
-                  <ProductDetails {...props} onBuyNow={this.handleBuyNow} />
+                  <ProductDetails {...props} onBuyNow={onBuyNowTriggered} />
                 )}
-              />
+              /> */}
               <Route path="/logout" component={Logout} />
               <Route path="/login" component={LoginForm} />
               <ProtectedRoute path="/myprofile" component={RegisterForm} />
               <Route path="/register" component={RegisterForm} />
               <Route
                 path="/catalog"
-                render={() => <Catalog onBuyNow={this.handleBuyNow} />}
+                render={() => <Catalog onBuyNow={onBuyNowTriggered} />}
               />
               <Route path="/about" component={About} />
               <Route path="/order/mycart" component={OrderForm} />
@@ -148,4 +141,20 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onBuyNowTriggered: (product, quantity) =>
+      dispatch({ type: "ADD_PRODUCT", cart: { product, quantity } })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

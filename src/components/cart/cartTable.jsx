@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LinesEllipsis from "react-lines-ellipsis";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { connect } from "react-redux";
 import Table from "../common/table";
 import Increment from "../common/increment";
 import { getCurrentCurrency } from "./../../services/payService";
+import * as actionTypes from "../store/actions";
 
 class CartTable extends Component {
   state = {
     sortColumn: "title",
     currentCurrency: {}
   };
+
   columns = [
     {
       key: "image",
@@ -77,7 +80,7 @@ class CartTable extends Component {
       content: product => (
         <button
           className="btn btn-secondary btn-sm"
-          onClick={() => this.props.onDeleteFromCart(product)}
+          onClick={() => this.props.onDeleteFromCart(product._id)}
         >
           <FontAwesomeIcon icon="trash" />
         </button>
@@ -103,4 +106,38 @@ class CartTable extends Component {
   }
 }
 
-export default CartTable;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onIncrementClick: productId =>
+      dispatch({
+        type: actionTypes.INCREMENT_PRODUCT_QTY,
+        productId
+      }),
+    onDecrementClick: productId =>
+      dispatch({
+        type: actionTypes.DECREMENT_PRODUCT_QTY,
+        productId
+      }),
+    onQuantityChange: (value, productId) =>
+      dispatch({
+        type: actionTypes.CHANGE_PRODUCT_QTY,
+        details: { value, productId }
+      }),
+    onDeleteFromCart: productId =>
+      dispatch({
+        type: actionTypes.DELETE_PRODUCT_FROM_CART,
+        productId
+      })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CartTable);

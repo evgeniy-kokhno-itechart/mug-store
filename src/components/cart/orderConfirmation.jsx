@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actionTypes from "../store/actions";
 
 class OrderConfirmation extends Component {
   componentDidMount() {
@@ -7,7 +9,7 @@ class OrderConfirmation extends Component {
   }
 
   render() {
-    localStorage.removeItem("cart");
+    // localStorage.removeItem("cart");
     return (
       <React.Fragment>
         <h2 className="text-center m-3">
@@ -24,4 +26,13 @@ class OrderConfirmation extends Component {
   }
 }
 
-export default OrderConfirmation;
+const mapDispatchToProps = dispatch => {
+  return {
+    onCartChange: () => dispatch({ type: actionTypes.CLEAR_CART })
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(OrderConfirmation);
