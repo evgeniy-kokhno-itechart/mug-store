@@ -152,7 +152,6 @@ class Catalog extends Component {
       searchQuery,
       pageSize,
       currentPage
-      // currentUser
     } = this.state;
 
     const { currentUser } = this.props;
@@ -211,8 +210,6 @@ class Catalog extends Component {
                 onPageChange={this.handlePageChange}
                 currentPage={currentPage}
                 pageSizeOptions={this.pageSizeOptions}
-                // onPageChange={this.handlePageChange}
-                // onItemsCountChange={this.handleItemsCountChange}
               />
             </div>
             <div className="justify-content-end mr-2">

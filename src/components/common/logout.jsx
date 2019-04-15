@@ -5,7 +5,6 @@ import * as actionTypes from "../store/actions";
 
 class Logout extends Component {
   componentDidMount() {
-    // localStorage.removeItem("cart");
     logoutUser();
     this.props.onUserLogout();
     window.location = "/";

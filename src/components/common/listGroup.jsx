@@ -20,7 +20,6 @@ class ListGroup extends Component {
             onClick={() => onItemSelect(item)}
           >
             {item.name}
-            {/* <Link to={`/${item.title.toLowerCase()}`}>{item.title}</Link> */}
           </li>
         ))}
       </ul>

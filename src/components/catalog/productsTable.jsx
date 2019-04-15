@@ -8,7 +8,6 @@ import Rate from "./../common/rate";
 import Modal from "../common/modal";
 
 class ProductsTable extends Component {
-  // state = { currentCurrency: {} };
   state = {
     columns: [
       {
@@ -47,13 +46,11 @@ class ProductsTable extends Component {
       },
       {
         path: "rate",
-        content: product => (
-          <Rate rate={product.rate} /> // onClick={this.props.onRateClick(product)} />
-        ),
+        content: product => <Rate rate={product.rate} />,
         style: { width: "11%" }
       },
       {
-        path: "price." + this.props.currentCurrency.name, //this.state.currentCurrency.name,
+        path: "price." + this.props.currentCurrency.name,
         label: "Price",
         content: product => {
           return (
@@ -91,7 +88,7 @@ class ProductsTable extends Component {
       key: "delete",
       content: product => (
         <Modal
-          id="product-deletion-confirmation" //{product._id + product.title.replace(/\s/g, "")}
+          id="product-deletion-confirmation"
           buttonLabel="Delete"
           buttonClasses="btn btn-danger btn-sm"
           title="Confirm product deletion"
@@ -104,47 +101,19 @@ class ProductsTable extends Component {
           textAbort="Dismiss"
           onConfirm={() => this.props.onDelete(product._id)}
         />
-        // <button
-        //   onClick={() => this.props.onDelete(product._id)}
-        //   className="bth btn-danger btn-sm"
-        // >
-        //   Delete
-        // </button>
       )
     }
   ];
 
-  // constructor() {
-  //   super();
-  //   const user = getCurrentUser();
-  //   if (user && user.roles.includes("admin")) {
-  //     this.columns = [...this.columns, ...this.adminColumns];
-  //   }
-  //   const currentCurrency = getCurrentCurrency();
-  //   this.state.currentCurrency = currentCurrency;
-  // }
-
   componentDidMount() {
-    const user = this.props.currentUser; //getCurrentUser();
+    const user = this.props.currentUser;
     if (user && user.roles.includes("admin")) {
       this.setState({ columns: [...this.state.columns, ...this.adminColumns] });
     }
   }
-  // const currentCurrency = getCurrentCurrency();
-  // this.setState({ currentCurrency });
-  // }
 
   render() {
     const { productsOnPage, sortColumn } = this.props;
-    // const user = this.props.currentUser; //getCurrentUser();
-    // console.log(this.columns.findIndex(col => col.key === "delete") > 0);
-    // if (
-    //   user &&
-    //   user.roles.includes("admin") &&
-    //   this.columns.findIndex(col => col.key === "delete") < 0
-    // ) {
-    //   this.columns = [...this.columns, ...this.adminColumns];
-    // }
     return (
       <Table
         columns={this.state.columns}

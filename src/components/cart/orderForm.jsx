@@ -47,22 +47,12 @@ class OrderForm extends Form {
 
   componentDidMount() {
     const orderList = this.getProductsInCartBriefly();
-    // const currentCurrency = this.props.currentCurrency; //getCurrentCurrency();
-    // const totalCost = orderList.reduce(
-    //   (sum, currentItem) =>
-    //     sum +
-    //     currentItem.price[currentCurrency.name] *
-    //       currentItem.qty *
-    //       (1 - currentItem.discount / 100),
-    //   0
-    // );
     if (this.props.location.pathname !== "/order") {
       this.setState({
         orderList,
-        // totalCost,
-        data: this.mapToViewModel(this.props.currentUser) //(getCurrentUser())
+        data: this.mapToViewModel(this.props.currentUser)
       });
-    } else this.setState({ orderList }); //, totalCost });
+    } else this.setState({ orderList });
     console.log("state.data", this.state.data);
   }
 

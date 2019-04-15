@@ -65,38 +65,6 @@ class ProductDetails extends Component {
     );
   };
 
-  // renderLeftNav(onClick, disabled) {
-  //   return (
-  //     <FontAwesomeIcon
-  //       style={{
-  //         fontSize: "1.5rem",
-  //         color: "black"
-  //       }}
-  //       icon="arrow-left"
-  //       className="image-gallery-custom-left-nav"
-  //       aria-label="Previous Slide"
-  //       disabled={disabled}
-  //       onClick={onClick}
-  //     />
-  //   );
-  // }
-
-  // renderRightNav(onClick, disabled) {
-  //   return (
-  //     <FontAwesomeIcon
-  //       style={{
-  //         fontSize: "1.5rem",
-  //         color: "black"
-  //       }}
-  //       icon="arrow-right"
-  //       className="image-gallery-custom-right-nav"
-  //       aria-label="Next Slide"
-  //       disabled={disabled}
-  //       onClick={onClick}
-  //     />
-  //   );
-  // }
-
   render() {
     const { imageURLs, product } = this.state;
     return (
@@ -110,66 +78,8 @@ class ProductDetails extends Component {
               infinite={false}
               showPlayButton={false}
               showBullets={true}
-              // renderLeftNav={this.renderLeftNav}
-              // renderRightNav={this.renderRightNav}
             />
           </div>
-          // <div
-          //   id="productCarousel"
-          //   className="carousel slide m-4 col-7"
-          //   data-interval="false"
-          //   // data-ride="carousel"
-          // >
-          //   <ol className="carousel-indicators">
-          //     {imageURLs.map((imageURL, index) => (
-          //       <li
-          //         key={index}
-          //         data-target="#productCarousel"
-          //         data-slide-to={index}
-          //         className={index === 0 ? "active" : ""}
-          //       />
-          //     ))}
-          //   </ol>
-          //   <div className="carousel-inner">
-          //     {imageURLs.map((imageURL, index) => (
-          //       <div
-          //         className={
-          //           index === 0 ? "carousel-item active" : "carousel-item"
-          //         }
-          //         key={index}
-          //       >
-          //         <img src={imageURL} className="d-block w-100" alt={index} />
-          //       </div>
-          //     ))}
-          //   </div>
-          //   <a
-          //     className="carousel-control-prev"
-          //     href="#productCarousel"
-          //     role="button"
-          //     data-slide="prev"
-          //   >
-          //     <FontAwesomeIcon
-          //       style={{ fontSize: "1.5rem", color: "black" }}
-          //       icon="arrow-left"
-          //     />
-          //     <span className="sr-only">Previous</span>
-          //   </a>
-          //   <a
-          //     className="carousel-control-next"
-          //     href="#productCarousel"
-          //     role="button"
-          //     data-slide="next"
-          //   >
-          //     <FontAwesomeIcon
-          //       style={{
-          //         fontSize: "1.5rem",
-          //         color: "black"
-          //       }}
-          //       icon="arrow-right"
-          //     />
-          //     <span className="sr-only">Next</span>
-          //   </a>
-          // </div>
         )}
 
         {this.fields.map(field => this.renderFieldInfo(field))}

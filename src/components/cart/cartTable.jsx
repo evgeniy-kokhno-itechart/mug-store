@@ -10,7 +10,6 @@ import * as actionTypes from "../store/actions";
 class CartTable extends Component {
   state = {
     sortColumn: "title"
-    // , currentCurrency: {}
   };
 
   columns = [
@@ -88,11 +87,6 @@ class CartTable extends Component {
       style: { width: "10%" }
     }
   ];
-
-  // componentDidMount() {
-  //   const currentCurrency = getCurrentCurrency();
-  //   this.setState({ currentCurrency });
-  // }
 
   render() {
     const { productsInCart, sortColumn } = this.props;

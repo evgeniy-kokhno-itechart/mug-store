@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import Table from "../common/table";
 
 class OrderTable extends Component {
-  // state = { currentCurrency: {} };
-
   columns = [
     {
       path: "title",
@@ -32,11 +30,6 @@ class OrderTable extends Component {
       style: { width: "10%" }
     }
   ];
-
-  // componentDidMount() {
-  //   const currentCurrency = getCurrentCurrency();
-  //   this.setState({ currentCurrency });
-  // }
 
   render() {
     const { products, sortColumn } = this.props;

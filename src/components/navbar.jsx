@@ -10,19 +10,8 @@ class Navbar extends Component {
 
   componentDidMount() {
     const currencyOptions = getCurrencies();
-    // const currentCurrency = getCurrentCurrency();
-    this.setState({ currencyOptions }); //, currentCurrency });
+    this.setState({ currencyOptions });
   }
-
-  // handleCurrencyChange = e => {
-  //   const currency = {
-  //     _id: e.currentTarget.value,
-  //     name: e.currentTarget.selectedOptions[0].text
-  //   };
-  //   window.location.reload();
-  //   setCurrentCurrency(currency);
-  //   this.setState({ currentCurrency: currency });
-  // };
 
   render() {
     const { currencyOptions } = this.state;
@@ -33,7 +22,6 @@ class Navbar extends Component {
       0
     );
 
-    // console.log("currentCurrency", currentCurrency);
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <button
@@ -75,15 +63,15 @@ class Navbar extends Component {
               id="dropdownMenuButton"
               value={currentCurrency._id}
               onChange={e => {
-                console.log("e", {
-                  _id: e.currentTarget.value,
-                  name: e.currentTarget.selectedOptions[0].text
-                });
+                // console.log("e", {
+                //   _id: e.currentTarget.value,
+                //   name: e.currentTarget.selectedOptions[0].text
+                // });
                 this.props.onCurrencyChange({
                   _id: e.currentTarget.value,
                   name: e.currentTarget.selectedOptions[0].text
                 });
-              }} //{e => this.handleCurrencyChange(e)}
+              }}
             >
               {currencyOptions.map(option => (
                 <option key={option._id} value={option._id}>

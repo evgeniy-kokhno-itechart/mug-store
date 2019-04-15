@@ -9,7 +9,6 @@ class OrderConfirmation extends Component {
   }
 
   render() {
-    // localStorage.removeItem("cart");
     return (
       <React.Fragment>
         <h2 className="text-center m-3">

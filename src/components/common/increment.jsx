@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Increment extends Component {
-  //   state = { quantity: 1 };
-
-  //   componentDidMount() {
-  //     this.setState({ quantity: parseInt(this.props.quantity) });
-  //   }
-
   render() {
     const {
       quantity,
