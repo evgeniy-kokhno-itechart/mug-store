@@ -1,8 +1,10 @@
 import React from "react";
 import Form from "../common/form";
 import Joi from "joi-browser";
+import { connect } from "react-redux";
 import { registerUser, saveUser } from "../../services/userService";
 import { loginUserWithJwt, getCurrentUser } from "../../services/authService";
+import * as actionTypes from "../store/actions";
 
 class RegisterForm extends Form {
   state = {
@@ -84,7 +86,8 @@ class RegisterForm extends Form {
       try {
         const { data } = this.state;
         const token = registerUser(data);
-        loginUserWithJwt(token);
+        const userInfo = loginUserWithJwt(token);
+        this.props.onUserLogin(userInfo);
         window.location = "/";
       } catch (ex) {
         // paste error handling logic here
@@ -124,4 +127,14 @@ class RegisterForm extends Form {
   }
 }
 
-export default RegisterForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    onUserLogin: userInfo =>
+      dispatch({ type: actionTypes.LOGIN_USER, userInfo })
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(RegisterForm);

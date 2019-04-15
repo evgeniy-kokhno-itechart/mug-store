@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Table from "../common/table";
-import { getCurrentCurrency } from "./../../services/payService";
 
 class OrderTable extends Component {
-  state = { currentCurrency: {} };
+  // state = { currentCurrency: {} };
 
   columns = [
     {
@@ -27,16 +27,16 @@ class OrderTable extends Component {
       label: "Cost",
       content: product =>
         product.qty *
-        product.price[this.state.currentCurrency.name] *
+        product.price[this.props.currentCurrency.name] *
         (1 - product.discount / 100),
       style: { width: "10%" }
     }
   ];
 
-  componentDidMount() {
-    const currentCurrency = getCurrentCurrency();
-    this.setState({ currentCurrency });
-  }
+  // componentDidMount() {
+  //   const currentCurrency = getCurrentCurrency();
+  //   this.setState({ currentCurrency });
+  // }
 
   render() {
     const { products, sortColumn } = this.props;
@@ -47,4 +47,10 @@ class OrderTable extends Component {
   }
 }
 
-export default OrderTable;
+const mapStateToProps = state => {
+  return {
+    currentCurrency: state.currencyState.currentCurrency
+  };
+};
+
+export default connect(mapStateToProps)(OrderTable);

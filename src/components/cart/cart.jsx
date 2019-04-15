@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartTable from "./cartTable";
 import { getProduct } from "./../../services/productsService";
-import { getCurrentUser } from "../../services/authService";
 import { Link } from "react-router-dom";
-import { getCurrentCurrency } from "./../../services/payService";
-import * as actionTypes from "../store/actions";
 
 class Cart extends Component {
   // state = { products: [], totalCost: 0, user: {} };
@@ -17,15 +14,15 @@ class Cart extends Component {
   //   const products = this.getProductsInCart();
   // }
 
-  componentDidMount() {
-    // const products = this.getProductsInCart();
-    // const totalCost = this.getTotalCost(products);
-    const user = getCurrentUser();
-    this.setState({ user });
-  }
+  // componentDidMount() {
+  // const products = this.getProductsInCart();
+  // const totalCost = this.getTotalCost(products);
+  //   const user = getCurrentUser();
+  //   this.setState({ user });
+  // }
 
   getTotalCost = products => {
-    const currentCurrency = getCurrentCurrency();
+    const currentCurrency = this.props.currentCurrency; //getCurrentCurrency();
     const totalCost = products.reduce(
       (sum, currentItem) =>
         sum + currentItem.price[currentCurrency.name] * currentItem.qty,
@@ -114,21 +111,30 @@ class Cart extends Component {
     // else return [];
     let products = [];
     let prodInCart = [];
+    let currentProd = {};
     for (var i = 0; i < cartInfo.length; i++) {
-      prodInCart = { ...getProduct(cartInfo[i]._id), qty: cartInfo[i].qty };
+      currentProd = getProduct(cartInfo[i]._id);
+      if (currentProd) prodInCart = { ...currentProd, qty: cartInfo[i].qty };
+      else
+        prodInCart = {
+          ...cartInfo[i],
+          title: "Sorry. The product is unavailable for order.",
+          price: 0
+        };
       products.push(prodInCart);
     }
+
     return products;
   }
 
   render() {
-    const { sortColumn, cart } = this.props;
-    const { user } = this.state;
+    const { sortColumn, cart, currentUser } = this.props;
+    // const { user } = this.state;
 
     const products = this.getProductsInCart(cart);
     const totalCost = this.getTotalCost(products);
 
-    return totalCost ? (
+    return products.length ? (
       <React.Fragment>
         <CartTable
           sortColumn={sortColumn}
@@ -145,8 +151,12 @@ class Cart extends Component {
           </h3>
           <div>
             <Link
-              className="btn btn-secondary m-2 justify-content-end"
-              to={user ? "/order/mycart" : "/order"}
+              className={
+                totalCost
+                  ? "btn btn-secondary m-2 justify-content-end"
+                  : "btn btn-secondary m-2 justify-content-end disabled"
+              }
+              to={currentUser.name ? "/order/mycart" : "/order"}
             >
               Order Now!
             </Link>
@@ -161,18 +171,20 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cartState.cart,
+    currentCurrency: state.currencyState.currentCurrency,
+    currentUser: state.userState.currentUser
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onBuyNow: (product, quantity) =>
-      dispatch({ type: actionTypes.ADD_TO_CART, cart: { product, quantity } })
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onBuyNow: (product, quantity) =>
+//       dispatch({ type: actionTypes.ADD_TO_CART, cart: { product, quantity } })
+//   };
+// };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
+  // mapDispatchToProps
 )(Cart);

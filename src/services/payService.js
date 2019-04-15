@@ -4,13 +4,13 @@ export function getCurrencies() {
   return currencies;
 }
 
-export function setCurrentCurrency(currency) {
-  let currencyInStorage = localStorage.getItem("currency");
-  if (currencyInStorage) {
-    localStorage.removeItem("currency");
-  }
-  localStorage.setItem("currency", JSON.stringify(currency));
-}
+// export function setCurrentCurrency(currency) {
+//   let currencyInStorage = localStorage.getItem("currency");
+//   if (currencyInStorage) {
+//     localStorage.removeItem("currency");
+//   }
+//   localStorage.setItem("currency", JSON.stringify(currency));
+// }
 
 export function getCurrentCurrency() {
   const defaultCurrency = currencies[0];

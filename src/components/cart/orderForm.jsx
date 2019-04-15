@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import { getProduct } from "../../services/productsService";
 import Form from "./../common/form";
 import OrderTable from "./orderTable";
-import { getCurrentUser } from "../../services/authService";
-import { getCurrentCurrency } from "./../../services/payService";
 
 class OrderForm extends Form {
   state = {
@@ -49,7 +47,28 @@ class OrderForm extends Form {
 
   componentDidMount() {
     const orderList = this.getProductsInCartBriefly();
-    const currentCurrency = getCurrentCurrency();
+    // const currentCurrency = this.props.currentCurrency; //getCurrentCurrency();
+    // const totalCost = orderList.reduce(
+    //   (sum, currentItem) =>
+    //     sum +
+    //     currentItem.price[currentCurrency.name] *
+    //       currentItem.qty *
+    //       (1 - currentItem.discount / 100),
+    //   0
+    // );
+    if (this.props.location.pathname !== "/order") {
+      this.setState({
+        orderList,
+        // totalCost,
+        data: this.mapToViewModel(this.props.currentUser) //(getCurrentUser())
+      });
+    } else this.setState({ orderList }); //, totalCost });
+    console.log("state.data", this.state.data);
+  }
+
+  getTotalCost() {
+    const orderList = this.getProductsInCartBriefly();
+    const currentCurrency = this.props.currentCurrency;
     const totalCost = orderList.reduce(
       (sum, currentItem) =>
         sum +
@@ -58,14 +77,7 @@ class OrderForm extends Form {
           (1 - currentItem.discount / 100),
       0
     );
-    if (this.props.location.pathname !== "/order") {
-      this.setState({
-        orderList,
-        totalCost,
-        data: this.mapToViewModel(getCurrentUser())
-      });
-    } else this.setState({ orderList, totalCost });
-    console.log("state.data", this.state.data);
+    return totalCost;
   }
 
   mapToViewModel({ name, country, city, address, phone }) {
@@ -97,7 +109,8 @@ class OrderForm extends Form {
   };
 
   render() {
-    const { orderList, totalCost } = this.state;
+    const { orderList } = this.state;
+    const totalCost = this.getTotalCost();
     return (
       <React.Fragment>
         <h2>Order</h2>
@@ -130,7 +143,9 @@ class OrderForm extends Form {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cartState.cart,
+    currentCurrency: state.currencyState.currentCurrency,
+    currentUser: state.userState.currentUser
   };
 };
 

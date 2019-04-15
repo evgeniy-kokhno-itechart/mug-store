@@ -1,10 +1,13 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 import { logoutUser } from "../../services/authService";
+import * as actionTypes from "../store/actions";
 
 class Logout extends Component {
   componentDidMount() {
-    localStorage.removeItem("cart");
+    // localStorage.removeItem("cart");
     logoutUser();
+    this.props.onUserLogout();
     window.location = "/";
   }
 
@@ -13,4 +16,11 @@ class Logout extends Component {
   }
 }
 
-export default Logout;
+const mapDispatchToProps = dispatch => {
+  return { onUserLogout: () => dispatch({ type: actionTypes.LOGOUT_USER }) };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Logout);

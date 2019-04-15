@@ -2,81 +2,81 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LinesEllipsis from "react-lines-ellipsis";
-import { getCurrentUser } from "../../services/authService";
-import { getCurrentCurrency } from "./../../services/payService";
+import { connect } from "react-redux";
 import Table from "./../common/table";
 import Rate from "./../common/rate";
 import Modal from "../common/modal";
 
 class ProductsTable extends Component {
-  state = { currentCurrency: {} };
-
-  columns = [
-    {
-      key: "image",
-      label: "",
-      content: product => (
-        <Link to={`/products/${product._id}`} className="clickable">
-          <img src={product.imageURL} alt={product.title} />
-        </Link>
-      ),
-      style: { width: "20%" }
-    },
-    {
-      path: "title",
-      label: "Title",
-      content: product => (
-        <Link to={`/products/${product._id}`} className="clickable">
-          {product.title}
-        </Link>
-      ),
-      style: { width: "10%" }
-    },
-    {
-      path: "description",
-      label: "Details",
-      content: product => (
-        <LinesEllipsis
-          text={product.description}
-          maxLine="3"
-          ellipsis="..."
-          trimRight
-          basedOn="words"
-        />
-      ),
-      style: { width: "50%" }
-    },
-    {
-      path: "rate",
-      content: product => (
-        <Rate rate={product.rate} /> // onClick={this.props.onRateClick(product)} />
-      ),
-      style: { width: "11%" }
-    },
-    {
-      path: "price." + this.state.currentCurrency.name,
-      label: "Price",
-      content: product => {
-        return (
-          product.price[this.state.currentCurrency.name] *
-          (1 - product.discount / 100)
-        );
+  // state = { currentCurrency: {} };
+  state = {
+    columns: [
+      {
+        key: "image",
+        label: "",
+        content: product => (
+          <Link to={`/products/${product._id}`} className="clickable">
+            <img src={product.imageURL} alt={product.title} />
+          </Link>
+        ),
+        style: { width: "20%" }
       },
-      style: { width: "5%" }
-    },
-    {
-      key: "buyNow",
-      content: product => (
-        <button
-          className="btn btn-secondary btn-sm"
-          onClick={() => this.props.onBuyNow(product, 1)}
-        >
-          <FontAwesomeIcon icon="cart-arrow-down" />
-        </button>
-      ),
-      style: { width: "10%" }
-    }
-  ];
+      {
+        path: "title",
+        label: "Title",
+        content: product => (
+          <Link to={`/products/${product._id}`} className="clickable">
+            {product.title}
+          </Link>
+        ),
+        style: { width: "10%" }
+      },
+      {
+        path: "description",
+        label: "Details",
+        content: product => (
+          <LinesEllipsis
+            text={product.description}
+            maxLine="3"
+            ellipsis="..."
+            trimRight
+            basedOn="words"
+          />
+        ),
+        style: { width: "50%" }
+      },
+      {
+        path: "rate",
+        content: product => (
+          <Rate rate={product.rate} /> // onClick={this.props.onRateClick(product)} />
+        ),
+        style: { width: "11%" }
+      },
+      {
+        path: "price." + this.props.currentCurrency.name, //this.state.currentCurrency.name,
+        label: "Price",
+        content: product => {
+          return (
+            product.price[this.props.currentCurrency.name] *
+            (1 - product.discount / 100)
+          );
+        },
+        style: { width: "5%" }
+      },
+      {
+        key: "buyNow",
+        content: product => (
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={() => this.props.onBuyNow(product, 1)}
+          >
+            <FontAwesomeIcon icon="cart-arrow-down" />
+          </button>
+        ),
+        style: { width: "10%" }
+      }
+    ]
+  };
 
   adminColumns = [
     {
@@ -114,26 +114,40 @@ class ProductsTable extends Component {
     }
   ];
 
-  constructor() {
-    super();
-    const user = getCurrentUser();
-    if (user && user.roles.includes("admin")) {
-      this.columns = [...this.columns, ...this.adminColumns];
-    }
-    const currentCurrency = getCurrentCurrency();
-    this.state.currentCurrency = currentCurrency;
-  }
-
-  // componentDidMount() {
+  // constructor() {
+  //   super();
+  //   const user = getCurrentUser();
+  //   if (user && user.roles.includes("admin")) {
+  //     this.columns = [...this.columns, ...this.adminColumns];
+  //   }
   //   const currentCurrency = getCurrentCurrency();
-  //   this.setState({ currentCurrency });
+  //   this.state.currentCurrency = currentCurrency;
+  // }
+
+  componentDidMount() {
+    const user = this.props.currentUser; //getCurrentUser();
+    if (user && user.roles.includes("admin")) {
+      this.setState({ columns: [...this.state.columns, ...this.adminColumns] });
+    }
+  }
+  // const currentCurrency = getCurrentCurrency();
+  // this.setState({ currentCurrency });
   // }
 
   render() {
     const { productsOnPage, sortColumn } = this.props;
+    // const user = this.props.currentUser; //getCurrentUser();
+    // console.log(this.columns.findIndex(col => col.key === "delete") > 0);
+    // if (
+    //   user &&
+    //   user.roles.includes("admin") &&
+    //   this.columns.findIndex(col => col.key === "delete") < 0
+    // ) {
+    //   this.columns = [...this.columns, ...this.adminColumns];
+    // }
     return (
       <Table
-        columns={this.columns}
+        columns={this.state.columns}
         sortColumn={sortColumn}
         items={productsOnPage}
       />
@@ -141,4 +155,11 @@ class ProductsTable extends Component {
   }
 }
 
-export default ProductsTable;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.userState.currentUser,
+    currentCurrency: state.currencyState.currentCurrency
+  };
+};
+
+export default connect(mapStateToProps)(ProductsTable);

@@ -43,6 +43,7 @@ class ProductDetails extends Component {
   componentDidMount() {
     const productId = this.props.match.params.id;
     const product = getProduct(productId);
+    if (!product) return this.props.history.replace("/not-found");
     const currentCurrency = getCurrentCurrency();
     const imageURLs = getProductImageURLs(productId);
     this.setState({ product, currentCurrency, imageURLs });

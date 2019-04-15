@@ -1,8 +1,10 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import Joi from "joi-browser";
+import { connect } from "react-redux";
 import Form from "./../common/form";
-import { loginUser, getCurrentUser } from "../../services/authService";
+import { loginUser } from "../../services/authService";
+import * as actionTypes from "../store/actions";
 
 class LoginForm extends Form {
   state = {
@@ -22,8 +24,10 @@ class LoginForm extends Form {
   doSubmit = () => {
     try {
       const { data } = this.state;
-      loginUser(data.username, data.password);
-      console.log(`User with name: ${data.username} logged in!`);
+      const userInfo = loginUser(data.username, data.password); //get user's token from the back-end,store it in localStorage and get user's info
+      this.props.onUserLogin(userInfo);
+      // console.log(`User with name: ${data.username} logged in!`);
+      console.log("userInfo", userInfo);
       const { state } = this.props.location;
       window.location = state ? state.from.pathname : "/";
     } catch (ex) {
@@ -34,7 +38,7 @@ class LoginForm extends Form {
   };
 
   render() {
-    if (getCurrentUser()) return <Redirect to="/" />;
+    if (this.props.currentUser.name) return <Redirect to="/" />;
     return (
       <div>
         <h1>Login</h1>
@@ -48,4 +52,18 @@ class LoginForm extends Form {
   }
 }
 
-export default LoginForm;
+const mapStateToProps = state => {
+  return { currentUser: state.userState.currentUser };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUserLogin: userInfo =>
+      dispatch({ type: actionTypes.LOGIN_USER, userInfo })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginForm);

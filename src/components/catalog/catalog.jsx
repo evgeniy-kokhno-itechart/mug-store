@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCategories } from "../../services/categoriesService";
 import { getProducts } from "./../../services/productsService";
-import { getCurrentCurrency } from "../../services/payService";
-import { getCurrentUser } from "../../services/authService";
+// import { getCurrentCurrency } from "../../services/payService";
+// import { getCurrentUser } from "../../services/authService";
 import { paginate } from "./../../utils/paginate";
 import ListGroup from "../common/listGroup";
 import SearchBox from "../common/searchBox";
@@ -20,8 +20,8 @@ class Catalog extends Component {
     categories: [],
     products: [],
     currentCatergory: null,
-    currentCurrency: {},
-    currentUser: {},
+    // currentCurrency: {},
+    // currentUser: {},
     searchQuery: "",
     sortColumn: { path: "title", order: "asc" },
     pageSize: 10,
@@ -69,7 +69,7 @@ class Catalog extends Component {
     console.log("path", sortColumn.path);
     console.log("order", sortColumn.order);
     const productsOnPage = paginate(sorted, currentPage, pageSize);
-
+    console.log("productsOnPage", productsOnPage);
     return { totalCount: filtered.length, productsOnPage };
   };
 
@@ -79,8 +79,9 @@ class Catalog extends Component {
       ...getCategories()
     ];
     const products = getProducts();
-    const currentCurrency = getCurrentCurrency();
-    const currentUser = getCurrentUser();
+    //const currentCurrency = this.props.currentCurrency;//getCurrentCurrency();
+    // const currentUser = getCurrentUser();
+
     // console.log("products", products);
     // for (var i = 0; i < products.length; i++) {
     //   products[i].price[currentCurrency.name] = +products[i].price[
@@ -89,9 +90,9 @@ class Catalog extends Component {
     // }
     this.setState({
       categories: categoriesPopulated,
-      products,
-      currentCurrency,
-      currentUser
+      products
+      // currentCurrency
+      // currentUser
     });
   }
 
@@ -126,7 +127,7 @@ class Catalog extends Component {
     if (detailsToBeSplitted) {
       const sortInfo = detailsToBeSplitted.split("_");
       if (sortInfo[0] === "price")
-        sortInfo[0] = sortInfo[0] + "." + this.state.currentCurrency.name;
+        sortInfo[0] = sortInfo[0] + "." + this.props.currentCurrency.name;
       this.setState({ sortColumn: { path: sortInfo[0], order: sortInfo[1] } });
     } else this.setState({ sortColumn: { path: "title", order: "asc" } });
   };
@@ -150,9 +151,11 @@ class Catalog extends Component {
       sortColumn,
       searchQuery,
       pageSize,
-      currentPage,
-      currentUser
+      currentPage
+      // currentUser
     } = this.state;
+
+    const { currentUser } = this.props;
 
     const { totalCount, productsOnPage } = this.getPagedData();
     if (productsOnPage.length === 0)
@@ -180,7 +183,7 @@ class Catalog extends Component {
               />
             </div>
             <div>
-              {currentUser && (
+              {currentUser.name && (
                 <Link to="/edit/products/new" className="btn btn-secondary">
                   Add New Product
                 </Link>
@@ -233,7 +236,9 @@ class Catalog extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cartState.cart,
+    currentUser: state.userState.currentUser,
+    currentCurrency: state.currencyState.currentCurrency
   };
 };
 

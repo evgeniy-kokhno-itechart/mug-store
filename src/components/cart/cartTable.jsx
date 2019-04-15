@@ -5,13 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import Table from "../common/table";
 import Increment from "../common/increment";
-import { getCurrentCurrency } from "./../../services/payService";
 import * as actionTypes from "../store/actions";
 
 class CartTable extends Component {
   state = {
-    sortColumn: "title",
-    currentCurrency: {}
+    sortColumn: "title"
+    // , currentCurrency: {}
   };
 
   columns = [
@@ -69,9 +68,10 @@ class CartTable extends Component {
       content: product => {
         const cost =
           product.qty *
-          product.price[this.state.currentCurrency.name] *
+          product.price[this.props.currentCurrency.name] *
           (1 - product.discount / 100);
-        return cost.toString();
+        if (cost) return cost.toString();
+        else return 0;
       },
       style: { width: "10%" }
     },
@@ -89,10 +89,10 @@ class CartTable extends Component {
     }
   ];
 
-  componentDidMount() {
-    const currentCurrency = getCurrentCurrency();
-    this.setState({ currentCurrency });
-  }
+  // componentDidMount() {
+  //   const currentCurrency = getCurrentCurrency();
+  //   this.setState({ currentCurrency });
+  // }
 
   render() {
     const { productsInCart, sortColumn } = this.props;
@@ -108,7 +108,8 @@ class CartTable extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cartState.cart,
+    currentCurrency: state.currencyState.currentCurrency
   };
 };
 

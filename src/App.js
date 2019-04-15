@@ -11,7 +11,6 @@ import {
   faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { getCurrentUser } from "./services/authService";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 // import logo from "./logo.svg";
@@ -41,13 +40,16 @@ library.add(
 );
 
 class App extends Component {
-  state = { user: null, cartCount: 0 };
+  state = {
+    //user: null,
+    cartCount: 0
+  };
 
-  componentDidMount() {
-    const user = getCurrentUser();
-    // const cartCount = this.getCartQuantity();
-    this.setState({ user });
-  }
+  // componentDidMount() {
+  //   const user = getCurrentUser();
+  // const cartCount = this.getCartQuantity();
+  //   this.setState({ user });
+  // }
 
   // getCartQuantity(cart) {
   //   return this.getCart().reduce(
@@ -83,11 +85,11 @@ class App extends Component {
   // };
 
   render() {
-    const { cartCount, onBuyNowTriggered } = this.props;
-    const { user } = this.state;
+    const { currentUser, cartCount, onBuyNowTriggered } = this.props;
+    // const { user } = this.state;
     return (
       <React.Fragment>
-        <Navbar user={user} cartCount={cartCount} />
+        <Navbar user={currentUser} cartCount={cartCount} />
         <div id="bootstrap-overrides" className="container-fluid">
           <div id="content-wrap">
             <Switch>
@@ -143,7 +145,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    currentUser: state.currentUser
   };
 };
 

@@ -1,15 +1,23 @@
 import { createStore, combineReducers } from "redux";
 import cartReducer from "./reducers/cartReducer";
+import userReducer from "./reducers/userReduser";
+import currencyReducer from "./reducers/currencyReducer";
 
 const initializeStore = () => {
-  // const rootReducer = combineReducers({
-  //   cart: cartReducer
-  // });
+  const rootReducer = combineReducers({
+    cartState: cartReducer,
+    userState: userReducer,
+    currencyState: currencyReducer
+  });
 
   const persistedState = localStorage.getItem("reduxState")
     ? JSON.parse(localStorage.getItem("reduxState"))
-    : { cart: [] };
-  return createStore(cartReducer, persistedState);
+    : {
+        cartState: rootReducer.cartState,
+        userState: rootReducer.currentUser,
+        currencyState: rootReducer.currentCurrency
+      };
+  return createStore(rootReducer, persistedState);
 };
 
 export default initializeStore;

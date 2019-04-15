@@ -1,34 +1,33 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  getCurrencies,
-  setCurrentCurrency,
-  getCurrentCurrency
-} from "../services/payService";
+import { getCurrencies } from "../services/payService";
+import * as actionTypes from "./store/actions";
 
 class Navbar extends Component {
   state = { currentCurrency: { _id: "", name: "" }, currencyOptions: [] };
+  state = { currencyOptions: [] };
 
   componentDidMount() {
     const currencyOptions = getCurrencies();
-    const currentCurrency = getCurrentCurrency();
-    this.setState({ currencyOptions, currentCurrency });
+    // const currentCurrency = getCurrentCurrency();
+    this.setState({ currencyOptions }); //, currentCurrency });
   }
 
-  handleCurrencyChange = e => {
-    const currency = {
-      _id: e.currentTarget.value,
-      name: e.currentTarget.selectedOptions[0].text
-    };
-    window.location.reload();
-    setCurrentCurrency(currency);
-    this.setState({ currentCurrency: currency });
-  };
+  // handleCurrencyChange = e => {
+  //   const currency = {
+  //     _id: e.currentTarget.value,
+  //     name: e.currentTarget.selectedOptions[0].text
+  //   };
+  //   window.location.reload();
+  //   setCurrentCurrency(currency);
+  //   this.setState({ currentCurrency: currency });
+  // };
 
   render() {
-    const { currentCurrency, currencyOptions } = this.state;
-    console.log("cartInNavBar", this.props.cart);
+    const { currencyOptions } = this.state;
+    const { currentCurrency } = this.props;
+    // console.log("cartInNavBar", this.props.cart);
     const cartCount = this.props.cart.reduce(
       (sumQty, currentProduct) => sumQty + currentProduct.qty,
       0
@@ -75,7 +74,16 @@ class Navbar extends Component {
               type="dropdown"
               id="dropdownMenuButton"
               value={currentCurrency._id}
-              onChange={e => this.handleCurrencyChange(e)}
+              onChange={e => {
+                console.log("e", {
+                  _id: e.currentTarget.value,
+                  name: e.currentTarget.selectedOptions[0].text
+                });
+                this.props.onCurrencyChange({
+                  _id: e.currentTarget.value,
+                  name: e.currentTarget.selectedOptions[0].text
+                });
+              }} //{e => this.handleCurrencyChange(e)}
             >
               {currencyOptions.map(option => (
                 <option key={option._id} value={option._id}>
@@ -85,9 +93,11 @@ class Navbar extends Component {
             </select>
           </div>
           <div className="col row">
-            {this.props.user ? (
+            {this.props.currentUser.name ? (
               <React.Fragment>
-                <p className="nav navbar-text mr-3">{this.props.user.name}</p>
+                <p className="nav navbar-text mr-3">
+                  {this.props.currentUser.name}
+                </p>
                 <div>
                   {/* className="dropleft"> */}
                   <button
@@ -138,7 +148,26 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => {
-  return { cart: state.cart };
+  return {
+    cart: state.cartState.cart,
+    currentUser: state.userState.currentUser,
+    currentCurrency: state.currencyState.currentCurrency
+  };
 };
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => {
+  return {
+    onCurrencyChange: newCurrency => {
+      console.log("newCurrency", newCurrency);
+      dispatch({
+        type: actionTypes.CHANGE_CURRENCY,
+        currentCurrency: newCurrency
+      });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar);
