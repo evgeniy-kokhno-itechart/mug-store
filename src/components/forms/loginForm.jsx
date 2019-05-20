@@ -40,14 +40,17 @@ class LoginForm extends Form {
   render() {
     if (this.props.currentUser.name) return <Redirect to="/" />;
     return (
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
+      <React.Fragment>
+        <h1 className="text-center m-3">Login</h1>
+        <form
+          className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+          onSubmit={this.handleSubmit}
+        >
           {this.renderInput("username", "Username")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderButton("Login")}
+          {this.renderButton("Login", "w-100")}
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }

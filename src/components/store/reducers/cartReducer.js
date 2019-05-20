@@ -51,7 +51,7 @@ const cartReducer = (state = initialState, action) => {
   }
 };
 
-const changeProductQuantity = (cart, productId, newValue, delta) => {
+const changeProductQuantity = (cart, productId, newValue = 1, delta) => {
   // console.log("changeProductQuantity method. cart", cart);
   let prodInCart = cart.find(p => p._id === productId);
   // console.log("prodInCart", [prodInCart, productId]);

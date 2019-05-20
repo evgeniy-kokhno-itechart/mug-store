@@ -19,7 +19,12 @@ class TableBody extends Component {
         {items.map(item => (
           <tr key={item._id}>
             {columns.map(column => (
-              <td key={this.createKey(item, column)}>
+              <td
+                key={this.createKey(item, column)}
+                className={`p-1 p-md-2 ${
+                  column.customClasses ? column.customClasses : ""
+                }`}
+              >
                 {this.renderCell(item, column)}
               </td>
             ))}

@@ -8,11 +8,18 @@ const Dropdown = ({
   value,
   isOnelineElement,
   defaultText,
-  onChange
+  onChange,
+  customClasses
 }) => {
   return (
-    <div className={isOnelineElement ? "form-group form-inline" : "form-group"}>
-      <label className="mr-2" htmlFor={name}>
+    <div
+      className={
+        "form-group flex-nowrap" +
+        (isOnelineElement ? " form-inline" : "") +
+        (customClasses ? ` ${customClasses}` : "")
+      }
+    >
+      <label className="mr-2 text-nowrap" htmlFor={name}>
         {label}
       </label>
       <select

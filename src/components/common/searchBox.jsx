@@ -12,11 +12,11 @@ class SearchBox extends PureComponent {
     const { onSubmit } = this.props;
     return (
       <form
-        className="form-inline"
+        className="input-group"
         onSubmit={e => onSubmit(e, this.state.query)}
       >
         <input
-          className="form-control mr-2"
+          className="form-control"
           type="text"
           name="query"
           placeholder="Search..."
@@ -24,9 +24,11 @@ class SearchBox extends PureComponent {
           onChange={this.handleChange}
           aria-label="Search"
         />
-        <button className="btn btn-outline-secondary">
-          <FontAwesomeIcon icon="search" />
-        </button>
+        <div className="input-group-append">
+          <button className="btn btn-outline-secondary">
+            <FontAwesomeIcon icon="search" />
+          </button>
+        </div>
       </form>
     );
   }

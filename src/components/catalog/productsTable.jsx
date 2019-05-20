@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LinesEllipsis from "react-lines-ellipsis";
 import { connect } from "react-redux";
+import ResponsiveEllipsis from "./../common/responsiveEllipsis";
 import Table from "./../common/table";
 import Rate from "./../common/rate";
 import Modal from "../common/modal";
@@ -14,8 +14,12 @@ class ProductsTable extends Component {
         key: "image",
         label: "",
         content: product => (
-          <Link to={`/products/${product._id}`} className="clickable">
-            <img src={product.imageURL} alt={product.title} />
+          <Link to={`/products/${product._id}`} className="clickable ">
+            <img
+              src={product.imageURL}
+              alt={product.title}
+              className="img-fluid"
+            />
           </Link>
         ),
         style: { width: "20%" }
@@ -33,15 +37,17 @@ class ProductsTable extends Component {
       {
         path: "description",
         label: "Details",
-        content: product => (
-          <LinesEllipsis
-            text={product.description}
-            maxLine="3"
-            ellipsis="..."
-            trimRight
-            basedOn="words"
-          />
-        ),
+        content: product => {
+          return (
+            <ResponsiveEllipsis
+              text={product.description}
+              maxLine="3"
+              ellipsis="..."
+              basedOn="words"
+            />
+          );
+        },
+        customClasses: "d-none d-md-table-cell",
         style: { width: "50%" }
       },
       {

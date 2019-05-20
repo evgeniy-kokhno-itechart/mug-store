@@ -103,15 +103,12 @@ class OrderForm extends Form {
     const totalCost = this.getTotalCost();
     return (
       <React.Fragment>
-        <h2>Order</h2>
-        <div className="row">
+        <h2 className="mx-2">Order</h2>
+        <div className="row m-2">
           <div className="col-md-6">
             <p>Please check the list of products</p>
             <OrderTable sortColumn={"title"} products={orderList} />
-            <div className="row justify-content-between">
-              <div />
-              <p className="justify-content-end">Total cost: {totalCost}</p>
-            </div>
+            <p className="d-inline float-right">Total cost: {totalCost}</p>
           </div>
           <div className="col-md-5 offset-md-1">
             <p>Please fill out the form to continue</p>
@@ -122,7 +119,7 @@ class OrderForm extends Form {
               {this.renderInput("address", "Address")}
               {this.renderInput("phone", "Phone")}
               {this.renderTextArea("comment", "Comment")}
-              {this.renderButton("Save Order")}
+              {this.renderButton("Submit Order")}
             </form>
           </div>
         </div>

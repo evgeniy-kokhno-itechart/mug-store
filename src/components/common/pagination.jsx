@@ -10,22 +10,22 @@ const Pagination = props => {
 
   if (pagesCount === 1) return null;
   return (
-    <div className="row justify-content-between">
-      <nav>
-        <ul className="pagination">
-          {pages.map(p => (
-            <li
-              key={p}
-              className={currentPage === p ? "page-item active" : "page-item "}
-            >
-              <a onClick={() => onPageChange(p)} className="page-link">
-                {p}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+    // <div className="row justify-content-between">
+    <nav>
+      <ul className="pagination">
+        {pages.map(p => (
+          <li
+            key={p}
+            className={currentPage === p ? "page-item active" : "page-item "}
+          >
+            <a onClick={() => onPageChange(p)} className="page-link">
+              {p}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    // </div>
   );
 };
 

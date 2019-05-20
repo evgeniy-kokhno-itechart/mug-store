@@ -11,6 +11,7 @@ class SortBox extends Component {
         options={sortOptions}
         isOnelineElement={true}
         defaultText="default"
+        customClasses="justify-content-end mt-1 mt-lg-0"
         onChange={e => onChange(e.currentTarget.value)}
       />
     );

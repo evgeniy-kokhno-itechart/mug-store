@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import LinesEllipsis from "react-lines-ellipsis";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
+import ResponsiveEllipsis from "./../common/responsiveEllipsis";
 import Table from "../common/table";
 import Increment from "../common/increment";
 import * as actionTypes from "../store/actions";
@@ -17,11 +17,15 @@ class CartTable extends Component {
       key: "image",
       label: "",
       content: product => (
-        <Link to={`/products/${product._id}`} className="clickable">
-          <img src={product.imageURL} alt={product.title} />
+        <Link to={`/products/${product._id}`} className="clickable ">
+          <img
+            src={product.imageURL}
+            alt={product.title}
+            className="img-fluid"
+          />
         </Link>
       ),
-      style: { width: "20%" }
+      style: { width: "15%" }
     },
     {
       path: "title",
@@ -37,15 +41,14 @@ class CartTable extends Component {
       path: "description",
       label: "Details",
       content: product => (
-        <LinesEllipsis
+        <ResponsiveEllipsis
           text={product.description}
           maxLine="1"
           ellipsis="..."
-          trimRight
           basedOn="words"
         />
       ),
-      style: { width: "50%" }
+      style: { width: "58%" }
     },
     {
       key: "qty",
@@ -59,7 +62,7 @@ class CartTable extends Component {
           onQuantityChange={this.props.onQuantityChange}
         />
       ),
-      style: { width: "15%" }
+      style: { width: "5%" }
     },
     {
       path: "cost",
@@ -72,7 +75,8 @@ class CartTable extends Component {
         if (cost) return cost.toString();
         else return 0;
       },
-      style: { width: "10%" }
+      style: { width: "5%" },
+      customClasses: "text-center"
     },
     {
       key: "deleteFromCart",
@@ -84,7 +88,7 @@ class CartTable extends Component {
           <FontAwesomeIcon icon="trash" />
         </button>
       ),
-      style: { width: "10%" }
+      style: { width: "5%" }
     }
   ];
 

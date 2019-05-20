@@ -130,8 +130,11 @@ class ProductForm extends Form {
     console.log("state.data FROM render method!!!", this.state.data);
     return (
       <React.Fragment>
-        <h1>Product Info</h1>
-        <form onSubmit={this.handleSubmit}>
+        <h1 className="text-center m-3">Product Info</h1>
+        <form
+          className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+          onSubmit={this.handleSubmit}
+        >
           {this.renderInput("title", "Title")}
           {this.renderInput("imageURL", "Image URL")}
           {this.renderTextArea("description", "Details")}
@@ -148,7 +151,7 @@ class ProductForm extends Form {
           {this.renderInput("discount", "Dicount, %")}
           {this.renderInput("producer", "Producer")}
           {this.renderInput("rate", "Rate")}
-          {this.renderButton("Save")}
+          {this.renderButton("Save", "w-100")}
         </form>
       </React.Fragment>
     );

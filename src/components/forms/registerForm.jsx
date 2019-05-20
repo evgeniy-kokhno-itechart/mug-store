@@ -3,7 +3,7 @@ import Form from "../common/form";
 import Joi from "joi-browser";
 import { connect } from "react-redux";
 import { registerUser, saveUser } from "../../services/userService";
-import { loginUserWithJwt, getCurrentUser } from "../../services/authService";
+import { loginUserWithJwt } from "../../services/authService";
 import * as actionTypes from "../store/actions";
 
 class RegisterForm extends Form {
@@ -18,14 +18,14 @@ class RegisterForm extends Form {
       password: "",
       confirmPassword: ""
     },
-    errors: {},
-    user: {}
+    errors: {}
+    // user: {}
   };
 
   componentDidMount() {
-    const user = getCurrentUser();
-    if (user) {
-      this.setState({ user, data: this.mapToViewModel(user) });
+    const user = this.props.user;
+    if (user.name) {
+      this.setState({ data: this.mapToViewModel(user) });
     }
   }
 
@@ -82,7 +82,7 @@ class RegisterForm extends Form {
   };
 
   doSubmit = () => {
-    if (!this.state.user) {
+    if (!this.props.user.name) {
       try {
         const { data } = this.state;
         const token = registerUser(data);
@@ -102,9 +102,14 @@ class RegisterForm extends Form {
 
   render() {
     return (
-      <div>
-        {this.state.user ? <h1>Edit profile</h1> : <h1>Register</h1>}
-        <form onSubmit={this.handleSubmit}>
+      <React.Fragment>
+        <h1 className="text-center m-3">
+          {this.props.user.name ? "Edit profile" : "Register"}
+        </h1>
+        <form
+          className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+          onSubmit={this.handleSubmit}
+        >
           {this.renderInput("username", "Username (a valid E-mail)")}
           {this.renderInput("name", "Name")}
           {this.renderInput("country", "Country")}
@@ -118,14 +123,20 @@ class RegisterForm extends Form {
             "password",
             "password"
           )}
-          {this.state.user
-            ? this.renderButton("Save")
-            : this.renderButton("Register")}
+          {this.props.user.name
+            ? this.renderButton("Save", "w-100")
+            : this.renderButton("Register", "w-100")}
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.userState.currentUser
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -135,6 +146,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(RegisterForm);

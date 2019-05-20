@@ -56,10 +56,13 @@ class Form extends Component {
     this.setState({ data: newdata, errors });
   };
 
-  renderButton(label) {
+  renderButton(label, customClasses) {
     console.log("submitButton errors", this.validate());
     return (
-      <button disabled={this.validate()} className="btn btn-secondary">
+      <button
+        disabled={this.validate()}
+        className={`btn btn-secondary ${customClasses}`}
+      >
         {label}
       </button>
     );

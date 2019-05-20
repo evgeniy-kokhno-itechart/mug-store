@@ -54,81 +54,79 @@ class Navbar extends Component {
             </NavLink>
           </div>
         </div>
-        <div className="row col-3">
-          <div className="col">
-            <p className="nav navbar-text">Currency:</p>
-            <select
-              className="btn-dark dropdown-toggle mx-1 p-1"
-              type="dropdown"
-              id="dropdownMenuButton"
-              value={currentCurrency._id}
-              onChange={e => {
-                // console.log("e", {
-                //   _id: e.currentTarget.value,
-                //   name: e.currentTarget.selectedOptions[0].text
-                // });
-                this.props.onCurrencyChange({
-                  _id: e.currentTarget.value,
-                  name: e.currentTarget.selectedOptions[0].text
-                });
-              }}
-            >
-              {currencyOptions.map(option => (
-                <option key={option._id} value={option._id}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="col row">
-            {this.props.currentUser.name ? (
-              <React.Fragment>
-                <p className="nav navbar-text mr-3">
-                  {this.props.currentUser.name}
-                </p>
-                <div>
-                  {/* className="dropleft"> */}
-                  <button
-                    className="btn btn-dark dropdown-toggle"
-                    type="dropdown"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Profile
-                  </button>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    <Link className="dropdown-item" to="/myprofile">
-                      My Profile
-                    </Link>
-                    <div className="dropdown-divider" />
-                    <Link className="dropdown-item" to="/logout">
-                      Logout
-                    </Link>
-                  </div>
+
+        <div>
+          <p className="navbar-text d-inline ">Currency:</p>
+          <select
+            className="text-white bg-dark border-0 ml-1 mr-3"
+            type="dropdown"
+            id="currencyDropdownButton"
+            value={currentCurrency._id}
+            onChange={e => {
+              // console.log("e", {
+              //   _id: e.currentTarget.value,
+              //   name: e.currentTarget.selectedOptions[0].text
+              // });
+              this.props.onCurrencyChange({
+                _id: e.currentTarget.value,
+                name: e.currentTarget.selectedOptions[0].text
+              });
+            }}
+          >
+            {currencyOptions.map(option => (
+              <option key={option._id} value={option._id}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+
+          {this.props.currentUser.name ? (
+            <React.Fragment>
+              <p className="nav navbar-text mr-3 d-inline">
+                {this.props.currentUser.name}
+              </p>
+              <div className="dropdown d-inline">
+                {/* className="dropleft"> */}
+                <button
+                  className="text-white bg-dark border-0 px-0"
+                  type="button"
+                  id="profileDropdownButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Profile
+                </button>
+                <div
+                  className="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="profileDropdownButton"
+                >
+                  <Link className="dropdown-item px-3" to="/myprofile">
+                    My Profile
+                  </Link>
+                  <div className="dropdown-divider" />
+                  <Link className="dropdown-item px-3" to="/logout">
+                    Logout
+                  </Link>
                 </div>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <Link
-                  to="/login"
-                  className="nav navbar-text mx-1 col clickable"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="nav navbar-text mx-1 col clickable"
-                >
-                  Register
-                </Link>
-              </React.Fragment>
-            )}
-          </div>
+              </div>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <Link
+                to="/login"
+                className="nav navbar-text mr-3 d-inline clickable"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="nav navbar-text d-inline clickable"
+              >
+                Register
+              </Link>
+            </React.Fragment>
+          )}
         </div>
       </nav>
     );

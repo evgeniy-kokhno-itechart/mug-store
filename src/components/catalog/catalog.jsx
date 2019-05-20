@@ -165,30 +165,34 @@ class Catalog extends Component {
       );
     return (
       <div className="row mt-3">
-        <div className="col-2">
+        <div className="col-11 col-sm-3 col-lg-2 mx-auto mb-2">
           <ListGroup
             items={categories}
             selectedItem={currentCatergory}
             onItemSelect={this.handleItemSelect}
           />
         </div>
-        <div className="col col-lg-10">
-          <div className="row justify-content-between">
-            <div className="col-sm-4">
+        <div className="col col-sm-9 col-lg-10">
+          <div className="row justify-content-between mx-1 mx-sm-2">
+            <div className="col-12 col-md-5 col-lg-4 col-xl-3">
+              {/*className="col-sm-4"> */}
               <SearchBox
                 value={searchQuery}
                 onSubmit={this.handleSearch}
                 key={searchQuery}
               />
             </div>
-            <div>
-              {currentUser.name && (
-                <Link to="/edit/products/new" className="btn btn-secondary">
+            {currentUser.roles.includes("admin") && (
+              <div className="col-12 col-md-4 col-lg-3 col-xl-3">
+                <Link
+                  to="/edit/products/new"
+                  className="btn btn-secondary mt-1 mt-md-0 w-100 px-md-2"
+                >
                   Add New Product
                 </Link>
-              )}
-            </div>
-            <div className="justify-content-end mr-2">
+              </div>
+            )}
+            <div className="col-12 col-md col-lg-3 col-xl-2">
               <SortBox
                 sortOptions={this.sortOptions}
                 onChange={this.handleSort}
@@ -202,7 +206,7 @@ class Catalog extends Component {
             onBuyNow={this.props.onBuyNow}
             onDelete={this.handleDelete}
           />
-          <div className="row justify-content-between">
+          <div className="row justify-content-between mx-1 mx-sm-2">
             <div>
               <Pagination
                 itemsCount={totalCount}
@@ -212,13 +216,14 @@ class Catalog extends Component {
                 pageSizeOptions={this.pageSizeOptions}
               />
             </div>
-            <div className="justify-content-end mr-2">
+            <div className="mr-2">
               <Dropdown
                 name="itemsOnPage"
                 label="Items on page"
                 options={this.pageSizeOptions}
                 value={pageSize}
                 isOnelineElement={true}
+                customClasses="justify-content-end"
                 onChange={e =>
                   this.handleItemsCountChange(e.currentTarget.value)
                 }

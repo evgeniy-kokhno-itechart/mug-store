@@ -12,43 +12,44 @@ class Increment extends Component {
     } = this.props;
 
     return (
-      <div className="col-sm-12">
-        <div className="h-15">
-          <button
-            id="form-button-left"
-            className={
-              quantity > 1
-                ? "btn btn-secondary btn-sm inline-block"
-                : "btn btn-secondary btn-sm disabled inline-block"
-            }
-            onClick={() => onDecrementClick(productId)}
-          >
-            <div>
-              <FontAwesomeIcon icon="minus" />
-            </div>
-          </button>
-          <input
-            id="form-input"
-            className="inline-block"
-            style={{ textAlign: "center" }}
-            type="text"
-            size="1"
-            align="middle"
-            value={quantity}
-            onChange={e =>
-              onQuantityChange(parseInt(e.currentTarget.value), productId)
-            }
-          />
-          <button
-            id="form-button-right"
-            className="btn btn-secondary btn-sm inline-block"
-            onClick={() => onIncrementClick(productId)}
-          >
-            <div>
-              <FontAwesomeIcon icon="plus" />
-            </div>
-          </button>
-        </div>
+      <div
+        className="input-group input-group-sm mx-auto flex-nowrap"
+        style={{ fontSize: "1rem" }}
+      >
+        <button
+          id="form-button-left"
+          className={
+            "input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2" +
+            (quantity > 1 ? "" : " disabled")
+          }
+          style={{ fontSize: "0.75rem" }}
+          onClick={() => onDecrementClick(productId)}
+        >
+          <FontAwesomeIcon icon="minus" className="my-auto" />
+        </button>
+        <input
+          // id="form-input"
+          className="form-control inline text-center p-1 p-lg-2"
+          type="text"
+          // size="1"
+          // align="middle"
+          style={{ maxWidth: "35%" }}
+          value={quantity}
+          onChange={e => {
+            const val = e.currentTarget.value
+              ? parseInt(e.currentTarget.value)
+              : 1; //ternary operator was added to avoid NaN when input is empty
+            onQuantityChange(val, productId);
+          }}
+        />
+        <button
+          id="form-button-right"
+          className="input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
+          style={{ fontSize: "0.75rem" }}
+          onClick={() => onIncrementClick(productId)}
+        >
+          <FontAwesomeIcon icon="plus" className="my-auto" />
+        </button>
       </div>
     );
   }

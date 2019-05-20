@@ -53,16 +53,13 @@ class Cart extends Component {
           onQuantityChange={this.handleQuantityChange}
         />
 
-        <div className="row justify-content-between">
-          <h3 className="col-4">
-            {totalCost ? `Total cost: ${totalCost}` : ""}
-          </h3>
+        <div className="row justify-content-between mx-2">
+          <h5>{totalCost ? `Total cost: ${totalCost}` : ""}</h5>
           <div>
             <Link
               className={
-                totalCost
-                  ? "btn btn-secondary m-2 justify-content-end"
-                  : "btn btn-secondary m-2 justify-content-end disabled"
+                "btn btn-secondary justify-content-end" +
+                (totalCost ? "" : "disabled")
               }
               to={currentUser.name ? "/order/mycart" : "/order"}
             >
@@ -72,7 +69,7 @@ class Cart extends Component {
         </div>
       </React.Fragment>
     ) : (
-      <h2 className="mt-2">Your cart is empty</h2>
+      <h2 className="m-3 text-center">Your cart is empty</h2>
     );
   }
 }

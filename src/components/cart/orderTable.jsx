@@ -17,7 +17,8 @@ class OrderTable extends Component {
     },
     {
       path: "qty",
-      label: "Quantity"
+      label: "Quantity",
+      customClasses: "text-center"
     },
     {
       key: "cost",
@@ -27,7 +28,8 @@ class OrderTable extends Component {
         product.qty *
         product.price[this.props.currentCurrency.name] *
         (1 - product.discount / 100),
-      style: { width: "10%" }
+      style: { width: "10%" },
+      customClasses: "text-center"
     }
   ];
 
