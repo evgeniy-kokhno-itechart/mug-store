@@ -14,7 +14,7 @@ class ProductsTable extends Component {
         key: "image",
         label: "",
         content: product => (
-          <Link to={`/products/${product._id}`} className="clickable ">
+          <Link to={`/products/${product._id}`} className="clickable">
             <img
               src={product.imageURL}
               alt={product.title}

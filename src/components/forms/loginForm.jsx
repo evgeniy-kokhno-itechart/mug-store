@@ -31,8 +31,8 @@ class LoginForm extends Form {
       const { state } = this.props.location;
       window.location = state ? state.from.pathname : "/";
     } catch (ex) {
-      // paste error handling logic here
-      const errors = { ...this.state.errors };
+      const errors = {};
+      errors["password"] = ex.message;
       this.setState({ errors });
     }
   };

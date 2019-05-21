@@ -9,7 +9,7 @@ class MainPage extends Component {
     return (
       <div
         id="mainCarouselControls"
-        className="carousel slide m-3"
+        className="carousel slide m-3 col-10 mx-auto"
         data-ride="carousel"
       >
         <div className="carousel-inner">

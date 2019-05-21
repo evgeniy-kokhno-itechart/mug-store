@@ -59,7 +59,7 @@ class Cart extends Component {
             <Link
               className={
                 "btn btn-secondary justify-content-end" +
-                (totalCost ? "" : "disabled")
+                (totalCost ? "" : " disabled")
               }
               to={currentUser.name ? "/order/mycart" : "/order"}
             >

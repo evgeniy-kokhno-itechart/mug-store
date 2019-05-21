@@ -19,7 +19,7 @@ code {
   cursor: pointer;
 }
 
-#bootstrap-overrides li.page-item.active > a.page-link {
+#bootstrap-overrides .active > .page-link {
   background-color: gray;
   color: white;
   border-color: gray;
@@ -52,4 +52,17 @@ code {
   width: 100%;
   height: 3rem;
   color: #ffffff;
+}
+
+body {
+  background-image: url(images/memphis-mini.png);
+}
+
+#bootstrap-overrides .btn,
+#bootstrap-overrides .list-group-item,
+#bootstrap-overrides .form-control,
+#bootstrap-overrides .page-link,
+#bootstrap-overrides .modal-content,
+#bootstrap-overrides .dropdown {
+  border-radius: 0px;
 }

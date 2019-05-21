@@ -71,7 +71,7 @@ class ProductDetails extends Component {
       <React.Fragment>
         <h2 className="text-center m-3">{this.state.product.title} Details</h2>
         {imageURLs && (
-          <div>
+          <div className="w-75 mx-auto">
             {/* className="col-8 offset-2"> */}
             <ImageGallery
               items={imageURLs}
@@ -90,16 +90,16 @@ class ProductDetails extends Component {
           <span className="col-md-5 text-left">{product[key].toString()}</span>
         </div>
         <InformationItem /> */}
-        <div className="row justify-content-between">
+        <div className="row justify-content-between m-3">
           <div>
-            <Link className="btn btn-secondary m-2" to="/catalog">
+            <Link className="btn btn-secondary" to="/catalog">
               Back To Catalog
             </Link>
           </div>
           <div className="justify-content-end">
             <button
               type="button"
-              className="btn btn-secondary m-2"
+              className="btn btn-secondary"
               onClick={() => this.props.onBuyNow(product, 1)}
             >
               <FontAwesomeIcon icon="cart-arrow-down" />

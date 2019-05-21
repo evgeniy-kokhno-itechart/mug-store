@@ -108,9 +108,9 @@ class Catalog extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleItemsOnPageCountChange = pageSize => {
-    this.setState({ pageSize });
-  };
+  // handleItemsOnPageCountChange = pageSize => {
+  //   this.setState({ pageSize, currentPage: 1 });
+  // };
 
   handleSearch = (e, query) => {
     console.log(e);
@@ -134,7 +134,7 @@ class Catalog extends Component {
 
   handleItemsCountChange = pageSizeString => {
     const pageSize = +pageSizeString;
-    this.setState({ pageSize });
+    this.setState({ pageSize, currentPage: 1 });
   };
 
   handleDelete = productId => {
@@ -161,6 +161,11 @@ class Catalog extends Component {
       return (
         <h2 className="m-2 text-center">
           There are no products in the catalog
+          <div className="m-1 m-md-3 mx-auto">
+            <Link className="btn btn-secondary" to="/">
+              To Main Page
+            </Link>
+          </div>
         </h2>
       );
     return (
@@ -206,8 +211,8 @@ class Catalog extends Component {
             onBuyNow={this.props.onBuyNow}
             onDelete={this.handleDelete}
           />
-          <div className="row justify-content-between mx-1 mx-sm-2">
-            <div>
+          <div className="row justify-content-between mx-0 mx-sm-2">
+            <div className="col">
               <Pagination
                 itemsCount={totalCount}
                 pageSize={pageSize}
@@ -216,7 +221,7 @@ class Catalog extends Component {
                 pageSizeOptions={this.pageSizeOptions}
               />
             </div>
-            <div className="mr-2">
+            <div className="col">
               <Dropdown
                 name="itemsOnPage"
                 label="Items on page"
