@@ -5,8 +5,7 @@ const products = [
     _id: "1",
     imageURL: "https://picsum.photos/150/100?image=30",
     title: "Small Mug",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.",
+    description: "Lorem ipsum dolor sit amet",
     category: { _id: "1", name: "Mugs" },
     price: { BYN: 5, USD: 3 },
     discount: 0,

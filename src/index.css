@@ -65,3 +65,13 @@ body {
 #bootstrap-overrides .modal-content {
   border-radius: 0px;
 }
+
+#bootstrap-overrides td a {
+  color: #0227b4;
+  font-size: 1.03rem;
+}
+
+#bootstrap-overrides .page-link {
+  color: black;
+  box-shadow: none;
+}

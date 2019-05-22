@@ -7,5 +7,8 @@ It has no back-end - so the stubs are used in *Service files.
 To access and test as admin use credentials
 login: superadmin
 pass: 12345
+The pass is hardcoded, you cannot edit it via "Edit profile" form
 
-To test the app as a user click "Register" and enter any valid registration info.
+To test the app as a user click "Register" and enter ANY valid registration info.
+
+Image for the products was choosen randomly.

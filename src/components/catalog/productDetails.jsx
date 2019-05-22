@@ -5,7 +5,6 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getProduct } from "../../services/productsService";
-import { getCurrentCurrency } from "./../../services/payService";
 import { getProductImageURLs } from "./../../services/imageService";
 import InformationItem from "./../common/informationItem";
 import * as actionTypes from "../store/actions";
@@ -22,8 +21,7 @@ class ProductDetails extends Component {
       discount: "0",
       producer: "",
       rate: ""
-    },
-    currentCurrency: { _id: "", name: "" }
+    }
   };
 
   fields = [
@@ -44,9 +42,8 @@ class ProductDetails extends Component {
     const productId = this.props.match.params.id;
     const product = getProduct(productId);
     if (!product) return this.props.history.replace("/not-found");
-    const currentCurrency = getCurrentCurrency();
     const imageURLs = getProductImageURLs(productId);
-    this.setState({ product, currentCurrency, imageURLs });
+    this.setState({ product, imageURLs });
   }
 
   getInfo = (item, path) => {
@@ -58,7 +55,7 @@ class ProductDetails extends Component {
     if (!field.content) {
       fieldInfo = this.getInfo(this.state.product, field.path);
     } else {
-      fieldInfo = field.content(this.state.product, this.state.currentCurrency);
+      fieldInfo = field.content(this.state.product, this.props.currentCurrency);
     }
     return (
       <InformationItem key={field.label} label={field.label} info={fieldInfo} />
@@ -71,38 +68,40 @@ class ProductDetails extends Component {
       <React.Fragment>
         <h2 className="text-center m-3">{this.state.product.title} Details</h2>
         {imageURLs && (
-          <div className="w-75 mx-auto">
+          <div className="col-10 col-md-9 col-lg-7 mx-auto">
             <ImageGallery
               items={imageURLs}
               infinite={false}
               showPlayButton={false}
-              showBullets={true}
+              showBullets={false}
+              showFullscreenButton={false}
+              useBrowserFullscreen={false}
             />
           </div>
         )}
 
         {this.fields.map(field => this.renderFieldInfo(field))}
 
-        <div className="row justify-content-between m-3">
-          <div>
-            <Link className="btn btn-secondary" to="/catalog">
-              Back To Catalog
-            </Link>
-          </div>
-          <div className="justify-content-end">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => this.props.onBuyNow(product, 1)}
-            >
-              <FontAwesomeIcon icon="cart-arrow-down" />
-            </button>
-          </div>
+        <div className="d-flex m-3">
+          <Link className="btn btn-secondary" to="/catalog">
+            Back To Catalog
+          </Link>
+          <button
+            type="button"
+            className="btn btn-secondary ml-auto"
+            onClick={() => this.props.onBuyNow(product, 1)}
+          >
+            <FontAwesomeIcon icon="cart-arrow-down" />
+          </button>
         </div>
       </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { currentCurrency: state.currencyState.currentCurrency };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -112,6 +111,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ProductDetails);
