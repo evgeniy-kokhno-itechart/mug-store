@@ -62,7 +62,6 @@ body {
 #bootstrap-overrides .list-group-item,
 #bootstrap-overrides .form-control,
 #bootstrap-overrides .page-link,
-#bootstrap-overrides .modal-content,
-#bootstrap-overrides .dropdown {
+#bootstrap-overrides .modal-content {
   border-radius: 0px;
 }

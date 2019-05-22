@@ -8,9 +8,6 @@ const Footer = () => {
         <span>© {year} Copyright: Mug Store</span>
       </div>
     </footer>
-    // <div className="footer navbar-dark bg-dark text-center py-3 mt-3">
-    //   <span>© {year} Copyright: Mug Store</span>
-    // </div>
   );
 };
 

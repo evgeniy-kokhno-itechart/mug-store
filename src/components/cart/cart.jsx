@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import CartTable from "./cartTable";
-import { getProduct } from "./../../services/productsService";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getProduct } from "./../../services/productsService";
+import CartTable from "./cartTable";
 
 class Cart extends Component {
   getTotalCost = products => {

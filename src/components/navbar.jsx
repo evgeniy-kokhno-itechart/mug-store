@@ -16,7 +16,6 @@ class Navbar extends Component {
   render() {
     const { currencyOptions } = this.state;
     const { currentCurrency } = this.props;
-    // console.log("cartInNavBar", this.props.cart);
     const cartCount = this.props.cart.reduce(
       (sumQty, currentProduct) => sumQty + currentProduct.qty,
       0
@@ -63,10 +62,6 @@ class Navbar extends Component {
             id="currencyDropdownButton"
             value={currentCurrency._id}
             onChange={e => {
-              // console.log("e", {
-              //   _id: e.currentTarget.value,
-              //   name: e.currentTarget.selectedOptions[0].text
-              // });
               this.props.onCurrencyChange({
                 _id: e.currentTarget.value,
                 name: e.currentTarget.selectedOptions[0].text
@@ -86,7 +81,6 @@ class Navbar extends Component {
                 {this.props.currentUser.name}
               </p>
               <div className="dropdown d-inline">
-                {/* className="dropleft"> */}
                 <button
                   className="text-white bg-dark border-0 px-0"
                   type="button"

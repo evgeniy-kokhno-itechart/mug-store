@@ -72,7 +72,6 @@ class ProductDetails extends Component {
         <h2 className="text-center m-3">{this.state.product.title} Details</h2>
         {imageURLs && (
           <div className="w-75 mx-auto">
-            {/* className="col-8 offset-2"> */}
             <ImageGallery
               items={imageURLs}
               infinite={false}
@@ -84,12 +83,6 @@ class ProductDetails extends Component {
 
         {this.fields.map(field => this.renderFieldInfo(field))}
 
-        {/* <div className="row">
-          <span className="col-md-2 text-right">{key}</span>
-          {console.log(product[key].toString(), key)}
-          <span className="col-md-5 text-left">{product[key].toString()}</span>
-        </div>
-        <InformationItem /> */}
         <div className="row justify-content-between m-3">
           <div>
             <Link className="btn btn-secondary" to="/catalog">

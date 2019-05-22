@@ -13,11 +13,8 @@ class ProductForm extends Form {
       imageURL: "",
       description: "",
       categoryId: "1",
-      // ["price.BYN"]: "",
-      // ["price.USD"]: "",
       discount: "",
       producer: "",
-      // publishDate: "",
       rate: ""
     },
     categories: [],
@@ -77,7 +74,7 @@ class ProductForm extends Form {
     const categories = getCategories();
     const currencies = getCurrencies();
     this.setState({ categories, currencies });
-    console.log("params.id", this.props.match.params.id);
+    // console.log("params.id", this.props.match.params.id);
     const productId = this.props.match.params.id;
     if (productId === "new") return;
     const product = getProduct(productId);
@@ -101,7 +98,7 @@ class ProductForm extends Form {
       rate: product.rate
     };
     Object.assign(dataForReturn, obj);
-    console.log("dataForReturn!!!!!!!!!!!!!!!", dataForReturn);
+    // console.log("dataForReturn!!!!!!!!!!!!!!!", dataForReturn);
     return dataForReturn;
   }
 
@@ -122,7 +119,7 @@ class ProductForm extends Form {
   doSubmit = () => {
     const product = this.mapFromViewModel(this.state.data);
     saveProduct(product);
-    console.log("doSubmit ProductForm", product);
+    // console.log("doSubmit ProductForm", product);
     this.props.history.push("/catalog");
   };
 
@@ -146,7 +143,6 @@ class ProductForm extends Form {
               "Price, " + currency.name
             )
           )}
-          {/* {this.renderDropdown("currencyId", "Currency", this.state.currencies)} */}
 
           {this.renderInput("discount", "Dicount, %")}
           {this.renderInput("producer", "Producer")}

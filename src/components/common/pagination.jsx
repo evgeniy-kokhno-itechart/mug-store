@@ -10,7 +10,6 @@ const Pagination = props => {
 
   if (pagesCount === 1) return null;
   return (
-    // <div className="row justify-content-between">
     <nav>
       <ul className="pagination">
         {pages.map(p => (
@@ -25,7 +24,6 @@ const Pagination = props => {
         ))}
       </ul>
     </nav>
-    // </div>
   );
 };
 

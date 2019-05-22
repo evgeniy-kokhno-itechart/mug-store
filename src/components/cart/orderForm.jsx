@@ -103,7 +103,7 @@ class OrderForm extends Form {
     const totalCost = this.getTotalCost();
     return (
       <React.Fragment>
-        <h2 className="mx-2">Order</h2>
+        <h3 className="text-center m-3">Please check your order</h3>
         <div className="row m-2">
           <div className="col-md-6">
             <p>Please check the list of products</p>
@@ -119,7 +119,7 @@ class OrderForm extends Form {
               {this.renderInput("address", "Address")}
               {this.renderInput("phone", "Phone")}
               {this.renderTextArea("comment", "Comment")}
-              {this.renderButton("Submit Order")}
+              {this.renderButton("Submit Order", "d-block mx-auto mx-md-0")}
             </form>
           </div>
         </div>

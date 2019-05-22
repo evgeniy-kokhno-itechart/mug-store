@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCategories } from "../../services/categoriesService";
 import { getProducts } from "./../../services/productsService";
-// import { getCurrentCurrency } from "../../services/payService";
-// import { getCurrentUser } from "../../services/authService";
 import { paginate } from "./../../utils/paginate";
 import ListGroup from "../common/listGroup";
 import SearchBox from "../common/searchBox";
@@ -20,8 +18,6 @@ class Catalog extends Component {
     categories: [],
     products: [],
     currentCatergory: null,
-    // currentCurrency: {},
-    // currentUser: {},
     searchQuery: "",
     sortColumn: { path: "title", order: "asc" },
     pageSize: 10,
@@ -54,8 +50,6 @@ class Catalog extends Component {
     } = this.state;
 
     let filtered = allProducts;
-    // console.log("filtered", filtered);
-    // console.log("search", searchQuery);
     if (searchQuery)
       filtered = allProducts.filter(m =>
         m.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -79,20 +73,9 @@ class Catalog extends Component {
       ...getCategories()
     ];
     const products = getProducts();
-    //const currentCurrency = this.props.currentCurrency;//getCurrentCurrency();
-    // const currentUser = getCurrentUser();
-
-    // console.log("products", products);
-    // for (var i = 0; i < products.length; i++) {
-    //   products[i].price[currentCurrency.name] = +products[i].price[
-    //     currentCurrency.name
-    //   ];
-    // }
     this.setState({
       categories: categoriesPopulated,
       products
-      // currentCurrency
-      // currentUser
     });
   }
 
@@ -107,10 +90,6 @@ class Catalog extends Component {
   handlePageChange = page => {
     this.setState({ currentPage: page });
   };
-
-  // handleItemsOnPageCountChange = pageSize => {
-  //   this.setState({ pageSize, currentPage: 1 });
-  // };
 
   handleSearch = (e, query) => {
     console.log(e);
@@ -139,7 +118,6 @@ class Catalog extends Component {
 
   handleDelete = productId => {
     console.log("deleted", productId);
-    // deleteProduct(productId);
     const products = this.state.products.filter(p => p._id !== productId);
     this.setState({ products });
   };
@@ -180,7 +158,6 @@ class Catalog extends Component {
         <div className="col col-sm-9 col-lg-10">
           <div className="row justify-content-between mx-1 mx-sm-2">
             <div className="col-12 col-md-5 col-lg-4 col-xl-3">
-              {/*className="col-sm-4"> */}
               <SearchBox
                 value={searchQuery}
                 onSubmit={this.handleSearch}

@@ -19,7 +19,6 @@ class RegisterForm extends Form {
       confirmPassword: ""
     },
     errors: {}
-    // user: {}
   };
 
   componentDidMount() {

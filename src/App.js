@@ -13,7 +13,6 @@ import {
 import { connect } from "react-redux";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
-// import logo from "./logo.svg";
 import MainPage from "./components/main";
 import Catalog from "./components/catalog/catalog";
 import NotFound from "./components/common/notFound";
@@ -41,52 +40,11 @@ library.add(
 
 class App extends Component {
   state = {
-    //user: null,
     cartCount: 0
   };
 
-  // componentDidMount() {
-  //   const user = getCurrentUser();
-  // const cartCount = this.getCartQuantity();
-  //   this.setState({ user });
-  // }
-
-  // getCartQuantity(cart) {
-  //   return this.getCart().reduce(
-  //     (sumQty, currentProduct) => sumQty + currentProduct.qty,
-  //     0
-  //   );
-  // }
-
-  // getCart = () => {
-  //   const reduxState = this.props.cart;
-  //   console.log("reduxState", reduxState);
-  //   console.log("reduxState.length", reduxState.length);
-  //   const cart = reduxState; //reduxState.length === 0 ? reduxState : [];
-  //   return cart;
-  // };
-
-  // handleBuyNow = (product, quantity) => {
-  //   let cart = this.getCart();
-  //   let id = product._id.toString();
-
-  //   let existedProduct = cart.find(prod => prod._id === id);
-  //   if (existedProduct)
-  //     existedProduct.qty = existedProduct.qty + parseInt(quantity);
-  //   else cart.push({ _id: id, qty: quantity });
-
-  //   // localStorage.setItem("cart", JSON.stringify(cart));
-  //   this.props.onBuyNowTriggered(cart);
-  //   // this.setState({ cartCount: this.getCartQuantity() });
-  // };
-
-  // handleCartChange = () => {
-  //   this.setState({ cartCount: this.getCartQuantity() });
-  // };
-
   render() {
     const { currentUser, cartCount, onBuyNowTriggered } = this.props;
-    // const { user } = this.state;
     return (
       <React.Fragment>
         <Navbar user={currentUser} cartCount={cartCount} />
@@ -98,12 +56,6 @@ class App extends Component {
                 component={ProductForm}
               />
               <Route path="/products/:id" component={ProductDetails} />
-              {/* <Route
-                path="/products/:id"
-                render={props => (
-                  <ProductDetails {...props} onBuyNow={onBuyNowTriggered} />
-                )}
-              /> */}
               <Route path="/logout" component={Logout} />
               <Route path="/login" component={LoginForm} />
               <ProtectedRoute path="/myprofile" component={RegisterForm} />

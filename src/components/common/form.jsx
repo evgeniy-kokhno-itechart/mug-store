@@ -70,14 +70,13 @@ class Form extends Component {
 
   renderInput(name, label, type = "text", matchedInputName) {
     const { data, errors } = this.state;
-    // console.log("renderInput data", [_.get(data, name), name, data]);
     return (
       <Input
         key={name}
         type={type}
         name={name}
         label={label}
-        value={_.get(data, name)} //{data[name]}
+        value={_.get(data, name)}
         error={errors[name]}
         onChange={e => this.handleChange(e, matchedInputName)}
       />
