@@ -64,7 +64,8 @@ class Navbar extends Component {
             onChange={e => {
               this.props.onCurrencyChange({
                 _id: e.currentTarget.value,
-                name: e.currentTarget.selectedOptions[0].text
+                name:
+                  e.currentTarget.options[e.currentTarget.selectedIndex].text //.selectedOptions[0].text doesn't work for IE
               });
             }}
           >

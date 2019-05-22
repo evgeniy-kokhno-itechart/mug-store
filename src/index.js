@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import "babel-polyfill";
+import "unorm";
 import "./index.css";
 import App from "./App";
 import "bootstrap/dist/js/bootstrap.bundle.min";

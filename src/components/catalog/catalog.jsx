@@ -155,7 +155,7 @@ class Catalog extends Component {
             onItemSelect={this.handleItemSelect}
           />
         </div>
-        <div className="col col-sm-9 col-lg-10">
+        <div className="col-12 col-sm-9 col-lg-10">
           <div className="row justify-content-between mx-1 mx-sm-2">
             <div className="col-12 col-md-5 col-lg-4 col-xl-3">
               <SearchBox
