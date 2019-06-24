@@ -1,21 +1,22 @@
-import React, { Component } from "react";
-import Dropdown from "../common/dropdown";
+import React from 'react';
+import { PropTypes } from 'prop-types';
+import Dropdown from '../common/dropdown';
 
-class SortBox extends Component {
-  render() {
-    const { sortOptions, onChange } = this.props;
-    return (
-      <Dropdown
-        name="sortDropdown"
-        label="Sorted by:"
-        options={sortOptions}
-        isOnelineElement={true}
-        defaultText="default"
-        customClasses="justify-content-end mt-1 mt-lg-0"
-        onChange={e => onChange(e.currentTarget.value)}
-      />
-    );
-  }
-}
+const SortBox = ({ sortOptions, onChange }) => (
+  <Dropdown
+    name="sortDropdown"
+    label="Sorted by:"
+    options={sortOptions}
+    isOnelineElement
+    defaultText="default"
+    customClasses="justify-content-end mt-1 mt-lg-0"
+    onChange={e => onChange(e.currentTarget.value)}
+  />
+);
+
+SortBox.propTypes = {
+  sortOptions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default SortBox;

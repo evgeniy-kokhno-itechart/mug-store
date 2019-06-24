@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import _ from "lodash";
+import React, { Component } from 'react';
+import _ from 'lodash';
+import { PropTypes } from 'prop-types';
 
 class TableBody extends Component {
   renderCell = (item, column) => {
@@ -8,9 +9,7 @@ class TableBody extends Component {
     return _.get(item, column.path);
   };
 
-  createKey = (item, column) => {
-    return item._id + (column.path || column.key);
-  };
+  createKey = (item, column) => item._id + (column.path || column.key);
 
   render() {
     const { items, columns } = this.props;
@@ -21,9 +20,7 @@ class TableBody extends Component {
             {columns.map(column => (
               <td
                 key={this.createKey(item, column)}
-                className={`p-1 p-md-2 ${
-                  column.customClasses ? column.customClasses : ""
-                }`}
+                className={`p-1 p-md-2 ${column.customClasses ? column.customClasses : ''}`}
               >
                 {this.renderCell(item, column)}
               </td>
@@ -34,5 +31,10 @@ class TableBody extends Component {
     );
   }
 }
+
+TableBody.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default TableBody;

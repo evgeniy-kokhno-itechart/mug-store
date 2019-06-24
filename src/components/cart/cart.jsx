@@ -1,35 +1,36 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { getProduct } from "./../../services/productsService";
-import CartTable from "./cartTable";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { getProduct } from '../../services/productsService';
+import CartTable from './cartTable';
 
 class Cart extends Component {
-  getTotalCost = products => {
-    const currentCurrency = this.props.currentCurrency;
+  getTotalCost = (products) => {
+    const { currentCurrency } = this.props;
     const totalCost = products.reduce(
-      (sum, currentItem) =>
-        sum + currentItem.price[currentCurrency.name] * currentItem.qty,
-      0
+      (sum, currentItem) => sum + currentItem.price[currentCurrency.name] * currentItem.qty,
+      0,
     );
     return totalCost;
   };
 
   getProductsInCart(cart) {
-    let cartInfo = cart;
+    const cartInfo = cart;
     if (!cartInfo) return [];
-    let products = [];
+    const products = [];
     let prodInCart = [];
     let currentProd = {};
-    for (var i = 0; i < cartInfo.length; i++) {
+    for (let i = 0; i < cartInfo.length; i++) {
       currentProd = getProduct(cartInfo[i]._id);
       if (currentProd) prodInCart = { ...currentProd, qty: cartInfo[i].qty };
-      else
+      else {
         prodInCart = {
           ...cartInfo[i],
-          title: "Sorry. The product is unavailable for order.",
-          price: 0
+          title: 'Sorry. The product is unavailable for order.',
+          price: 0,
         };
+      }
       products.push(prodInCart);
     }
 
@@ -37,7 +38,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { sortColumn, cart, currentUser } = this.props;
+    const { cart, currentUser } = this.props;
 
     const products = this.getProductsInCart(cart);
     const totalCost = this.getTotalCost(products);
@@ -45,7 +46,7 @@ class Cart extends Component {
     return products.length ? (
       <React.Fragment>
         <CartTable
-          sortColumn={sortColumn}
+          sortColumn="_id"
           productsInCart={products}
           onDeleteFromCart={this.handleDeleteFromCart}
           onIncrementClick={this.handleIncrementClick}
@@ -54,14 +55,11 @@ class Cart extends Component {
         />
 
         <div className="row justify-content-between mx-2">
-          <h5>{totalCost ? `Total cost: ${totalCost}` : ""}</h5>
+          <h5>{totalCost ? `Total cost: ${totalCost}` : ''}</h5>
           <div>
             <Link
-              className={
-                "btn btn-secondary justify-content-end" +
-                (totalCost ? "" : " disabled")
-              }
-              to={currentUser.name ? "/order/mycart" : "/order"}
+              className={`btn btn-secondary justify-content-end${totalCost ? '' : ' disabled'}`}
+              to={currentUser.name ? '/order/mycart' : '/order'}
             >
               Order Now!
             </Link>
@@ -74,12 +72,19 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cart: state.cartState.cart,
-    currentCurrency: state.currencyState.currentCurrency,
-    currentUser: state.userState.currentUser
-  };
+Cart.propTypes = {
+  currentCurrency: PropTypes.shape({
+    _id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, qty: PropTypes.number })).isRequired,
+  currentUser: PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string }).isRequired,
 };
+
+const mapStateToProps = state => ({
+  cart: state.cartState.cart,
+  currentCurrency: state.currencyState.currentCurrency,
+  currentUser: state.userState.currentUser,
+});
 
 export default connect(mapStateToProps)(Cart);

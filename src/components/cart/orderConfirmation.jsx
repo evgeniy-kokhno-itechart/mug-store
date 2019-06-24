@@ -1,11 +1,13 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actionTypes from "../store/actions";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import * as actionTypes from '../../store/actions';
 
 class OrderConfirmation extends Component {
   componentDidMount() {
-    this.props.onCartChange();
+    const { onCartChange } = this.props;
+    onCartChange();
   }
 
   render() {
@@ -27,13 +29,15 @@ class OrderConfirmation extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onCartChange: () => dispatch({ type: actionTypes.CLEAR_CART })
-  };
+OrderConfirmation.propTypes = {
+  onCartChange: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = dispatch => ({
+  onCartChange: () => dispatch({ type: actionTypes.CLEAR_CART }),
+});
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(OrderConfirmation);

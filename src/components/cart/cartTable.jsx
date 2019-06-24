@@ -1,60 +1,49 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { connect } from "react-redux";
-import ResponsiveEllipsis from "./../common/responsiveEllipsis";
-import Table from "../common/table";
-import Increment from "../common/increment";
-import * as actionTypes from "../store/actions";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import ResponsiveEllipsis from '../common/responsiveEllipsis';
+import Table from '../common/table';
+import ItemCounter from '../common/itemCounter';
+import * as actionTypes from '../../store/actions';
 
 class CartTable extends Component {
-  state = {
-    sortColumn: "title"
-  };
-
   columns = [
     {
-      key: "image",
-      label: "",
+      key: 'image',
+      label: '',
       content: product => (
         <Link to={`/products/${product._id}`} className="clickable ">
-          <img
-            src={product.imageURL}
-            alt={product.title}
-            className="img-fluid"
-          />
+          <img src={product.imageURL} alt={product.title} className="img-fluid" />
         </Link>
       ),
-      style: { width: "15%" }
+      style: { width: '15%' },
     },
+
     {
-      path: "title",
-      label: "Title",
+      path: 'title',
+      label: 'Title',
       content: product => (
         <Link to={`/products/${product._id}`} className="clickable">
           {product.title}
         </Link>
       ),
-      style: { width: "10%" }
+      style: { width: '10%' },
     },
+
     {
-      path: "description",
-      label: "Details",
-      content: product => (
-        <ResponsiveEllipsis
-          text={product.description}
-          maxLine="1"
-          ellipsis="..."
-          basedOn="words"
-        />
-      ),
-      style: { width: "58%" }
+      path: 'description',
+      label: 'Details',
+      content: product => <ResponsiveEllipsis text={product.description} maxLine="1" ellipsis="..." basedOn="words" />,
+      style: { width: '58%' },
     },
+
     {
-      key: "qty",
-      label: "Quantity",
+      key: 'qty',
+      label: 'Quantity',
       content: product => (
-        <Increment
+        <ItemCounter
           quantity={product.qty}
           productId={product._id}
           onIncrementClick={this.props.onIncrementClick}
@@ -62,81 +51,64 @@ class CartTable extends Component {
           onQuantityChange={this.props.onQuantityChange}
         />
       ),
-      style: { width: "5%" }
+      style: { width: '5%' },
     },
+
     {
-      path: "cost",
-      label: "Cost",
-      content: product => {
-        const cost =
-          product.qty *
-          product.price[this.props.currentCurrency.name] *
-          (1 - product.discount / 100);
-        if (cost) return cost.toString();
-        else return 0;
+      path: 'cost',
+      label: 'Cost',
+      content: (product) => {
+        const cost = product.qty * product.price[this.props.currentCurrency.name] * (1 - product.discount / 100);
+        if (cost) {
+          return cost.toString();
+        }
+        return 0;
       },
-      style: { width: "5%" },
-      customClasses: "text-center"
+      style: { width: '5%' },
+      customClasses: 'text-center',
     },
+
     {
-      key: "deleteFromCart",
+      key: 'deleteFromCart',
       content: product => (
         <button
+          type="button"
           className="btn btn-secondary btn-sm"
           onClick={() => this.props.onDeleteFromCart(product._id)}
         >
           <FontAwesomeIcon icon="trash" />
         </button>
       ),
-      style: { width: "5%" }
-    }
+      style: { width: '5%' },
+    },
   ];
 
   render() {
     const { productsInCart, sortColumn } = this.props;
-    return (
-      <Table
-        columns={this.columns}
-        sortColumn={sortColumn}
-        items={productsInCart}
-      />
-    );
+    return <Table columns={this.columns} sortColumn={sortColumn} items={productsInCart} />;
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cart: state.cartState.cart,
-    currentCurrency: state.currencyState.currentCurrency
-  };
+CartTable.propTypes = {
+  currentCurrency: PropTypes.shape({ _id: PropTypes.number, name: PropTypes.string }).isRequired,
+  productsInCart: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, qty: PropTypes.number })).isRequired,
+  sortColumn: PropTypes.string.isRequired,
+  onIncrementClick: PropTypes.func.isRequired,
+  onDecrementClick: PropTypes.func.isRequired,
+  onQuantityChange: PropTypes.func.isRequired,
+  onDeleteFromCart: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onIncrementClick: productId =>
-      dispatch({
-        type: actionTypes.INCREMENT_PRODUCT_QTY,
-        productId
-      }),
-    onDecrementClick: productId =>
-      dispatch({
-        type: actionTypes.DECREMENT_PRODUCT_QTY,
-        productId
-      }),
-    onQuantityChange: (value, productId) =>
-      dispatch({
-        type: actionTypes.CHANGE_PRODUCT_QTY,
-        details: { value, productId }
-      }),
-    onDeleteFromCart: productId =>
-      dispatch({
-        type: actionTypes.DELETE_PRODUCT_FROM_CART,
-        productId
-      })
-  };
-};
+const mapStateToProps = state => ({ cart: state.cartState.cart, currentCurrency: state.currencyState.currentCurrency });
+
+const mapDispatchToProps = dispatch => ({
+  onIncrementClick: productId => dispatch({ type: actionTypes.INCREMENT_PRODUCT_QTY, productId }),
+  onDecrementClick: productId => dispatch({ type: actionTypes.DECREMENT_PRODUCT_QTY, productId }),
+  onQuantityChange: (value, productId) => dispatch({ type: actionTypes.CHANGE_PRODUCT_QTY, details: { value, productId } }),
+  onDeleteFromCart: productId => dispatch({ type: actionTypes.DELETE_PRODUCT_FROM_CART, productId }),
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CartTable);

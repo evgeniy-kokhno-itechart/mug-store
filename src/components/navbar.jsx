@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import { getCurrencies } from "../services/payService";
-import * as actionTypes from "./store/actions";
+import React, { Component } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { getCurrencies } from '../services/payService';
+import * as actionTypes from '../store/actions';
 
 class Navbar extends Component {
-  state = { currentCurrency: { _id: "", name: "" }, currencyOptions: [] };
   state = { currencyOptions: [] };
 
   componentDidMount() {
@@ -15,11 +15,8 @@ class Navbar extends Component {
 
   render() {
     const { currencyOptions } = this.state;
-    const { currentCurrency } = this.props;
-    const cartCount = this.props.cart.reduce(
-      (sumQty, currentProduct) => sumQty + currentProduct.qty,
-      0
-    );
+    const { currentCurrency, cart } = this.props;
+    const cartCount = cart.reduce((sumQty, currentProduct) => sumQty + currentProduct.qty, 0);
 
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -47,9 +44,7 @@ class Navbar extends Component {
             </NavLink>
             <NavLink to="/cart" className="nav-item nav-link">
               Cart
-              {cartCount !== 0 ? (
-                <span className="badge badge-warning ml-1">{cartCount}</span>
-              ) : null}
+              {cartCount !== 0 ? <span className="badge badge-warning ml-1">{cartCount}</span> : null}
             </NavLink>
           </div>
         </div>
@@ -61,11 +56,11 @@ class Navbar extends Component {
             type="dropdown"
             id="currencyDropdownButton"
             value={currentCurrency._id}
-            onChange={e => {
+            onChange={(e) => {
               this.props.onCurrencyChange({
                 _id: e.currentTarget.value,
-                name:
-                  e.currentTarget.options[e.currentTarget.selectedIndex].text //.selectedOptions[0].text doesn't work for IE
+                name: e.currentTarget.options[e.currentTarget.selectedIndex].text,
+                // .selectedOptions[0].text doesn't work for IE
               });
             }}
           >
@@ -78,9 +73,7 @@ class Navbar extends Component {
 
           {this.props.currentUser.name ? (
             <React.Fragment>
-              <p className="nav navbar-text mr-3 d-inline">
-                {this.props.currentUser.name}
-              </p>
+              <p className="nav navbar-text mr-3 d-inline">{this.props.currentUser.name}</p>
               <div className="dropdown d-inline">
                 <button
                   className="text-white bg-dark border-0 px-0"
@@ -92,10 +85,7 @@ class Navbar extends Component {
                 >
                   Profile
                 </button>
-                <div
-                  className="dropdown-menu dropdown-menu-right"
-                  aria-labelledby="profileDropdownButton"
-                >
+                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdownButton">
                   <Link className="dropdown-item px-3" to="/myprofile">
                     My Profile
                   </Link>
@@ -108,16 +98,10 @@ class Navbar extends Component {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <Link
-                to="/login"
-                className="nav navbar-text mr-3 d-inline clickable"
-              >
+              <Link to="/login" className="nav navbar-text mr-3 d-inline clickable">
                 Login
               </Link>
-              <Link
-                to="/register"
-                className="nav navbar-text d-inline clickable"
-              >
+              <Link to="/register" className="nav navbar-text d-inline clickable">
                 Register
               </Link>
             </React.Fragment>
@@ -128,27 +112,34 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cart: state.cartState.cart,
-    currentUser: state.userState.currentUser,
-    currentCurrency: state.currencyState.currentCurrency
-  };
+Navbar.propTypes = {
+  currentUser: PropTypes.shape({ name: PropTypes.string }),
+  currentCurrency: PropTypes.shape({ _id: PropTypes.number }).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object),
+  onCurrencyChange: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onCurrencyChange: newCurrency => {
-      console.log("newCurrency", newCurrency);
-      dispatch({
-        type: actionTypes.CHANGE_CURRENCY,
-        currentCurrency: newCurrency
-      });
-    }
-  };
+Navbar.defaultProps = {
+  currentUser: null,
+  cart: [],
 };
+
+const mapStateToProps = state => ({
+  cart: state.cartState.cart,
+  currentUser: state.userState.currentUser,
+  currentCurrency: state.currencyState.currentCurrency,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onCurrencyChange: (newCurrency) => {
+    dispatch({
+      type: actionTypes.CHANGE_CURRENCY,
+      currentCurrency: newCurrency,
+    });
+  },
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Navbar);

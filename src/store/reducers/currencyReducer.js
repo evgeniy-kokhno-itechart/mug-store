@@ -1,8 +1,8 @@
-import * as actionTypes from "../actions";
-import { getCurrencies } from "../../../services/payService";
+import * as actionTypes from '../actions';
+import { getCurrencies } from '../../services/payService';
 
 const initialState = {
-  currentCurrency: getCurrencies()[0]
+  currentCurrency: getCurrencies()[0],
 };
 
 const currencyReducer = (state = initialState, action) => {

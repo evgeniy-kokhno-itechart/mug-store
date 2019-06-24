@@ -1,91 +1,98 @@
-import React from "react";
-import Joi from "joi-browser";
-import { connect } from "react-redux";
-import { getProduct } from "../../services/productsService";
-import Form from "./../common/form";
-import OrderTable from "./orderTable";
+import React from 'react';
+import Joi from 'joi-browser';
+import { connect } from 'react-redux';
+import { getProduct } from '../../services/productsService';
+import Form from '../common/form';
+import OrderTable from './orderTable';
 
 class OrderForm extends Form {
   state = {
     data: {
-      name: "",
-      country: "",
-      city: "",
-      address: "",
-      phone: "",
-      comment: ""
+      name: '',
+      country: '',
+      city: '',
+      address: '',
+      phone: '',
+      comment: '',
     },
     orderList: [],
     totalCost: 0,
-    errors: {}
+    errors: {},
   };
 
   schema = {
     name: Joi.string()
       .required()
       .max(100)
-      .label("Name"),
+      .label('Name'),
     country: Joi.string()
       .required()
       .max(100)
-      .label("Country"),
+      .label('Country'),
     city: Joi.string()
       .required()
       .max(100)
-      .label("City"),
+      .label('City'),
     address: Joi.string()
       .required()
       .max(250)
-      .label("Address"),
+      .label('Address'),
     phone: Joi.string()
       .required()
       .min(12)
       .max(17)
-      .label("Phone"),
-    comment: Joi.any().label("Comment")
+      .label('Phone'),
+    comment: Joi.any().label('Comment'),
   };
 
   componentDidMount() {
     const orderList = this.getProductsInCartBriefly();
-    if (this.props.location.pathname !== "/order") {
+    if (this.props.location.pathname !== '/order') {
       this.setState({
         orderList,
-        data: this.mapToViewModel(this.props.currentUser)
+        data: this.mapToViewModel(this.props.currentUser),
       });
     } else this.setState({ orderList });
-    console.log("state.data", this.state.data);
+    // console.log('state.data', this.state.data);
   }
 
   getTotalCost() {
     const orderList = this.getProductsInCartBriefly();
-    const currentCurrency = this.props.currentCurrency;
+    const { currentCurrency } = this.props;
     const totalCost = orderList.reduce(
-      (sum, currentItem) =>
-        sum +
-        currentItem.price[currentCurrency.name] *
-          currentItem.qty *
-          (1 - currentItem.discount / 100),
-      0
+      (sum, currentItem) => sum + currentItem.price[currentCurrency.name]
+                            * currentItem.qty
+                            * (1 - currentItem.discount / 100),
+      0,
     );
     return totalCost;
   }
 
-  mapToViewModel({ name, country, city, address, phone }) {
-    return { name, country, city, address, phone };
+  mapToViewModel({
+    name, country, city, address, phone,
+  }) {
+    return {
+      name,
+      country,
+      city,
+      address,
+      phone,
+    };
   }
 
   getProductsInCartBriefly() {
     const cartInfo = this.props.cart;
-    let products = [];
+    const products = [];
     let prodInCart = {};
-    for (var i = 0; i < cartInfo.length; i++) {
+
+    for (let i = 0; i < cartInfo.length; i++) {
       prodInCart = getProduct(cartInfo[i]._id);
       prodInCart = {
         _id: prodInCart._id,
         title: prodInCart.title,
         price: prodInCart.price,
         discount: prodInCart.discount,
-        qty: cartInfo[i].qty
+        qty: cartInfo[i].qty,
       };
       products.push(prodInCart);
     }
@@ -93,33 +100,36 @@ class OrderForm extends Form {
   }
 
   doSubmit = () => {
-    this.props.history.replace("/orderconfirm");
-
-    console.log("Order has been submitted!!!");
+    this.props.history.replace('/orderconfirm');
   };
 
   render() {
     const { orderList } = this.state;
     const totalCost = this.getTotalCost();
+
     return (
       <React.Fragment>
         <h3 className="text-center m-3">Please check your order</h3>
         <div className="row m-2">
           <div className="col-md-6">
             <p>Please check the list of products</p>
-            <OrderTable sortColumn={"title"} products={orderList} />
-            <p className="d-inline float-right">Total cost: {totalCost}</p>
+            <OrderTable sortColumn="title" products={orderList} />
+            <p className="d-inline float-right">
+              Total cost:
+              {totalCost}
+            </p>
           </div>
+
           <div className="col-md-5 offset-md-1">
             <p>Please fill out the form to continue</p>
             <form onSubmit={this.handleSubmit}>
-              {this.renderInput("name", "Name")}
-              {this.renderInput("country", "Country")}
-              {this.renderInput("city", "City")}
-              {this.renderInput("address", "Address")}
-              {this.renderInput("phone", "Phone")}
-              {this.renderTextArea("comment", "Comment")}
-              {this.renderButton("Submit Order", "d-block mx-auto mx-md-0")}
+              {this.renderInput('name', 'Name')}
+              {this.renderInput('country', 'Country')}
+              {this.renderInput('city', 'City')}
+              {this.renderInput('address', 'Address')}
+              {this.renderInput('phone', 'Phone')}
+              {this.renderTextArea('comment', 'Comment')}
+              {this.renderButton('Submit Order', 'd-block mx-auto mx-md-0')}
             </form>
           </div>
         </div>
@@ -128,12 +138,10 @@ class OrderForm extends Form {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cart: state.cartState.cart,
-    currentCurrency: state.currencyState.currentCurrency,
-    currentUser: state.userState.currentUser
-  };
-};
+const mapStateToProps = state => ({
+  cart: state.cartState.cart,
+  currentCurrency: state.currencyState.currentCurrency,
+  currentUser: state.userState.currentUser,
+});
 
 export default connect(mapStateToProps)(OrderForm);

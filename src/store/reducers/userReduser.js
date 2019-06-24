@@ -1,7 +1,7 @@
-import * as actionTypes from "../actions";
+import * as actionTypes from '../actions';
 
 const initialState = {
-  currentUser: { roles: [] }
+  currentUser: { roles: [] },
 };
 
 const userReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, currentUser: action.userInfo };
     }
     case actionTypes.LOGOUT_USER: {
-      console.log("Logging out...");
+      // console.log('Logging out...');
       return { ...state, ...initialState };
     }
     default:

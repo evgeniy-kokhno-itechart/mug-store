@@ -1,92 +1,95 @@
-import React from "react";
-import Form from "./../common/form";
-import Joi from "joi-browser";
-import { getCategories } from "../../services/categoriesService";
-import { getProduct } from "../../services/productsService";
-import { saveProduct } from "./../../services/productsService";
-import { getCurrencies } from "./../../services/payService";
+import React from 'react';
+import Joi from 'joi-browser';
+import { PropTypes } from 'prop-types';
+import Form from '../common/form';
+import { getCategories } from '../../services/categoriesService';
+import { getProduct, saveProduct } from '../../services/productsService';
+import { getCurrencies } from '../../services/payService';
 
 class ProductForm extends Form {
   state = {
     data: {
-      title: "",
-      imageURL: "",
-      description: "",
-      categoryId: "1",
-      discount: "",
-      producer: "",
-      rate: ""
+      title: '',
+      imageURL: '',
+      description: '',
+      categoryId: '1',
+      discount: '',
+      producer: '',
+      rate: '',
     },
     categories: [],
     currencies: [],
-    errors: {}
+    errors: {},
   };
 
   schema = {
     _id: Joi.string(),
     imageURL: Joi.string()
       .min(5)
-      .label("Image URL"),
+      .label('Image URL'),
     title: Joi.string()
       .required()
       .min(3)
-      .label("Title"),
+      .label('Title'),
     description: Joi.string()
       .max(500)
-      .label("Details"),
+      .label('Details'),
     categoryId: Joi.string()
       .required()
-      .label("Category"),
+      .label('Category'),
     discount: Joi.number()
       .min(0)
       .max(100)
-      .label("Discount, %"),
+      .label('Discount, %'),
     producer: Joi.string()
       .required()
       .min(5)
-      .label("Producer"),
+      .label('Producer'),
     publishDate: Joi.date(),
     rate: Joi.number()
       .required()
       .min(0)
       .max(5)
-      .label("Rate")
+      .label('Rate'),
   };
 
   constructor() {
     super();
     const currencies = getCurrencies();
     currencies.forEach(
-      currency =>
-        (this.schema["price." + currency.name] = Joi.number()
-          .required()
-          .label("Price, " + currency.name))
+      currency => (this.schema[`price.${currency.name}`] = Joi.number()
+        .required()
+        .label(`Price, ${currency.name}`)),
     );
     this.state.currencies = currencies;
 
     const currNames = currencies.map(curr => curr.name);
-    let obj = {};
-    currNames.forEach(name => (obj["price." + name] = ""));
+    const obj = {};
+    currNames.forEach(name => (obj[`price.${name}`] = ''));
     Object.assign(this.state.data, obj);
   }
 
   componentDidMount() {
     const categories = getCategories();
-    const currencies = getCurrencies();
-    this.setState({ categories, currencies });
-    // console.log("params.id", this.props.match.params.id);
+    // const currencies = getCurrencies();
+    this.setState({ categories }); // , currencies });
     const productId = this.props.match.params.id;
-    if (productId === "new") return;
+
+    if (productId === 'new') {
+      return;
+    }
+
     const product = getProduct(productId);
-    if (!product) return this.props.history.replace("/not-found");
+    if (!product) {
+      this.props.history.replace('/not-found');
+    }
     this.setState({ data: this.mapToViewModel(product) });
   }
 
   mapToViewModel(product) {
     const currNames = this.state.currencies.map(curr => curr.name);
-    let obj = {};
-    currNames.forEach(name => (obj["price." + name] = product.price[name]));
-    let dataForReturn = {
+    const obj = {};
+    const dataForReturn = {
       _id: product._id,
       title: product.title,
       imageURL: product.imageURL,
@@ -95,63 +98,69 @@ class ProductForm extends Form {
       discount: product.discount,
       producer: product.producer,
       publishDate: product.publishDate,
-      rate: product.rate
+      rate: product.rate,
     };
+
+    currNames.forEach(name => (obj[`price.${name}`] = product.price[name]));
     Object.assign(dataForReturn, obj);
-    // console.log("dataForReturn!!!!!!!!!!!!!!!", dataForReturn);
     return dataForReturn;
   }
 
   mapFromViewModel(data) {
+    const { currencies } = this.state;
+    const currNames = currencies.map(curr => curr.name);
     return {
       _id: data._id,
       title: data.title,
       imageURL: data.imageURL,
       description: data.description,
       categoryId: data.categoryId,
-      price: { BYN: data["price.BYN"], USD: data["price.USD"] },
+      price: currNames.reduce((result, currentItem) => {
+        // eslint-disable-next-line no-param-reassign
+        result[currentItem] = data[`price.${currentItem}`];
+        return result;
+      }, {}),
       discount: data.discount,
       producer: data.producer,
-      rate: data.rate
+      rate: data.rate,
     };
   }
 
   doSubmit = () => {
     const product = this.mapFromViewModel(this.state.data);
     saveProduct(product);
-    // console.log("doSubmit ProductForm", product);
-    this.props.history.push("/catalog");
+    this.props.history.push('/catalog');
   };
 
   render() {
-    console.log("state.data FROM render method!!!", this.state.data);
     return (
       <React.Fragment>
         <h1 className="text-center m-3">Product Info</h1>
-        <form
-          className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
-          onSubmit={this.handleSubmit}
-        >
-          {this.renderInput("title", "Title")}
-          {this.renderInput("imageURL", "Image URL")}
-          {this.renderTextArea("description", "Details")}
-          {this.renderDropdown("categoryId", "Category", this.state.categories)}
+        <form className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto" onSubmit={this.handleSubmit}>
+          {this.renderInput('title', 'Title')}
+          {this.renderInput('imageURL', 'Image URL')}
+          {this.renderTextArea('description', 'Details')}
+          {this.renderDropdown('categoryId', 'Category', this.state.categories)}
 
-          {this.state.currencies.map(currency =>
-            this.renderInput(
-              "price." + currency.name,
-              "Price, " + currency.name
-            )
-          )}
+          {this.state.currencies.map(currency => this.renderInput(`price.${currency.name}`, `Price, ${currency.name}`))}
 
-          {this.renderInput("discount", "Dicount, %")}
-          {this.renderInput("producer", "Producer")}
-          {this.renderInput("rate", "Rate")}
-          {this.renderButton("Save", "w-100")}
+          {this.renderInput('discount', 'Dicount, %')}
+          {this.renderInput('producer', 'Producer')}
+          {this.renderInput('rate', 'Rate')}
+          {this.renderButton('Save', 'w-100')}
         </form>
       </React.Fragment>
     );
   }
 }
+
+ProductForm.propTypes = {
+  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }),
+  history: PropTypes.shape({ replace: PropTypes.func, push: PropTypes.func }).isRequired,
+};
+
+ProductForm.defaultProps = {
+  match: { params: { id: '' } },
+};
 
 export default ProductForm;
