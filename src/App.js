@@ -1,10 +1,10 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
-import Navbar from './components/navbar';
-import Footer from './components/footer';
-import Routes from './components/common/routes';
+import Navbar from './general/components/navbar';
+import Footer from './general/components/footer';
+import Routes from './general/components/routes';
 import './App.css';
-import composeIconLibrary from './utils/iconLibrary';
+import composeIconLibrary from './services/iconLibrary';
 
 const App = () => {
   composeIconLibrary();

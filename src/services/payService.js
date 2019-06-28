@@ -1,4 +1,4 @@
-const currencies = [{ _id: 1, name: 'BYN' }, { _id: 2, name: 'USD' }];
+const currencies = [{ _id: '1', name: 'BYN' }, { _id: '2', name: 'USD' }];
 
 export function getCurrencies() {
   return currencies;

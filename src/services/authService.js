@@ -18,6 +18,7 @@ export function loginUserWithJwt(token) {
 }
 
 export function logoutUser() {
+  // send logout request to server here
   localStorage.removeItem('token');
 }
 
