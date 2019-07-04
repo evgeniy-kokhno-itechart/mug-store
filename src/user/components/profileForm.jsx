@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 import Form from '../../shared/form';
 import { registerUser, saveUser } from '../../services/userService';
 import { loginUserWithJwt } from '../../services/authService';
-import * as userActionTypes from '../userActions';
+import { loginUser } from '../userActions';
 
 class ProfileForm extends Form {
   state = {
@@ -89,8 +89,8 @@ class ProfileForm extends Form {
         const { data } = this.state;
         const token = registerUser(data);
         const userInfo = loginUserWithJwt(token);
-        this.props.onUserLogin(userInfo);
-        window.location = '/';
+        this.props.loginUser(userInfo);
+        this.props.history.replace('/');
       } catch (ex) {
         // paste error handling logic here
         this.setState((prevState) => {
@@ -100,7 +100,7 @@ class ProfileForm extends Form {
       }
     } else {
       saveUser(this.state.data);
-      window.location = '/';
+      this.props.history.replace('/');
     }
   };
 
@@ -135,7 +135,7 @@ ProfileForm.propTypes = {
     roles: PropTypes.arrayOf(PropTypes.string),
     username: PropTypes.string,
   }),
-  onUserLogin: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
 };
 
 ProfileForm.defaultProps = {
@@ -146,9 +146,9 @@ const mapStateToProps = state => ({
   user: state.userState.currentUser,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onUserLogin: userInfo => dispatch({ type: userActionTypes.LOGIN_USER, userInfo }),
-});
+const mapDispatchToProps = {
+  loginUser,
+};
 
 export default connect(
   mapStateToProps,

@@ -11,7 +11,7 @@ const ItemCounter = ({
       id="form-button-left"
       className={`input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2 ${count > 1 ? '' : 'disabled'}`}
       style={{ fontSize: '0.75rem' }}
-      onClick={() => onDecrementClick(itemId)}
+      onClick={() => onDecrementClick(itemId, 1)}
     >
       <FontAwesomeIcon icon="minus" className="my-auto" />
     </button>
@@ -26,7 +26,7 @@ const ItemCounter = ({
       onChange={(e) => {
         const val = e.currentTarget.value ? parseInt(e.currentTarget.value, 10) : 1;
         // ternary operator was added to avoid NaN when input is empty
-        onCountChange(val, itemId);
+        onCountChange(itemId, val);
       }}
     />
     <button
@@ -34,7 +34,7 @@ const ItemCounter = ({
       id="form-button-right"
       className="input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
       style={{ fontSize: '0.75rem' }}
-      onClick={() => onIncrementClick(itemId)}
+      onClick={() => onIncrementClick(itemId, 1)}
     >
       <FontAwesomeIcon icon="plus" className="my-auto" />
     </button>

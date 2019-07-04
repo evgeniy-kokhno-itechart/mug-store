@@ -2,13 +2,14 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { logoutUser } from '../../services/authService';
-import * as userActionTypes from '../userActions';
+import { logoutUser as logoutUserAction } from '../userActions';
 
 class Logout extends Component {
   componentDidMount() {
     logoutUser();
-    const { history, onUserLogout } = this.props;
-    onUserLogout();
+    // eslint-disable-next-line no-shadow
+    const { history, logoutUserAction } = this.props;
+    logoutUserAction();
     history.replace('/');
   }
 
@@ -19,12 +20,12 @@ class Logout extends Component {
 
 Logout.propTypes = {
   history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
-  onUserLogout: PropTypes.func.isRequired,
+  logoutUserAction: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  onUserLogout: () => dispatch({ type: userActionTypes.LOGOUT_USER }),
-});
+const mapDispatchToProps = {
+  logoutUserAction,
+};
 
 export default connect(
   null,

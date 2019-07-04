@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { getCurrencies } from '../../services/payService';
-import * as currencyActionTypes from '../../catalog/currencyActions';
+import { changeCurrency } from '../../catalog/currencyActions';
 
 class Navbar extends Component {
   state = { currencyOptions: [] };
@@ -57,11 +57,11 @@ class Navbar extends Component {
             id="currencyDropdownButton"
             value={currentCurrency._id}
             onChange={(e) => {
-              this.props.onCurrencyChange({
-                _id: e.currentTarget.value,
-                name: e.currentTarget.options[e.currentTarget.selectedIndex].text,
+              this.props.changeCurrency(
+                e.currentTarget.value, // _id
+                e.currentTarget.options[e.currentTarget.selectedIndex].text, // name
                 // .selectedOptions[0].text doesn't work for IE
-              });
+              );
             }}
           >
             {currencyOptions.map(option => (
@@ -116,7 +116,7 @@ Navbar.propTypes = {
   currentUser: PropTypes.shape({ name: PropTypes.string }),
   currentCurrency: PropTypes.shape({ _id: PropTypes.string }).isRequired,
   cart: PropTypes.arrayOf(PropTypes.object),
-  onCurrencyChange: PropTypes.func.isRequired,
+  changeCurrency: PropTypes.func.isRequired,
 };
 
 Navbar.defaultProps = {
@@ -130,14 +130,9 @@ const mapStateToProps = state => ({
   currentCurrency: state.currencyState.currentCurrency,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onCurrencyChange: (newCurrency) => {
-    dispatch({
-      type: currencyActionTypes.CHANGE_CURRENCY,
-      currentCurrency: newCurrency,
-    });
-  },
-});
+const mapDispatchToProps = {
+  changeCurrency,
+};
 
 export default connect(
   mapStateToProps,

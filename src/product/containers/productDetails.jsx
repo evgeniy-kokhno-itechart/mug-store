@@ -6,7 +6,7 @@ import { PropTypes } from 'prop-types';
 import { getProduct } from '../../services/productsService';
 import getProductImageURLs from '../../services/imageService';
 import InformationItem from '../../shared/markup-usage/informationItem';
-import * as cartActionTypes from '../../cart/cartActions';
+import { addToCart } from '../../cart/cartActions';
 import BuyNowButton from '../../catalog/components/buyNowButton';
 import ToCatalogButton from '../../catalog/components/toCatalogButton';
 
@@ -68,7 +68,6 @@ class ProductDetails extends Component {
 
   render() {
     const { imageURLs, product } = this.state;
-    const { onBuyNow } = this.props;
 
     return (
       <React.Fragment>
@@ -90,7 +89,7 @@ class ProductDetails extends Component {
 
         <div className="d-flex m-3">
           <ToCatalogButton />
-          <BuyNowButton customClasses="ml-auto" onBuyNow={onBuyNow} productId={product._id} />
+          <BuyNowButton customClasses="ml-auto" onBuyNow={this.props.addToCart} productId={product._id} />
         </div>
       </React.Fragment>
     );
@@ -101,14 +100,14 @@ ProductDetails.propTypes = {
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
   history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
-  onBuyNow: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({ currentCurrency: state.currencyState.currentCurrency });
 
-const mapDispatchToProps = dispatch => ({
-  onBuyNow: (productId, quantity) => dispatch({ type: cartActionTypes.ADD_TO_CART, cart: { productId, quantity } }),
-});
+const mapDispatchToProps = {
+  addToCart,
+};
 
 export default connect(
   mapStateToProps,

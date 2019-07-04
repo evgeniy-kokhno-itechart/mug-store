@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { getCategories } from '../../services/categoriesService';
 import { getProducts } from '../../services/productsService';
-import * as cartActionTypes from '../../cart/cartActions';
 import paginate from '../../services/paginate';
 import ListGroup from '../../shared/controls/listGroup';
 import ProductsTable from './productsTable';
@@ -176,20 +175,14 @@ class Catalog extends Component {
 
 Catalog.propTypes = {
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  currentUser: PropTypes.shape({ roles: PropTypes.array }).isRequired,
+  currentUser: PropTypes.shape({ roles: PropTypes.arrayOf(PropTypes.string) }).isRequired,
 };
 
 const mapStateToProps = state => ({
-  cart: state.cartState.cart,
   currentUser: state.userState.currentUser,
   currentCurrency: state.currencyState.currentCurrency,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onBuyNow: (productId, quantity) => dispatch({ type: cartActionTypes.ADD_TO_CART, cart: { productId, quantity } }),
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(Catalog);

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import * as cartActionTypes from '../../cart/cartActions';
+import { clearCart } from '../../cart/cartActions';
 import ToCatalogButton from '../../catalog/components/toCatalogButton';
 
 class OrderConfirmation extends Component {
   componentDidMount() {
-    this.props.onCartClear();
+    this.props.clearCart();
   }
 
   render() {
@@ -27,12 +27,12 @@ class OrderConfirmation extends Component {
 }
 
 OrderConfirmation.propTypes = {
-  onCartClear: PropTypes.func.isRequired,
+  clearCart: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  onCartClear: () => dispatch({ type: cartActionTypes.CLEAR_CART }),
-});
+const mapDispatchToProps = {
+  clearCart,
+};
 
 export default connect(
   null,

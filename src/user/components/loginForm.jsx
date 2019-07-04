@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Form from '../../shared/form';
 import { loginUser } from '../../services/authService';
-import * as userActionTypes from '../userActions';
+import { loginUser as loginUserAction } from '../userActions';
 
 class LoginForm extends Form {
   state = {
@@ -25,11 +25,12 @@ class LoginForm extends Form {
   doSubmit = () => {
     try {
       const { data } = this.state;
-      const { location, history, onUserLogin } = this.props;
+      // eslint-disable-next-line no-shadow
+      const { location, history, loginUserAction } = this.props;
 
       // get user's token from the back-end, store it in localStorage and get user's info
       const userInfo = loginUser(data.username, data.password);
-      onUserLogin(userInfo);
+      loginUserAction(userInfo);
       const { pathname } = location.fromPath;
       history.replace(pathname || '/');
     } catch (ex) {
@@ -58,7 +59,7 @@ LoginForm.propTypes = {
   currentUser: PropTypes.shape({ name: PropTypes.string }),
   location: PropTypes.shape({ fromPath: PropTypes.shape({ pathname: PropTypes.string }) }),
   history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
-  onUserLogin: PropTypes.func.isRequired,
+  loginUserAction: PropTypes.func.isRequired,
 };
 
 LoginForm.defaultProps = {
@@ -68,9 +69,9 @@ LoginForm.defaultProps = {
 
 const mapStateToProps = state => ({ currentUser: state.userState.currentUser });
 
-const mapDispatchToProps = dispatch => ({
-  onUserLogin: userInfo => dispatch({ type: userActionTypes.LOGIN_USER, userInfo }),
-});
+const mapDispatchToProps = {
+  loginUserAction,
+};
 
 export default connect(
   mapStateToProps,

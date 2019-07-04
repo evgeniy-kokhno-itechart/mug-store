@@ -6,7 +6,9 @@ import { PropTypes } from 'prop-types';
 import ResponsiveEllipsis from '../../shared/markup-usage/responsiveEllipsis';
 import Table from '../../shared/markup-usage/table';
 import ItemCounter from '../../shared/controls/itemCounter';
-import * as cartActionTypes from '../cartActions';
+import {
+  incrementQuantity, decrementQuantity, changeQuantity, deleteProductFromCart,
+} from '../cartActions';
 import ProductPriceCalculator from './productPriceCalculator';
 
 class CartTable extends Component {
@@ -47,9 +49,9 @@ class CartTable extends Component {
         <ItemCounter
           count={product.qty}
           itemId={product._id}
-          onIncrementClick={this.props.onIncrementClick}
-          onDecrementClick={this.props.onDecrementClick}
-          onCountChange={this.props.onQuantityChange}
+          onIncrementClick={this.props.incrementQuantity}
+          onDecrementClick={this.props.decrementQuantity}
+          onCountChange={this.props.changeQuantity}
         />
       ),
       style: { width: '5%' },
@@ -64,11 +66,6 @@ class CartTable extends Component {
           quantity={product.qty}
           discount={product.discount}
         />
-        // const cost = product.qty * product.price[this.props.currentCurrency.name] * (1 - product.discount / 100);
-        // if (cost) {
-        //   return cost.toString();
-        // }
-        // return 0;
       ),
       style: { width: '5%' },
       customClasses: 'text-center',
@@ -80,7 +77,7 @@ class CartTable extends Component {
         <button
           type="button"
           className="btn btn-secondary btn-sm"
-          onClick={() => this.props.onDeleteFromCart(product._id)}
+          onClick={() => this.props.deleteProductFromCart(product._id)}
         >
           <FontAwesomeIcon icon="trash" />
         </button>
@@ -99,20 +96,27 @@ CartTable.propTypes = {
   currentCurrency: PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string }).isRequired,
   productsInCart: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, qty: PropTypes.number })).isRequired,
   sortColumn: PropTypes.string.isRequired,
-  onIncrementClick: PropTypes.func.isRequired,
-  onDecrementClick: PropTypes.func.isRequired,
-  onQuantityChange: PropTypes.func.isRequired,
-  onDeleteFromCart: PropTypes.func.isRequired,
+  incrementQuantity: PropTypes.func.isRequired,
+  decrementQuantity: PropTypes.func.isRequired,
+  changeQuantity: PropTypes.func.isRequired,
+  deleteProductFromCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({ cart: state.cartState.cart, currentCurrency: state.currencyState.currentCurrency });
 
-const mapDispatchToProps = dispatch => ({
-  onIncrementClick: productId => dispatch({ type: cartActionTypes.INCREMENT_PRODUCT_QTY, productId }),
-  onDecrementClick: productId => dispatch({ type: cartActionTypes.DECREMENT_PRODUCT_QTY, productId }),
-  onQuantityChange: (value, productId) => dispatch({ type: cartActionTypes.CHANGE_PRODUCT_QTY, details: { value, productId } }),
-  onDeleteFromCart: productId => dispatch({ type: cartActionTypes.DELETE_PRODUCT_FROM_CART, productId }),
-});
+const mapDispatchToProps = {
+  incrementQuantity,
+  decrementQuantity,
+  changeQuantity,
+  deleteProductFromCart,
+};
+
+// const mapDispatchToProps = dispatch => ({
+//   onIncrementClick: productId => dispatch({ type: cartActionTypes.INCREMENT_PRODUCT_QTY, productId }),
+//   onDecrementClick: productId => dispatch({ type: cartActionTypes.DECREMENT_PRODUCT_QTY, productId }),
+//   onQuantityChange: (value, productId) => dispatch({ type: cartActionTypes.CHANGE_PRODUCT_QTY, details: { value, productId } }),
+//   onDeleteFromCart: productId => dispatch({ type: cartActionTypes.DELETE_PRODUCT_FROM_CART, productId }),
+// });
 
 export default connect(
   mapStateToProps,

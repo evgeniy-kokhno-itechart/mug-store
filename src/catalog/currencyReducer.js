@@ -1,14 +1,11 @@
-import * as currencyActionTypes from './currencyActions';
+import { handleAction } from 'redux-actions';
+import { changeCurrency } from './currencyActions';
 import initialCurrencyState from './currencyState';
 
-const currencyReducer = (state = initialCurrencyState, action) => {
-  switch (action.type) {
-    case currencyActionTypes.CHANGE_CURRENCY: {
-      return { ...state, currentCurrency: action.currentCurrency };
-    }
-    default:
-      return state;
-  }
-};
+const currencyReducer = handleAction(
+  changeCurrency,
+  (state, { payload: { currencyId, currencyName } }) => ({ ...state, currentCurrency: { _id: currencyId, name: currencyName } }),
+  initialCurrencyState,
+);
 
 export default currencyReducer;

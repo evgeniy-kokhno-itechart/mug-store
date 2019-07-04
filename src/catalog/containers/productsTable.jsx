@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import ResponsiveEllipsis from '../../shared/markup-usage/responsiveEllipsis';
-import * as cartActionTypes from '../../cart/cartActions';
 import Table from '../../shared/markup-usage/table';
 import Rate from '../../shared/markup-usage/rate';
 import Modal from '../../shared/markup-usage/modal';
 import BuyNowButton from '../components/buyNowButton';
+import ProductPriceCalculator from '../../cart/containers/productPriceCalculator';
+import { addToCart } from '../../cart/cartActions';
 
 class ProductsTable extends Component {
   state = {
@@ -35,9 +36,7 @@ class ProductsTable extends Component {
       {
         path: 'description',
         label: 'Details',
-        content: product => (
-          <ResponsiveEllipsis text={product.description} maxLine="3" ellipsis="..." basedOn="words" />
-        ),
+        content: product => <ResponsiveEllipsis text={product.description} maxLine="3" ellipsis="..." basedOn="words" />,
         customClasses: 'd-none d-md-table-cell',
         style: { width: '50%' },
       },
@@ -49,14 +48,14 @@ class ProductsTable extends Component {
       {
         path: `price. ${this.props.currentCurrency.name}`,
         label: 'Price',
-        content: product => product.price[this.props.currentCurrency.name] * (1 - product.discount / 100),
+        content: product => (
+          <ProductPriceCalculator price={product.price[this.props.currentCurrency.name]} quantity={1} discount={product.discount} />
+        ),
         style: { width: '5%' },
       },
       {
         key: 'buyNow',
-        content: product => (
-          <BuyNowButton customClasses="btn-sm" onBuyNow={this.props.onBuyNow} productId={product._id} />
-        ),
+        content: product => <BuyNowButton customClasses="btn-sm" onBuyNow={this.props.addToCart} productId={product._id} />,
         style: { width: '10%' },
       },
     ],
@@ -108,7 +107,7 @@ ProductsTable.propTypes = {
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
   productsOnPage: PropTypes.arrayOf(PropTypes.object).isRequired,
   sortColumn: PropTypes.shape({ order: PropTypes.string, path: PropTypes.string }).isRequired,
-  onBuyNow: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
@@ -117,9 +116,9 @@ const mapStateToProps = state => ({
   currentCurrency: state.currencyState.currentCurrency,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onBuyNow: (productId, quantity) => dispatch({ type: cartActionTypes.ADD_TO_CART, cart: { productId, quantity } }),
-});
+const mapDispatchToProps = {
+  addToCart,
+};
 
 export default connect(
   mapStateToProps,

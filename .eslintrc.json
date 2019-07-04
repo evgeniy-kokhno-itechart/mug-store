@@ -23,7 +23,7 @@
     "no-underscore-dangle": 0,
     "no-plusplus": 0,
     "no-return-assign": 0,
-    "max-len": ["error", { "code": 120 }],
+    "max-len": ["error", { "code": 140 }],
     "react/no-direct-mutation-state": "error",
     "react/jsx-max-props-per-line": ["error", { "maximum": 7 }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
