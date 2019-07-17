@@ -4,12 +4,7 @@ import Dropdown from '../../shared/controls/dropdown';
 import Pagination from '../../shared/controls/pagination';
 
 const ProductsTableFooter = ({
-  totalCount,
-  pageSize,
-  pageSizeOptions,
-  currentPage,
-  onPageChange,
-  onItemsCountChange,
+  totalCount, pageSize, pageSizeOptions, currentPage, onPageChange, onItemsCountChange,
 }) => (
   <div className="row justify-content-between mx-0 mx-sm-2">
     <div className="col">
@@ -26,10 +21,10 @@ const ProductsTableFooter = ({
         name="itemsOnPage"
         label="Items on page"
         options={pageSizeOptions}
-        value={pageSize}
+        value={pageSize.toString()}
         isOnelineElement
         customClasses="justify-content-end"
-        onChange={e => onItemsCountChange(e.currentTarget.value)}
+        onChange={onItemsCountChange}
       />
     </div>
   </div>

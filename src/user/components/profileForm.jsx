@@ -3,8 +3,8 @@ import Joi from 'joi-browser';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Form from '../../shared/form';
-import { registerUser, saveUser } from '../../services/userService';
-import { loginUserWithJwt } from '../../services/authService';
+import { registerUser, saveUser } from '../../services/user/userService';
+import { loginUserWithJwt } from '../../services/user/authService';
 import { loginUser } from '../userActions';
 
 class ProfileForm extends Form {
@@ -143,7 +143,7 @@ ProfileForm.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  user: state.userState.currentUser,
+  user: state.user.currentUser,
 });
 
 const mapDispatchToProps = {

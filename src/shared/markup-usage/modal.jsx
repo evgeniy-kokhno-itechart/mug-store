@@ -12,9 +12,9 @@ const Modal = ({
       <div className="modal-dialog modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id={id}>
+            <h1 className="display-5 modal-title" id={id}>
               {title}
-            </h5>
+            </h1>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

@@ -1,69 +1,65 @@
+/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { getCategories } from '../../services/categoriesService';
-import { getProducts } from '../../services/productsService';
-import paginate from '../../services/paginate';
+import { changeCategory } from '../categories-redux-state/categoryActions';
+import paginate from '../../services/catalog/paginate';
 import ListGroup from '../../shared/controls/listGroup';
 import ProductsTable from './productsTable';
 import ProductTableHeader from '../components/productsTableHeader';
 import ProductsTableFooter from '../components/productsTableFooter';
+import Spinner from '../../shared/markup-usage/spinner';
+import ErrorMessage from '../../shared/markup-usage/errorMessage';
+import { deleteProduct, getProducts } from '../../product/productsActions';
 
 class Catalog extends Component {
   state = {
-    categories: [],
-    products: [],
-    currentCatergory: null,
     searchQuery: '',
-    sortColumn: { path: 'title', order: 'asc' },
+    sortColumn: { id: 'title_asc', path: 'title', order: 'asc' },
     pageSize: 10,
     currentPage: 1,
   };
 
   pageSizeOptions = [
-    { _id: '5', name: '5' },
-    { _id: '10', name: '10' },
-    { _id: '15', name: '15' },
+    { id: '5', name: '5' },
+    { id: '10', name: '10' },
+    { id: '15', name: '15' },
   ];
 
   sortOptions = [
-    { _id: 'price_asc', name: 'Price A-Z' },
-    { _id: 'price_desc', name: 'Price Z-A' },
-    { _id: 'title_asc', name: 'Title A-Z' },
-    { _id: 'title_desc', name: 'Title Z-A' },
-    { _id: 'rate_asc', name: 'Rate 1-5' },
-    { _id: 'rate_desc', name: 'Rate 5-1' },
+    { id: 'price_asc', name: 'Price A-Z' },
+    { id: 'price_desc', name: 'Price Z-A' },
+    { id: 'title_asc', name: 'Title A-Z' },
+    { id: 'title_desc', name: 'Title Z-A' },
+    { id: 'rate_asc', name: 'Rate 1-5' },
+    { id: 'rate_desc', name: 'Rate 5-1' },
   ];
 
-  componentDidMount() {
-    const categoriesPopulated = [
-      { _id: '', name: 'All Products' },
-      ...getCategories(),
-    ];
-    const products = getProducts();
-    this.setState({
-      categories: categoriesPopulated,
-      products,
-    });
-  }
+  allProductsCategory = { id: '', name: 'All Products' };
+
+  // componentDidMount() {
+  // this.props.getCategories();
+  // this.props.getProducts();
+  // }
 
   getPagedData = () => {
     const {
       pageSize,
       currentPage,
-      products: allProducts,
-      currentCatergory,
       sortColumn,
       searchQuery,
     } = this.state;
 
+    const { currentCategory } = this.props;
+
+    const allProducts = this.props.products;
     let filtered = allProducts;
     if (searchQuery) {
       filtered = allProducts.filter(m => m.title.toLowerCase().includes(searchQuery.toLowerCase()));
-    } else if (currentCatergory && currentCatergory._id) {
-      filtered = allProducts.filter(m => m.category._id === currentCatergory._id);
+    } else if (currentCategory && currentCategory.id) {
+      filtered = allProducts.filter(m => m.category.id === currentCategory.id);
     }
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
@@ -74,7 +70,8 @@ class Catalog extends Component {
   };
 
   handleItemSelect = (category) => {
-    this.setState({ currentCatergory: category, searchQuery: '', currentPage: 1 });
+    this.setState({ searchQuery: '', currentPage: 1 });
+    this.props.changeCategory(category);
   };
 
   handlePageChange = (page) => {
@@ -83,36 +80,39 @@ class Catalog extends Component {
 
   handleSearch = (e, query) => {
     e.preventDefault();
-    this.setState({ searchQuery: query, currentCatergory: null, currentPage: 1 });
+    this.props.changeCategory(this.allProductsCategory);
+    this.setState({ searchQuery: query, currentPage: 1 });
   };
 
-  handleSort = (detailsToBeSplitted) => {
+  handleSort = (e) => {
+    const detailsToBeSplitted = e.currentTarget.value;
     if (detailsToBeSplitted) {
       const sortInfo = detailsToBeSplitted.split('_');
       if (sortInfo[0] === 'price') {
         sortInfo[0] = `${sortInfo[0]}.${this.props.currentCurrency.name}`;
       }
 
-      this.setState({ sortColumn: { path: sortInfo[0], order: sortInfo[1] } });
+      this.setState({ sortColumn: { id: detailsToBeSplitted, path: sortInfo[0], order: sortInfo[1] } });
     } else this.setState({ sortColumn: { path: 'title', order: 'asc' } });
   };
 
-  handleItemsCountChange = (pageSizeString) => {
+  handleItemsCountChange = (e) => {
+    const pageSizeString = e.currentTarget.value;
     const pageSize = +pageSizeString;
     this.setState({ pageSize, currentPage: 1 });
   };
 
   handleDelete = (productId) => {
-    // const products = this.state.products.filter(p => p._id !== productId);
-    this.setState(prevState => ({ products: prevState.products.filter(p => p._id !== productId) }));
+    this.props.deleteProduct(productId);
+    this.props.getProducts();
   };
 
   renderEmptyMessage = () => (
     <h1 className="m-2 text-center">
-          There are no products in the catalog
+      There are no products in the catalog
       <div className="m-1 m-md-3 mx-auto">
         <Link className="btn btn-secondary" to="/">
-              To Main Page
+          To Main Page
         </Link>
       </div>
     </h1>
@@ -120,25 +120,29 @@ class Catalog extends Component {
 
   renderProducts = (totalCount, productsOnPage) => {
     const {
-      categories,
-      currentCatergory,
       sortColumn,
       searchQuery,
       pageSize,
       currentPage,
     } = this.state;
 
-    const { currentUser } = this.props;
+    const { currentUser, categories, currentCategory } = this.props;
 
     return (
       <div className="row mt-3">
         <div className="col-11 col-sm-3 col-lg-2 mx-auto mb-2">
-          <ListGroup items={categories} selectedItem={currentCatergory} onItemSelect={this.handleItemSelect} />
+          <ListGroup
+            items={[this.allProductsCategory, ...categories]}
+            selectedItem={currentCategory}
+            onItemSelect={this.handleItemSelect}
+          />
         </div>
+
         <div className="col-12 col-sm-9 col-lg-10">
           <ProductTableHeader
             currentUserRoles={currentUser.roles}
-            earchQuery={searchQuery}
+            searchQuery={searchQuery}
+            sortColumnKey={sortColumn.id}
             sortOptions={this.sortOptions}
             handleSearch={this.handleSearch}
             handleSort={this.handleSort}
@@ -165,10 +169,25 @@ class Catalog extends Component {
 
   render() {
     const { totalCount, productsOnPage } = this.getPagedData();
+    const {
+      isProductsLoading,
+      hasProductsLoadingFailed,
+      errorWhileProductsLoading,
+      isCategoriesLoading,
+      hasCategoriesLoadingFailed,
+      errorWhileCategoriesLoading,
+      isProductDeletingInProcess,
+      hasProductDeletingFailed,
+      errorWhileProductDeleting,
+    } = this.props;
     return (
-      productsOnPage.length
-        ? this.renderProducts(totalCount, productsOnPage)
-        : this.renderEmptyMessage()
+      (isProductsLoading || isCategoriesLoading || isProductDeletingInProcess)
+        ? <Spinner sizeInRems='5' />
+        : ((hasProductsLoadingFailed || hasCategoriesLoadingFailed || hasProductDeletingFailed)
+          ? <ErrorMessage message={errorWhileProductsLoading || errorWhileCategoriesLoading || errorWhileProductDeleting} />
+          : (productsOnPage.length
+            ? this.renderProducts(totalCount, productsOnPage)
+            : this.renderEmptyMessage()))
     );
   }
 }
@@ -176,13 +195,81 @@ class Catalog extends Component {
 Catalog.propTypes = {
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
   currentUser: PropTypes.shape({ roles: PropTypes.arrayOf(PropTypes.string) }).isRequired,
+
+  isProductsLoading: PropTypes.bool,
+  hasProductsLoadingFailed: PropTypes.bool,
+  errorWhileProductsLoading: PropTypes.string,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    imageURL: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+    price: PropTypes.object,
+    discount: PropTypes.number,
+    producer: PropTypes.string,
+    publishDate: PropTypes.string,
+    rate: PropTypes.string,
+  })),
+  getProducts: PropTypes.func.isRequired,
+
+  isProductDeletingInProcess: PropTypes.bool,
+  hasProductDeletingFailed: PropTypes.bool,
+  errorWhileProductDeleting: PropTypes.string,
+  deleteProduct: PropTypes.func.isRequired,
+
+  categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
+  currentCategory: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+  isCategoriesLoading: PropTypes.bool,
+  hasCategoriesLoadingFailed: PropTypes.bool,
+  errorWhileCategoriesLoading: PropTypes.string,
+  changeCategory: PropTypes.func.isRequired,
+};
+
+Catalog.defaultProps = {
+  products: [],
+  isProductsLoading: true,
+  hasProductsLoadingFailed: false,
+  errorWhileProductsLoading: '',
+
+  categories: [],
+  currentCategory: null,
+  isCategoriesLoading: true,
+  hasCategoriesLoadingFailed: false,
+  errorWhileCategoriesLoading: '',
+
+  isProductDeletingInProcess: true,
+  hasProductDeletingFailed: false,
+  errorWhileProductDeleting: '',
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.userState.currentUser,
-  currentCurrency: state.currencyState.currentCurrency,
+  currentUser: state.user.currentUser,
+  currentCurrency: state.currency.currentCurrency,
+
+  products: state.products.products,
+  isProductsLoading: state.products.tableProductsStatus.isGettingInProcess,
+  hasProductsLoadingFailed: state.products.tableProductsStatus.hasGettingFailed,
+  errorWhileProductsLoading: state.products.tableProductsStatus.error,
+
+  currentCategory: state.category.currentCategory,
+  categories: state.category.categories,
+  isCategoriesLoading: state.category.categoriesStatus.isInProcess,
+  hasCategoriesLoadingFailed: state.category.categoriesStatus.hasFailed,
+  errorWhileCategoriesLoading: state.category.categoriesStatus.error,
+
+  isProductDeletingInProcess: state.products.deletingStatus.isDeletingInProcess,
+  hasProductDeletingFailed: state.products.deletingStatus.hasDeletingFailed,
+  errorWhileProductDeleting: state.products.deletingStatus.error,
 });
+
+const mapDispatchToProps = {
+  changeCategory,
+  getProducts,
+  deleteProduct,
+};
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Catalog);

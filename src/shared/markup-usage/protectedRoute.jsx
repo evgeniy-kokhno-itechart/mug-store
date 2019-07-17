@@ -33,7 +33,7 @@ ProtectedRoute.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.userState.currentUser,
+  currentUser: state.user.currentUser,
 });
 
 export default connect(mapStateToProps)(ProtectedRoute);

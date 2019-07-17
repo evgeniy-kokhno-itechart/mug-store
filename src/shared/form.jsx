@@ -22,11 +22,8 @@ class Form extends Component {
     }
 
     // for (const item of result.error.details) errors[item.path[0]] = item.message;
-    // was replaced by the code below due to airbnb requirementregarding for...of loop
-    const errors = result.error.details.reduce(
-      (accumulator, item) => ({ ...accumulator, ...{ [item.path[0]]: item.message } }),
-      {},
-    );
+    // was replaced by the code below due to airbnb requirement regarding for...of loop
+    const errors = result.error.details.reduce((accumulator, item) => ({ ...accumulator, ...{ [item.path[0]]: item.message } }), {});
     return errors;
   };
 
@@ -89,16 +86,7 @@ class Form extends Component {
 
   renderDropdown(name, label, options) {
     const { data, errors } = this.state;
-    return (
-      <Dropdown
-        name={name}
-        label={label}
-        options={options}
-        value={data[name]}
-        error={errors[name]}
-        onChange={this.handleChange}
-      />
-    );
+    return <Dropdown name={name} label={label} options={options} value={data[name]} error={errors[name]} onChange={this.handleChange} />;
   }
 
   renderTextArea(name, label) {

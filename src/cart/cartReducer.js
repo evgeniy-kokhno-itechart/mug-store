@@ -8,21 +8,21 @@ const incrementDecrementQuantity = combineActions(incrementQuantity, decrementQu
 
 const cartReducer = handleActions(
   {
-    [addToCart]: (state, { payload: { productId, quantity } }) => {
-      const id = productId.toString();
+    [addToCart]: (state, { payload: { product, quantity } }) => {
+      const id = product.id.toString();
       const newCart = [...state.cart];
-      const existedProduct = newCart.find(item => item._id === id);
+      const existedProduct = newCart.find(item => item.id === id);
       if (existedProduct) {
         existedProduct.qty += parseInt(quantity, 10);
       } else {
-        newCart.push({ _id: id, qty: quantity });
+        newCart.push({ ...product, qty: quantity });
       }
       return { ...state, cart: [...newCart] };
     },
 
     [incrementDecrementQuantity]: (state, { payload: { productId, delta } }) => {
       const newCart = [...state.cart];
-      const prodInCart = newCart.find(p => p._id === productId);
+      const prodInCart = newCart.find(p => p.id === productId);
       if (prodInCart.qty > 1 || delta > 0) {
         prodInCart.qty += delta;
       }
@@ -31,7 +31,7 @@ const cartReducer = handleActions(
 
     [changeQuantity]: (state, { payload: { productId, value } }) => {
       const newCart = [...state.cart];
-      const index = newCart.findIndex(p => p._id === productId);
+      const index = newCart.findIndex(p => p.id === productId);
       const newProdInCart = { ...newCart[index] };
       newProdInCart.qty = value;
       newCart[index] = newProdInCart;
@@ -40,7 +40,7 @@ const cartReducer = handleActions(
 
     [deleteProductFromCart]: (state, { payload: { productId } }) => {
       const newCart = [...state.cart];
-      newCart.splice(newCart.findIndex(p => p._id === productId), 1);
+      newCart.splice(newCart.findIndex(p => p.id === productId), 1);
       return { ...state, cart: [...newCart] };
     },
 

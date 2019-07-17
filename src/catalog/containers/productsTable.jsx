@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,6 +10,8 @@ import Modal from '../../shared/markup-usage/modal';
 import BuyNowButton from '../components/buyNowButton';
 import ProductPriceCalculator from '../../cart/containers/productPriceCalculator';
 import { addToCart } from '../../cart/cartActions';
+// import Spinner from '../../shared/markup-usage/spinner';
+// import ErrorMessage from '../../shared/markup-usage/errorMessage';
 
 class ProductsTable extends Component {
   state = {
@@ -17,7 +20,7 @@ class ProductsTable extends Component {
         key: 'image',
         label: '',
         content: product => (
-          <Link to={`/products/${product._id}`} className="clickable">
+          <Link to={`/products/${product.id}`} className="clickable">
             <img src={product.imageURL} alt={product.title} className="img-fluid" />
           </Link>
         ),
@@ -27,7 +30,7 @@ class ProductsTable extends Component {
         path: 'title',
         label: 'Title',
         content: product => (
-          <Link to={`/products/${product._id}`} className="clickable">
+          <Link to={`/products/${product.id}`} className="clickable">
             {product.title}
           </Link>
         ),
@@ -49,13 +52,18 @@ class ProductsTable extends Component {
         path: `price. ${this.props.currentCurrency.name}`,
         label: 'Price',
         content: product => (
-          <ProductPriceCalculator price={product.price[this.props.currentCurrency.name]} quantity={1} discount={product.discount} />
+          <ProductPriceCalculator
+            isCurrencyLoading={this.props.isCurrencyLoading}
+            price={product.price[this.props.currentCurrency.name]}
+            quantity={1}
+            discount={product.discount}
+          />
         ),
         style: { width: '5%' },
       },
       {
         key: 'buyNow',
-        content: product => <BuyNowButton customClasses="btn-sm" onBuyNow={this.props.addToCart} productId={product._id} />,
+        content: product => <BuyNowButton customClasses="btn-sm" onBuyNow={this.props.addToCart} product={product} />,
         style: { width: '10%' },
       },
     ],
@@ -65,7 +73,7 @@ class ProductsTable extends Component {
     {
       key: 'edit',
       content: product => (
-        <Link to={`/edit/products/${product._id}`}>
+        <Link to={`/edit/products/${product.id}`}>
           <button type="button" className="btn btn-warning btn-sm">
             Edit
           </button>
@@ -83,7 +91,7 @@ class ProductsTable extends Component {
           text={`You are about to completely delete ${product.title} from the database!`}
           textConfirm="Confirm"
           textAbort="Dismiss"
-          onConfirm={() => this.props.onDelete(product._id)}
+          onConfirm={() => this.props.onDelete(product.id)}
         />
       ),
     },
@@ -98,6 +106,7 @@ class ProductsTable extends Component {
 
   render() {
     const { productsOnPage, sortColumn } = this.props;
+
     return <Table columns={this.state.columns} sortColumn={sortColumn} items={productsOnPage} />;
   }
 }
@@ -105,15 +114,22 @@ class ProductsTable extends Component {
 ProductsTable.propTypes = {
   currentUser: PropTypes.shape({ name: PropTypes.string }).isRequired,
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
+  isCurrencyLoading: PropTypes.bool,
+
   productsOnPage: PropTypes.arrayOf(PropTypes.object).isRequired,
   sortColumn: PropTypes.shape({ order: PropTypes.string, path: PropTypes.string }).isRequired,
   addToCart: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
+ProductsTable.defaultProps = {
+  isCurrencyLoading: true,
+};
+
 const mapStateToProps = state => ({
-  currentUser: state.userState.currentUser,
-  currentCurrency: state.currencyState.currentCurrency,
+  currentUser: state.user.currentUser,
+  currentCurrency: state.currency.currentCurrency,
+  isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });
 
 const mapDispatchToProps = {

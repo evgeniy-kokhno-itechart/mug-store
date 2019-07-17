@@ -5,7 +5,7 @@ import SearchBox from '../../shared/controls/searchBox';
 import SortBox from './sortBox';
 
 const ProductTableHeader = ({
-  currentUserRoles, searchQuery, sortOptions, handleSearch, handleSort,
+  currentUserRoles, searchQuery, sortColumnKey, sortOptions, handleSearch, handleSort,
 }) => (
   <div className="row justify-content-between mx-1 mx-sm-2">
     <div className="col-12 col-md-5 col-lg-4 col-xl-3">
@@ -19,7 +19,7 @@ const ProductTableHeader = ({
       </div>
     )}
     <div className="col-12 col-md col-lg-3 col-xl-2">
-      <SortBox sortOptions={sortOptions} onSortChange={handleSort} />
+      <SortBox sortColumnKey={sortColumnKey} sortOptions={sortOptions} onSortChange={handleSort} />
     </div>
   </div>
 );
@@ -27,6 +27,7 @@ const ProductTableHeader = ({
 ProductTableHeader.propTypes = {
   currentUserRoles: PropTypes.arrayOf(PropTypes.string),
   searchQuery: PropTypes.string,
+  sortColumnKey: PropTypes.string.isRequired,
   sortOptions: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string })).isRequired,
   handleSearch: PropTypes.func.isRequired,
   handleSort: PropTypes.func.isRequired,

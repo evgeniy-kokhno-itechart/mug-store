@@ -1,54 +1,54 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProduct } from '../../services/productsService';
+// import { getProduct } from '../../services/catalog/productsService';
 import Form from '../../shared/form';
 import OrderTable from './orderTable';
 import TotalCostCalculator from '../../cart/containers/totalCostCalculator';
 import OrderForm from './orderForm';
 
 class Order extends Form {
-  state = {
-    orderList: [],
-  };
+  // state = {
+  //   orderList: [],
+  // };
 
-  componentDidMount() {
-    const orderList = this.getProductsInCartBriefly();
-    this.setState({ orderList });
-  }
+  // componentDidMount() {
+  //   const orderList = this.getProductsInCartBriefly();
+  //   this.setState({ orderList });
+  // }
 
-  mapToViewModel({
-    name, country, city, address, phone,
-  }) {
-    return {
-      name,
-      country,
-      city,
-      address,
-      phone,
-    };
-  }
+  // mapToViewModel({
+  //   name, country, city, address, phone,
+  // }) {
+  //   return {
+  //     name,
+  //     country,
+  //     city,
+  //     address,
+  //     phone,
+  //   };
+  // }
 
-  getProductsInCartBriefly() {
-    const cartInfo = this.props.cart;
-    const products = [];
-    let prodInCart = {};
+  // getProductsInCartBriefly() {
+  //   const cartInfo = this.props.cart;
+  //   const products = [];
+  //   let prodInCart = {};
 
-    for (let i = 0; i < cartInfo.length; i++) {
-      prodInCart = getProduct(cartInfo[i]._id);
-      prodInCart = {
-        _id: prodInCart._id,
-        title: prodInCart.title,
-        price: prodInCart.price,
-        discount: prodInCart.discount,
-        qty: cartInfo[i].qty,
-      };
-      products.push(prodInCart);
-    }
-    return products;
-  }
+  //   for (let i = 0; i < cartInfo.length; i++) {
+  //     prodInCart = getProduct(cartInfo[i]._id);
+  //     prodInCart = {
+  //       _id: prodInCart._id,
+  //       title: prodInCart.title,
+  //       price: prodInCart.price,
+  //       discount: prodInCart.discount,
+  //       qty: cartInfo[i].qty,
+  //     };
+  //     products.push(prodInCart);
+  //   }
+  //   return products;
+  // }
 
   render() {
-    const { orderList } = this.state;
+    const { cart: orderList } = this.props;
 
     return (
       <React.Fragment>
@@ -68,9 +68,9 @@ class Order extends Form {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cartState.cart,
-  currentCurrency: state.currencyState.currentCurrency,
-  currentUser: state.userState.currentUser,
+  cart: state.cart.cart,
+  currentCurrency: state.currency.currentCurrency,
+  currentUser: state.user.currentUser,
 });
 
 export default connect(mapStateToProps)(Order);

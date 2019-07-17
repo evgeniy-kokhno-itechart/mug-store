@@ -1,7 +1,5 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { PropTypes } from 'prop-types';
 import ProtectedRoute from '../../shared/markup-usage/protectedRoute';
 import MainPage from './main';
 import Catalog from '../../catalog/containers/catalog';
@@ -16,7 +14,7 @@ import OrderConfirmation from '../../order/containers/orderConfirmation';
 import ProductDetails from '../../product/containers/productDetails';
 import About from './about';
 
-const Routes = props => (
+const Routes = () => (
   <Switch>
     <ProtectedRoute path="/edit/products/:id" component={ProductForm} />
     <Route path="/products/:id" component={ProductDetails} />
@@ -24,7 +22,7 @@ const Routes = props => (
     <Route path="/login" component={LoginForm} />
     <ProtectedRoute path="/myprofile" component={ProfileForm} />
     <Route path="/register" component={ProfileForm} />
-    <Route path="/catalog" render={() => <Catalog onBuyNow={props.onBuyNowTriggered} />} />
+    <Route path="/catalog" component={Catalog} />
     <Route path="/about" component={About} />
     <Route path="/order/mycart" component={Order} />
     <Route path="/order" component={Order} />
@@ -37,15 +35,4 @@ const Routes = props => (
   </Switch>
 );
 
-Routes.propTypes = {
-  onBuyNowTriggered: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = dispatch => ({
-  onBuyNowTriggered: (product, quantity) => dispatch({ type: 'ADD_PRODUCT', cart: { product, quantity } }),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(Routes);
+export default Routes;

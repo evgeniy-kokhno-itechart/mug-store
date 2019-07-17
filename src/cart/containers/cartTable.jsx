@@ -17,7 +17,7 @@ class CartTable extends Component {
       key: 'image',
       label: '',
       content: product => (
-        <Link to={`/products/${product._id}`} className="clickable ">
+        <Link to={`/products/${product.id}`} className="clickable ">
           <img src={product.imageURL} alt={product.title} className="img-fluid" />
         </Link>
       ),
@@ -28,7 +28,7 @@ class CartTable extends Component {
       path: 'title',
       label: 'Title',
       content: product => (
-        <Link to={`/products/${product._id}`} className="clickable">
+        <Link to={`/products/${product.id}`} className="clickable">
           {product.title}
         </Link>
       ),
@@ -48,7 +48,7 @@ class CartTable extends Component {
       content: product => (
         <ItemCounter
           count={product.qty}
-          itemId={product._id}
+          itemId={product.id}
           onIncrementClick={this.props.incrementQuantity}
           onDecrementClick={this.props.decrementQuantity}
           onCountChange={this.props.changeQuantity}
@@ -63,6 +63,7 @@ class CartTable extends Component {
       content: product => (
         <ProductPriceCalculator
           price={product.price[this.props.currentCurrency.name]}
+          isCurrencyLoading={this.props.isCurrencyLoading}
           quantity={product.qty}
           discount={product.discount}
         />
@@ -77,7 +78,7 @@ class CartTable extends Component {
         <button
           type="button"
           className="btn btn-secondary btn-sm"
-          onClick={() => this.props.deleteProductFromCart(product._id)}
+          onClick={() => this.props.deleteProductFromCart(product.id)}
         >
           <FontAwesomeIcon icon="trash" />
         </button>
@@ -93,8 +94,10 @@ class CartTable extends Component {
 }
 
 CartTable.propTypes = {
-  currentCurrency: PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string }).isRequired,
-  productsInCart: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, qty: PropTypes.number })).isRequired,
+  currentCurrency: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }).isRequired,
+  isCurrencyLoading: PropTypes.bool.isRequired,
+
+  productsInCart: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, qty: PropTypes.number })).isRequired,
   sortColumn: PropTypes.string.isRequired,
   incrementQuantity: PropTypes.func.isRequired,
   decrementQuantity: PropTypes.func.isRequired,
@@ -102,7 +105,11 @@ CartTable.propTypes = {
   deleteProductFromCart: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({ cart: state.cartState.cart, currentCurrency: state.currencyState.currentCurrency });
+const mapStateToProps = state => ({
+  cart: state.cart.cart,
+  currentCurrency: state.currency.currentCurrency,
+  isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
+});
 
 const mapDispatchToProps = {
   incrementQuantity,
@@ -110,13 +117,6 @@ const mapDispatchToProps = {
   changeQuantity,
   deleteProductFromCart,
 };
-
-// const mapDispatchToProps = dispatch => ({
-//   onIncrementClick: productId => dispatch({ type: cartActionTypes.INCREMENT_PRODUCT_QTY, productId }),
-//   onDecrementClick: productId => dispatch({ type: cartActionTypes.DECREMENT_PRODUCT_QTY, productId }),
-//   onQuantityChange: (value, productId) => dispatch({ type: cartActionTypes.CHANGE_PRODUCT_QTY, details: { value, productId } }),
-//   onDeleteFromCart: productId => dispatch({ type: cartActionTypes.DELETE_PRODUCT_FROM_CART, productId }),
-// });
 
 export default connect(
   mapStateToProps,

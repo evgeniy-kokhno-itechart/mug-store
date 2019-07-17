@@ -1,0 +1,203 @@
+import Axios from 'axios';
+import { getCategory } from './categoriesService';
+import { rootUrl } from '../general/constants';
+
+// const products = [
+//   {
+//     id: '1',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Small Mug',
+//     description: 'Lorem ipsum dolor sit amet',
+//     category: { id: '1', name: 'Mugs' },
+//     price: { BYN: 5, USD: 3 },
+//     discount: 0,
+//     producer: 'Best Kitchenware',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '3',
+//   },
+//   {
+//     id: '2',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Medium Mug',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '1', name: 'Mugs' },
+//     price: { BYN: 4, USD: 2 },
+//     discount: 0,
+//     producer: 'Best Kitchenware',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '5',
+//   },
+//   {
+//     id: '3',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Big Mug',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '1', name: 'Mugs' },
+//     price: { BYN: 5, USD: 2.5 },
+//     discount: 0,
+//     producer: 'East Side Kitchenware',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '5',
+//   },
+//   {
+//     id: '4',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Small Plate',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '2', name: 'Plates' },
+//     price: { BYN: 3, USD: 1.5 },
+//     discount: 0,
+//     producer: 'Best Kitchenware',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '5',
+//   },
+//   {
+//     id: '5',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Big Plate',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '2', name: 'Plates' },
+//     price: { BYN: 3, USD: 1.5 },
+//     discount: 0,
+//     producer: 'East Side Kitchenware',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '4.9',
+//   },
+//   {
+//     id: '6',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Small Notepad',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '3', name: 'Notepads' },
+//     price: { BYN: 7, USD: 3.5 },
+//     discount: 0,
+//     producer: 'Notepads inc.',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '4.8',
+//   },
+//   {
+//     id: '7',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Medium Notepad',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '3', name: 'Notepads' },
+//     price: { BYN: 10, USD: 5 },
+//     discount: 0,
+//     producer: 'A4',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '5',
+//   },
+//   {
+//     id: '8',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'Big Notepad',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '3', name: 'Notepads' },
+//     price: { BYN: 12, USD: 6 },
+//     discount: 0,
+//     producer: 'Notepads inc.',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '4.9',
+//   },
+//   {
+//     id: '9',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'T-shirt S size',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '4', name: 'T-shirts' },
+//     price: { BYN: 15, USD: 7.5 },
+//     discount: 0,
+//     producer: 'Conte inc.',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '5',
+//   },
+//   {
+//     id: '10',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'T-shirt M size',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '4', name: 'T-shirts' },
+//     price: { BYN: 17, USD: 8.5 },
+//     discount: 0,
+//     producer: 'Conte inc.',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '4.9',
+//   },
+//   {
+//     id: '11',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'T-shirt X size',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '4', name: 'T-shirts' },
+//     price: { BYN: 19, USD: 9.5 },
+//     discount: 0,
+//     producer: 'MF',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '5',
+//   },
+//   {
+//     id: '12',
+//     imageURL: 'https://picsum.photos/150/100?image=30',
+//     title: 'T-shirt XL size',
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum justo sit amet suscipit tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus magna lacus, egestas vitae urna sed, pulvinar blandit sem. Donec ultrices dolor at neque convallis, ut fringilla quam tincidunt.',
+//     category: { id: '4', name: 'T-shirts' },
+//     price: { BYN: 21, USD: 10.5 },
+//     discount: 0,
+//     producer: 'MF',
+//     publishDate: '2018-01-03T19:04:28.809Z',
+//     rate: '5',
+//   },
+// ];
+
+export function getProducts() {
+  const response = Axios.get(`${rootUrl}/products`);
+  return response;
+}
+
+export function getProduct(id) {
+  const response = Axios.get(`${rootUrl}/products/${id}`);
+  return response;
+}
+
+export function saveProduct(product) {
+  let productInDb = {};
+  productInDb = getProduct(product.id)
+    .then(response => response.data)
+    .catch();
+
+  // in case of brand new product
+  if (!productInDb.id) {
+    const category = getCategory(product.categoryId).then(response => response.data);
+    productInDb.category = category;
+    productInDb.id = Date.now().toString();
+  }
+
+  productInDb.title = product.title;
+  productInDb.imageURL = product.imageURL;
+  productInDb.price = product.price;
+  productInDb.description = product.description;
+  productInDb.discount = product.discount;
+  productInDb.producer = product.producer;
+  productInDb.publishDate = Date.now();
+  productInDb.rate = product.rate;
+
+  const responseOnSave = Axios.post(`${rootUrl}/products`, JSON.stringify(productInDb));
+
+  return responseOnSave;
+}
+
+export function deleteProduct(id) {
+  const response = Axios.delete(`${rootUrl}/products/${id}`);
+  return response;
+}

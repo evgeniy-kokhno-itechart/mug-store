@@ -31,6 +31,7 @@ class OrderTable extends Component {
           price={product.price[this.props.currentCurrency.name]}
           quantity={product.qty}
           discount={product.discount}
+          isCurrencyLoading={this.props.isCurrencyLoading}
         />
       ),
       style: { width: '10%' },
@@ -60,11 +61,14 @@ OrderTable.propTypes = {
     }),
   ).isRequired,
   sortColumn: PropTypes.string.isRequired,
+
   currentCurrency: PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string }).isRequired,
+  isCurrencyLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  currentCurrency: state.currencyState.currentCurrency,
+  currentCurrency: state.currency.currentCurrency,
+  isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });
 
 export default connect(mapStateToProps)(OrderTable);

@@ -2,39 +2,39 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { getProduct } from '../../services/productsService';
+// import { getProduct } from '../../product/productsActions';
 import CartTable from './cartTable';
 import TotalCostCalculator from './totalCostCalculator';
 
 class Cart extends Component {
-  getProductsInCart(cart) {
-    const cartInfo = cart;
-    if (!cartInfo) return [];
-    const products = [];
-    let prodInCart = [];
-    let currentProd = {};
-    for (let i = 0; i < cartInfo.length; i++) {
-      currentProd = getProduct(cartInfo[i]._id);
-      if (currentProd) prodInCart = { ...currentProd, qty: cartInfo[i].qty };
-      else {
-        prodInCart = {
-          ...cartInfo[i],
-          title: 'Sorry. The product is unavailable for order.',
-          price: 0,
-        };
-      }
-      products.push(prodInCart);
-    }
+  // getProductsInCart(cart) {
+  //   const cartInfo = cart;
+  //   if (!cartInfo) return [];
+  //   const products = [];
+  //   let prodInCart = [];
+  //   let currentProd = {};
+  //   for (let i = 0; i < cartInfo.length; i++) {
+  //     currentProd = this.props.getProduct(cartInfo[i].id);
+  //     if (currentProd) prodInCart = { ...currentProd, qty: cartInfo[i].qty };
+  //     else {
+  //       prodInCart = {
+  //         ...cartInfo[i],
+  //         title: 'Sorry. The product is unavailable for order.',
+  //         price: 0,
+  //       };
+  //     }
+  //     products.push(prodInCart);
+  //   }
 
-    return products;
-  }
+  //   return products;
+  // }
 
   renderCartDetails(products) {
     const { currentUser, currentCurrency } = this.props;
     return (
       <React.Fragment>
         <CartTable
-          sortColumn="_id"
+          sortColumn="id"
           productsInCart={products}
           onDeleteFromCart={this.handleDeleteFromCart}
           onIncrementClick={this.handleIncrementClick}
@@ -60,25 +60,33 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
-    const products = this.getProductsInCart(cart);
+    // const products = this.getProductsInCart(cart);
 
-    return products.length ? this.renderCartDetails(products) : this.renderEmptyMessage();
+    return cart.length ? this.renderCartDetails(cart) : this.renderEmptyMessage();
   }
 }
 
 Cart.propTypes = {
   currentCurrency: PropTypes.shape({
-    _id: PropTypes.string,
+    id: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
-  cart: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, qty: PropTypes.number })).isRequired,
-  currentUser: PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string }).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, qty: PropTypes.number })).isRequired,
+  currentUser: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }).isRequired,
+  // getProduct: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  cart: state.cartState.cart,
-  currentCurrency: state.currencyState.currentCurrency,
-  currentUser: state.userState.currentUser,
+  cart: state.cart.cart,
+  currentCurrency: state.currency.currentCurrency,
+  currentUser: state.user.currentUser,
 });
 
-export default connect(mapStateToProps)(Cart);
+// const mapDispatchToProps = {
+//   getProduct,
+// };
+
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps,
+)(Cart);

@@ -4,7 +4,6 @@ import Joi from 'joi-browser';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Form from '../../shared/form';
-import { loginUser } from '../../services/authService';
 import { loginUser as loginUserAction } from '../userActions';
 
 class LoginForm extends Form {
@@ -29,10 +28,11 @@ class LoginForm extends Form {
       const { location, history, loginUserAction } = this.props;
 
       // get user's token from the back-end, store it in localStorage and get user's info
-      const userInfo = loginUser(data.username, data.password);
-      loginUserAction(userInfo);
-      const { pathname } = location.fromPath;
-      history.replace(pathname || '/');
+      // const userInfo = loginUser(data.username, data.password);
+      loginUserAction(data.username, data.password);
+      // loginUserAction(userInfo);
+      const { fromPath } = location;
+      history.replace(fromPath ? fromPath.pathname : '/');
     } catch (ex) {
       const errors = {};
       errors.password = ex.message;
@@ -67,7 +67,7 @@ LoginForm.defaultProps = {
   location: { fromPath: null },
 };
 
-const mapStateToProps = state => ({ currentUser: state.userState.currentUser });
+const mapStateToProps = state => ({ currentUser: state.user.currentUser });
 
 const mapDispatchToProps = {
   loginUserAction,

@@ -1,11 +1,45 @@
 import { handleActions } from 'redux-actions';
-import { loginUser, logoutUser } from './userActions';
 import initialUserState from './userState';
+import {
+  loginUserInProcess,
+  loginUserFailed,
+  loginUserSuccess,
+  logoutUserInProcess,
+  logoutUserFailed,
+  logoutUserSuccess,
+} from './userActions';
 
 const userReducer = handleActions(
   {
-    [loginUser]: (state, { payload: { currentUser } }) => ({ ...state, currentUser }),
-    [logoutUser]: state => ({ ...state, ...initialUserState }),
+    //  LOGIN
+    [loginUserInProcess]: (state, { payload: { isLoginInProcess } }) => ({
+      ...state,
+      loginStatus: { isLoginInProcess, hasLoginFailed: false, loginError: '' },
+    }),
+
+    [loginUserFailed]: (state, { payload: { hasLoginFailed, loginError } }) => ({
+      ...state,
+      loginStatus: { isLoginInProcess: false, hasLoginFailed, loginError },
+    }),
+
+    [loginUserSuccess]: (state, { payload: { currentUser } }) => ({
+      ...state,
+      currentUser,
+      loginStatus: { isLoginInProcess: false, hasLoginFailed: false, loginError: '' },
+    }),
+
+    // LOGOUT
+    [logoutUserInProcess]: (state, { payload: { isLogoutInProcess } }) => ({
+      ...state,
+      logoutStatus: { isLogoutInProcess, hasLogoutFailed: false, logoutError: '' },
+    }),
+
+    [logoutUserFailed]: (state, { payload: { hasLogoutFailed, logoutError } }) => ({
+      ...state,
+      logoutStatus: { isLogoutInProcess: false, hasLogoutFailed, logoutError },
+    }),
+
+    [logoutUserSuccess]: state => ({ ...state, ...initialUserState }),
   },
   initialUserState,
 );

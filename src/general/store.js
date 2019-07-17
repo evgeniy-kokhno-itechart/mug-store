@@ -1,17 +1,19 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 
 const initializeStore = () => {
-  const reduxStateLocalStorKey = 'reduxState';
-  const persistedState = localStorage.getItem(reduxStateLocalStorKey)
-    ? JSON.parse(localStorage.getItem(reduxStateLocalStorKey))
+  const reduxStateLocalStoreKey = 'reduxState';
+  const persistedState = localStorage.getItem(reduxStateLocalStoreKey)
+    ? JSON.parse(localStorage.getItem(reduxStateLocalStoreKey))
     : {
-      cartState: rootReducer.cartState,
-      userState: rootReducer.currentUser,
-      currencyState: rootReducer.currentCurrency,
+      cart: rootReducer.cart,
+      user: rootReducer.user,
+      currency: rootReducer.currency,
+      products: rootReducer.products,
     };
 
-  return createStore(rootReducer, persistedState);
+  return createStore(rootReducer, persistedState, applyMiddleware(thunk));
 };
 
 export default initializeStore;

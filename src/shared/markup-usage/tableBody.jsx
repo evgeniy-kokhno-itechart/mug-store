@@ -9,14 +9,14 @@ class TableBody extends Component {
     return _.get(item, column.path);
   };
 
-  createKey = (item, column) => item._id + (column.path || column.key);
+  createKey = (item, column) => item.id + (column.path || column.key);
 
   render() {
     const { items, columns } = this.props;
     return (
       <tbody>
         {items.map(item => (
-          <tr key={item._id}>
+          <tr key={item.id}>
             {columns.map(column => (
               <td
                 key={this.createKey(item, column)}
