@@ -12,3 +12,6 @@ The pass is hardcoded, you cannot edit it via "Edit profile" form
 To test the app as a user click "Register" and enter ANY valid registration info.
 
 Image for the products was choosen randomly.
+
+Sample back-end server - https://my-json-server.typicode.com/evgeniy-kokhno-itechart/mug-store-data
+NOTE! Changes are faked and aren't persisted in sample server.
