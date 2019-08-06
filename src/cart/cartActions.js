@@ -6,7 +6,9 @@ export const changeQuantity = createAction('CHANGE_PRODUCT_QTY', (productId, val
 
 export const addToCart = createAction('ADD_TO_CART', (product, quantity) => ({ product, quantity }));
 export const deleteProductFromCart = createAction('DELETE_PRODUCT_FROM_CART', productId => ({ productId }));
-export const clearCart = createAction('CLEAR_CART', () => {});
+export const clearCart = createAction('CLEAR_CART');
+
+export const recalculateCartProductPrices = createAction('RECALCULATE_CART_PRODUCTS_PRICES', currencyRate => currencyRate);
 
 //  !!! createAction!s!() function DOESN'T WORK PROPERLY -  incrementQuantity, decrementQuantity, changeQuantity ARE ! UNDEFINED !
 //  WHEN SYPPLIED IN A COMPONENT. ALSO I WAS UNABLE TO COMBINE incrementQuantity, decrementQuantity

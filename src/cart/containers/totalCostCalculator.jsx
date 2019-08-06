@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 import TotalCost from '../components/totalCost';
 
 class TotalCostCalculator extends Component {
   getTotalCost() {
-    const { currencyName, products } = this.props;
+    const { products } = this.props;
     const totalCost = products.reduce(
-      (sum, currentItem) => sum + currentItem.price[currencyName] * currentItem.qty * (1 - currentItem.discount / 100),
+      (sum, currentItem) => sum + currentItem.quantity * currentItem.currentCurrencyPrice * (1 - currentItem.discount / 100),
       0,
     );
     return totalCost;
@@ -19,10 +20,9 @@ class TotalCostCalculator extends Component {
 }
 
 TotalCostCalculator.propTypes = {
-  currencyName: PropTypes.string.isRequired,
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      price: PropTypes.shape({ name: PropTypes.string }),
+      currentCurrencyPrice: PropTypes.number,
       qty: PropTypes.number,
       discount: PropTypes.number,
     }),
@@ -34,4 +34,9 @@ TotalCostCalculator.defaultProps = {
   customClasses: '',
 };
 
-export default TotalCostCalculator;
+const mapStateToProps = state => ({
+  currencyRates: state.currency.currencyRates,
+  currentCurrencyName: state.currency.currentCurrency.name,
+});
+
+export default connect(mapStateToProps)(TotalCostCalculator);

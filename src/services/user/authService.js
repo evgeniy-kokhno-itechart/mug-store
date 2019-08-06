@@ -21,18 +21,18 @@ export function login(username, password) {
   } else return response;
 }
 
-export function parseUserAndRecord(response) {
+export function logout(currentUserName) {
+  // !!! FAKE LOGOUT LOGIC !!! should be replaced in prod app
+  const response = Axios.get(`${rootUrl}/logout/${currentUserName}`); // fake, should be POST
+  return response;
+}
+
+export function parseUserToken(response) {
   let user = response.data;
   localStorage.setItem(jwtTokenKey, user.token);
   const decodedInfo = jwtDecode(user.token);
   user = { ...user, roles: decodedInfo.roles };
   return user;
-}
-
-export function logout(currentUserName) {
-  // !!! FAKE LOGOUT LOGIC !!! should be replaced in prod app
-  const response = Axios.get(`${rootUrl}/logout/${currentUserName}`); // fake, should be POST
-  return response;
 }
 
 export function loginUserWithJwt(token) {

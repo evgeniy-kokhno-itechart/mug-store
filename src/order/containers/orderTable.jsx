@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Table from '../../shared/markup-usage/table';
-import ProductPriceCalculator from '../../cart/containers/productPriceCalculator';
+import ProductPrice from '../../cart/components/productPrice';
 
 class OrderTable extends Component {
   columns = [
@@ -26,14 +26,7 @@ class OrderTable extends Component {
       key: 'cost',
       path: 'cost',
       label: 'Cost',
-      content: product => (
-        <ProductPriceCalculator
-          price={product.price[this.props.currentCurrency.name]}
-          quantity={product.qty}
-          discount={product.discount}
-          isCurrencyLoading={this.props.isCurrencyLoading}
-        />
-      ),
+      content: product => <ProductPrice price={product.currentCurrencyPrice} isCurrencyLoading={this.props.isCurrencyLoading} />,
       style: { width: '10%' },
       customClasses: 'text-center',
     },

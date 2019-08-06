@@ -7,7 +7,7 @@ import { PropTypes } from 'prop-types';
 import getProductImageURLs from '../../services/general/imageService';
 import InformationItem from '../../shared/markup-usage/informationItem';
 import { addToCart } from '../../cart/cartActions';
-import { getProduct } from '../productsActions';
+import { getProduct, clearCurrentProductInfo } from '../productsActions';
 import BuyNowButton from '../../catalog/components/buyNowButton';
 import ToCatalogButton from '../../catalog/components/toCatalogButton';
 import Spinner from '../../shared/markup-usage/spinner';
@@ -16,17 +16,6 @@ import ErrorMessage from '../../shared/markup-usage/errorMessage';
 class ProductDetails extends Component {
   state = {
     imageURLs: [],
-    // product: {
-    //   id: '',
-    //   imageURLs: [],
-    //   title: '',
-    //   description: '',
-    //   category: {},
-    //   prices: [{ value: '', currencyName: '' }],
-    //   discount: '0',
-    //   producer: '',
-    //   rate: '',
-    // },
   };
 
   fields = [
@@ -34,28 +23,20 @@ class ProductDetails extends Component {
     { label: 'Description', path: 'description' },
     { label: 'Category', path: 'category.name' },
     { label: 'Producer', path: 'producer' },
-    {
-      label: 'Price',
-      content: (product, currencyName) => {
-        const priceObj = product.price;
-        return priceObj ? priceObj[currencyName] : '';
-      },
-    },
+    { label: 'Price', path: 'currentCurrencyPrice' },
   ];
 
   componentDidMount() {
-    const { match, history, product } = this.props;
+    const { match, history } = this.props;
 
     const productId = match.params.id;
     if (!productId) {
       history.replace('/not-found');
     }
-    // send request to server if different from the stored product id was supplied to component
-    if (product.id !== productId) {
-      this.props.getProduct(productId);
-    }
 
-    // imageURLs were separated from original model for sample purposes
+    this.props.getProduct(productId, this.props.currentCurrencyRate);
+
+    //  imageURLs were separated from original model for sample purposes since they are the same across all products
     //  my-json-server.typicode.com char limit 10000 has been reached thus URLs data couldn't be placed there
     const imageURLs = getProductImageURLs(productId);
     this.setState({ imageURLs });
@@ -63,14 +44,19 @@ class ProductDetails extends Component {
 
   getInfo = (item, path) => _.get(item, path);
 
+  conponentWillUnmount() {
+    this.props.clearCurrentProductInfo();
+  }
+
   renderFieldInfo = (field) => {
-    const { currentCurrency, product } = this.props;
+    const { product } = this.props;
+    // console.log('product', product);
 
     let fieldInfo = null;
     if (!field.content) {
       fieldInfo = this.getInfo(product, field.path);
     } else {
-      fieldInfo = field.content(product, currentCurrency.name);
+      fieldInfo = field.content(product);
     }
     return <InformationItem key={field.label} label={field.label} info={fieldInfo} />;
   };
@@ -119,22 +105,24 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
   product: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
     description: PropTypes.string,
     producer: PropTypes.string,
-    price: PropTypes.shape({ BYN: PropTypes.number, USD: PropTypes.number }),
+    currentCurrencyPrice: PropTypes.number,
   }).isRequired,
   isProductLoading: PropTypes.bool.isRequired,
   hasProductLoadingFailed: PropTypes.bool,
   errorWhileLoading: PropTypes.string,
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
   history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
+
+  currentCurrencyRate: PropTypes.number.isRequired,
   addToCart: PropTypes.func.isRequired,
   getProduct: PropTypes.func.isRequired,
+  clearCurrentProductInfo: PropTypes.func.isRequired,
 };
 
 ProductDetails.defaultProps = {
@@ -143,16 +131,18 @@ ProductDetails.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  currentCurrency: state.currency.currentCurrency,
   product: state.products.currentProduct,
   isProductLoading: state.products.currentProductStatus.isGettingByIdInProcess,
   hasProductLoadingFailed: state.products.currentProductStatus.hasGettingByIdFailed,
   errorWhileLoading: state.products.currentProductStatus.error,
+
+  currentCurrencyRate: state.currency.currentCurrency.rate,
 });
 
 const mapDispatchToProps = {
   addToCart,
   getProduct,
+  clearCurrentProductInfo,
 };
 
 export default connect(

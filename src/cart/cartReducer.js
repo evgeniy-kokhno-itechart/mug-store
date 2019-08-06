@@ -1,7 +1,13 @@
 import { combineActions, handleActions } from 'redux-actions';
 import initialCartState from './cartState';
 import {
-  addToCart, incrementQuantity, decrementQuantity, changeQuantity, deleteProductFromCart, clearCart,
+  addToCart,
+  incrementQuantity,
+  decrementQuantity,
+  changeQuantity,
+  deleteProductFromCart,
+  clearCart,
+  recalculateCartProductPrices,
 } from './cartActions';
 
 const incrementDecrementQuantity = combineActions(incrementQuantity, decrementQuantity);
@@ -13,9 +19,9 @@ const cartReducer = handleActions(
       const newCart = [...state.cart];
       const existedProduct = newCart.find(item => item.id === id);
       if (existedProduct) {
-        existedProduct.qty += parseInt(quantity, 10);
+        existedProduct.quantity += parseInt(quantity, 10);
       } else {
-        newCart.push({ ...product, qty: quantity });
+        newCart.push({ ...product, quantity });
       }
       return { ...state, cart: [...newCart] };
     },
@@ -23,8 +29,8 @@ const cartReducer = handleActions(
     [incrementDecrementQuantity]: (state, { payload: { productId, delta } }) => {
       const newCart = [...state.cart];
       const prodInCart = newCart.find(p => p.id === productId);
-      if (prodInCart.qty > 1 || delta > 0) {
-        prodInCart.qty += delta;
+      if (prodInCart.quantity > 1 || delta > 0) {
+        prodInCart.quantity += delta;
       }
       return { ...state, cart: [...newCart] };
     },
@@ -33,7 +39,7 @@ const cartReducer = handleActions(
       const newCart = [...state.cart];
       const index = newCart.findIndex(p => p.id === productId);
       const newProdInCart = { ...newCart[index] };
-      newProdInCart.qty = value;
+      newProdInCart.quantity = value;
       newCart[index] = newProdInCart;
       return { ...state, cart: [...newCart] };
     },
@@ -44,8 +50,20 @@ const cartReducer = handleActions(
       return { ...state, cart: [...newCart] };
     },
 
+    [recalculateCartProductPrices]: (state, { payload: currencyRate }) => {
+      const { cart } = state;
+      const newProducts = cart.map((product) => {
+        const newCurrentCurrencyPrice = +(product.basePrice * currencyRate * product.quantity * (1 - product.discount / 100)).toFixed(1);
+        const newProduct = { ...product };
+        newProduct.currentCurrencyPrice = newCurrentCurrencyPrice;
+        return newProduct;
+      });
+      return { ...state, cart: newProducts };
+    },
+
     [clearCart]: state => ({ ...state, cart: [] }),
   },
+
   initialCartState,
 );
 

@@ -25,11 +25,10 @@ class CurrencySelector extends Component {
         id="currencyDropdownButton"
         value={currentCurrencyId}
         onChange={(e) => {
-          onCurrencyChange(
-            e.currentTarget.value, // _id
-            e.currentTarget.options[e.currentTarget.selectedIndex].text, // name
-            // .selectedOptions[0].text doesn't work for IE
-          );
+          onCurrencyChange(currencyOptions.find(currency => currency.id === e.currentTarget.value));
+          // e.currentTarget.value, // id
+          // e.currentTarget.options[e.currentTarget.selectedIndex].text, // name
+          // .selectedOptions[0].text doesn't work for IE
         }}
       >
         {currencyOptions.map(option => (

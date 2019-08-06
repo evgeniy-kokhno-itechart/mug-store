@@ -8,12 +8,10 @@ import Table from '../../shared/markup-usage/table';
 import Rate from '../../shared/markup-usage/rate';
 import Modal from '../../shared/markup-usage/modal';
 import BuyNowButton from '../components/buyNowButton';
-import ProductPriceCalculator from '../../cart/containers/productPriceCalculator';
+import ProductPrice from '../../cart/components/productPrice';
 import { addToCart } from '../../cart/cartActions';
-// import Spinner from '../../shared/markup-usage/spinner';
-// import ErrorMessage from '../../shared/markup-usage/errorMessage';
 
-class ProductsTable extends Component {
+class CatalogTable extends Component {
   state = {
     columns: [
       {
@@ -51,14 +49,7 @@ class ProductsTable extends Component {
       {
         path: `price. ${this.props.currentCurrency.name}`,
         label: 'Price',
-        content: product => (
-          <ProductPriceCalculator
-            isCurrencyLoading={this.props.isCurrencyLoading}
-            price={product.price[this.props.currentCurrency.name]}
-            quantity={1}
-            discount={product.discount}
-          />
-        ),
+        content: product => <ProductPrice price={product.currentCurrencyPrice} isCurrencyLoading={this.props.isCurrencyLoading} />,
         style: { width: '5%' },
       },
       {
@@ -111,19 +102,15 @@ class ProductsTable extends Component {
   }
 }
 
-ProductsTable.propTypes = {
+CatalogTable.propTypes = {
   currentUser: PropTypes.shape({ name: PropTypes.string }).isRequired,
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  isCurrencyLoading: PropTypes.bool,
+  isCurrencyLoading: PropTypes.bool.isRequired,
 
   productsOnPage: PropTypes.arrayOf(PropTypes.object).isRequired,
   sortColumn: PropTypes.shape({ order: PropTypes.string, path: PropTypes.string }).isRequired,
   addToCart: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-};
-
-ProductsTable.defaultProps = {
-  isCurrencyLoading: true,
 };
 
 const mapStateToProps = state => ({
@@ -139,4 +126,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ProductsTable);
+)(CatalogTable);

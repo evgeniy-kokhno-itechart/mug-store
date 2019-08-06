@@ -7,6 +7,12 @@ import {
   logoutUserInProcess,
   logoutUserFailed,
   logoutUserSuccess,
+  savingUserInProcess,
+  savingUserFailed,
+  savingUserSuccess,
+  registrationUserInProcess,
+  registrationUserFailed,
+  registrationUserSuccess,
 } from './userActions';
 
 const userReducer = handleActions(
@@ -40,7 +46,40 @@ const userReducer = handleActions(
     }),
 
     [logoutUserSuccess]: state => ({ ...state, ...initialUserState }),
+
+    // SAVE EDITED
+    [savingUserInProcess]: (state, { payload: { isSavingInProcess } }) => ({
+      ...state,
+      savingStatus: { isSavingInProcess, hasSavingFailed: false, savingError: '' },
+    }),
+
+    [savingUserFailed]: (state, { payload: { hasSavingFailed, savingError } }) => ({
+      ...state,
+      savingStatus: { isSavingInProcess: false, hasSavingFailed, savingError },
+    }),
+
+    [savingUserSuccess]: (state, { payload: { updatedUser } }) => ({
+      ...state,
+      currentUser: updatedUser,
+    }),
+
+    // REGISTER
+    [registrationUserInProcess]: (state, { payload: isRegistrationInProcess }) => ({
+      ...state,
+      registrationStatus: { isRegistrationInProcess, hasRegistrationFailed: false, registrationError: '' },
+    }),
+
+    [registrationUserFailed]: (state, { payload: { hasRegistrationFailed, registrationError } }) => ({
+      ...state,
+      registrationStatus: { isRegistrationInProcess: false, hasRegistrationFailed, registrationError },
+    }),
+
+    [registrationUserSuccess]: (state, { payload: registeredUser }) => ({
+      ...state,
+      currentUser: registeredUser,
+    }),
   },
+
   initialUserState,
 );
 

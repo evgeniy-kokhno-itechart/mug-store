@@ -1,193 +1,231 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
-import Joi from 'joi-browser';
+/* eslint-disable react/no-did-update-set-state */
+/* eslint-disable react/no-did-update-set-state */
+import React, { Component } from 'react';
+import * as Yup from 'yup';
+import _ from 'lodash';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import Form from '../../shared/form';
 import { getCategories } from '../../catalog/categories-redux-state/categoryActions';
 import { getCurrencies } from '../../catalog/currency-redux-state/currencyActions';
-import { getProduct, saveProduct } from '../productsActions';
+import { getProduct, saveProduct, clearCurrentProductInfo } from '../productsActions';
+import FormService from '../../services/general/formService';
+import Input from '../../shared/controls/input';
 import Spinner from '../../shared/markup-usage/spinner';
 import ErrorMessage from '../../shared/markup-usage/errorMessage';
+import TextArea from '../../shared/controls/textArea';
+import Dropdown from '../../shared/controls/dropdown';
 
-class ProductForm extends Form {
+class ProductForm extends Component {
   state = {
     data: {
+      id: '',
       title: '',
       imageURL: '',
       description: '',
       categoryId: '',
-      discount: '',
+      discount: 0,
       producer: '',
-      price: {},
-      rate: '',
+      currentCurrencyPrice: 0,
+      rate: 0,
     },
-    // categories: [],
-    // currencies: [],
     errors: {},
   };
 
-  schema = {
-    id: Joi.string(),
-    imageURL: Joi.string()
-      .min(5)
-      .label('Image URL'),
-    title: Joi.string()
-      .required()
-      .min(3)
-      .label('Title'),
-    description: Joi.string()
-      .max(500)
-      .label('Details'),
-    categoryId: Joi.string()
-      .required()
-      .label('Category'),
-    discount: Joi.number()
-      .min(0)
-      .max(100)
+  productObjectSchema = {
+    id: Yup.string(),
+    imageURL: Yup.string().min(5).label('Image URL'),
+    title: Yup.string().required('Hey!').min(3).label('Title'),
+    description: Yup.string().required().max(500).label('Details'),
+    categoryId: Yup.string().required().label('Category'),
+    currentCurrencyPrice: Yup.number().typeError('Please enter a valid number').required().moreThan(0)
+      .label('Price'),
+    discount: Yup.number().typeError('Please enter a valid number').min(0).max(100)
       .label('Discount, %'),
-    producer: Joi.string()
-      .required()
-      .min(5)
-      .label('Producer'),
-    publishDate: Joi.date(),
-    rate: Joi.number()
-      .required()
-      .min(0)
+    producer: Yup.string().required().min(5).label('Producer'),
+    publishDate: Yup.date(),
+    rate: Yup.number().typeError('Please enter a valid number').required().min(0)
       .max(5)
       .label('Rate'),
   };
 
-  // constructor() {
-  //   super();
-  //   const { currencies } = this.props;
-  //   currencies.forEach(
-  //     currency => (this.schema[`price.${currency.name}`] = Joi.number()
-  //       .required()
-  //       .label(`Price, ${currency.name}`)),
-  //   );
-  //   // this.state.currencies = currencies;
-
-  //   const currNames = currencies.map(curr => curr.name);
-  //   const obj = {};
-  //   currNames.forEach(name => (obj[`price.${name}`] = ''));
-  //   Object.assign(this.state.data, obj);
-  // }
-
   componentDidMount() {
-    const {
-      // eslint-disable-next-line no-shadow
-      currencies, product, getProduct, hasProductLoadingFailed, errorWhileProductLoading,
-    } = this.props;
-    // if (currencies.length === 0) {
-    //   this.props.getCurrencies();
-    // }
-    // if (categories.length === 0) {
-    //   this.props.getCategories();
-    // }
-
-    currencies.forEach(
-      currency => (this.schema[`price.${currency.name}`] = Joi.number()
-        .required()
-        .label(`Price, ${currency.name}`)),
-    );
-
-    const currencyNames = currencies.map(c => c.name);
-    const pricesAsObject = {};
-    currencyNames.forEach(name => (pricesAsObject[`price.${name}`] = ''));
-    Object.assign(this.state.data, pricesAsObject);
-
     const productId = this.props.match.params.id;
     if (productId === 'new') {
       return;
     }
 
-    if (product.id !== productId) {
-      getProduct(productId);
-    }
-    if (hasProductLoadingFailed) {
-      this.props.history.replace('/not-found');
-      // eslint-disable-next-line no-console
-      console.error('Error occurred while product loading:', errorWhileProductLoading);
-    }
-    this.setState({ data: this.mapToViewModel(this.props.product) });
+    this.props.getProduct(productId, this.props.currentCurrency.rate);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { product, currentCurrency, hasProductLoadingFailed } = this.props;
+    if (hasProductLoadingFailed) {
+      this.props.history.replace('/not-found');
+    }
+
+    if (currentCurrency !== prevProps.currentCurrency) {
+      const changedData = { ...prevState.data };
+      changedData.currentCurrencyPrice = product.currentCurrencyPrice;
+      this.setState({ data: changedData });
+    }
+
+    if (product.id !== prevState.data.id) {
+      this.setState({ data: this.mapToViewModel(this.props.product) });
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.clearCurrentProductInfo();
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = FormService.validateForm(this.productObjectSchema, this.state.data);
+    this.setState({ errors: errors || {} });
+    if (errors) return;
+
+    // eslint-disable-next-line no-shadow
+    const { isSavingInProcess, hasSavingFailed, saveProduct } = this.props;
+    const product = this.mapFromViewModel(this.state.data);
+    saveProduct(product);
+
+    // redirect will occurr if save was completed successfully
+    if (!isSavingInProcess && !hasSavingFailed) {
+      this.props.history.push('/catalog');
+    }
+  };
+
+  handleChange = (e, matchedInputName) => {
+    const { currentTarget: input } = e;
+
+    this.setState(prevState => (
+      FormService.handleChange(input, matchedInputName, prevState, this.productObjectSchema)
+    ));
+  };
+
   mapToViewModel(product) {
-    const currencyNames = this.props.currencies.map(currency => currency.name);
-    const pricesAsObject = {};
     const dataForReturn = {
       id: product.id,
       title: product.title,
       imageURL: product.imageURL,
       description: product.description,
       categoryId: product.category.id,
+      currentCurrencyPrice: product.currentCurrencyPrice,
       discount: product.discount,
       producer: product.producer,
       publishDate: product.publishDate,
       rate: product.rate,
     };
-
-    if (this.props.isProductLoading) {
-      currencyNames.forEach((name) => {
-        console.log('product', product);
-        return pricesAsObject[`price.${name}`] = product.price[name];
-      });
-      Object.assign(dataForReturn, pricesAsObject);
-    }
     return dataForReturn;
   }
 
   mapFromViewModel(data) {
-    const { currencies } = this.props;
-    const currencyNames = currencies.map(currency => currency.name);
     return {
       id: data.id,
       title: data.title,
       imageURL: data.imageURL,
       description: data.description,
-      categoryId: data.categoryId,
-      price: currencyNames.reduce((result, currentItem) => {
-        // eslint-disable-next-line no-param-reassign
-        result[currentItem] = data[`price.${currentItem}`];
-        return result;
-      }, {}),
+      category: this.props.categories.find(category => category.id === data.categoryId),
+      basePrice: data.currentCurrencyPrice / this.props.currentCurrency.rate,
       discount: data.discount,
       producer: data.producer,
       rate: data.rate,
     };
   }
 
-  doSubmit = () => {
-    // eslint-disable-next-line no-shadow
-    const { isSavingInProcess, hasSavingFailed, saveProduct } = this.props;
-    const product = this.mapFromViewModel(this.state.data);
-    saveProduct(product);
+  renderForm = () => {
+    const { data, errors } = this.state;
+    const { categories, currentCurrency } = this.props;
 
-    // redirect will occurr if save is completed successfullyly
-    if (!isSavingInProcess && !hasSavingFailed) {
-      this.props.history.push('/catalog');
-    }
+    return (
+      <React.Fragment>
+        <h1 className="text-center m-3">Product Info</h1>
+        <form className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto" onSubmit={this.handleSubmit}>
+          <Input
+            type='text'
+            name='title'
+            label='Title'
+            value={_.get(data, 'title')}
+            error={errors.title}
+            onChange={this.handleChange}
+          />
+
+          <Input
+            type='text'
+            name='imageURL'
+            label='Image URL'
+            value={_.get(data, 'imageURL')}
+            error={errors.imageURL}
+            onChange={this.handleChange}
+          />
+
+          <TextArea
+            name='description'
+            label='Details'
+            value={data.description}
+            error={errors.description}
+            onChange={this.handleChange}
+          />
+
+          <Dropdown
+            name='categoryId'
+            label='Category'
+            options={categories}
+            value={data.categoryId}
+            error={errors.categoryId}
+            defaultText='Please choose...'
+            onChange={this.handleChange}
+          />
+
+          <Input
+            type='text'
+            name='currentCurrencyPrice'
+            label={`Price, ${currentCurrency.name}`}
+            value={_.get(data, 'currentCurrencyPrice')}
+            error={errors.currentCurrencyPrice}
+            onChange={this.handleChange}
+          />
+
+          <Input
+            type='text'
+            name='discount'
+            label='Dicount, %'
+            value={_.get(data, 'discount')}
+            error={errors.discount}
+            onChange={this.handleChange}
+          />
+
+          <Input
+            type='text'
+            name='producer'
+            label='Producer'
+            value={_.get(data, 'producer')}
+            error={errors.producer}
+            onChange={this.handleChange}
+          />
+
+          <Input
+            type='text'
+            name='rate'
+            label='Rate'
+            value={_.get(data, 'rate')}
+            error={errors.rate}
+            onChange={this.handleChange}
+          />
+
+          <button
+            type="submit"
+            disabled={FormService.validateForm(this.productObjectSchema, data)}
+            className='btn btn-secondary w-100'
+          >
+            Save
+          </button>
+
+        </form>
+      </React.Fragment>
+    );
   };
-
-  renderForm = () => (
-    <React.Fragment>
-      <h1 className="text-center m-3">Product Info</h1>
-      <form className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto" onSubmit={this.handleSubmit}>
-        {this.renderInput('title', 'Title')}
-        {this.renderInput('imageURL', 'Image URL')}
-        {this.renderTextArea('description', 'Details')}
-        {this.renderDropdown('categoryId', 'Category', this.props.categories)}
-
-        {this.props.currencies.map(currency => this.renderInput(`price.${currency.name}`, `Price, ${currency.name}`))}
-
-        {this.renderInput('discount', 'Dicount, %')}
-        {this.renderInput('producer', 'Producer')}
-        {this.renderInput('rate', 'Rate')}
-        {this.renderButton('Save', 'w-100')}
-      </form>
-    </React.Fragment>
-  );
 
   render() {
     const {
@@ -207,11 +245,13 @@ ProductForm.propTypes = {
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }),
   history: PropTypes.shape({ replace: PropTypes.func, push: PropTypes.func }).isRequired,
 
-  currencies: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
-  getCurrencies: PropTypes.func.isRequired,
+  currentCurrency: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    rate: PropTypes.number,
+  }).isRequired,
 
   categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
-  getCategories: PropTypes.func.isRequired,
 
   product: PropTypes.shape({
     id: PropTypes.string,
@@ -221,7 +261,7 @@ ProductForm.propTypes = {
     description: PropTypes.string,
     producer: PropTypes.string,
     discount: PropTypes.number,
-    price: PropTypes.object,
+    currentCurrencyPrice: PropTypes.number,
     rate: PropTypes.string,
   }),
 
@@ -234,12 +274,15 @@ ProductForm.propTypes = {
   isSavingInProcess: PropTypes.bool,
   hasSavingFailed: PropTypes.bool,
   errorWhileProductSaving: PropTypes.string,
+
+  clearCurrentProductInfo: PropTypes.func.isRequired,
 };
 
 ProductForm.defaultProps = {
-  currencies: [],
   categories: [],
   match: { params: { id: '' } },
+
+  product: {},
 
   isProductLoading: true,
   hasProductLoadingFailed: false,
@@ -251,6 +294,7 @@ ProductForm.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+  currentCurrency: state.currency.currentCurrency,
   currencies: state.currency.currencies,
   categories: state.category.categories,
 
@@ -270,6 +314,7 @@ const mapDispatchToProps = {
   getCategories,
   getProduct,
   saveProduct,
+  clearCurrentProductInfo,
 };
 
 export default connect(

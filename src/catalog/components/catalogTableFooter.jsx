@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import Dropdown from '../../shared/controls/dropdown';
 import Pagination from '../../shared/controls/pagination';
 
-const ProductsTableFooter = ({
+const CatalogTableFooter = ({
   totalCount, pageSize, pageSizeOptions, currentPage, onPageChange, onItemsCountChange,
 }) => (
   <div className="row justify-content-between mx-0 mx-sm-2">
@@ -30,7 +30,7 @@ const ProductsTableFooter = ({
   </div>
 );
 
-ProductsTableFooter.propTypes = {
+CatalogTableFooter.propTypes = {
   totalCount: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
   pageSizeOptions: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string })).isRequired,
@@ -39,4 +39,4 @@ ProductsTableFooter.propTypes = {
   onItemsCountChange: PropTypes.func.isRequired,
 };
 
-export default ProductsTableFooter;
+export default CatalogTableFooter;

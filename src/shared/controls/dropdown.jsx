@@ -9,7 +9,7 @@ const Dropdown = ({
       {label}
     </label>
     <select name={name} id={name} value={value} onChange={e => onChange(e)} className="form-control">
-      {defaultText && <option value="">{defaultText}</option>}
+      {defaultText && <option value="-1">{defaultText}</option>}
       {options.map(o => (
         <option key={o.id} value={o.id}>
           {o.name}
@@ -24,7 +24,7 @@ Dropdown.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
   isOnelineElement: PropTypes.bool,
   defaultText: PropTypes.string,
@@ -33,7 +33,6 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
-  value: '',
   error: '',
   isOnelineElement: false,
   defaultText: '',

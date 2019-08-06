@@ -7,9 +7,9 @@ import { PropTypes } from 'prop-types';
 import { changeCategory } from '../categories-redux-state/categoryActions';
 import paginate from '../../services/catalog/paginate';
 import ListGroup from '../../shared/controls/listGroup';
-import ProductsTable from './productsTable';
-import ProductTableHeader from '../components/productsTableHeader';
-import ProductsTableFooter from '../components/productsTableFooter';
+import CatalogTable from './catalogTable';
+import CatalogTableHeader from '../components/catalogTableHeader';
+import CatalogTableFooter from '../components/catalogTableFooter';
 import Spinner from '../../shared/markup-usage/spinner';
 import ErrorMessage from '../../shared/markup-usage/errorMessage';
 import { deleteProduct, getProducts } from '../../product/productsActions';
@@ -39,10 +39,9 @@ class Catalog extends Component {
 
   allProductsCategory = { id: '', name: 'All Products' };
 
-  // componentDidMount() {
-  // this.props.getCategories();
-  // this.props.getProducts();
-  // }
+  componentDidMount() {
+    this.props.getProducts();
+  }
 
   getPagedData = () => {
     const {
@@ -139,7 +138,7 @@ class Catalog extends Component {
         </div>
 
         <div className="col-12 col-sm-9 col-lg-10">
-          <ProductTableHeader
+          <CatalogTableHeader
             currentUserRoles={currentUser.roles}
             searchQuery={searchQuery}
             sortColumnKey={sortColumn.id}
@@ -148,13 +147,13 @@ class Catalog extends Component {
             handleSort={this.handleSort}
           />
 
-          <ProductsTable
+          <CatalogTable
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}
             onDelete={this.handleDelete}
           />
 
-          <ProductsTableFooter
+          <CatalogTableFooter
             totalCount={totalCount}
             pageSize={pageSize}
             pageSizeOptions={this.pageSizeOptions}
@@ -205,7 +204,8 @@ Catalog.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
-    price: PropTypes.object,
+    basePrice: PropTypes.number,
+    currentCurrencyPrice: PropTypes.number,
     discount: PropTypes.number,
     producer: PropTypes.string,
     publishDate: PropTypes.string,

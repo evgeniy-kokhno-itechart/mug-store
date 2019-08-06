@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { changeCurrency } from '../../catalog/currency-redux-state/currencyActions';
+import { changeCurrencyAndPrices } from '../../catalog/currency-redux-state/currencyActions';
 import CurrencySelector from '../components/currencySelector';
 import LoginLogoutBar from './loginLogoutBar';
 
@@ -15,9 +15,9 @@ const Navbar = ({
   errorCurrenciesLoading,
   currencies: currencyOptions,
   // eslint-disable-next-line no-shadow
-  changeCurrency,
+  changeCurrencyAndPrices,
 }) => {
-  const cartCount = cart.reduce((sumQty, currentProduct) => sumQty + currentProduct.qty, 0);
+  const cartCount = cart.reduce((sumQty, currentProduct) => sumQty + currentProduct.quantity, 0);
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -58,7 +58,7 @@ const Navbar = ({
         <CurrencySelector
           currentCurrencyId={currentCurrency.id}
           currencyOptions={currencyOptions}
-          onCurrencyChange={changeCurrency}
+          onCurrencyChange={changeCurrencyAndPrices}
           isCurrenciesLoading={isCurrenciesLoading}
           hasLoadFailed={hasCurrenciesLoadFailed}
           errorMessage={errorCurrenciesLoading}
@@ -78,7 +78,7 @@ Navbar.propTypes = {
   errorCurrenciesLoading: PropTypes.string,
   cart: PropTypes.arrayOf(PropTypes.object),
   currencies: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
-  changeCurrency: PropTypes.func.isRequired,
+  changeCurrencyAndPrices: PropTypes.func.isRequired,
 };
 
 Navbar.defaultProps = {
@@ -100,7 +100,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  changeCurrency,
+  changeCurrencyAndPrices,
 };
 
 export default connect(

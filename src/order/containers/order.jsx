@@ -1,71 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { getProduct } from '../../services/catalog/productsService';
-import Form from '../../shared/form';
+import { PropTypes } from 'prop-types';
 import OrderTable from './orderTable';
 import TotalCostCalculator from '../../cart/containers/totalCostCalculator';
 import OrderForm from './orderForm';
 
-class Order extends Form {
-  // state = {
-  //   orderList: [],
-  // };
+const Order = ({
+  cart: orderList, currentUser, currentCurrency, history,
+}) => (
+  <React.Fragment>
+    <h1 className="text-center m-3">Please check your order</h1>
+    <div className="row m-2">
+      <div className="col-md-6">
+        <OrderTable sortColumn="title" products={orderList} />
+        <TotalCostCalculator products={orderList} currencyName={currentCurrency.name} customClasses="float-right" />
+      </div>
+      <div className="col-md-5 offset-md-1">
+        <OrderForm currentUser={currentUser} routeReplace={history.replace} />
+      </div>
+    </div>
+  </React.Fragment>
+);
 
-  // componentDidMount() {
-  //   const orderList = this.getProductsInCartBriefly();
-  //   this.setState({ orderList });
-  // }
+Order.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentUser: PropTypes.shape({
+    id: PropTypes.string,
+    address: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    roles: PropTypes.arrayOf(PropTypes.string),
+    username: PropTypes.string,
+  }),
+  currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
+  history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
+};
 
-  // mapToViewModel({
-  //   name, country, city, address, phone,
-  // }) {
-  //   return {
-  //     name,
-  //     country,
-  //     city,
-  //     address,
-  //     phone,
-  //   };
-  // }
-
-  // getProductsInCartBriefly() {
-  //   const cartInfo = this.props.cart;
-  //   const products = [];
-  //   let prodInCart = {};
-
-  //   for (let i = 0; i < cartInfo.length; i++) {
-  //     prodInCart = getProduct(cartInfo[i]._id);
-  //     prodInCart = {
-  //       _id: prodInCart._id,
-  //       title: prodInCart.title,
-  //       price: prodInCart.price,
-  //       discount: prodInCart.discount,
-  //       qty: cartInfo[i].qty,
-  //     };
-  //     products.push(prodInCart);
-  //   }
-  //   return products;
-  // }
-
-  render() {
-    const { cart: orderList } = this.props;
-
-    return (
-      <React.Fragment>
-        <h1 className="text-center m-3">Please check your order</h1>
-        <div className="row m-2">
-          <div className="col-md-6">
-            <OrderTable sortColumn="title" products={orderList} />
-            <TotalCostCalculator products={orderList} currencyName={this.props.currentCurrency.name} customClasses="float-right" />
-          </div>
-          <div className="col-md-5 offset-md-1">
-            <OrderForm currentUser={this.props.currentUser} routeHistory={this.props.history} />
-          </div>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
+Order.defaultProps = {
+  currentUser: {},
+};
 
 const mapStateToProps = state => ({
   cart: state.cart.cart,

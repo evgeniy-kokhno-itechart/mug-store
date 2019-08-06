@@ -7,7 +7,6 @@ import {
 } from '../services/catalog/productsService';
 
 // GET PRODUCTS LIST
-
 export const gettingProductsInProgress = createAction(
   'GETING_PRODUCTS_IN_PROGRESS',
   isGettingProductsInProcess => isGettingProductsInProcess,
@@ -39,28 +38,31 @@ export const clearCurrentProductInfo = createAction('CLEAR_CURRENT_PRODUCT_INFO'
 
 export const gettingProductByIdInProgress = createAction(
   'GETING_PRODUCT_BY_ID_IN_PROGRESS',
-  isGettingProductByIdInProcess => isGettingProductByIdInProcess,
+  isGettingByIdInProcess => isGettingByIdInProcess,
 );
 
-export const gettingProductByIdFailed = createAction('GETTING_PRODUCT_BY_ID_FAILED', (hasGettingProductByIdFailed, error) => ({
-  hasGettingProductByIdFailed,
+export const gettingProductByIdFailed = createAction('GETTING_PRODUCT_BY_ID_FAILED', (hasGettingByIdFailed, error) => ({
+  hasGettingByIdFailed,
   error,
 }));
 
-export const gettingProductByIdSuccess = createAction('GETTING_PRODUCT_BY_ID_SUCCESS', product => product);
-
-export const getProduct = productId => (dispatch) => {
-  dispatch(clearCurrentProductInfo());
+export const gettingProductByIdSuccess = createAction('GETTING_PRODUCT_BY_ID_SUCCESS', (product, currencyRate) => ({
+  product,
+  currencyRate,
+}));
+export const getProduct = (productId, currencyRate) => (dispatch) => {
   dispatch(gettingProductByIdInProgress(true));
   getProductById(productId)
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(response.statusText);
       }
-      dispatch(gettingProductByIdInProgress(false));
       return response.data;
     })
-    .then(product => dispatch(gettingProductByIdSuccess(product)))
+    .then((product) => {
+      dispatch(gettingProductByIdSuccess(product, currencyRate));
+      dispatch(gettingProductByIdInProgress(false));
+    })
     .catch(error => dispatch(gettingProductByIdFailed(true, error.message)));
 };
 
@@ -104,3 +106,6 @@ export const deleteProduct = product => (dispatch) => {
     .then(resultMessage => dispatch(deletingProductSuccess(resultMessage)))
     .catch(error => dispatch(deletingProductFailed(true, error.message)));
 };
+
+// RECALCULATE PRODUCT PRICES
+export const recalculateProductPrices = createAction('RECALCULATE_PRODUCT_PRICES', currencyRate => currencyRate);

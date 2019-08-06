@@ -13,6 +13,7 @@ import {
   deletingProductInProcess,
   deletingProductFailed,
   deletingProductSuccess,
+  recalculateProductPrices,
 } from './productsActions';
 import initialProductsState from './productsState';
 
@@ -29,11 +30,14 @@ const productsReducer = handleActions(
       tableProductsStatus: { isGettingInProcess: false, hasGettingFailed, error },
     }),
 
-    [gettingProductsSuccess]: (state, { payload: products }) => ({
-      ...state,
-      products,
-      tableProductsStatus: { isGettingInProcess: false, hasGettingFailed: false, error: '' },
-    }),
+    [gettingProductsSuccess]: (state, { payload: products }) => {
+      const productsWithCurrentCurrencyPrices = products.map(product => ({ ...product, currentCurrencyPrice: product.basePrice }));
+      return {
+        ...state,
+        products: productsWithCurrentCurrencyPrices,
+        tableProductsStatus: { isGettingInProcess: false, hasGettingFailed: false, error: '' },
+      };
+    },
 
     //  GET PRODUCT BY ID
     [clearCurrentProductInfo]: state => ({
@@ -53,9 +57,9 @@ const productsReducer = handleActions(
       currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed, error },
     }),
 
-    [gettingProductByIdSuccess]: (state, { payload: product }) => ({
+    [gettingProductByIdSuccess]: (state, { payload: { product, currencyRate } }) => ({
       ...state,
-      currentProduct: product,
+      currentProduct: { ...product, currentCurrencyPrice: +(product.basePrice * currencyRate * (1 - product.discount / 100)).toFixed(1) },
       currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed: false, error: '' },
     }),
 
@@ -89,9 +93,29 @@ const productsReducer = handleActions(
 
     [deletingProductSuccess]: (state, { payload: resultMessage }) => ({
       ...state,
-      deleteResult: resultMessage, // added for future. will be because sunce back-end is fake
+      deleteResult: resultMessage, // added for future. will be empty because sunce back-end is fake
       deletingStatus: { isDeletingInProcess: false, hasDeletingFailed: false, error: '' },
     }),
+
+    // RECALCULATE PRODUCT PRICES
+    [recalculateProductPrices]: (state, { payload: rate }) => {
+      const { products, currentProduct } = state;
+
+      const newProducts = products.map((product) => {
+        const newCurrentCurrencyPrice = +(product.basePrice * rate * (1 - product.discount / 100)).toFixed(1);
+        const newProduct = { ...product };
+        newProduct.currentCurrencyPrice = newCurrentCurrencyPrice;
+        return newProduct;
+      });
+
+      const newCurrentProduct = { ...currentProduct };
+      newCurrentProduct.currentCurrencyPrice = +(newCurrentProduct.basePrice * rate * (1 - newCurrentProduct.discount / 100)).toFixed(1);
+      return {
+        ...state,
+        products: newProducts,
+        currentProduct: newCurrentProduct,
+      };
+    },
   },
   initialProductsState,
 );

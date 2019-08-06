@@ -1,36 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Joi from 'joi-browser';
+import _ from 'lodash';
+import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import Form from '../../shared/form';
 import { loginUser as loginUserAction } from '../userActions';
+import FormService from '../../services/general/formService';
+import Input from '../../shared/controls/input';
 
-class LoginForm extends Form {
+class LoginForm extends Component {
   state = {
     data: { username: '', password: '' },
     errors: {},
   };
 
-  schema = {
-    username: Joi.string()
+  loginObjectSchema = {
+    username: Yup.string()
       .required()
       .label('Username'),
-    password: Joi.string()
+    password: Yup.string()
       .required()
       .label('Password'),
   };
 
-  doSubmit = () => {
+  handleChange = (e, matchedInputName) => {
+    const { currentTarget: input } = e;
+
+    this.setState(prevState => FormService.handleChange(input, matchedInputName, prevState, this.loginObjectSchema));
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
     try {
       const { data } = this.state;
       // eslint-disable-next-line no-shadow
       const { location, history, loginUserAction } = this.props;
 
-      // get user's token from the back-end, store it in localStorage and get user's info
-      // const userInfo = loginUser(data.username, data.password);
       loginUserAction(data.username, data.password);
-      // loginUserAction(userInfo);
       const { fromPath } = location;
       history.replace(fromPath ? fromPath.pathname : '/');
     } catch (ex) {
@@ -41,14 +47,36 @@ class LoginForm extends Form {
   };
 
   render() {
-    if (this.props.currentUser.name) return <Redirect to="/" />;
+    const { data, errors } = this.state;
+
+    if (this.props.currentUser.name) {
+      return <Redirect to="/" />;
+    }
     return (
       <React.Fragment>
         <h1 className="text-center m-3">Login</h1>
         <form className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto" onSubmit={this.handleSubmit}>
-          {this.renderInput('username', 'Username')}
-          {this.renderInput('password', 'Password', 'password')}
-          {this.renderButton('Login', 'w-100')}
+          <Input
+            type="text"
+            name="username"
+            label="Username"
+            value={_.get(data, 'username')}
+            error={errors.username}
+            onChange={this.handleChange}
+          />
+
+          <Input
+            type="password"
+            name="password"
+            label="Password"
+            value={_.get(data, 'password')}
+            error={errors.password}
+            onChange={this.handleChange}
+          />
+
+          <button type="submit" disabled={FormService.validateForm(this.loginObjectSchema, data)} className="btn btn-secondary w-100">
+            Save
+          </button>
         </form>
       </React.Fragment>
     );

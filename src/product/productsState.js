@@ -3,7 +3,7 @@ const initialProductsState = {
   currentProduct: {
     id: '',
     imageURL: '',
-    title: '',
+    title: 'productFromInitialState',
     description: '',
     category: {},
     price: {},

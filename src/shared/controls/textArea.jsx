@@ -9,7 +9,7 @@ const TextArea = (props) => {
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
-      <textarea name={name} id={name} onChange={onChange} className="form-control" value={value} />
+      <textarea name={name} id={name} onChange={e => onChange(e)} className="form-control" value={value} />
       {error && <div className="alert alert-danger">{error}</div>}
     </div>
   );

@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import SearchBox from '../../shared/controls/searchBox';
 import SortBox from './sortBox';
 
-const ProductTableHeader = ({
+const CatalogTableHeader = ({
   currentUserRoles, searchQuery, sortColumnKey, sortOptions, handleSearch, handleSort,
 }) => (
   <div className="row justify-content-between mx-1 mx-sm-2">
@@ -24,7 +24,7 @@ const ProductTableHeader = ({
   </div>
 );
 
-ProductTableHeader.propTypes = {
+CatalogTableHeader.propTypes = {
   currentUserRoles: PropTypes.arrayOf(PropTypes.string),
   searchQuery: PropTypes.string,
   sortColumnKey: PropTypes.string.isRequired,
@@ -33,9 +33,9 @@ ProductTableHeader.propTypes = {
   handleSort: PropTypes.func.isRequired,
 };
 
-ProductTableHeader.defaultProps = {
+CatalogTableHeader.defaultProps = {
   currentUserRoles: [],
   searchQuery: '',
 };
 
-export default ProductTableHeader;
+export default CatalogTableHeader;

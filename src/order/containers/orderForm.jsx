@@ -1,8 +1,12 @@
-import React from 'react';
-import Joi from 'joi-browser';
-import Form from '../../shared/form';
+import React, { Component } from 'react';
+import * as Yup from 'yup';
+import _ from 'lodash';
+import { PropTypes } from 'prop-types';
+import Input from '../../shared/controls/input';
+import TextArea from '../../shared/controls/textArea';
+import FormService from '../../services/general/formService';
 
-class OrderForm extends Form {
+class OrderForm extends Component {
   state = {
     data: {
       name: '',
@@ -15,29 +19,29 @@ class OrderForm extends Form {
     errors: {},
   };
 
-  schema = {
-    name: Joi.string()
+  orderFormSchema = {
+    name: Yup.string()
       .required()
       .max(100)
       .label('Name'),
-    country: Joi.string()
+    country: Yup.string()
       .required()
       .max(100)
       .label('Country'),
-    city: Joi.string()
+    city: Yup.string()
       .required()
       .max(100)
       .label('City'),
-    address: Joi.string()
+    address: Yup.string()
       .required()
       .max(250)
       .label('Address'),
-    phone: Joi.string()
+    phone: Yup.string()
       .required()
       .min(12)
       .max(17)
       .label('Phone'),
-    comment: Joi.any().label('Comment'),
+    comment: Yup.string().label('Comment'),
   };
 
   componentDidMount() {
@@ -47,6 +51,16 @@ class OrderForm extends Form {
       });
     }
   }
+
+  handleChange = (e) => {
+    const { currentTarget: input } = e;
+
+    this.setState(prevState => (
+      FormService.handleChange(input, null, prevState, this.orderFormSchema) // null stands for matchedInputName
+    ));
+  };
+
+  handleSubmit = () => this.props.routeReplace('/orderconfirm'); // this.props.routeHistory.replace('/orderconfirm');
 
   mapToViewModel({
     name, country, city, address, phone,
@@ -60,24 +74,66 @@ class OrderForm extends Form {
     };
   }
 
-  doSubmit = () => this.props.routeHistory.replace('/orderconfirm');
-
   render() {
+    const { data, errors } = this.state;
     return (
       <React.Fragment>
         <p>Please fill out the form to continue</p>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput('name', 'Name')}
+          {/* {this.renderInput('name', 'Name')}
           {this.renderInput('country', 'Country')}
           {this.renderInput('city', 'City')}
           {this.renderInput('address', 'Address')}
           {this.renderInput('phone', 'Phone')}
           {this.renderTextArea('comment', 'Comment')}
-          {this.renderButton('Submit Order', 'd-block mx-auto mx-md-0')}
+          {this.renderButton('Submit Order', 'd-block mx-auto mx-md-0')} */}
+
+          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onChange={this.handleChange} />
+
+          <Input
+            type="text"
+            name="country"
+            label="Country"
+            value={_.get(data, 'country')}
+            error={errors.country}
+            onChange={this.handleChange}
+          />
+
+          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onChange={this.handleChange} />
+
+          <Input
+            type="text"
+            name="address"
+            label="Address"
+            value={_.get(data, 'address')}
+            error={errors.address}
+            onChange={this.handleChange}
+          />
+
+          <Input type="text" name="phone" label="Phone" value={_.get(data, 'phone')} error={errors.phone} onChange={this.handleChange} />
+
+          <TextArea name="comment" label="Comment" value={data.comment} error={errors.comment} onChange={this.handleChange} />
+
+          <button
+            type="submit"
+            disabled={FormService.validateForm(this.orderFormSchema, data)}
+            className="btn btn-secondary d-block mx-auto mx-md-0"
+          >
+            Submit Order
+          </button>
         </form>
       </React.Fragment>
     );
   }
 }
+
+OrderForm.propTypes = {
+  currentUser: PropTypes.shape({ name: PropTypes.string }),
+  routeReplace: PropTypes.func.isRequired,
+};
+
+OrderForm.defaultProps = {
+  currentUser: {},
+};
 
 export default OrderForm;

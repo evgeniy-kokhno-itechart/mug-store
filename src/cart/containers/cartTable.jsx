@@ -6,10 +6,10 @@ import { PropTypes } from 'prop-types';
 import ResponsiveEllipsis from '../../shared/markup-usage/responsiveEllipsis';
 import Table from '../../shared/markup-usage/table';
 import ItemCounter from '../../shared/controls/itemCounter';
+import ProductPrice from '../components/productPrice';
 import {
   incrementQuantity, decrementQuantity, changeQuantity, deleteProductFromCart,
 } from '../cartActions';
-import ProductPriceCalculator from './productPriceCalculator';
 
 class CartTable extends Component {
   columns = [
@@ -43,11 +43,11 @@ class CartTable extends Component {
     },
 
     {
-      key: 'qty',
+      key: 'quantity',
       label: 'Quantity',
       content: product => (
         <ItemCounter
-          count={product.qty}
+          count={product.quantity}
           itemId={product.id}
           onIncrementClick={this.props.incrementQuantity}
           onDecrementClick={this.props.decrementQuantity}
@@ -61,11 +61,9 @@ class CartTable extends Component {
       path: 'cost',
       label: 'Cost',
       content: product => (
-        <ProductPriceCalculator
-          price={product.price[this.props.currentCurrency.name]}
+        <ProductPrice
+          price={product.currentCurrencyPrice}
           isCurrencyLoading={this.props.isCurrencyLoading}
-          quantity={product.qty}
-          discount={product.discount}
         />
       ),
       style: { width: '5%' },
@@ -94,10 +92,16 @@ class CartTable extends Component {
 }
 
 CartTable.propTypes = {
-  currentCurrency: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }).isRequired,
   isCurrencyLoading: PropTypes.bool.isRequired,
 
-  productsInCart: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, qty: PropTypes.number })).isRequired,
+  productsInCart: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    imageURL: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    currentCurrencyPrice: PropTypes.number,
+    quantity: PropTypes.number,
+  })).isRequired,
   sortColumn: PropTypes.string.isRequired,
   incrementQuantity: PropTypes.func.isRequired,
   decrementQuantity: PropTypes.func.isRequired,
@@ -107,7 +111,7 @@ CartTable.propTypes = {
 
 const mapStateToProps = state => ({
   cart: state.cart.cart,
-  currentCurrency: state.currency.currentCurrency,
+  currencyRates: state.currency.currencyRates,
   isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });
 
