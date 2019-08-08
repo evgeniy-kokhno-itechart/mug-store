@@ -62,7 +62,7 @@ class CartTable extends Component {
       label: 'Cost',
       content: product => (
         <ProductPrice
-          price={product.currentCurrencyPrice}
+          price={product.currentCurrencyCost}
           isCurrencyLoading={this.props.isCurrencyLoading}
         />
       ),
@@ -110,7 +110,7 @@ CartTable.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  cart: state.cart.cart,
+  // cart: productsCostsSelector(state),
   currencyRates: state.currency.currencyRates,
   isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });

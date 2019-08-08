@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import 'babel-polyfill';
@@ -11,7 +11,7 @@ import App from './App';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import initializeStore from './general/store';
+import initializeStore, { history } from './general/store';
 
 const store = initializeStore();
 store.subscribe(() => {
@@ -20,9 +20,9 @@ store.subscribe(() => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
 );

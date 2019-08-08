@@ -6,15 +6,15 @@ const initialProductsState = {
     title: 'productFromInitialState',
     description: '',
     category: {},
-    price: {},
+    basePrice: 0,
     discount: 0,
     producer: '',
     rate: '',
   },
-  tableProductsStatus: { isGettingInProcess: false, hasGettingFailed: false, error: '' },
-  currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed: false, error: '' },
-  savingStatus: { isSavingInProcess: false, hasSavingFailed: false, error: '' },
-  deletingStatus: { isDeletingInProcess: false, hasDeletingFailed: false, error: '' },
+  tableProductsStatus: { isGettingInProcess: false, hasGettingFailed: false, error: 'Not started yet' },
+  currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed: false, error: 'Not started yet' },
+  savingStatus: { isSavingInProcess: false, hasSavingFailed: false, error: 'Not started yet' },
+  deletingStatus: { isDeletingInProcess: false, hasDeletingFailed: false, error: 'Not started yet' },
 };
 
 export default initialProductsState;

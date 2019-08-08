@@ -15,6 +15,7 @@ import Spinner from '../../shared/markup-usage/spinner';
 import ErrorMessage from '../../shared/markup-usage/errorMessage';
 import TextArea from '../../shared/controls/textArea';
 import Dropdown from '../../shared/controls/dropdown';
+import { productCostSelector } from '../productsSelectors';
 
 class ProductForm extends Component {
   state = {
@@ -55,14 +56,11 @@ class ProductForm extends Component {
       return;
     }
 
-    this.props.getProduct(productId, this.props.currentCurrency.rate);
+    this.props.getProduct(productId);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { product, currentCurrency, hasProductLoadingFailed } = this.props;
-    if (hasProductLoadingFailed) {
-      this.props.history.replace('/not-found');
-    }
+    const { product, currentCurrency } = this.props;
 
     if (currentCurrency !== prevProps.currentCurrency) {
       const changedData = { ...prevState.data };
@@ -86,14 +84,9 @@ class ProductForm extends Component {
     if (errors) return;
 
     // eslint-disable-next-line no-shadow
-    const { isSavingInProcess, hasSavingFailed, saveProduct } = this.props;
+    const { saveProduct } = this.props;
     const product = this.mapFromViewModel(this.state.data);
-    saveProduct(product);
-
-    // redirect will occurr if save was completed successfully
-    if (!isSavingInProcess && !hasSavingFailed) {
-      this.props.history.push('/catalog');
-    }
+    saveProduct(product, '/catalog');
   };
 
   handleChange = (e, matchedInputName) => {
@@ -298,7 +291,7 @@ const mapStateToProps = state => ({
   currencies: state.currency.currencies,
   categories: state.category.categories,
 
-  product: state.products.currentProduct,
+  product: productCostSelector(state),
 
   isProductLoading: state.products.currentProductStatus.isGettingByIdInProcess,
   hasProductLoadingFailed: state.products.currentProductStatus.hasGettingByIdFailed,

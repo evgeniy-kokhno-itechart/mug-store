@@ -3,8 +3,6 @@ import * as Yup from 'yup';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-// import { registerUser, saveUser, registerUser } from '../../services/user/userService';
-// import { loginUserWithJwt } from '../../services/user/authService';
 import { loginUser, saveEditedUserInfo, registerNewUserAndLogin } from '../userActions';
 import FormService from '../../services/general/formService';
 import Input from '../../shared/controls/input';
@@ -76,9 +74,6 @@ class ProfileForm extends Component {
       try {
         const { data } = this.state;
         this.props.registerNewUserAndLogin(data);
-        // const userInfo = loginUserWithJwt(token);
-        // this.props.loginUser(userInfo);
-        this.props.history.replace('/');
       } catch (ex) {
         this.setState((prevState) => {
           const errors = { ...prevState.errors, ...{ confirmPassword: ex.message } };
@@ -87,7 +82,6 @@ class ProfileForm extends Component {
       }
     } else {
       this.props.saveEditedUserInfo(this.state.data);
-      this.props.history.replace('/');
     }
   };
 
@@ -116,20 +110,10 @@ class ProfileForm extends Component {
 
   render() {
     const { data, errors } = this.state;
-    console.log('in profile form!');
     return (
       <React.Fragment>
         <h1 className="text-center m-3">{this.props.user.name ? 'Edit profile' : 'Register'}</h1>
         <form className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto" onSubmit={this.handleSubmit}>
-          {/* {this.renderInput('username', 'Username (a valid E-mail)')}
-          {this.renderInput('name', 'Name')}
-          {this.renderInput('country', 'Country')}
-          {this.renderInput('city', 'City')}
-          {this.renderInput('address', 'Address')}
-          {this.renderInput('phone', 'Phone')}
-          {this.renderInput('password', 'Password', 'password')}
-          {this.renderInput('confirmPassword', 'Confirm Password', 'password', 'password')}
-          {this.props.user.name ? this.renderButton('Save', 'w-100') : this.renderButton('Register', 'w-100')} */}
 
           <Input
             type='text'
@@ -224,11 +208,8 @@ ProfileForm.propTypes = {
     roles: PropTypes.arrayOf(PropTypes.string),
     username: PropTypes.string,
   }),
-  // loginUser: PropTypes.func.isRequired,
   saveEditedUserInfo: PropTypes.func.isRequired,
   registerNewUserAndLogin: PropTypes.func.isRequired,
-
-  history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
 };
 
 ProfileForm.defaultProps = {

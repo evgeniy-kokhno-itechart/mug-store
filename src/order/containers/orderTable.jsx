@@ -11,14 +11,14 @@ class OrderTable extends Component {
       path: 'title',
       label: 'Title',
       content: product => (
-        <Link to={`/products/${product._id}`} className="clickable">
+        <Link to={`/products/${product.id}`} className="clickable">
           {product.title}
         </Link>
       ),
       style: { width: '70%' },
     },
     {
-      path: 'qty',
+      path: 'quantity',
       label: 'Quantity',
       customClasses: 'text-center',
     },
@@ -26,7 +26,7 @@ class OrderTable extends Component {
       key: 'cost',
       path: 'cost',
       label: 'Cost',
-      content: product => <ProductPrice price={product.currentCurrencyPrice} isCurrencyLoading={this.props.isCurrencyLoading} />,
+      content: product => <ProductPrice price={product.currentCurrencyCost} isCurrencyLoading={this.props.isCurrencyLoading} />,
       style: { width: '10%' },
       customClasses: 'text-center',
     },
@@ -48,7 +48,7 @@ OrderTable.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string,
-      qty: PropTypes.number,
+      quantity: PropTypes.number,
       price: PropTypes.object,
       title: PropTypes.string,
     }),

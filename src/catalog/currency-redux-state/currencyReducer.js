@@ -21,7 +21,7 @@ const currencyReducer = handleActions(
       ...state,
       currenciesStatus: { isGettingCurrenciesInProcess: false, hasGettingCurrenciesFailed, error },
     }),
-    [gettingCurrenciesSuccess]: (state, { payload: currencies, baseCurrencyName }) => {
+    [gettingCurrenciesSuccess]: (state, { payload: { currencies, baseCurrencyName } }) => {
       const { currentCurrency } = state;
       // this is to define the 1st currency as default if none is stored in Redux state
       let currentCurrencyToBeSet;

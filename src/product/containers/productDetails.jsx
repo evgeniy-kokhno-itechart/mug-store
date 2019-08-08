@@ -12,6 +12,7 @@ import BuyNowButton from '../../catalog/components/buyNowButton';
 import ToCatalogButton from '../../catalog/components/toCatalogButton';
 import Spinner from '../../shared/markup-usage/spinner';
 import ErrorMessage from '../../shared/markup-usage/errorMessage';
+import { productCostSelector } from '../productsSelectors';
 
 class ProductDetails extends Component {
   state = {
@@ -27,14 +28,11 @@ class ProductDetails extends Component {
   ];
 
   componentDidMount() {
-    const { match, history } = this.props;
+    const { match } = this.props;
 
     const productId = match.params.id;
-    if (!productId) {
-      history.replace('/not-found');
-    }
 
-    this.props.getProduct(productId, this.props.currentCurrencyRate);
+    this.props.getProduct(productId);
 
     //  imageURLs were separated from original model for sample purposes since they are the same across all products
     //  my-json-server.typicode.com char limit 10000 has been reached thus URLs data couldn't be placed there
@@ -111,7 +109,7 @@ ProductDetails.propTypes = {
     category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
     description: PropTypes.string,
     producer: PropTypes.string,
-    currentCurrencyPrice: PropTypes.number,
+    currentCurrencyCost: PropTypes.number,
   }).isRequired,
   isProductLoading: PropTypes.bool.isRequired,
   hasProductLoadingFailed: PropTypes.bool,
@@ -119,7 +117,6 @@ ProductDetails.propTypes = {
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
   history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
 
-  currentCurrencyRate: PropTypes.number.isRequired,
   addToCart: PropTypes.func.isRequired,
   getProduct: PropTypes.func.isRequired,
   clearCurrentProductInfo: PropTypes.func.isRequired,
@@ -131,12 +128,10 @@ ProductDetails.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  product: state.products.currentProduct,
+  product: productCostSelector(state),
   isProductLoading: state.products.currentProductStatus.isGettingByIdInProcess,
   hasProductLoadingFailed: state.products.currentProductStatus.hasGettingByIdFailed,
   errorWhileLoading: state.products.currentProductStatus.error,
-
-  currentCurrencyRate: state.currency.currentCurrency.rate,
 });
 
 const mapDispatchToProps = {

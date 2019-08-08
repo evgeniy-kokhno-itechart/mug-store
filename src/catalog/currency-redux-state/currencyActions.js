@@ -1,8 +1,6 @@
 import { createAction } from 'redux-actions';
 import { getCurrenciesList, getCurrencyRates } from '../../services/general/payService';
 import { currencyRateKeyInJson, currencyNameKeyInJson, baseCurrencyName } from '../../services/general/constants';
-import { recalculateProductPrices } from '../../product/productsActions';
-import { recalculateCartProductPrices } from '../../cart/cartActions';
 
 // CURRENCIES
 export const gettingCurrenciesInProgress = createAction(
@@ -13,7 +11,7 @@ export const gettingCurrenciesFailed = createAction('GETTING_CURRIENCIES_FAILED'
   hasGettingCurrenciesFailed,
   error,
 }));
-export const gettingCurrenciesSuccess = createAction('GETTING_CURRIENCIES_SUCCESS', currencies => currencies);
+export const gettingCurrenciesSuccess = createAction('GETTING_CURRIENCIES_SUCCESS', currencies => ({ currencies, baseCurrencyName }));
 
 // CURRENCY RATES
 export const gettingCurrencyRatesInProgress = createAction(
@@ -40,6 +38,7 @@ export const getCurrencies = () => (dispatch) => {
       return response.data;
     })
     .then((currencies) => {
+      console.log('currencies', currencies);
       dispatch(gettingCurrenciesSuccess(currencies));
       // GETTING CURRENCY RATES
       // consider usage response.data with rate is a JSON object with key 'currencyRateKeyInJson' defined in constants
@@ -51,6 +50,7 @@ export const getCurrencies = () => (dispatch) => {
       dispatch(gettingCurrencyRatesInProgress(true));
       Promise.all(arrayOfCurrencyApiCallPromises)
         .then((currencyRatesResponses) => {
+          console.log('currencyRatesResponses', currencyRatesResponses);
           const currencyRatesArray = currencyRatesResponses.map(response => ({
             name: response.data[currencyNameKeyInJson],
             rate: 1 / response.data[currencyRateKeyInJson],
@@ -67,9 +67,3 @@ export const getCurrencies = () => (dispatch) => {
 
 // CHANGE CURRENCY
 export const changeCurrency = createAction('CHANGE_CURRENCY', currency => currency);
-
-export const changeCurrencyAndPrices = currency => (dispatch) => {
-  dispatch(changeCurrency(currency));
-  dispatch(recalculateProductPrices(currency.rate));
-  dispatch(recalculateCartProductPrices(currency.rate));
-};

@@ -55,12 +55,15 @@ class OrderForm extends Component {
   handleChange = (e) => {
     const { currentTarget: input } = e;
 
-    this.setState(prevState => (
-      FormService.handleChange(input, null, prevState, this.orderFormSchema) // null stands for matchedInputName
-    ));
+    // null stands for matchedInputName
+    this.setState(prevState => FormService.handleChange(input, null, prevState, this.orderFormSchema));
   };
 
-  handleSubmit = () => this.props.routeReplace('/orderconfirm'); // this.props.routeHistory.replace('/orderconfirm');
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.onOrderSubmit('/orderconfirm');
+    // this.props.routeReplace('/orderconfirm'); // this.props.routeHistory.replace('/orderconfirm');
+  };
 
   mapToViewModel({
     name, country, city, address, phone,
@@ -80,14 +83,6 @@ class OrderForm extends Component {
       <React.Fragment>
         <p>Please fill out the form to continue</p>
         <form onSubmit={this.handleSubmit}>
-          {/* {this.renderInput('name', 'Name')}
-          {this.renderInput('country', 'Country')}
-          {this.renderInput('city', 'City')}
-          {this.renderInput('address', 'Address')}
-          {this.renderInput('phone', 'Phone')}
-          {this.renderTextArea('comment', 'Comment')}
-          {this.renderButton('Submit Order', 'd-block mx-auto mx-md-0')} */}
-
           <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onChange={this.handleChange} />
 
           <Input
@@ -129,7 +124,7 @@ class OrderForm extends Component {
 
 OrderForm.propTypes = {
   currentUser: PropTypes.shape({ name: PropTypes.string }),
-  routeReplace: PropTypes.func.isRequired,
+  onOrderSubmit: PropTypes.func.isRequired,
 };
 
 OrderForm.defaultProps = {

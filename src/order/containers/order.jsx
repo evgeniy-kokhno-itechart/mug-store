@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { submitCartOrder } from '../../cart/cartActions';
 import OrderTable from './orderTable';
 import TotalCostCalculator from '../../cart/containers/totalCostCalculator';
 import OrderForm from './orderForm';
+import { cartCostsSelector } from '../../cart/cartSelectors';
 
 const Order = ({
-  cart: orderList, currentUser, currentCurrency, history,
+  cart: orderList,
+  currentUser,
+  currentCurrency,
+  // eslint-disable-next-line no-shadow
+  submitCartOrder,
 }) => (
   <React.Fragment>
     <h1 className="text-center m-3">Please check your order</h1>
@@ -16,7 +22,7 @@ const Order = ({
         <TotalCostCalculator products={orderList} currencyName={currentCurrency.name} customClasses="float-right" />
       </div>
       <div className="col-md-5 offset-md-1">
-        <OrderForm currentUser={currentUser} routeReplace={history.replace} />
+        <OrderForm currentUser={currentUser} onOrderSubmit={submitCartOrder} />
       </div>
     </div>
   </React.Fragment>
@@ -35,7 +41,9 @@ Order.propTypes = {
     username: PropTypes.string,
   }),
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
+  // history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
+
+  submitCartOrder: PropTypes.func.isRequired,
 };
 
 Order.defaultProps = {
@@ -43,9 +51,16 @@ Order.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  cart: state.cart.cart,
+  cart: cartCostsSelector(state),
   currentCurrency: state.currency.currentCurrency,
   currentUser: state.user.currentUser,
 });
 
-export default connect(mapStateToProps)(Order);
+const mapDipatchToProps = {
+  submitCartOrder,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDipatchToProps,
+)(Order);

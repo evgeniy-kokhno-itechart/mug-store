@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
-class CurrencySelector extends Component {
+class CurrenciesDropdown extends Component {
   renderSpinner = () => (
     <button className="btn btn-secondary" type="button" disabled>
       <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
@@ -54,7 +54,7 @@ class CurrencySelector extends Component {
   }
 }
 
-CurrencySelector.propTypes = {
+CurrenciesDropdown.propTypes = {
   currentCurrencyId: PropTypes.string.isRequired,
   currencyOptions: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
   isCurrenciesLoading: PropTypes.bool.isRequired,
@@ -63,8 +63,8 @@ CurrencySelector.propTypes = {
   onCurrencyChange: PropTypes.func.isRequired,
 };
 
-CurrencySelector.defaultProps = {
+CurrenciesDropdown.defaultProps = {
   errorMessage: '',
 };
 
-export default CurrencySelector;
+export default CurrenciesDropdown;

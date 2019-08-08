@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import { push, replace } from 'connected-react-router';
 import {
   login, logout, parseUserToken, removeUserTokenFromStorage,
 } from '../services/user/authService';
@@ -9,7 +10,7 @@ export const loginUserInProcess = createAction('LOGIN_USER_IN_PROCESS', isLoginI
 export const loginUserFailed = createAction('LOGIN_USER_FAILED', (hasLoginFailed, loginError) => ({ hasLoginFailed, loginError }));
 export const loginUserSuccess = createAction('LOGIN_USER_SUCCESS', user => ({ currentUser: user }));
 
-export const loginUser = (username, password) => (dispatch) => {
+export const loginUser = (username, password, fromPath) => (dispatch) => {
   dispatch(loginUserInProcess(true));
   login(username, password)
     .then((response) => {
@@ -19,7 +20,10 @@ export const loginUser = (username, password) => (dispatch) => {
       dispatch(loginUserInProcess(false));
       return parseUserToken(response);
     })
-    .then(user => dispatch(loginUserSuccess(user)))
+    .then((user) => {
+      dispatch(loginUserSuccess(user));
+      dispatch(push(fromPath || '/'));
+    })
     .catch(error => dispatch(loginUserFailed(true, error.message)));
 };
 
@@ -28,9 +32,10 @@ export const logoutUserInProcess = createAction('LOGOUT_USER_IN_PROCESS', isLogo
 export const logoutUserFailed = createAction('LOGOUT_USER_FAILED', (hasLogoutFailed, logoutError) => ({ hasLogoutFailed, logoutError }));
 export const logoutUserSuccess = createAction('LOGOUT_USER_SUCCESS');
 
-export const logoutUser = currentUserName => (dispatch) => {
+export const logoutUser = () => (dispatch, getState) => {
   dispatch(logoutUserInProcess(true));
-  logout(currentUserName)
+  const { user } = getState();
+  logout(user.currentUser.id)
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(response.statusText);
@@ -38,8 +43,17 @@ export const logoutUser = currentUserName => (dispatch) => {
       dispatch(logoutUserInProcess(false));
       return removeUserTokenFromStorage();
     })
-    .then(() => dispatch(logoutUserSuccess()))
-    .catch(error => dispatch(logoutUserFailed(true, error.message)));
+    .then(() => {
+      dispatch(logoutUserSuccess());
+      dispatch(replace('/'));
+    })
+    .catch((error) => {
+      dispatch(logoutUserFailed(true, error.message));
+
+      // !!! FAKE LOGIC delete once get proper back-end app
+      dispatch(logoutUserSuccess());
+      dispatch(replace('/'));
+    });
 };
 
 // SAVE EDITED
@@ -57,8 +71,16 @@ export const saveEditedUserInfo = user => (dispatch) => {
       dispatch(savingUserInProcess(false));
       return response.data;
     })
-    .then(() => dispatch(savingUserSuccess(user))) // !!! user is passed directly from the form for sample purposes only
-    .catch(error => dispatch(savingUserFailed(true, error.message)));
+    .then(() => {
+      dispatch(savingUserSuccess(user));
+      dispatch(replace('/'));
+    })
+    .catch((error) => {
+      dispatch(savingUserFailed(true, error.message));
+
+      // !!! FAKE LOGIC delete once get proper back-end app
+      dispatch(replace('/'));
+    });
 };
 
 // REGISTER
@@ -81,6 +103,12 @@ export const registerNewUserAndLogin = user => (dispatch) => {
     })
     .then((recievedUser) => {
       dispatch(registrationUserSuccess(recievedUser));
+      dispatch(replace('/'));
     })
-    .catch(error => dispatch(registrationUserFailed(true, error.message)));
+    .catch((error) => {
+      dispatch(registrationUserFailed(true, error.message));
+
+      // !!! FAKE LOGIC delete once get proper back-end app
+      dispatch(replace('/'));
+    });
 };

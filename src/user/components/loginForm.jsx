@@ -34,11 +34,9 @@ class LoginForm extends Component {
     try {
       const { data } = this.state;
       // eslint-disable-next-line no-shadow
-      const { location, history, loginUserAction } = this.props;
-
-      loginUserAction(data.username, data.password);
+      const { location, loginUserAction } = this.props;
       const { fromPath } = location;
-      history.replace(fromPath ? fromPath.pathname : '/');
+      loginUserAction(data.username, data.password, fromPath);
     } catch (ex) {
       const errors = {};
       errors.password = ex.message;

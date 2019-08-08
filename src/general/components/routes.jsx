@@ -6,11 +6,10 @@ import Catalog from '../../catalog/containers/catalog';
 import NotFound from './notFound';
 import ProductForm from '../../product/containers/productForm';
 import LoginForm from '../../user/components/loginForm';
-import Logout from '../../user/components/logout';
 import ProfileForm from '../../user/components/profileForm';
 import Cart from '../../cart/containers/cart';
 import Order from '../../order/containers/order';
-import OrderConfirmation from '../../order/containers/orderConfirmation';
+import OrderConfirmation from '../../order/components/orderConfirmation';
 import ProductDetails from '../../product/containers/productDetails';
 import About from './about';
 
@@ -18,7 +17,6 @@ const Routes = () => (
   <Switch>
     <ProtectedRoute path="/edit/products/:id" component={ProductForm} />
     <Route path="/products/:id" component={ProductDetails} />
-    <Route path="/logout" component={Logout} />
     <Route path="/login" component={LoginForm} />
     <ProtectedRoute path="/myprofile" component={ProfileForm} />
     <Route path="/register" component={ProfileForm} />

@@ -13,6 +13,7 @@ import CatalogTableFooter from '../components/catalogTableFooter';
 import Spinner from '../../shared/markup-usage/spinner';
 import ErrorMessage from '../../shared/markup-usage/errorMessage';
 import { deleteProduct, getProducts } from '../../product/productsActions';
+import { productsPricesSelector } from '../../product/productsSelectors';
 
 class Catalog extends Component {
   state = {
@@ -29,8 +30,8 @@ class Catalog extends Component {
   ];
 
   sortOptions = [
-    { id: 'price_asc', name: 'Price A-Z' },
-    { id: 'price_desc', name: 'Price Z-A' },
+    { id: 'currentCurrencyPrice_asc', name: 'Price A-Z' },
+    { id: 'currentCurrencyPrice_desc', name: 'Price Z-A' },
     { id: 'title_asc', name: 'Title A-Z' },
     { id: 'title_desc', name: 'Title Z-A' },
     { id: 'rate_asc', name: 'Rate 1-5' },
@@ -87,9 +88,6 @@ class Catalog extends Component {
     const detailsToBeSplitted = e.currentTarget.value;
     if (detailsToBeSplitted) {
       const sortInfo = detailsToBeSplitted.split('_');
-      if (sortInfo[0] === 'price') {
-        sortInfo[0] = `${sortInfo[0]}.${this.props.currentCurrency.name}`;
-      }
 
       this.setState({ sortColumn: { id: detailsToBeSplitted, path: sortInfo[0], order: sortInfo[1] } });
     } else this.setState({ sortColumn: { path: 'title', order: 'asc' } });
@@ -205,7 +203,7 @@ Catalog.propTypes = {
     description: PropTypes.string,
     category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
     basePrice: PropTypes.number,
-    currentCurrencyPrice: PropTypes.number,
+    currentCurrencyCost: PropTypes.number,
     discount: PropTypes.number,
     producer: PropTypes.string,
     publishDate: PropTypes.string,
@@ -247,7 +245,7 @@ const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
   currentCurrency: state.currency.currentCurrency,
 
-  products: state.products.products,
+  products: productsPricesSelector(state),
   isProductsLoading: state.products.tableProductsStatus.isGettingInProcess,
   hasProductsLoadingFailed: state.products.tableProductsStatus.hasGettingFailed,
   errorWhileProductsLoading: state.products.tableProductsStatus.error,

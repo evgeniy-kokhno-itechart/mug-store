@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { logoutUser } from '../../user/userActions';
 
 class LoginLogoutBar extends Component {
   renderLoginAndRegister = () => (
@@ -33,9 +35,9 @@ class LoginLogoutBar extends Component {
             My Profile
           </Link>
           <div className="dropdown-divider" />
-          <Link className="dropdown-item px-3" to="/logout">
+          <button type="button" className="dropdown-item px-3" onClick={this.props.logoutUser}>
             Logout
-          </Link>
+          </button>
         </div>
       </div>
     </React.Fragment>
@@ -48,10 +50,22 @@ class LoginLogoutBar extends Component {
 
 LoginLogoutBar.propTypes = {
   currentUserName: PropTypes.string,
+  logoutUser: PropTypes.func.isRequired,
 };
 
 LoginLogoutBar.defaultProps = {
   currentUserName: undefined,
 };
 
-export default LoginLogoutBar;
+const mapStateToProps = state => ({
+  currentUserName: state.user.currentUser.name,
+});
+
+const mapDispatchToProps = {
+  logoutUser,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginLogoutBar);

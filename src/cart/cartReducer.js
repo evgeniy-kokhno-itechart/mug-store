@@ -7,7 +7,9 @@ import {
   changeQuantity,
   deleteProductFromCart,
   clearCart,
-  recalculateCartProductPrices,
+  submittingOrderInProgress,
+  submittingOrderFailed,
+  submittingOrderSuccess,
 } from './cartActions';
 
 const incrementDecrementQuantity = combineActions(incrementQuantity, decrementQuantity);
@@ -50,16 +52,22 @@ const cartReducer = handleActions(
       return { ...state, cart: [...newCart] };
     },
 
-    [recalculateCartProductPrices]: (state, { payload: currencyRate }) => {
-      const { cart } = state;
-      const newProducts = cart.map((product) => {
-        const newCurrentCurrencyPrice = +(product.basePrice * currencyRate * product.quantity * (1 - product.discount / 100)).toFixed(1);
-        const newProduct = { ...product };
-        newProduct.currentCurrencyPrice = newCurrentCurrencyPrice;
-        return newProduct;
-      });
-      return { ...state, cart: newProducts };
-    },
+    // SUBMIT CART ORDER
+    [submittingOrderInProgress]: (state, { payload: isInProcess }) => ({
+      ...state,
+      submitOrderStatus: { isInProcess, hasFailed: false, error: '' },
+    }),
+
+    [submittingOrderFailed]: (state, { payload: { hasFailed, error } }) => ({
+      ...state,
+      submitOrderStatus: { isInProcess: false, hasFailed, error },
+    }),
+
+    [submittingOrderSuccess]: (state, { payload: resultMessage }) => ({
+      ...state,
+      submitResult: resultMessage, // added for future. will be empty because back-end is fake
+      submitOrderStatus: { isInProcess: false, hasFailed: false, error: '' },
+    }),
 
     [clearCart]: state => ({ ...state, cart: [] }),
   },

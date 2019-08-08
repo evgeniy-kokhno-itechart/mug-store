@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import CartTable from './cartTable';
 import TotalCostCalculator from './totalCostCalculator';
+import { cartCostsSelector } from '../cartSelectors';
 
 class Cart extends Component {
   renderCartDetails(products) {
@@ -57,7 +58,7 @@ Cart.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  cart: state.cart.cart,
+  cart: cartCostsSelector(state),
   currentUser: state.user.currentUser,
 });
 

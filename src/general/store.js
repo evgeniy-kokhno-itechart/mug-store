@@ -1,8 +1,15 @@
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
-import rootReducer from './rootReducer';
+import { createBrowserHistory } from 'history';
+import createRootReducer from './rootReducer';
 
-const initializeStore = () => {
+export const history = createBrowserHistory();
+
+export default function initializeStore() {
+  const rootReducer = createRootReducer(history);
+  const composedMiddlewares = compose(applyMiddleware(thunk, routerMiddleware(history)));
+
   const reduxStateLocalStoreKey = 'reduxState';
   const persistedState = localStorage.getItem(reduxStateLocalStoreKey)
     ? JSON.parse(localStorage.getItem(reduxStateLocalStoreKey))
@@ -12,8 +19,6 @@ const initializeStore = () => {
       currency: rootReducer.currency,
       products: rootReducer.products,
     };
-
-  return createStore(rootReducer, persistedState, applyMiddleware(thunk));
-};
-
-export default initializeStore;
+  delete persistedState.router;
+  return createStore(rootReducer, persistedState, composedMiddlewares);
+}

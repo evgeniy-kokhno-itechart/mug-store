@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import { push, replace } from 'connected-react-router';
 import {
   getProducts as getProductsList,
   getProduct as getProductById,
@@ -46,11 +47,9 @@ export const gettingProductByIdFailed = createAction('GETTING_PRODUCT_BY_ID_FAIL
   error,
 }));
 
-export const gettingProductByIdSuccess = createAction('GETTING_PRODUCT_BY_ID_SUCCESS', (product, currencyRate) => ({
-  product,
-  currencyRate,
-}));
-export const getProduct = (productId, currencyRate) => (dispatch) => {
+export const gettingProductByIdSuccess = createAction('GETTING_PRODUCT_BY_ID_SUCCESS', product => product);
+
+export const getProduct = productId => (dispatch) => {
   dispatch(gettingProductByIdInProgress(true));
   getProductById(productId)
     .then((response) => {
@@ -60,10 +59,13 @@ export const getProduct = (productId, currencyRate) => (dispatch) => {
       return response.data;
     })
     .then((product) => {
-      dispatch(gettingProductByIdSuccess(product, currencyRate));
+      dispatch(gettingProductByIdSuccess(product));
       dispatch(gettingProductByIdInProgress(false));
     })
-    .catch(error => dispatch(gettingProductByIdFailed(true, error.message)));
+    .catch((error) => {
+      dispatch(gettingProductByIdFailed(true, error.message));
+      dispatch(replace('/not-found'));
+    });
 };
 
 //   SAVE PRODUCT
@@ -71,7 +73,7 @@ export const savingProductInProcess = createAction('SAVING_PRODUCT_IN _PROCESS',
 export const savingProductSuccess = createAction('SAVING_PRODUCT_SUCCESS', resultMessage => resultMessage);
 export const savingProductFailed = createAction('SAVING_PRODUCT_FAILED', (hasSavingFailed, error) => ({ hasSavingFailed, error }));
 
-export const saveProduct = product => (dispatch) => {
+export const saveProduct = (product, redirectUrl) => (dispatch) => {
   dispatch(savingProductInProcess(true));
   saveProductInDB(product)
     .then((response) => {
@@ -81,8 +83,16 @@ export const saveProduct = product => (dispatch) => {
       dispatch(savingProductInProcess(false));
       return response.data;
     })
-    .then(resultMessage => dispatch(savingProductSuccess(resultMessage)))
-    .catch(error => dispatch(savingProductFailed(true, error.message)));
+    .then((resultMessage) => {
+      dispatch(savingProductSuccess(resultMessage));
+      dispatch(push(redirectUrl));
+    })
+    .catch((error) => {
+      dispatch(savingProductFailed(true, error.message));
+
+      // !!! FAKE LOGIC delete once get proper back-end app
+      dispatch(push(redirectUrl));
+    });
 };
 
 //  DELETE PRODUCT
@@ -106,6 +116,3 @@ export const deleteProduct = product => (dispatch) => {
     .then(resultMessage => dispatch(deletingProductSuccess(resultMessage)))
     .catch(error => dispatch(deletingProductFailed(true, error.message)));
 };
-
-// RECALCULATE PRODUCT PRICES
-export const recalculateProductPrices = createAction('RECALCULATE_PRODUCT_PRICES', currencyRate => currencyRate);
