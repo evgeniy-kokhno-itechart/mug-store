@@ -1,6 +1,5 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-did-update-set-state */
-/* eslint-disable react/no-did-update-set-state */
 import React, { Component } from 'react';
 import * as Yup from 'yup';
 import _ from 'lodash';
@@ -10,11 +9,11 @@ import { getCategories } from '../../catalog/categories-redux-state/categoryActi
 import { getCurrencies } from '../../catalog/currency-redux-state/currencyActions';
 import { getProduct, saveProduct, clearCurrentProductInfo } from '../productsActions';
 import FormService from '../../services/general/formService';
-import Input from '../../shared/controls/input';
-import Spinner from '../../shared/markup-usage/spinner';
-import ErrorMessage from '../../shared/markup-usage/errorMessage';
-import TextArea from '../../shared/controls/textArea';
-import Dropdown from '../../shared/controls/dropdown';
+import Input from '../../shared/controls/Input';
+import Spinner from '../../shared/markup-usage/Spinner';
+import ErrorMessage from '../../shared/markup-usage/ErrorMessage';
+import TextArea from '../../shared/controls/TextArea';
+import Dropdown from '../../shared/controls/Dropdown';
 import { productCostSelector } from '../productsSelectors';
 
 class ProductForm extends Component {

@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { changeCurrency } from '../../catalog/currency-redux-state/currencyActions';
-import CurrenciesDropdown from '../components/currenciesDropdown';
-import LoginLogoutBar from './loginLogoutBar';
+import CurrenciesDropdown from '../components/CurrenciesDropdown';
+import LoginLogoutBar from './LoginLogoutBar';
 
 const Navbar = ({
   currentCurrency,

@@ -38,7 +38,6 @@ export const getCurrencies = () => (dispatch) => {
       return response.data;
     })
     .then((currencies) => {
-      console.log('currencies', currencies);
       dispatch(gettingCurrenciesSuccess(currencies));
       // GETTING CURRENCY RATES
       // consider usage response.data with rate is a JSON object with key 'currencyRateKeyInJson' defined in constants
@@ -50,7 +49,6 @@ export const getCurrencies = () => (dispatch) => {
       dispatch(gettingCurrencyRatesInProgress(true));
       Promise.all(arrayOfCurrencyApiCallPromises)
         .then((currencyRatesResponses) => {
-          console.log('currencyRatesResponses', currencyRatesResponses);
           const currencyRatesArray = currencyRatesResponses.map(response => ({
             name: response.data[currencyNameKeyInJson],
             rate: 1 / response.data[currencyRateKeyInJson],

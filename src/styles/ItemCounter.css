@@ -1,0 +1,4 @@
+#bootstrap-overrides .item_counter__btn {
+  line-height: 1.2em;
+  font-size: 0.75rem;
+}

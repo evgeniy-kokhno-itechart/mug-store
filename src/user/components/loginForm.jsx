@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loginUser as loginUserAction } from '../userActions';
 import FormService from '../../services/general/formService';
-import Input from '../../shared/controls/input';
+import Input from '../../shared/controls/Input';
 
 class LoginForm extends Component {
   state = {
@@ -50,6 +50,7 @@ class LoginForm extends Component {
     if (this.props.currentUser.name) {
       return <Redirect to="/" />;
     }
+
     return (
       <React.Fragment>
         <h1 className="text-center m-3">Login</h1>

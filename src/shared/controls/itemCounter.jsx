@@ -1,27 +1,23 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes } from 'prop-types';
+import '../../styles/itemCounter.css';
 
 const ItemCounter = ({
   count, itemId, onIncrementClick, onDecrementClick, onCountChange,
 }) => (
-  <div className="input-group input-group-sm mx-auto flex-nowrap" style={{ fontSize: '1rem' }}>
+  <div className="input-group input-group-sm mx-auto flex-nowrap">
     <button
       type="button"
-      id="form-button-left"
-      className={`input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2 ${count > 1 ? '' : 'disabled'}`}
-      style={{ fontSize: '0.75rem' }}
+      className={`item_counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2 ${count > 1 ? '' : 'disabled'}`}
       onClick={() => onDecrementClick(itemId, 1)}
     >
       <FontAwesomeIcon icon="minus" className="my-auto" />
     </button>
+
     <input
-      // id="form-input"
       className="form-control inline text-center p-1 p-lg-2"
       type="text"
-      // size="1"
-      // align="middle"
-      style={{ maxWidth: '35%' }}
       value={count}
       onChange={(e) => {
         const val = e.currentTarget.value ? parseInt(e.currentTarget.value, 10) : 1;
@@ -29,11 +25,11 @@ const ItemCounter = ({
         onCountChange(itemId, val);
       }}
     />
+
     <button
       type="button"
-      id="form-button-right"
-      className="input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
-      style={{ fontSize: '0.75rem' }}
+      // id="item_counter__btn"
+      className="item_counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
       onClick={() => onIncrementClick(itemId, 1)}
     >
       <FontAwesomeIcon icon="plus" className="my-auto" />

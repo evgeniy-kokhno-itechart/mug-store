@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import SearchBox from '../../shared/controls/searchBox';
-import SortBox from './sortBox';
+import SearchBox from '../../shared/controls/SearchBox';
+import SortBox from './SortBox';
 
 const CatalogTableHeader = ({
   currentUserRoles, searchQuery, sortColumnKey, sortOptions, handleSearch, handleSort,

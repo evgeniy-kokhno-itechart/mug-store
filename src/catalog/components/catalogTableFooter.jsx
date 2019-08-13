@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import Dropdown from '../../shared/controls/dropdown';
-import Pagination from '../../shared/controls/pagination';
+import Dropdown from '../../shared/controls/Dropdown';
+import Pagination from '../../shared/controls/Pagination';
 
 const CatalogTableFooter = ({
   totalCount, pageSize, pageSizeOptions, currentPage, onPageChange, onItemsCountChange,

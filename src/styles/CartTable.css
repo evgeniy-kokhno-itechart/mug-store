@@ -1,0 +1,18 @@
+.cart-table--column__image {
+  width: 15%;
+}
+.cart-table--column__title {
+  width: 10%;
+}
+.cart-table--column__details {
+  width: 58%;
+}
+.cart-table--column__quantity {
+  width: 5%;
+}
+.cart-table--column__cost {
+  width: 5%;
+}
+.cart-table--column__delete {
+  width: 5%;
+}

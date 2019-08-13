@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import ResponsiveEllipsis from '../../shared/markup-usage/responsiveEllipsis';
-import Table from '../../shared/markup-usage/table';
-import Rate from '../../shared/markup-usage/rate';
-import Modal from '../../shared/markup-usage/modal';
-import BuyNowButton from '../components/buyNowButton';
-import ProductPrice from '../../cart/components/productPrice';
+import ResponsiveEllipsis from '../../shared/markup-usage/ResponsiveEllipsis';
+import Table from '../../shared/markup-usage/Table';
+import Rate from '../../shared/markup-usage/Rate';
+import Modal from '../../shared/markup-usage/Modal';
+import BuyNowButton from '../components/BuyNowButton';
+import ProductPrice from '../../cart/components/ProductPrice';
 import { addToCart } from '../../cart/cartActions';
+import '../../styles/CatalogTable.css';
 
 class CatalogTable extends Component {
   state = {
@@ -22,40 +23,39 @@ class CatalogTable extends Component {
             <img src={product.imageURL} alt={product.title} className="img-fluid" />
           </Link>
         ),
-        style: { width: '20%' },
+        customClasses: 'catalog_table__column--image',
       },
       {
-        path: 'title',
+        key: 'title',
         label: 'Title',
         content: product => (
-          <Link to={`/products/${product.id}`} className="clickable">
+          <Link to={`/products/${product.id}`} className="clickable catalog_table__product_title">
             {product.title}
           </Link>
         ),
-        style: { width: '10%' },
+        customClasses: 'catalog_table__column--title',
       },
       {
-        path: 'description',
+        key: 'description',
         label: 'Details',
         content: product => <ResponsiveEllipsis text={product.description} maxLine="3" ellipsis="..." basedOn="words" />,
-        customClasses: 'd-none d-md-table-cell',
-        style: { width: '50%' },
+        customClasses: 'd-none d-md-table-cell catalog_table__column--details',
       },
       {
-        path: 'rate',
+        key: 'rate',
         content: product => <Rate rate={product.rate} />,
-        style: { width: '11%' },
+        customClasses: 'catalog_table__column--rate',
       },
       {
-        path: `price. ${this.props.currentCurrency.name}`,
+        key: 'price',
         label: 'Price',
         content: product => <ProductPrice price={product.currentCurrencyPrice} isCurrencyLoading={this.props.isCurrencyLoading} />,
-        style: { width: '5%' },
+        customClasses: 'catalog_table__column--price',
       },
       {
         key: 'buyNow',
         content: product => <BuyNowButton customClasses="btn-sm" onBuyNow={this.props.addToCart} product={product} />,
-        style: { width: '10%' },
+        customClasses: 'catalog_table__column--buynow',
       },
     ],
   };

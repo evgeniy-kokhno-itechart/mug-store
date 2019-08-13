@@ -8,6 +8,7 @@ const Dropdown = ({
     <label className="mr-2 text-nowrap" htmlFor={name}>
       {label}
     </label>
+
     <select name={name} id={name} value={value} onChange={e => onChange(e)} className="form-control">
       {defaultText && <option value="-1">{defaultText}</option>}
       {options.map(o => (
@@ -16,6 +17,7 @@ const Dropdown = ({
         </option>
       ))}
     </select>
+
     {error && <div className="alert alert-danger">{error}</div>}
   </div>
 );

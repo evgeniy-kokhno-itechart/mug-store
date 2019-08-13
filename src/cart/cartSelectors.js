@@ -13,7 +13,6 @@ export const cartCostsSelector = createSelector(
       const newProduct = { ...product, currentCurrencyCost };
       return newProduct;
     });
-    console.log('newProducts for cart', newProducts);
     return newProducts;
   },
 );

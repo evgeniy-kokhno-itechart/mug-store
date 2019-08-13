@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import Table from '../../shared/markup-usage/table';
-import ProductPrice from '../../cart/components/productPrice';
+import Table from '../../shared/markup-usage/Table';
+import ProductPrice from '../../cart/components/ProductPrice';
+import '../../styles/OrderTable.css';
 
 class OrderTable extends Component {
   columns = [
     {
-      path: 'title',
+      key: 'title',
       label: 'Title',
       content: product => (
         <Link to={`/products/${product.id}`} className="clickable">
           {product.title}
         </Link>
       ),
-      style: { width: '70%' },
+      customClasses: 'order_table__column--title',
     },
     {
       path: 'quantity',
@@ -24,11 +25,9 @@ class OrderTable extends Component {
     },
     {
       key: 'cost',
-      path: 'cost',
       label: 'Cost',
       content: product => <ProductPrice price={product.currentCurrencyCost} isCurrencyLoading={this.props.isCurrencyLoading} />,
-      style: { width: '10%' },
-      customClasses: 'text-center',
+      customClasses: 'text-center order_table__column--cost',
     },
   ];
 
@@ -47,7 +46,7 @@ class OrderTable extends Component {
 OrderTable.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string,
+      id: PropTypes.string,
       quantity: PropTypes.number,
       price: PropTypes.object,
       title: PropTypes.string,

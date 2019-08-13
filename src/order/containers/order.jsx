@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { submitCartOrder } from '../../cart/cartActions';
-import OrderTable from './orderTable';
-import TotalCostCalculator from '../../cart/containers/totalCostCalculator';
-import OrderForm from './orderForm';
+import OrderTable from './OrderTable';
+import TotalCostCalculator from '../../cart/containers/TotalCostCalculator';
+import OrderForm from './OrderForm';
 import { cartCostsSelector } from '../../cart/cartSelectors';
 
 const Order = ({
@@ -41,7 +41,6 @@ Order.propTypes = {
     username: PropTypes.string,
   }),
   currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  // history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
 
   submitCartOrder: PropTypes.func.isRequired,
 };

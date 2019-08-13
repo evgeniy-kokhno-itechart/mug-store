@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { changeCategory } from '../categories-redux-state/categoryActions';
 import paginate from '../../services/catalog/paginate';
-import ListGroup from '../../shared/controls/listGroup';
-import CatalogTable from './catalogTable';
-import CatalogTableHeader from '../components/catalogTableHeader';
-import CatalogTableFooter from '../components/catalogTableFooter';
-import Spinner from '../../shared/markup-usage/spinner';
-import ErrorMessage from '../../shared/markup-usage/errorMessage';
+import ListGroup from '../../shared/controls/ListGroup';
+import CatalogTable from './CatalogTable';
+import CatalogTableHeader from '../components/CatalogTableHeader';
+import CatalogTableFooter from '../components/CatalogTableFooter';
+import Spinner from '../../shared/markup-usage/Spinner';
+import ErrorMessage from '../../shared/markup-usage/ErrorMessage';
 import { deleteProduct, getProducts } from '../../product/productsActions';
 import { productsPricesSelector } from '../../product/productsSelectors';
 

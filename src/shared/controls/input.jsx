@@ -6,7 +6,9 @@ const Input = ({
 }) => (
   <div className="form-group">
     <label htmlFor={name}>{label}</label>
+
     <input {...rest} key={name} name={name} id={name} onChange={e => onChange(e, matchedInputName)} className="form-control" />
+
     {error && <div className="alert alert-danger">{error}</div>}
   </div>
 );

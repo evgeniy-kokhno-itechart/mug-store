@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loginUser, saveEditedUserInfo, registerNewUserAndLogin } from '../userActions';
 import FormService from '../../services/general/formService';
-import Input from '../../shared/controls/input';
+import Input from '../../shared/controls/Input';
 
 class ProfileForm extends Component {
   state = {
@@ -88,9 +88,7 @@ class ProfileForm extends Component {
   handleChange = (e, matchedInputName) => {
     const { currentTarget: input } = e;
 
-    this.setState(prevState => (
-      FormService.handleChange(input, matchedInputName, prevState, this.profileObjectSchema)
-    ));
+    this.setState(prevState => FormService.handleChange(input, matchedInputName, prevState, this.profileObjectSchema));
   };
 
   mapToViewModel({
@@ -114,77 +112,55 @@ class ProfileForm extends Component {
       <React.Fragment>
         <h1 className="text-center m-3">{this.props.user.name ? 'Edit profile' : 'Register'}</h1>
         <form className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto" onSubmit={this.handleSubmit}>
-
           <Input
-            type='text'
-            name='username'
-            label='Username (a valid E-mail)'
+            type="text"
+            name="username"
+            label="Username (a valid E-mail)"
             value={_.get(data, 'username')}
             error={errors.username}
             onChange={this.handleChange}
           />
 
-          <Input
-            type='text'
-            name='name'
-            label='Name'
-            value={_.get(data, 'name')}
-            error={errors.name}
-            onChange={this.handleChange}
-          />
+          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onChange={this.handleChange} />
 
           <Input
-            type='text'
-            name='country'
-            label='Country'
+            type="text"
+            name="country"
+            label="Country"
             value={_.get(data, 'country')}
             error={errors.country}
             onChange={this.handleChange}
           />
 
-          <Input
-            type='text'
-            name='city'
-            label='City'
-            value={_.get(data, 'city')}
-            error={errors.city}
-            onChange={this.handleChange}
-          />
+          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onChange={this.handleChange} />
 
           <Input
-            type='text'
-            name='address'
-            label='Address'
+            type="text"
+            name="address"
+            label="Address"
             value={_.get(data, 'address')}
             error={errors.address}
             onChange={this.handleChange}
           />
 
-          <Input
-            type='text'
-            name='phone'
-            label='Phone'
-            value={_.get(data, 'phone')}
-            error={errors.phone}
-            onChange={this.handleChange}
-          />
+          <Input type="text" name="phone" label="Phone" value={_.get(data, 'phone')} error={errors.phone} onChange={this.handleChange} />
 
           <Input
-            type='password'
-            name='password'
-            label='Password'
+            type="password"
+            name="password"
+            label="Password"
             value={_.get(data, 'password')}
             error={errors.password}
             onChange={this.handleChange}
           />
 
           <Input
-            type='password'
-            name='confirmPassword'
-            label='Title'
+            type="password"
+            name="confirmPassword"
+            label="Title"
             value={_.get(data, 'confirmPassword')}
             error={errors.confirmPassword}
-            matchedInputName='password'
+            matchedInputName="password"
             onChange={this.handleChange}
           />
 

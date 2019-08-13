@@ -3,12 +3,13 @@ import LinesEllipsis from 'react-lines-ellipsis';
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import { PropTypes } from 'prop-types';
 
+const RespEllipsis = responsiveHOC()(LinesEllipsis);
+
 const ResponsiveEllipsis = ({
   text, maxLine, ellipsis, basedOn,
-}) => {
-  const RespEllipsis = responsiveHOC()(LinesEllipsis);
-  return <RespEllipsis text={text} maxLine={maxLine} ellipsis={ellipsis} trimRight basedOn={basedOn} />;
-};
+}) => (
+  <RespEllipsis text={text} maxLine={maxLine} ellipsis={ellipsis} trimRight basedOn={basedOn} />
+);
 
 ResponsiveEllipsis.propTypes = {
   text: PropTypes.string,

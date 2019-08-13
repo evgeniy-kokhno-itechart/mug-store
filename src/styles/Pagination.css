@@ -1,0 +1,10 @@
+#bootstrap-overrides .active > .page-link {
+  background-color: gray;
+  border-color: gray;
+  color: white;
+}
+
+#bootstrap-overrides .page-link {
+  color: black;
+  box-shadow: none;
+}

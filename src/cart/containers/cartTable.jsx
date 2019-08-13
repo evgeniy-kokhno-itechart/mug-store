@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import ResponsiveEllipsis from '../../shared/markup-usage/responsiveEllipsis';
-import Table from '../../shared/markup-usage/table';
-import ItemCounter from '../../shared/controls/itemCounter';
-import ProductPrice from '../components/productPrice';
+import ResponsiveEllipsis from '../../shared/markup-usage/ResponsiveEllipsis';
+import Table from '../../shared/markup-usage/Table';
+import ItemCounter from '../../shared/controls/ItemCounter';
+import ProductPrice from '../components/ProductPrice';
 import {
   incrementQuantity, decrementQuantity, changeQuantity, deleteProductFromCart,
 } from '../cartActions';
+import '../../styles/CartTable.css';
 
 class CartTable extends Component {
   columns = [
@@ -21,7 +22,7 @@ class CartTable extends Component {
           <img src={product.imageURL} alt={product.title} className="img-fluid" />
         </Link>
       ),
-      style: { width: '15%' },
+      customClasses: 'cart-table--column__image',
     },
 
     {
@@ -32,14 +33,14 @@ class CartTable extends Component {
           {product.title}
         </Link>
       ),
-      style: { width: '10%' },
+      customClasses: 'cart-table--column__title',
     },
 
     {
       path: 'description',
       label: 'Details',
       content: product => <ResponsiveEllipsis text={product.description} maxLine="1" ellipsis="..." basedOn="words" />,
-      style: { width: '58%' },
+      customClasses: 'cart-table--column__details',
     },
 
     {
@@ -54,7 +55,7 @@ class CartTable extends Component {
           onCountChange={this.props.changeQuantity}
         />
       ),
-      style: { width: '5%' },
+      customClasses: 'cart-table--column__quantity',
     },
 
     {
@@ -66,8 +67,7 @@ class CartTable extends Component {
           isCurrencyLoading={this.props.isCurrencyLoading}
         />
       ),
-      style: { width: '5%' },
-      customClasses: 'text-center',
+      customClasses: 'text-center cart-table--column__cost',
     },
 
     {
@@ -81,7 +81,7 @@ class CartTable extends Component {
           <FontAwesomeIcon icon="trash" />
         </button>
       ),
-      style: { width: '5%' },
+      customClasses: 'cart-table--column__delete',
     },
   ];
 
@@ -110,7 +110,6 @@ CartTable.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  // cart: productsCostsSelector(state),
   currencyRates: state.currency.currencyRates,
   isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });

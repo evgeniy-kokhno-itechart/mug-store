@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import Spinner from '../../shared/markup-usage/spinner';
+import Spinner from '../../shared/markup-usage/Spinner';
 
 const ProductPrice = ({ price, isCurrencyLoading }) => (isCurrencyLoading ? <Spinner sizeInRems={1} /> : <span>{price || 0}</span>);
 

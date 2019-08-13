@@ -1,17 +1,17 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoute from '../../shared/markup-usage/protectedRoute';
-import MainPage from './main';
-import Catalog from '../../catalog/containers/catalog';
-import NotFound from './notFound';
-import ProductForm from '../../product/containers/productForm';
-import LoginForm from '../../user/components/loginForm';
-import ProfileForm from '../../user/components/profileForm';
-import Cart from '../../cart/containers/cart';
-import Order from '../../order/containers/order';
-import OrderConfirmation from '../../order/components/orderConfirmation';
-import ProductDetails from '../../product/containers/productDetails';
-import About from './about';
+import ProtectedRoute from '../../shared/markup-usage/ProtectedRoute';
+import MainPage from './Main';
+import Catalog from '../../catalog/containers/Catalog';
+import NotFound from './NotFound';
+import ProductForm from '../../product/containers/ProductForm';
+import LoginForm from '../../user/components/LoginForm';
+import ProfileForm from '../../user/components/ProfileForm';
+import Cart from '../../cart/containers/Cart';
+import Order from '../../order/containers/Order';
+import OrderConfirmation from '../../order/components/OrderConfirmation';
+import ProductDetails from '../../product/containers/ProductDetails';
+import About from './About';
 
 const Routes = () => (
   <Switch>

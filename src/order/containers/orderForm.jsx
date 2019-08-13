@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import * as Yup from 'yup';
 import _ from 'lodash';
 import { PropTypes } from 'prop-types';
-import Input from '../../shared/controls/input';
-import TextArea from '../../shared/controls/textArea';
+import Input from '../../shared/controls/Input';
+import TextArea from '../../shared/controls/TextArea';
 import FormService from '../../services/general/formService';
 
 class OrderForm extends Component {

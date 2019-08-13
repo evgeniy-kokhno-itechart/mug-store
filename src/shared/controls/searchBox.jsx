@@ -22,6 +22,7 @@ class SearchBox extends PureComponent {
           onChange={this.handleChange}
           aria-label="Search"
         />
+
         <div className="input-group-append">
           <button type="submit" className="btn btn-outline-secondary">
             <FontAwesomeIcon icon="search" />

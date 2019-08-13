@@ -1,0 +1,23 @@
+.catalog_table__product_title {
+  color: #0227b4;
+  font-size: 1.03rem;
+}
+
+.catalog_table__column--image {
+  width: 20%;
+}
+.catalog_table__column--title {
+  width: 10%;
+}
+.catalog_table__column--details {
+  width: 50%;
+}
+.catalog_table__column--rate {
+  width: 11%;
+}
+.catalog_table__column--price {
+  width: 5%;
+}
+.catalog_table__column--buynow {
+  width: 10%;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import ToCatalogButton from '../../catalog/components/toCatalogButton';
+import ToCatalogButton from '../../catalog/components/ToCatalogButton';
 
 const OrderConfirmation = () => (
   <React.Fragment>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import TableHeader from './tableHeader';
-import TableBody from './tableBody';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 const Table = (props) => {
   const { columns, items, headerExcluded } = props;

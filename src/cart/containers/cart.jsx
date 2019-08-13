@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import CartTable from './cartTable';
-import TotalCostCalculator from './totalCostCalculator';
+import CartTable from './CartTable';
+import TotalCostCalculator from './TotalCostCalculator';
 import { cartCostsSelector } from '../cartSelectors';
 
 class Cart extends Component {

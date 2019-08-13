@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import Dropdown from '../../shared/controls/dropdown';
+import Dropdown from '../../shared/controls/Dropdown';
 
 const SortBox = ({ sortColumnKey, sortOptions, onSortChange }) => (
   <Dropdown

@@ -5,13 +5,13 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import getProductImageURLs from '../../services/general/imageService';
-import InformationItem from '../../shared/markup-usage/informationItem';
+import InformationItem from '../../shared/markup-usage/InformationItem';
 import { addToCart } from '../../cart/cartActions';
 import { getProduct, clearCurrentProductInfo } from '../productsActions';
-import BuyNowButton from '../../catalog/components/buyNowButton';
-import ToCatalogButton from '../../catalog/components/toCatalogButton';
-import Spinner from '../../shared/markup-usage/spinner';
-import ErrorMessage from '../../shared/markup-usage/errorMessage';
+import BuyNowButton from '../../catalog/components/BuyNowButton';
+import ToCatalogButton from '../../catalog/components/ToCatalogButton';
+import Spinner from '../../shared/markup-usage/Spinner';
+import ErrorMessage from '../../shared/markup-usage/ErrorMessage';
 import { productCostSelector } from '../productsSelectors';
 
 class ProductDetails extends Component {

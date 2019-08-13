@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import TotalCost from '../components/totalCost';
+import TotalCost from '../components/TotalCost';
 
 class TotalCostCalculator extends Component {
   getTotalCost() {
@@ -18,9 +18,8 @@ class TotalCostCalculator extends Component {
 TotalCostCalculator.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      currentCurrencyPrice: PropTypes.number,
-      qty: PropTypes.number,
-      discount: PropTypes.number,
+      currentCurrencyCost: PropTypes.number,
+      quantity: PropTypes.number,
     }),
   ).isRequired,
   customClasses: PropTypes.string,
