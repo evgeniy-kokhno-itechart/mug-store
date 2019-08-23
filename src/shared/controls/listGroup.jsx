@@ -12,7 +12,7 @@ class ListGroup extends Component {
           <li
             key={item.id}
             role="menuitem"
-            tabIndex={index + 1} // 1 is added to avoid 0 in tabindex and prevent splitted iteration over the
+            tabIndex={index + 1} // 1 is added to avoid 0 in tabindex and prevent inconsistent iteration
             className={`list-group-item list-group-item-action list-group-item-secondary clickable p-2 p-sm-2 px-md-3 px-lg-4 text-center text-sm-left ${this.getClasses(
               item,
               selectedItem,
@@ -29,13 +29,12 @@ class ListGroup extends Component {
 }
 
 ListGroup.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
+  items: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
   selectedItem: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
   onItemSelect: PropTypes.func.isRequired,
 };
 
 ListGroup.defaultProps = {
-  items: [{ id: '', name: '' }],
   selectedItem: null,
 };
 

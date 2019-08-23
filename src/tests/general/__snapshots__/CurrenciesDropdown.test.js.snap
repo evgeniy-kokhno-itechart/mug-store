@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CurrensiesDropdown /> check the shapshot with hasLoadFailed = true and errorMessage provided 1`] = `
+"<Fragment>
+  <p className=\\"navbar-text d-inline \\">
+    Currency:
+  </p>
+  <span className=\\"badge badge-danger\\">
+    test error
+  </span>
+</Fragment>"
+`;
+
+exports[`<CurrensiesDropdown /> check the shapshot with isCurrenciesLoading = true provided 1`] = `
+"<Fragment>
+  <p className=\\"navbar-text d-inline \\">
+    Currency:
+  </p>
+  <button className=\\"btn btn-secondary\\" type=\\"button\\" disabled={true}>
+    <Spinner customSizeClassName=\\"spinner-border-sm\\" marginBootstrapClassName=\\"\\" />
+  </button>
+</Fragment>"
+`;
+
+exports[`<CurrensiesDropdown /> check the shapshot without optional props provided 1`] = `
+"<Fragment>
+  <p className=\\"navbar-text d-inline \\">
+    Currency:
+  </p>
+  <select className=\\"text-white bg-dark border-0 ml-1 mr-3\\" type=\\"dropdown\\" id=\\"currencyDropdownButton\\" value=\\"1\\" onChange={[Function: onChange]}>
+    <option value=\\"1\\">
+      test
+    </option>
+  </select>
+</Fragment>"
+`;

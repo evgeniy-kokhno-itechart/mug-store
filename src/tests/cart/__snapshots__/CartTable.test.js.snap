@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CartTable /> renders properly with default props 1`] = `
+<Table
+  columns={
+    Array [
+      Object {
+        "content": [Function],
+        "customClasses": "cart-table--column__image",
+        "key": "image",
+        "label": "",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "cart-table--column__title",
+        "label": "Title",
+        "path": "title",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "cart-table--column__details",
+        "label": "Details",
+        "path": "description",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "cart-table--column__quantity",
+        "key": "quantity",
+        "label": "Quantity",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "text-center cart-table--column__cost",
+        "label": "Cost",
+        "path": "cost",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "cart-table--column__delete",
+        "key": "deleteFromCart",
+      },
+    ]
+  }
+  headerExcluded={false}
+  items={
+    Array [
+      Object {
+        "currentCurrencyPrice": 5,
+        "description": "test product 1 description",
+        "id": "1",
+        "imageURL": "#",
+        "quantity": 3,
+        "title": "test product 1",
+      },
+      Object {
+        "currentCurrencyPrice": 10,
+        "description": "test product 2 description",
+        "id": "2",
+        "imageURL": "#",
+        "quantity": 5,
+        "title": "test product 2",
+      },
+    ]
+  }
+  sortColumn="id"
+/>
+`;

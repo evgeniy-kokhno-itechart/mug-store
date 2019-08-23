@@ -16,7 +16,8 @@ class FormService {
 
     // for (const item of result.error.details) errors[item.path[0]] = item.message;
     // was replaced by the code below due to airbnb requirement regarding for...of loop
-    const errors = result.errors.reduce((accumulator, item) => ({ ...accumulator, ...{ [item.path[0]]: item.message } }), {});
+    const errors = result.errors.reduce((accumulator, item) => ({ ...accumulator, ...{ [item.path]: item.message } }), {});
+
     return errors;
   };
 

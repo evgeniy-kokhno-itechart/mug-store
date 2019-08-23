@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cupAndPlateChristmasCrop from '../../images/CupAndPlateChristmasCrop.png';
 import cupAndPlateCrop from '../../images/CupAndPlateCrop.png';
-import '../../styles/main.css';
+import '../../styles/Main.css';
 
 const MainPage = () => (
   <div id="mainCarouselControls" className="carousel slide m-3 col-10 mx-auto" data-ride="carousel">

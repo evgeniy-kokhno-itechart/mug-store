@@ -53,7 +53,7 @@ class OrderForm extends Component {
   }
 
   handleChange = (e) => {
-    const { currentTarget: input } = e;
+    const { target: input } = e;
 
     // null stands for matchedInputName
     this.setState(prevState => FormService.handleChange(input, null, prevState, this.orderFormSchema));
@@ -83,7 +83,7 @@ class OrderForm extends Component {
       <React.Fragment>
         <p>Please fill out the form to continue</p>
         <form onSubmit={this.handleSubmit}>
-          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onChange={this.handleChange} />
+          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onValueChange={this.handleChange} />
 
           <Input
             type="text"
@@ -91,10 +91,10 @@ class OrderForm extends Component {
             label="Country"
             value={_.get(data, 'country')}
             error={errors.country}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
-          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onChange={this.handleChange} />
+          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onValueChange={this.handleChange} />
 
           <Input
             type="text"
@@ -102,12 +102,19 @@ class OrderForm extends Component {
             label="Address"
             value={_.get(data, 'address')}
             error={errors.address}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
-          <Input type="text" name="phone" label="Phone" value={_.get(data, 'phone')} error={errors.phone} onChange={this.handleChange} />
+          <Input
+            type="text"
+            name="phone"
+            label="Phone"
+            value={_.get(data, 'phone')}
+            error={errors.phone}
+            onValueChange={this.handleChange}
+          />
 
-          <TextArea name="comment" label="Comment" value={data.comment} error={errors.comment} onChange={this.handleChange} />
+          <TextArea name="comment" label="Comment" value={data.comment} error={errors.comment} onValueChange={this.handleChange} />
 
           <button
             type="submit"
@@ -123,7 +130,16 @@ class OrderForm extends Component {
 }
 
 OrderForm.propTypes = {
-  currentUser: PropTypes.shape({ name: PropTypes.string }),
+  currentUser: PropTypes.shape({
+    id: PropTypes.string,
+    address: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    roles: PropTypes.arrayOf(PropTypes.string),
+    username: PropTypes.string,
+  }),
   onOrderSubmit: PropTypes.func.isRequired,
 };
 

@@ -6,7 +6,7 @@ import Table from '../../shared/markup-usage/Table';
 import ProductPrice from '../../cart/components/ProductPrice';
 import '../../styles/OrderTable.css';
 
-class OrderTable extends Component {
+export class OrderTable extends Component {
   columns = [
     {
       key: 'title',
@@ -54,12 +54,10 @@ OrderTable.propTypes = {
   ).isRequired,
   sortColumn: PropTypes.string.isRequired,
 
-  currentCurrency: PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string }).isRequired,
   isCurrencyLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  currentCurrency: state.currency.currentCurrency,
   isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });
 

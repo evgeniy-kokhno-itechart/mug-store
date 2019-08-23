@@ -1,0 +1,1109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductForm /> renders Spinner when isProductLoading is true 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  clearCurrentProductInfo={[MockFunction]}
+  currentCurrency={
+    Object {
+      "id": "1",
+      "name": "CURR1",
+      "rate": 0.56,
+    }
+  }
+  errorWhileProductLoading=""
+  errorWhileProductSaving=""
+  getProduct={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  hasProductLoadingFailed={false}
+  hasSavingFailed={false}
+  isProductLoading={true}
+  isSavingInProcess={true}
+  match={
+    Object {
+      "params": Object {
+        "id": "",
+      },
+    }
+  }
+  product={
+    Object {
+      "category": Object {},
+      "currentCurrencyPrice": 0,
+      "description": "",
+      "discount": 0,
+      "id": "",
+      "imageURL": "",
+      "producer": "",
+      "rate": "",
+      "title": "defaultProduct",
+    }
+  }
+  saveProduct={[MockFunction]}
+>
+  <Spinner
+    customSizeClassName="product-form__spinner"
+    marginBootstrapClassName="mt-5"
+  >
+    <div
+      className="text-center mt-5"
+    >
+      <div
+        className="spinner-border product-form__spinner"
+        role="status"
+      >
+        <span
+          className="sr-only"
+        >
+          Loading...
+        </span>
+      </div>
+    </div>
+  </Spinner>
+</ProductForm>
+`;
+
+exports[`<ProductForm /> renders Spinner when isSavingInProcess is true 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  clearCurrentProductInfo={[MockFunction]}
+  currentCurrency={
+    Object {
+      "id": "1",
+      "name": "CURR1",
+      "rate": 0.56,
+    }
+  }
+  errorWhileProductLoading=""
+  errorWhileProductSaving=""
+  getProduct={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  hasProductLoadingFailed={false}
+  hasSavingFailed={false}
+  isProductLoading={true}
+  isSavingInProcess={true}
+  match={
+    Object {
+      "params": Object {
+        "id": "",
+      },
+    }
+  }
+  product={
+    Object {
+      "category": Object {},
+      "currentCurrencyPrice": 0,
+      "description": "",
+      "discount": 0,
+      "id": "",
+      "imageURL": "",
+      "producer": "",
+      "rate": "",
+      "title": "defaultProduct",
+    }
+  }
+  saveProduct={[MockFunction]}
+>
+  <Spinner
+    customSizeClassName="product-form__spinner"
+    marginBootstrapClassName="mt-5"
+  >
+    <div
+      className="text-center mt-5"
+    >
+      <div
+        className="spinner-border product-form__spinner"
+        role="status"
+      >
+        <span
+          className="sr-only"
+        >
+          Loading...
+        </span>
+      </div>
+    </div>
+  </Spinner>
+</ProductForm>
+`;
+
+exports[`<ProductForm /> renders empty form with match.params.id is set to new 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  clearCurrentProductInfo={[MockFunction]}
+  currentCurrency={
+    Object {
+      "id": "1",
+      "name": "CURR1",
+      "rate": 0.56,
+    }
+  }
+  errorWhileProductLoading=""
+  errorWhileProductSaving=""
+  getProduct={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  hasProductLoadingFailed={false}
+  hasSavingFailed={false}
+  isProductLoading={false}
+  isSavingInProcess={false}
+  match={
+    Object {
+      "params": Object {
+        "id": "new",
+      },
+    }
+  }
+  product={
+    Object {
+      "category": Object {},
+      "currentCurrencyPrice": 0,
+      "description": "",
+      "discount": 0,
+      "id": "",
+      "imageURL": "",
+      "producer": "",
+      "rate": "",
+      "title": "defaultProduct",
+    }
+  }
+  saveProduct={[MockFunction]}
+>
+  <h1
+    className="text-center m-3"
+  >
+    Product Info
+  </h1>
+  <form
+    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+    onSubmit={[Function]}
+  >
+    <Input
+      error=""
+      label="Title"
+      matchedInputName=""
+      name="title"
+      onValueChange={[Function]}
+      type="text"
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="title"
+        >
+          Title
+        </label>
+        <input
+          className="form-control"
+          id="title"
+          key="title"
+          name="title"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Image URL"
+      matchedInputName=""
+      name="imageURL"
+      onValueChange={[Function]}
+      type="text"
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="imageURL"
+        >
+          Image URL
+        </label>
+        <input
+          className="form-control"
+          id="imageURL"
+          key="imageURL"
+          name="imageURL"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </Input>
+    <TextArea
+      error=""
+      label="Details"
+      name="description"
+      onValueChange={[Function]}
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="description"
+        >
+          Details
+        </label>
+        <textarea
+          className="form-control"
+          id="description"
+          name="description"
+          onChange={[Function]}
+          value=""
+        />
+      </div>
+    </TextArea>
+    <Dropdown
+      customClasses=""
+      defaultText="Please choose..."
+      error=""
+      isOnelineElement={false}
+      label="Category"
+      name="categoryId"
+      onValueChange={[Function]}
+      options={
+        Array [
+          Object {
+            "id": "1",
+            "name": "category1",
+          },
+          Object {
+            "id": "2",
+            "name": "category2",
+          },
+        ]
+      }
+      value=""
+    >
+      <div
+        className="form-group flex-nowrap  "
+      >
+        <label
+          className="mr-2 text-nowrap"
+          htmlFor="categoryId"
+        >
+          Category
+        </label>
+        <select
+          className="form-control"
+          id="categoryId"
+          name="categoryId"
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            value="-1"
+          >
+            Please choose...
+          </option>
+          <option
+            key="1"
+            value="1"
+          >
+            category1
+          </option>
+          <option
+            key="2"
+            value="2"
+          >
+            category2
+          </option>
+        </select>
+      </div>
+    </Dropdown>
+    <Input
+      error=""
+      label="Price, CURR1"
+      matchedInputName=""
+      name="currentCurrencyPrice"
+      onValueChange={[Function]}
+      type="text"
+      value={0}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="currentCurrencyPrice"
+        >
+          Price, CURR1
+        </label>
+        <input
+          className="form-control"
+          id="currentCurrencyPrice"
+          key="currentCurrencyPrice"
+          name="currentCurrencyPrice"
+          onChange={[Function]}
+          type="text"
+          value={0}
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Dicount, %"
+      matchedInputName=""
+      name="discount"
+      onValueChange={[Function]}
+      type="text"
+      value={0}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="discount"
+        >
+          Dicount, %
+        </label>
+        <input
+          className="form-control"
+          id="discount"
+          key="discount"
+          name="discount"
+          onChange={[Function]}
+          type="text"
+          value={0}
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Producer"
+      matchedInputName=""
+      name="producer"
+      onValueChange={[Function]}
+      type="text"
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="producer"
+        >
+          Producer
+        </label>
+        <input
+          className="form-control"
+          id="producer"
+          key="producer"
+          name="producer"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Rate"
+      matchedInputName=""
+      name="rate"
+      onValueChange={[Function]}
+      type="text"
+      value={0}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="rate"
+        >
+          Rate
+        </label>
+        <input
+          className="form-control"
+          id="rate"
+          key="rate"
+          name="rate"
+          onChange={[Function]}
+          type="text"
+          value={0}
+        />
+      </div>
+    </Input>
+    <button
+      className="btn btn-secondary w-100"
+      disabled={
+        Object {
+          "categoryId": "Category is a required field",
+          "currentCurrencyPrice": "Price must be greater than 0",
+          "description": "Details is a required field",
+          "imageURL": "Image URL must be at least 5 characters",
+          "producer": "Producer must be at least 5 characters",
+          "title": "Title must be at least 3 characters",
+        }
+      }
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</ProductForm>
+`;
+
+exports[`<ProductForm /> renders error message when hasProductLoadingFailed is true 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  clearCurrentProductInfo={[MockFunction]}
+  currentCurrency={
+    Object {
+      "id": "1",
+      "name": "CURR1",
+      "rate": 0.56,
+    }
+  }
+  errorWhileProductLoading="test product loading error"
+  errorWhileProductSaving=""
+  getProduct={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  hasProductLoadingFailed={true}
+  hasSavingFailed={false}
+  isProductLoading={false}
+  isSavingInProcess={false}
+  match={
+    Object {
+      "params": Object {
+        "id": "",
+      },
+    }
+  }
+  product={
+    Object {
+      "category": Object {},
+      "currentCurrencyPrice": 0,
+      "description": "",
+      "discount": 0,
+      "id": "",
+      "imageURL": "",
+      "producer": "",
+      "rate": "",
+      "title": "defaultProduct",
+    }
+  }
+  saveProduct={[MockFunction]}
+>
+  <ErrorMessage
+    message="test product loading error"
+  >
+    <span
+      className="text-danger"
+    >
+      The following error occurred: test product loading error
+    </span>
+  </ErrorMessage>
+</ProductForm>
+`;
+
+exports[`<ProductForm /> renders error message when hasSavingFailed is true 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  clearCurrentProductInfo={[MockFunction]}
+  currentCurrency={
+    Object {
+      "id": "1",
+      "name": "CURR1",
+      "rate": 0.56,
+    }
+  }
+  errorWhileProductLoading=""
+  errorWhileProductSaving="test product saving error"
+  getProduct={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  hasProductLoadingFailed={false}
+  hasSavingFailed={true}
+  isProductLoading={false}
+  isSavingInProcess={false}
+  match={
+    Object {
+      "params": Object {
+        "id": "",
+      },
+    }
+  }
+  product={
+    Object {
+      "category": Object {},
+      "currentCurrencyPrice": 0,
+      "description": "",
+      "discount": 0,
+      "id": "",
+      "imageURL": "",
+      "producer": "",
+      "rate": "",
+      "title": "defaultProduct",
+    }
+  }
+  saveProduct={[MockFunction]}
+>
+  <ErrorMessage
+    message="test product saving error"
+  >
+    <span
+      className="text-danger"
+    >
+      The following error occurred: test product saving error
+    </span>
+  </ErrorMessage>
+</ProductForm>
+`;
+
+exports[`<ProductForm /> renders properly with product data provided 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  clearCurrentProductInfo={[MockFunction]}
+  currentCurrency={
+    Object {
+      "id": "1",
+      "name": "CURR1",
+      "rate": 0.56,
+    }
+  }
+  errorWhileProductLoading=""
+  errorWhileProductSaving=""
+  getProduct={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  hasProductLoadingFailed={false}
+  hasSavingFailed={false}
+  isProductLoading={false}
+  isSavingInProcess={false}
+  match={
+    Object {
+      "params": Object {
+        "id": "",
+      },
+    }
+  }
+  product={
+    Object {
+      "basePrice": 5,
+      "category": Object {
+        "id": "1",
+        "name": "category 1",
+      },
+      "currentCurrencyPrice": 5,
+      "description": "product 1 description",
+      "discount": 0,
+      "id": "1",
+      "imageURL": "#",
+      "producer": "test producer 1",
+      "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+      "rate": "5",
+      "title": "Mug 1",
+    }
+  }
+  saveProduct={[MockFunction]}
+>
+  <h1
+    className="text-center m-3"
+  >
+    Product Info
+  </h1>
+  <form
+    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+    onSubmit={[Function]}
+  >
+    <Input
+      error=""
+      label="Title"
+      matchedInputName=""
+      name="title"
+      onValueChange={[Function]}
+      type="text"
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="title"
+        >
+          Title
+        </label>
+        <input
+          className="form-control"
+          id="title"
+          key="title"
+          name="title"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Image URL"
+      matchedInputName=""
+      name="imageURL"
+      onValueChange={[Function]}
+      type="text"
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="imageURL"
+        >
+          Image URL
+        </label>
+        <input
+          className="form-control"
+          id="imageURL"
+          key="imageURL"
+          name="imageURL"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </Input>
+    <TextArea
+      error=""
+      label="Details"
+      name="description"
+      onValueChange={[Function]}
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="description"
+        >
+          Details
+        </label>
+        <textarea
+          className="form-control"
+          id="description"
+          name="description"
+          onChange={[Function]}
+          value=""
+        />
+      </div>
+    </TextArea>
+    <Dropdown
+      customClasses=""
+      defaultText="Please choose..."
+      error=""
+      isOnelineElement={false}
+      label="Category"
+      name="categoryId"
+      onValueChange={[Function]}
+      options={
+        Array [
+          Object {
+            "id": "1",
+            "name": "category1",
+          },
+          Object {
+            "id": "2",
+            "name": "category2",
+          },
+        ]
+      }
+      value=""
+    >
+      <div
+        className="form-group flex-nowrap  "
+      >
+        <label
+          className="mr-2 text-nowrap"
+          htmlFor="categoryId"
+        >
+          Category
+        </label>
+        <select
+          className="form-control"
+          id="categoryId"
+          name="categoryId"
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            value="-1"
+          >
+            Please choose...
+          </option>
+          <option
+            key="1"
+            value="1"
+          >
+            category1
+          </option>
+          <option
+            key="2"
+            value="2"
+          >
+            category2
+          </option>
+        </select>
+      </div>
+    </Dropdown>
+    <Input
+      error=""
+      label="Price, CURR1"
+      matchedInputName=""
+      name="currentCurrencyPrice"
+      onValueChange={[Function]}
+      type="text"
+      value={0}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="currentCurrencyPrice"
+        >
+          Price, CURR1
+        </label>
+        <input
+          className="form-control"
+          id="currentCurrencyPrice"
+          key="currentCurrencyPrice"
+          name="currentCurrencyPrice"
+          onChange={[Function]}
+          type="text"
+          value={0}
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Dicount, %"
+      matchedInputName=""
+      name="discount"
+      onValueChange={[Function]}
+      type="text"
+      value={0}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="discount"
+        >
+          Dicount, %
+        </label>
+        <input
+          className="form-control"
+          id="discount"
+          key="discount"
+          name="discount"
+          onChange={[Function]}
+          type="text"
+          value={0}
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Producer"
+      matchedInputName=""
+      name="producer"
+      onValueChange={[Function]}
+      type="text"
+      value=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="producer"
+        >
+          Producer
+        </label>
+        <input
+          className="form-control"
+          id="producer"
+          key="producer"
+          name="producer"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </Input>
+    <Input
+      error=""
+      label="Rate"
+      matchedInputName=""
+      name="rate"
+      onValueChange={[Function]}
+      type="text"
+      value={0}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="rate"
+        >
+          Rate
+        </label>
+        <input
+          className="form-control"
+          id="rate"
+          key="rate"
+          name="rate"
+          onChange={[Function]}
+          type="text"
+          value={0}
+        />
+      </div>
+    </Input>
+    <button
+      className="btn btn-secondary w-100"
+      disabled={
+        Object {
+          "categoryId": "Category is a required field",
+          "currentCurrencyPrice": "Price must be greater than 0",
+          "description": "Details is a required field",
+          "imageURL": "Image URL must be at least 5 characters",
+          "producer": "Producer must be at least 5 characters",
+          "title": "Title must be at least 3 characters",
+        }
+      }
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</ProductForm>
+`;
+
+exports[`<ProductForm /> renders spinner with default props and calls getProduct 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  clearCurrentProductInfo={[MockFunction]}
+  currentCurrency={
+    Object {
+      "id": "1",
+      "name": "CURR1",
+      "rate": 0.56,
+    }
+  }
+  errorWhileProductLoading=""
+  errorWhileProductSaving=""
+  getProduct={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  hasProductLoadingFailed={false}
+  hasSavingFailed={false}
+  isProductLoading={true}
+  isSavingInProcess={true}
+  match={
+    Object {
+      "params": Object {
+        "id": "",
+      },
+    }
+  }
+  product={
+    Object {
+      "category": Object {},
+      "currentCurrencyPrice": 0,
+      "description": "",
+      "discount": 0,
+      "id": "",
+      "imageURL": "",
+      "producer": "",
+      "rate": "",
+      "title": "defaultProduct",
+    }
+  }
+  saveProduct={[MockFunction]}
+>
+  <Spinner
+    customSizeClassName="product-form__spinner"
+    marginBootstrapClassName="mt-5"
+  >
+    <div
+      className="text-center mt-5"
+    >
+      <div
+        className="spinner-border product-form__spinner"
+        role="status"
+      >
+        <span
+          className="sr-only"
+        >
+          Loading...
+        </span>
+      </div>
+    </div>
+  </Spinner>
+</ProductForm>
+`;

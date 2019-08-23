@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TableHeader /> renders properly 1`] = `
+<thead>
+  <tr>
+    <th
+      className="p-1 p-md-2 p-lg-3 "
+      key="id"
+    >
+      ID
+    </th>
+    <th
+      className="p-1 p-md-2 p-lg-3 "
+      key="name"
+    >
+      Name
+    </th>
+    <th
+      className="p-1 p-md-2 p-lg-3 "
+      key="description"
+    >
+      Description
+    </th>
+  </tr>
+</thead>
+`;

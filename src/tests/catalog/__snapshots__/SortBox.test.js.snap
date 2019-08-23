@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SortBox /> check render properly 1`] = `"<Dropdown name=\\"sortDropdown\\" label=\\"Sorted by:\\" options={{...}} value=\\"title\\" isOnelineElement={true} customClasses=\\"justify-content-end mt-1 mt-lg-0\\" onValueChange={[Function: mockConstructor]} error=\\"\\" defaultText=\\"\\" />"`;

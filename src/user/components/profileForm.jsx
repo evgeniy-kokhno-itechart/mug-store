@@ -3,11 +3,11 @@ import * as Yup from 'yup';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { loginUser, saveEditedUserInfo, registerNewUserAndLogin } from '../userActions';
+import { saveEditedUserInfo, registerNewUserAndLogin } from '../userActions';
 import FormService from '../../services/general/formService';
 import Input from '../../shared/controls/Input';
 
-class ProfileForm extends Component {
+export class ProfileForm extends Component {
   state = {
     data: {
       username: '',
@@ -86,7 +86,7 @@ class ProfileForm extends Component {
   };
 
   handleChange = (e, matchedInputName) => {
-    const { currentTarget: input } = e;
+    const { target: input } = e;
 
     this.setState(prevState => FormService.handleChange(input, matchedInputName, prevState, this.profileObjectSchema));
   };
@@ -118,10 +118,10 @@ class ProfileForm extends Component {
             label="Username (a valid E-mail)"
             value={_.get(data, 'username')}
             error={errors.username}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
-          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onChange={this.handleChange} />
+          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onValueChange={this.handleChange} />
 
           <Input
             type="text"
@@ -129,10 +129,10 @@ class ProfileForm extends Component {
             label="Country"
             value={_.get(data, 'country')}
             error={errors.country}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
-          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onChange={this.handleChange} />
+          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onValueChange={this.handleChange} />
 
           <Input
             type="text"
@@ -140,10 +140,10 @@ class ProfileForm extends Component {
             label="Address"
             value={_.get(data, 'address')}
             error={errors.address}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
-          <Input type="text" name="phone" label="Phone" value={_.get(data, 'phone')} error={errors.phone} onChange={this.handleChange} />
+          <Input type="text" name="phone" label="Phone" value={_.get(data, 'phone')} error={errors.phone} onValueChange={this.handleChange} />
 
           <Input
             type="password"
@@ -151,7 +151,7 @@ class ProfileForm extends Component {
             label="Password"
             value={_.get(data, 'password')}
             error={errors.password}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Input
@@ -161,7 +161,7 @@ class ProfileForm extends Component {
             value={_.get(data, 'confirmPassword')}
             error={errors.confirmPassword}
             matchedInputName="password"
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <button type="submit" disabled={FormService.validateForm(this.profileObjectSchema, data)} className="btn btn-secondary w-100">
@@ -197,7 +197,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  loginUser,
   saveEditedUserInfo,
   registerNewUserAndLogin,
 };

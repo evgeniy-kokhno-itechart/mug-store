@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ItemCounter /> renders with decrement button disabled if count=1 1`] = `
+"<div className=\\"input-group input-group-sm mx-auto flex-nowrap\\">
+  <button type=\\"button\\" className=\\"item_counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2 disabled\\" onClick={[Function: onClick]}>
+    <FontAwesomeIcon icon=\\"minus\\" className=\\"my-auto\\" border={false} mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+  </button>
+  <input className=\\"form-control inline text-center p-1 p-lg-2\\" type=\\"text\\" value={1} onChange={[Function: onChange]} />
+  <button type=\\"button\\" className=\\"item_counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2\\" onClick={[Function: onClick]}>
+    <FontAwesomeIcon icon=\\"plus\\" className=\\"my-auto\\" border={false} mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+  </button>
+</div>"
+`;
+
+exports[`<ItemCounter /> renders with decrement button enabled if count is 2 (i.e. greater than 1) 1`] = `
+"<div className=\\"input-group input-group-sm mx-auto flex-nowrap\\">
+  <button type=\\"button\\" className=\\"item_counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2 \\" onClick={[Function: onClick]}>
+    <FontAwesomeIcon icon=\\"minus\\" className=\\"my-auto\\" border={false} mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+  </button>
+  <input className=\\"form-control inline text-center p-1 p-lg-2\\" type=\\"text\\" value={2} onChange={[Function: onChange]} />
+  <button type=\\"button\\" className=\\"item_counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2\\" onClick={[Function: onClick]}>
+    <FontAwesomeIcon icon=\\"plus\\" className=\\"my-auto\\" border={false} mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+  </button>
+</div>"
+`;

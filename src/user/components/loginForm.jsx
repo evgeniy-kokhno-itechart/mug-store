@@ -8,7 +8,7 @@ import { loginUser as loginUserAction } from '../userActions';
 import FormService from '../../services/general/formService';
 import Input from '../../shared/controls/Input';
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
   state = {
     data: { username: '', password: '' },
     errors: {},
@@ -24,7 +24,7 @@ class LoginForm extends Component {
   };
 
   handleChange = (e, matchedInputName) => {
-    const { currentTarget: input } = e;
+    const { target: input } = e;
 
     this.setState(prevState => FormService.handleChange(input, matchedInputName, prevState, this.loginObjectSchema));
   };
@@ -44,13 +44,8 @@ class LoginForm extends Component {
     }
   };
 
-  render() {
+  renderForm = () => {
     const { data, errors } = this.state;
-
-    if (this.props.currentUser.name) {
-      return <Redirect to="/" />;
-    }
-
     return (
       <React.Fragment>
         <h1 className="text-center m-3">Login</h1>
@@ -61,7 +56,7 @@ class LoginForm extends Component {
             label="Username"
             value={_.get(data, 'username')}
             error={errors.username}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Input
@@ -70,7 +65,7 @@ class LoginForm extends Component {
             label="Password"
             value={_.get(data, 'password')}
             error={errors.password}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <button type="submit" disabled={FormService.validateForm(this.loginObjectSchema, data)} className="btn btn-secondary w-100">
@@ -79,22 +74,25 @@ class LoginForm extends Component {
         </form>
       </React.Fragment>
     );
+  };
+
+  render() {
+    return this.props.currentUserName ? <Redirect to="/" /> : this.renderForm();
   }
 }
 
 LoginForm.propTypes = {
-  currentUser: PropTypes.shape({ name: PropTypes.string }),
-  location: PropTypes.shape({ fromPath: PropTypes.shape({ pathname: PropTypes.string }) }),
-  history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
+  currentUserName: PropTypes.string,
+  location: PropTypes.shape({ fromPath: PropTypes.string }),
   loginUserAction: PropTypes.func.isRequired,
 };
 
 LoginForm.defaultProps = {
-  currentUser: null,
+  currentUserName: '',
   location: { fromPath: null },
 };
 
-const mapStateToProps = state => ({ currentUser: state.user.currentUser });
+const mapStateToProps = state => ({ currentUserName: state.user.currentUser.name });
 
 const mapDispatchToProps = {
   loginUserAction,

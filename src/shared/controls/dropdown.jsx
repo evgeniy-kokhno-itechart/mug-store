@@ -2,14 +2,14 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 const Dropdown = ({
-  name, label, error, value, options, isOnelineElement, defaultText, onChange, customClasses,
+  name, label, error, value, options, isOnelineElement, defaultText, onValueChange, customClasses,
 }) => (
   <div className={`form-group flex-nowrap ${isOnelineElement ? 'form-inline' : ''} ${customClasses || ''}`}>
     <label className="mr-2 text-nowrap" htmlFor={name}>
       {label}
     </label>
 
-    <select name={name} id={name} value={value} onChange={e => onChange(e)} className="form-control">
+    <select name={name} id={name} value={value} onChange={e => onValueChange(e)} className="form-control">
       {defaultText && <option value="-1">{defaultText}</option>}
       {options.map(o => (
         <option key={o.id} value={o.id}>
@@ -26,12 +26,12 @@ Dropdown.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
   isOnelineElement: PropTypes.bool,
   defaultText: PropTypes.string,
   customClasses: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func.isRequired,
 };
 
 Dropdown.defaultProps = {
@@ -39,6 +39,7 @@ Dropdown.defaultProps = {
   isOnelineElement: false,
   defaultText: '',
   customClasses: '',
+  value: '',
 };
 
 export default Dropdown;

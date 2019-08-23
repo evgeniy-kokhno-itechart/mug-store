@@ -54,7 +54,7 @@ export const getProduct = productId => (dispatch) => {
   getProductById(productId)
     .then((response) => {
       if (!response.statusText === 'OK') {
-        throw Error(response.statusText);
+        throw Error(`${response.status} ${response.statusText}`);
       }
       return response.data;
     })
@@ -64,7 +64,9 @@ export const getProduct = productId => (dispatch) => {
     })
     .catch((error) => {
       dispatch(gettingProductByIdFailed(true, error.message));
-      dispatch(replace('/not-found'));
+      if (error.message.includes('404')) {
+        dispatch(replace('/not-found'));
+      }
     });
 };
 
@@ -88,9 +90,8 @@ export const saveProduct = (product, redirectUrl) => (dispatch) => {
       dispatch(push(redirectUrl));
     })
     .catch((error) => {
-      dispatch(savingProductFailed(true, error.message));
-
       // !!! FAKE LOGIC delete once get proper back-end app
+      dispatch(savingProductFailed(false, error.message)); // should be true
       dispatch(push(redirectUrl));
     });
 };

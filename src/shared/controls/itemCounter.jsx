@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes } from 'prop-types';
-import '../../styles/itemCounter.css';
+import '../../styles/ItemCounter.css';
 
 const ItemCounter = ({
   count, itemId, onIncrementClick, onDecrementClick, onCountChange,
@@ -28,7 +28,6 @@ const ItemCounter = ({
 
     <button
       type="button"
-      // id="item_counter__btn"
       className="item_counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
       onClick={() => onIncrementClick(itemId, 1)}
     >

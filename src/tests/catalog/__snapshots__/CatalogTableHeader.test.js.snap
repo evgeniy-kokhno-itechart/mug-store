@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CatalogTableHeader /> check render properly 1`] = `
+"<div className=\\"row justify-content-between mx-1 mx-sm-2\\">
+  <div className=\\"col-12 col-md-5 col-lg-4 col-xl-3\\">
+    <SearchBox value=\\"\\" onSearchSubmit={[Function: mockConstructor]} />
+  </div>
+  <div className=\\"col-12 col-md col-lg-3 col-xl-2\\">
+    <SortBox sortColumnKey=\\"title\\" sortOptions={{...}} onSortChange={[Function: mockConstructor]} />
+  </div>
+</div>"
+`;
+
+exports[`<CatalogTableHeader /> check render with searchQuery provided 1`] = `
+"<div className=\\"row justify-content-between mx-1 mx-sm-2\\">
+  <div className=\\"col-12 col-md-5 col-lg-4 col-xl-3\\">
+    <SearchBox value=\\"test query\\" onSearchSubmit={[Function: mockConstructor]} />
+  </div>
+  <div className=\\"col-12 col-md col-lg-3 col-xl-2\\">
+    <SortBox sortColumnKey=\\"title\\" sortOptions={{...}} onSortChange={[Function: mockConstructor]} />
+  </div>
+</div>"
+`;
+
+exports[`<CatalogTableHeader /> render AddNewProduct button with currentUserRole admin provided 1`] = `
+"<div className=\\"row justify-content-between mx-1 mx-sm-2\\">
+  <div className=\\"col-12 col-md-5 col-lg-4 col-xl-3\\">
+    <SearchBox value=\\"\\" onSearchSubmit={[Function: mockConstructor]} />
+  </div>
+  <div className=\\"col-12 col-md-4 col-lg-3 col-xl-3\\">
+    <Link to=\\"/edit/products/new\\" className=\\"btn btn-secondary mt-1 mt-md-0 w-100 px-md-2\\">
+      Add New Product
+    </Link>
+  </div>
+  <div className=\\"col-12 col-md col-lg-3 col-xl-2\\">
+    <SortBox sortColumnKey=\\"title\\" sortOptions={{...}} onSortChange={[Function: mockConstructor]} />
+  </div>
+</div>"
+`;

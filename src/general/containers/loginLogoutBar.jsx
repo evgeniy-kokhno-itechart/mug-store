@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { logoutUser } from '../../user/userActions';
 
-class LoginLogoutBar extends Component {
+export class LoginLogoutBar extends Component {
   renderLoginAndRegister = () => (
     <React.Fragment>
       <Link to="/login" className="nav navbar-text mr-3 d-inline clickable">

@@ -7,15 +7,16 @@ import { PropTypes } from 'prop-types';
 import { changeCategory } from '../categories-redux-state/categoryActions';
 import paginate from '../../services/catalog/paginate';
 import ListGroup from '../../shared/controls/ListGroup';
-import CatalogTable from './CatalogTable';
+import CatalogTableConnected from './CatalogTable';
 import CatalogTableHeader from '../components/CatalogTableHeader';
 import CatalogTableFooter from '../components/CatalogTableFooter';
 import Spinner from '../../shared/markup-usage/Spinner';
 import ErrorMessage from '../../shared/markup-usage/ErrorMessage';
 import { deleteProduct, getProducts } from '../../product/productsActions';
 import { productsPricesSelector } from '../../product/productsSelectors';
+import '../../styles/Catalog.css';
 
-class Catalog extends Component {
+export class Catalog extends Component {
   state = {
     searchQuery: '',
     sortColumn: { id: 'title_asc', path: 'title', order: 'asc' },
@@ -123,7 +124,7 @@ class Catalog extends Component {
       currentPage,
     } = this.state;
 
-    const { currentUser, categories, currentCategory } = this.props;
+    const { currentUserRoles, categories, currentCategory } = this.props;
 
     return (
       <div className="row mt-3">
@@ -137,7 +138,7 @@ class Catalog extends Component {
 
         <div className="col-12 col-sm-9 col-lg-10">
           <CatalogTableHeader
-            currentUserRoles={currentUser.roles}
+            currentUserRoles={currentUserRoles}
             searchQuery={searchQuery}
             sortColumnKey={sortColumn.id}
             sortOptions={this.sortOptions}
@@ -145,7 +146,7 @@ class Catalog extends Component {
             handleSort={this.handleSort}
           />
 
-          <CatalogTable
+          <CatalogTableConnected
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}
             onDelete={this.handleDelete}
@@ -179,7 +180,7 @@ class Catalog extends Component {
     } = this.props;
     return (
       (isProductsLoading || isCategoriesLoading || isProductDeletingInProcess)
-        ? <Spinner sizeInRems='5' />
+        ? <Spinner customSizeClassName='catalog__spinner' marginBootstrapClassName='mt-5' />
         : ((hasProductsLoadingFailed || hasCategoriesLoadingFailed || hasProductDeletingFailed)
           ? <ErrorMessage message={errorWhileProductsLoading || errorWhileCategoriesLoading || errorWhileProductDeleting} />
           : (productsOnPage.length
@@ -190,8 +191,8 @@ class Catalog extends Component {
 }
 
 Catalog.propTypes = {
-  currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  currentUser: PropTypes.shape({ roles: PropTypes.arrayOf(PropTypes.string) }).isRequired,
+  // currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
+  currentUserRoles: PropTypes.arrayOf(PropTypes.string),
 
   isProductsLoading: PropTypes.bool,
   hasProductsLoadingFailed: PropTypes.bool,
@@ -203,7 +204,7 @@ Catalog.propTypes = {
     description: PropTypes.string,
     category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
     basePrice: PropTypes.number,
-    currentCurrencyCost: PropTypes.number,
+    currentCurrencyPrice: PropTypes.number, // !!!
     discount: PropTypes.number,
     producer: PropTypes.string,
     publishDate: PropTypes.string,
@@ -225,25 +226,27 @@ Catalog.propTypes = {
 };
 
 Catalog.defaultProps = {
+  currentUserRoles: [],
+
   products: [],
-  isProductsLoading: true,
+  isProductsLoading: false,
   hasProductsLoadingFailed: false,
   errorWhileProductsLoading: '',
 
   categories: [],
   currentCategory: null,
-  isCategoriesLoading: true,
+  isCategoriesLoading: false,
   hasCategoriesLoadingFailed: false,
   errorWhileCategoriesLoading: '',
 
-  isProductDeletingInProcess: true,
+  isProductDeletingInProcess: false,
   hasProductDeletingFailed: false,
   errorWhileProductDeleting: '',
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
-  currentCurrency: state.currency.currentCurrency,
+  currentUserRoles: state.user.currentUser.roles,
+  // currentCurrency: state.currency.currentCurrency,
 
   products: productsPricesSelector(state),
   isProductsLoading: state.products.tableProductsStatus.isGettingInProcess,

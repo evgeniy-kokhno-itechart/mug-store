@@ -9,10 +9,13 @@ class SearchBox extends PureComponent {
     this.setState({ query: e.currentTarget.value });
   };
 
+  handleSubmit = (e) => {
+    this.props.onSearchSubmit(e, this.state.query);
+  };
+
   render() {
-    const { onSubmit } = this.props;
     return (
-      <form className="input-group" onSubmit={e => onSubmit(e, this.state.query)}>
+      <form className="input-group" onSubmit={this.handleSubmit}>
         <input
           className="form-control"
           type="text"
@@ -35,7 +38,7 @@ class SearchBox extends PureComponent {
 
 SearchBox.propTypes = {
   value: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
+  onSearchSubmit: PropTypes.func.isRequired,
 };
 
 SearchBox.defaultProps = {

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BuyNowButton /> check render with customClasses = testclass provided 1`] = `
+"<button type=\\"button\\" className=\\"btn btn-secondary testclass\\" onClick={[Function: onClick]}>
+  <FontAwesomeIcon icon=\\"cart-arrow-down\\" border={false} className=\\"\\" mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+</button>"
+`;
+
+exports[`<BuyNowButton /> check render without customClasses provided 1`] = `
+"<button type=\\"button\\" className=\\"btn btn-secondary \\" onClick={[Function: onClick]}>
+  <FontAwesomeIcon icon=\\"cart-arrow-down\\" border={false} className=\\"\\" mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+</button>"
+`;

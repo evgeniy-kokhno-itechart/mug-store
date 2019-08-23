@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductPrice /> check render with isCurrencyLoading = true provided 1`] = `"<Spinner customSizeClassName=\\"product-price__spinner\\" marginBootstrapClassName=\\"\\" />"`;
+
+exports[`<ProductPrice /> check render without isCurrencyLoading provided 1`] = `
+"<span>
+  100
+</span>"
+`;

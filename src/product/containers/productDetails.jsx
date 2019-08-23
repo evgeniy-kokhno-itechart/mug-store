@@ -13,8 +13,9 @@ import ToCatalogButton from '../../catalog/components/ToCatalogButton';
 import Spinner from '../../shared/markup-usage/Spinner';
 import ErrorMessage from '../../shared/markup-usage/ErrorMessage';
 import { productCostSelector } from '../productsSelectors';
+import '../../styles/ProductDetails.css';
 
-class ProductDetails extends Component {
+export class ProductDetails extends Component {
   state = {
     imageURLs: [],
   };
@@ -48,7 +49,6 @@ class ProductDetails extends Component {
 
   renderFieldInfo = (field) => {
     const { product } = this.props;
-    // console.log('product', product);
 
     let fieldInfo = null;
     if (!field.content) {
@@ -59,7 +59,7 @@ class ProductDetails extends Component {
     return <InformationItem key={field.label} label={field.label} info={fieldInfo} />;
   };
 
-  renderSpinner = () => <Spinner />;
+  renderSpinner = () => <Spinner customSizeClassName="product-details__spinner" marginBootstrapClassName="mt-5" />;
 
   renderErrorMessage = message => <ErrorMessage message={message} />;
 
@@ -109,13 +109,12 @@ ProductDetails.propTypes = {
     category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
     description: PropTypes.string,
     producer: PropTypes.string,
-    currentCurrencyCost: PropTypes.number,
-  }).isRequired,
+    currentCurrencyPrice: PropTypes.number,
+  }),
   isProductLoading: PropTypes.bool.isRequired,
   hasProductLoadingFailed: PropTypes.bool,
   errorWhileLoading: PropTypes.string,
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
-  history: PropTypes.shape({ replace: PropTypes.func }).isRequired,
 
   addToCart: PropTypes.func.isRequired,
   getProduct: PropTypes.func.isRequired,
@@ -123,6 +122,18 @@ ProductDetails.propTypes = {
 };
 
 ProductDetails.defaultProps = {
+  product: {
+    id: '',
+    imageURL: '',
+    title: 'defaultProduct',
+    description: '',
+    category: {},
+    basePrice: 0,
+    currentCurrencyPrice: 0,
+    discount: 0,
+    producer: '',
+    rate: '',
+  },
   hasProductLoadingFailed: false,
   errorWhileLoading: '',
 };

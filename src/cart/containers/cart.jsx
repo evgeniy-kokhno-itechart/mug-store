@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import CartTable from './CartTable';
+import CartTableConnected from './CartTable';
 import TotalCostCalculator from './TotalCostCalculator';
 import { cartCostsSelector } from '../cartSelectors';
 
-class Cart extends Component {
+export class Cart extends Component {
   renderCartDetails(products) {
-    const { currentUser } = this.props;
+    const { currentUserName } = this.props;
     return (
       <React.Fragment>
-        <CartTable
+        <CartTableConnected
           sortColumn="id"
           productsInCart={products}
           onDeleteFromCart={this.handleDeleteFromCart}
@@ -22,7 +22,7 @@ class Cart extends Component {
         <div className="row justify-content-between mx-2">
           <TotalCostCalculator products={products} customClasses="h5" />
           <div>
-            <Link className="btn btn-secondary justify-content-end" to={currentUser.name ? '/order/mycart' : '/order'}>
+            <Link className="btn btn-secondary justify-content-end" to={currentUserName ? '/order/mycart' : '/order'}>
               Order Now!
             </Link>
           </div>
@@ -54,12 +54,16 @@ Cart.propTypes = {
     }),
   ).isRequired,
 
-  currentUser: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }).isRequired,
+  currentUserName: PropTypes.string,
+};
+
+Cart.defaultProps = {
+  currentUserName: '',
 };
 
 const mapStateToProps = state => ({
   cart: cartCostsSelector(state),
-  currentUser: state.user.currentUser,
+  currentUserName: state.user.currentUser.name,
 });
 
 export default connect(mapStateToProps)(Cart);

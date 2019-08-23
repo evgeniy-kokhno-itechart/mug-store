@@ -1,0 +1,1703 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Catalog /> renders Add New Product button with products, categories and currentUserRoles admin included 1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={
+        Array [
+          "admin",
+        ]
+      }
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="title_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "title_asc",
+          "order": "asc",
+          "path": "title",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders ErrorMessage 'test error categories loading' when hasCategoriesLoadingFailed is true 1`] = `
+<ErrorMessage
+  message="test error categories loading"
+/>
+`;
+
+exports[`<Catalog /> renders ErrorMessage 'test error product deleting' when hasProductDeletingFailed is true 1`] = `
+<ErrorMessage
+  message="test error product deleting"
+/>
+`;
+
+exports[`<Catalog /> renders ErrorMessage 'test error products loading' when hasProductsLoadingFailed is true 1`] = `
+<ErrorMessage
+  message="test error products loading"
+/>
+`;
+
+exports[`<Catalog /> renders Spinner when isCategoriesLoading is true 1`] = `
+<Spinner
+  customSizeClassName="catalog__spinner"
+  marginBootstrapClassName="mt-5"
+/>
+`;
+
+exports[`<Catalog /> renders Spinner when isProductDeletingInProcess is true 1`] = `
+<Spinner
+  customSizeClassName="catalog__spinner"
+  marginBootstrapClassName="mt-5"
+/>
+`;
+
+exports[`<Catalog /> renders Spinner when isProductsLoading is true 1`] = `
+<Spinner
+  customSizeClassName="catalog__spinner"
+  marginBootstrapClassName="mt-5"
+/>
+`;
+
+exports[`<Catalog /> renders catalog table and categories when their arrays both are not empty 1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="title_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "title_asc",
+          "order": "asc",
+          "path": "title",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders product table with default sorting option which is { path: title, order: asc }  1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="title_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "title_asc",
+          "order": "asc",
+          "path": "title",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders product table with sorting option { path: currentCurrencyPrice, order: asc }  1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="currentCurrencyPrice_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "currentCurrencyPrice_asc",
+          "order": "asc",
+          "path": "currentCurrencyPrice",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders product table with sorting option { path: currentCurrencyPrice, order: desc }  1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="currentCurrencyPrice_desc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "currentCurrencyPrice_desc",
+          "order": "desc",
+          "path": "currentCurrencyPrice",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders product table with sorting option { path: rate, order: asc }  1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="rate_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "rate_asc",
+          "order": "asc",
+          "path": "rate",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders product table with sorting option { path: rate, order: desc }  1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="rate_desc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "rate_desc",
+          "order": "desc",
+          "path": "rate",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders product table with sorting option { path: title, order: desc }  1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="title_desc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "title_desc",
+          "order": "desc",
+          "path": "title",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders products those titles are contain Mug word 1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery="Mug"
+      sortColumnKey="title_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "title_asc",
+          "order": "asc",
+          "path": "title",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={10}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={2}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders the 2nd page with pageSize 2 1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="title_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 15,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 15,
+            "description": "product 3 description",
+            "discount": 0,
+            "id": "3",
+            "imageURL": "#",
+            "producer": "test producer 3",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "2",
+            "title": "Plate 3",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "title_asc",
+          "order": "asc",
+          "path": "title",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={2}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={2}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders the very first product table with pageSize 2 1`] = `
+<div
+  className="row mt-3"
+>
+  <div
+    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+  >
+    <ListGroup
+      items={
+        Array [
+          Object {
+            "id": "",
+            "name": "All Products",
+          },
+          Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          Object {
+            "id": "2",
+            "name": "category 2",
+          },
+        ]
+      }
+      onItemSelect={[Function]}
+      selectedItem={null}
+    />
+  </div>
+  <div
+    className="col-12 col-sm-9 col-lg-10"
+  >
+    <CatalogTableHeader
+      currentUserRoles={Array []}
+      handleSearch={[Function]}
+      handleSort={[Function]}
+      searchQuery=""
+      sortColumnKey="title_asc"
+      sortOptions={
+        Array [
+          Object {
+            "id": "currentCurrencyPrice_asc",
+            "name": "Price A-Z",
+          },
+          Object {
+            "id": "currentCurrencyPrice_desc",
+            "name": "Price Z-A",
+          },
+          Object {
+            "id": "title_asc",
+            "name": "Title A-Z",
+          },
+          Object {
+            "id": "title_desc",
+            "name": "Title Z-A",
+          },
+          Object {
+            "id": "rate_asc",
+            "name": "Rate 1-5",
+          },
+          Object {
+            "id": "rate_desc",
+            "name": "Rate 5-1",
+          },
+        ]
+      }
+    />
+    <Connect(CatalogTable)
+      onDelete={[Function]}
+      productsOnPage={
+        Array [
+          Object {
+            "basePrice": 5,
+            "category": Object {
+              "id": "1",
+              "name": "category 1",
+            },
+            "currentCurrencyPrice": 5,
+            "description": "product 1 description",
+            "discount": 0,
+            "id": "1",
+            "imageURL": "#",
+            "producer": "test producer 1",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "5",
+            "title": "Mug 1",
+          },
+          Object {
+            "basePrice": 10,
+            "category": Object {
+              "id": "2",
+              "name": "category 2",
+            },
+            "currentCurrencyPrice": 10,
+            "description": "product 2 description",
+            "discount": 0,
+            "id": "2",
+            "imageURL": "#",
+            "producer": "test producer 2",
+            "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+            "rate": "3",
+            "title": "Mug 2",
+          },
+        ]
+      }
+      sortColumn={
+        Object {
+          "id": "title_asc",
+          "order": "asc",
+          "path": "title",
+        }
+      }
+    />
+    <CatalogTableFooter
+      currentPage={1}
+      onItemsCountChange={[Function]}
+      onPageChange={[Function]}
+      pageSize={2}
+      pageSizeOptions={
+        Array [
+          Object {
+            "id": "5",
+            "name": "5",
+          },
+          Object {
+            "id": "10",
+            "name": "10",
+          },
+          Object {
+            "id": "15",
+            "name": "15",
+          },
+        ]
+      }
+      totalCount={3}
+    />
+  </div>
+</div>
+`;
+
+exports[`<Catalog /> renders with default props 1`] = `
+<h1
+  className="m-2 text-center"
+>
+  There are no products in the catalog
+  <div
+    className="m-1 m-md-3 mx-auto"
+  >
+    <Link
+      className="btn btn-secondary"
+      to="/"
+    >
+      To Main Page
+    </Link>
+  </div>
+</h1>
+`;

@@ -5,18 +5,17 @@ const productsinCatalogSelector = state => state.products.products;
 const currentProductSelector = state => state.products.currentProduct;
 const currencyRateSelector = state => state.currency.currentCurrency.rate;
 
-// returns cost: number
+// returns product within currentCurrencyPrice: number
 export const productCostSelector = createSelector(
   [currentProductSelector, currencyRateSelector],
   (currentProduct, rate) => {
     const currentCurrencyPrice = +(currentProduct.basePrice * rate * (1 - currentProduct.discount / 100)).toFixed(1);
     const newProduct = { ...currentProduct, currentCurrencyPrice };
-    console.log('newProduct', newProduct);
     return newProduct;
   },
 );
 
-// returns array of products for catalog
+// returns array of products for catalog within currentCurrencyPrice: number
 export const productsPricesSelector = createSelector(
   [productsinCatalogSelector, currencyRateSelector],
   (products, rate) => {
@@ -25,7 +24,6 @@ export const productsPricesSelector = createSelector(
       const newProduct = { ...product, currentCurrencyPrice };
       return newProduct;
     });
-    console.log('newProducts for catalog', newProducts);
     return newProducts;
   },
 );

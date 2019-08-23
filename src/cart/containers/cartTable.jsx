@@ -12,7 +12,7 @@ import {
 } from '../cartActions';
 import '../../styles/CartTable.css';
 
-class CartTable extends Component {
+export class CartTable extends Component {
   columns = [
     {
       key: 'image',
@@ -110,7 +110,6 @@ CartTable.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currencyRates: state.currency.currencyRates,
   isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });
 

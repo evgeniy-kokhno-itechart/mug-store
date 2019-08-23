@@ -24,7 +24,7 @@ const CatalogTableFooter = ({
         value={pageSize.toString()}
         isOnelineElement
         customClasses="justify-content-end"
-        onChange={onItemsCountChange}
+        onValueChange={onItemsCountChange}
       />
     </div>
   </div>
@@ -33,7 +33,7 @@ const CatalogTableFooter = ({
 CatalogTableFooter.propTypes = {
   totalCount: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
-  pageSizeOptions: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string })).isRequired,
+  pageSizeOptions: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
   currentPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   onItemsCountChange: PropTypes.func.isRequired,

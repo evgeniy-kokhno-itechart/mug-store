@@ -15,8 +15,9 @@ import ErrorMessage from '../../shared/markup-usage/ErrorMessage';
 import TextArea from '../../shared/controls/TextArea';
 import Dropdown from '../../shared/controls/Dropdown';
 import { productCostSelector } from '../productsSelectors';
+import '../../styles/ProductForm.css';
 
-class ProductForm extends Component {
+export class ProductForm extends Component {
   state = {
     data: {
       id: '',
@@ -35,7 +36,7 @@ class ProductForm extends Component {
   productObjectSchema = {
     id: Yup.string(),
     imageURL: Yup.string().min(5).label('Image URL'),
-    title: Yup.string().required('Hey!').min(3).label('Title'),
+    title: Yup.string().required().min(3).label('Title'),
     description: Yup.string().required().max(500).label('Details'),
     categoryId: Yup.string().required().label('Category'),
     currentCurrencyPrice: Yup.number().typeError('Please enter a valid number').required().moreThan(0)
@@ -89,7 +90,7 @@ class ProductForm extends Component {
   };
 
   handleChange = (e, matchedInputName) => {
-    const { currentTarget: input } = e;
+    const { target: input } = e;
 
     this.setState(prevState => (
       FormService.handleChange(input, matchedInputName, prevState, this.productObjectSchema)
@@ -140,7 +141,7 @@ class ProductForm extends Component {
             label='Title'
             value={_.get(data, 'title')}
             error={errors.title}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Input
@@ -149,7 +150,7 @@ class ProductForm extends Component {
             label='Image URL'
             value={_.get(data, 'imageURL')}
             error={errors.imageURL}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <TextArea
@@ -157,7 +158,7 @@ class ProductForm extends Component {
             label='Details'
             value={data.description}
             error={errors.description}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Dropdown
@@ -167,7 +168,7 @@ class ProductForm extends Component {
             value={data.categoryId}
             error={errors.categoryId}
             defaultText='Please choose...'
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Input
@@ -176,7 +177,7 @@ class ProductForm extends Component {
             label={`Price, ${currentCurrency.name}`}
             value={_.get(data, 'currentCurrencyPrice')}
             error={errors.currentCurrencyPrice}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Input
@@ -185,7 +186,7 @@ class ProductForm extends Component {
             label='Dicount, %'
             value={_.get(data, 'discount')}
             error={errors.discount}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Input
@@ -194,7 +195,7 @@ class ProductForm extends Component {
             label='Producer'
             value={_.get(data, 'producer')}
             error={errors.producer}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <Input
@@ -203,7 +204,7 @@ class ProductForm extends Component {
             label='Rate'
             value={_.get(data, 'rate')}
             error={errors.rate}
-            onChange={this.handleChange}
+            onValueChange={this.handleChange}
           />
 
           <button
@@ -225,9 +226,9 @@ class ProductForm extends Component {
     } = this.props;
     return (
       (isProductLoading || isSavingInProcess)
-        ? <Spinner sizeInRems='5' />
+        ? <Spinner customSizeClassName='product-form__spinner' marginBootstrapClassName='mt-5' />
         : (hasProductLoadingFailed || hasSavingFailed)
-          ? <ErrorMessage message={errorWhileProductLoading || errorWhileProductSaving} />
+          ? <ErrorMessage message={errorWhileProductSaving || errorWhileProductLoading} />
           : this.renderForm()
     );
   }
@@ -235,7 +236,6 @@ class ProductForm extends Component {
 
 ProductForm.propTypes = {
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }),
-  history: PropTypes.shape({ replace: PropTypes.func, push: PropTypes.func }).isRequired,
 
   currentCurrency: PropTypes.shape({
     id: PropTypes.string,
@@ -274,7 +274,17 @@ ProductForm.defaultProps = {
   categories: [],
   match: { params: { id: '' } },
 
-  product: {},
+  product: {
+    id: '',
+    imageURL: '',
+    title: 'defaultProduct',
+    description: '',
+    category: {},
+    currentCurrencyPrice: 0,
+    discount: 0,
+    producer: '',
+    rate: '',
+  },
 
   isProductLoading: true,
   hasProductLoadingFailed: false,

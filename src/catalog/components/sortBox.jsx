@@ -10,7 +10,7 @@ const SortBox = ({ sortColumnKey, sortOptions, onSortChange }) => (
     value={sortColumnKey}
     isOnelineElement
     customClasses="justify-content-end mt-1 mt-lg-0"
-    onChange={onSortChange}
+    onValueChange={onSortChange}
   />
 );
 

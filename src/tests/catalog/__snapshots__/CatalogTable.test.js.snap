@@ -1,0 +1,286 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CatalogTable /> passes isCurrencyLoading to ProductPrice component once provided 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <CatalogTable
+    addToCart={[MockFunction]}
+    currentUser={Object {}}
+    isCurrencyLoading={false}
+    onDelete={[MockFunction]}
+    productsOnPage={
+      Array [
+        Object {
+          "basePrice": 5,
+          "category": Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          "currentCurrencyPrice": 5,
+          "description": "product 1 description",
+          "discount": 0,
+          "id": "1",
+          "imageURL": "#",
+          "producer": "test producer 1",
+          "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+          "rate": "5",
+          "title": "Mug 1",
+        },
+        Object {
+          "basePrice": 10,
+          "category": Object {
+            "id": "2",
+            "name": "category 2",
+          },
+          "currentCurrencyPrice": 10,
+          "description": "product 2 description",
+          "discount": 0,
+          "id": "2",
+          "imageURL": "#",
+          "producer": "test producer 2",
+          "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+          "rate": "3",
+          "title": "Mug 2",
+        },
+        Object {
+          "basePrice": 15,
+          "category": Object {
+            "id": "2",
+            "name": "category 2",
+          },
+          "currentCurrencyPrice": 15,
+          "description": "product 3 description",
+          "discount": 0,
+          "id": "3",
+          "imageURL": "#",
+          "producer": "test producer 3",
+          "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+          "rate": "2",
+          "title": "Plate 3",
+        },
+      ]
+    }
+  />
+  );
+</Router>
+`;
+
+exports[`<CatalogTable /> renders admin columns with user.roles contains admin 1`] = `
+<Table
+  columns={
+    Array [
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--image",
+        "key": "image",
+        "label": "",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--title",
+        "key": "title",
+        "label": "Title",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "d-none d-md-table-cell catalog_table__column--details",
+        "key": "description",
+        "label": "Details",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--rate",
+        "key": "rate",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--price",
+        "key": "price",
+        "label": "Price",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--buynow",
+        "key": "buyNow",
+      },
+      Object {
+        "content": [Function],
+        "key": "edit",
+      },
+      Object {
+        "content": [Function],
+        "key": "delete",
+      },
+    ]
+  }
+  headerExcluded={false}
+  items={
+    Array [
+      Object {
+        "basePrice": 5,
+        "category": Object {
+          "id": "1",
+          "name": "category 1",
+        },
+        "currentCurrencyPrice": 5,
+        "description": "product 1 description",
+        "discount": 0,
+        "id": "1",
+        "imageURL": "#",
+        "producer": "test producer 1",
+        "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+        "rate": "5",
+        "title": "Mug 1",
+      },
+      Object {
+        "basePrice": 10,
+        "category": Object {
+          "id": "2",
+          "name": "category 2",
+        },
+        "currentCurrencyPrice": 10,
+        "description": "product 2 description",
+        "discount": 0,
+        "id": "2",
+        "imageURL": "#",
+        "producer": "test producer 2",
+        "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+        "rate": "3",
+        "title": "Mug 2",
+      },
+      Object {
+        "basePrice": 15,
+        "category": Object {
+          "id": "2",
+          "name": "category 2",
+        },
+        "currentCurrencyPrice": 15,
+        "description": "product 3 description",
+        "discount": 0,
+        "id": "3",
+        "imageURL": "#",
+        "producer": "test producer 3",
+        "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+        "rate": "2",
+        "title": "Plate 3",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`<CatalogTable /> renders with default props 1`] = `
+<Table
+  columns={
+    Array [
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--image",
+        "key": "image",
+        "label": "",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--title",
+        "key": "title",
+        "label": "Title",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "d-none d-md-table-cell catalog_table__column--details",
+        "key": "description",
+        "label": "Details",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--rate",
+        "key": "rate",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--price",
+        "key": "price",
+        "label": "Price",
+      },
+      Object {
+        "content": [Function],
+        "customClasses": "catalog_table__column--buynow",
+        "key": "buyNow",
+      },
+    ]
+  }
+  headerExcluded={false}
+  items={
+    Array [
+      Object {
+        "basePrice": 5,
+        "category": Object {
+          "id": "1",
+          "name": "category 1",
+        },
+        "currentCurrencyPrice": 5,
+        "description": "product 1 description",
+        "discount": 0,
+        "id": "1",
+        "imageURL": "#",
+        "producer": "test producer 1",
+        "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+        "rate": "5",
+        "title": "Mug 1",
+      },
+      Object {
+        "basePrice": 10,
+        "category": Object {
+          "id": "2",
+          "name": "category 2",
+        },
+        "currentCurrencyPrice": 10,
+        "description": "product 2 description",
+        "discount": 0,
+        "id": "2",
+        "imageURL": "#",
+        "producer": "test producer 2",
+        "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+        "rate": "3",
+        "title": "Mug 2",
+      },
+      Object {
+        "basePrice": 15,
+        "category": Object {
+          "id": "2",
+          "name": "category 2",
+        },
+        "currentCurrencyPrice": 15,
+        "description": "product 3 description",
+        "discount": 0,
+        "id": "3",
+        "imageURL": "#",
+        "producer": "test producer 3",
+        "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+        "rate": "2",
+        "title": "Plate 3",
+      },
+    ]
+  }
+/>
+`;

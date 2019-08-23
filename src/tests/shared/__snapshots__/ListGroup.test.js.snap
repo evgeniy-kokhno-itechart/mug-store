@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListGroup /> renders and displays selected item as active 1`] = `
+"<ul className=\\"list-group\\">
+  <li role=\\"menuitem\\" tabIndex={1} className=\\"list-group-item list-group-item-action list-group-item-secondary clickable p-2 p-sm-2 px-md-3 px-lg-4 text-center text-sm-left \\" onClick={[Function: onClick]} onKeyUp={[Function: onKeyUp]}>
+    test name 1
+  </li>
+  <li role=\\"menuitem\\" tabIndex={2} className=\\"list-group-item list-group-item-action list-group-item-secondary clickable p-2 p-sm-2 px-md-3 px-lg-4 text-center text-sm-left active\\" onClick={[Function: onClick]} onKeyUp={[Function: onKeyUp]}>
+    test name 2
+  </li>
+</ul>"
+`;
+
+exports[`<ListGroup /> renders with default props properly 1`] = `
+"<ul className=\\"list-group\\">
+  <li role=\\"menuitem\\" tabIndex={1} className=\\"list-group-item list-group-item-action list-group-item-secondary clickable p-2 p-sm-2 px-md-3 px-lg-4 text-center text-sm-left \\" onClick={[Function: onClick]} onKeyUp={[Function: onKeyUp]}>
+    test name 1
+  </li>
+  <li role=\\"menuitem\\" tabIndex={2} className=\\"list-group-item list-group-item-action list-group-item-secondary clickable p-2 p-sm-2 px-md-3 px-lg-4 text-center text-sm-left \\" onClick={[Function: onClick]} onKeyUp={[Function: onKeyUp]}>
+    test name 2
+  </li>
+</ul>"
+`;

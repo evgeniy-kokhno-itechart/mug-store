@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Table /> renders properly with default props 1`] = `
+<div
+  className="table-responsive-md"
+>
+  <table
+    className="table"
+  >
+    <TableHeader
+      columns={
+        Array [
+          Object {
+            "label": "ID",
+            "path": "id",
+          },
+          Object {
+            "label": "Name",
+            "path": "name",
+          },
+          Object {
+            "content": [Function],
+            "label": "Description",
+            "path": "description",
+          },
+        ]
+      }
+    />
+    <TableBody
+      columns={
+        Array [
+          Object {
+            "label": "ID",
+            "path": "id",
+          },
+          Object {
+            "label": "Name",
+            "path": "name",
+          },
+          Object {
+            "content": [Function],
+            "label": "Description",
+            "path": "description",
+          },
+        ]
+      }
+      items={
+        Array [
+          Object {
+            "description": "first",
+            "id": 1,
+            "name": "one",
+          },
+          Object {
+            "description": "second",
+            "id": 2,
+            "name": "two",
+          },
+          Object {
+            "description": "third",
+            "id": 3,
+            "name": "three",
+          },
+        ]
+      }
+    />
+  </table>
+</div>
+`;
+
+exports[`<Table /> renders within header when headerExcluded is false 1`] = `
+<div
+  className="table-responsive-md"
+>
+  <table
+    className="table"
+  >
+    <TableHeader
+      columns={
+        Array [
+          Object {
+            "label": "ID",
+            "path": "id",
+          },
+          Object {
+            "label": "Name",
+            "path": "name",
+          },
+          Object {
+            "content": [Function],
+            "label": "Description",
+            "path": "description",
+          },
+        ]
+      }
+    />
+    <TableBody
+      columns={
+        Array [
+          Object {
+            "label": "ID",
+            "path": "id",
+          },
+          Object {
+            "label": "Name",
+            "path": "name",
+          },
+          Object {
+            "content": [Function],
+            "label": "Description",
+            "path": "description",
+          },
+        ]
+      }
+      items={
+        Array [
+          Object {
+            "description": "first",
+            "id": 1,
+            "name": "one",
+          },
+          Object {
+            "description": "second",
+            "id": 2,
+            "name": "two",
+          },
+          Object {
+            "description": "third",
+            "id": 3,
+            "name": "three",
+          },
+        ]
+      }
+    />
+  </table>
+</div>
+`;
+
+exports[`<Table /> renders without header when headerExcluded is true 1`] = `
+<div
+  className="table-responsive-md"
+>
+  <table
+    className="table"
+  >
+    <TableBody
+      columns={
+        Array [
+          Object {
+            "label": "ID",
+            "path": "id",
+          },
+          Object {
+            "label": "Name",
+            "path": "name",
+          },
+          Object {
+            "content": [Function],
+            "label": "Description",
+            "path": "description",
+          },
+        ]
+      }
+      items={
+        Array [
+          Object {
+            "description": "first",
+            "id": 1,
+            "name": "one",
+          },
+          Object {
+            "description": "second",
+            "id": 2,
+            "name": "two",
+          },
+          Object {
+            "description": "third",
+            "id": 3,
+            "name": "three",
+          },
+        ]
+      }
+    />
+  </table>
+</div>
+`;

@@ -9,7 +9,7 @@ const CatalogTableHeader = ({
 }) => (
   <div className="row justify-content-between mx-1 mx-sm-2">
     <div className="col-12 col-md-5 col-lg-4 col-xl-3">
-      <SearchBox value={searchQuery} onSubmit={handleSearch} key={searchQuery} />
+      <SearchBox value={searchQuery} onSearchSubmit={handleSearch} key={searchQuery} />
     </div>
     {currentUserRoles.includes('admin') && (
       <div className="col-12 col-md-4 col-lg-3 col-xl-3">
@@ -28,7 +28,7 @@ CatalogTableHeader.propTypes = {
   currentUserRoles: PropTypes.arrayOf(PropTypes.string),
   searchQuery: PropTypes.string,
   sortColumnKey: PropTypes.string.isRequired,
-  sortOptions: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string, name: PropTypes.string })).isRequired,
+  sortOptions: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
   handleSearch: PropTypes.func.isRequired,
   handleSort: PropTypes.func.isRequired,
 };

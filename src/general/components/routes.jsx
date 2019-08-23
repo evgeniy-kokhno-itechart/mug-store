@@ -1,31 +1,31 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoute from '../../shared/markup-usage/ProtectedRoute';
+import ProtectedRouteConnected from '../../shared/markup-usage/ProtectedRoute';
 import MainPage from './Main';
-import Catalog from '../../catalog/containers/Catalog';
+import CatalogConnected from '../../catalog/containers/Catalog';
 import NotFound from './NotFound';
-import ProductForm from '../../product/containers/ProductForm';
-import LoginForm from '../../user/components/LoginForm';
-import ProfileForm from '../../user/components/ProfileForm';
-import Cart from '../../cart/containers/Cart';
-import Order from '../../order/containers/Order';
+import ProductFormConnected from '../../product/containers/ProductForm';
+import LoginFormConnected from '../../user/components/LoginForm';
+import ProfileFormConnected from '../../user/components/ProfileForm';
+import CartConnected from '../../cart/containers/Cart';
+import OrderConnected from '../../order/containers/Order';
 import OrderConfirmation from '../../order/components/OrderConfirmation';
-import ProductDetails from '../../product/containers/ProductDetails';
+import ProductDetailsConnected from '../../product/containers/ProductDetails';
 import About from './About';
 
 const Routes = () => (
   <Switch>
-    <ProtectedRoute path="/edit/products/:id" component={ProductForm} />
-    <Route path="/products/:id" component={ProductDetails} />
-    <Route path="/login" component={LoginForm} />
-    <ProtectedRoute path="/myprofile" component={ProfileForm} />
-    <Route path="/register" component={ProfileForm} />
-    <Route path="/catalog" component={Catalog} />
+    <ProtectedRouteConnected path="/edit/products/:id" component={ProductFormConnected} />
+    <Route path="/products/:id" component={ProductDetailsConnected} />
+    <Route path="/login" component={LoginFormConnected} />
+    <ProtectedRouteConnected path="/myprofile" component={ProfileFormConnected} />
+    <Route path="/register" component={ProfileFormConnected} />
+    <Route path="/catalog" component={CatalogConnected} />
     <Route path="/about" component={About} />
-    <Route path="/order/mycart" component={Order} />
-    <Route path="/order" component={Order} />
+    <Route path="/order/mycart" component={OrderConnected} />
+    <Route path="/order" component={OrderConnected} />
     <Route path="/orderconfirm" component={OrderConfirmation} />
-    <Route path="/cart" component={Cart} />
+    <Route path="/cart" component={CartConnected} />
     <Route path="/main" component={MainPage} />
     <Route path="/not-found" component={NotFound} />
     <Redirect from="/" exact to="/main" />

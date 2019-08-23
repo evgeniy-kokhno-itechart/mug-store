@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { changeCurrency } from '../../catalog/currency-redux-state/currencyActions';
 import CurrenciesDropdown from '../components/CurrenciesDropdown';
-import LoginLogoutBar from './LoginLogoutBar';
+import LoginLogoutPanel from './LoginLogoutBar';
 
-const Navbar = ({
+export const Navbar = ({
   currentCurrency,
   cart,
   isCurrenciesLoading,
@@ -63,7 +63,7 @@ const Navbar = ({
           errorMessage={errorCurrenciesLoading}
         />
 
-        <LoginLogoutBar />
+        <LoginLogoutPanel />
       </div>
     </nav>
   );
@@ -75,7 +75,7 @@ Navbar.propTypes = {
   isCurrenciesLoading: PropTypes.bool.isRequired,
   hasCurrenciesLoadFailed: PropTypes.bool,
   errorCurrenciesLoading: PropTypes.string,
-  cart: PropTypes.arrayOf(PropTypes.object),
+  cart: PropTypes.arrayOf(PropTypes.shape({ quantity: PropTypes.number })),
   currencies: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
   changeCurrency: PropTypes.func.isRequired,
 };

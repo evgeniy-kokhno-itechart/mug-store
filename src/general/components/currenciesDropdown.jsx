@@ -1,19 +1,19 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import Spinner from '../../shared/markup-usage/Spinner';
 
 class CurrenciesDropdown extends Component {
   renderSpinner = () => (
     <button className="btn btn-secondary" type="button" disabled>
-      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-      <span className="sr-only">Loading...</span>
+      <Spinner customSizeClassName="spinner-border-sm" />
     </button>
   );
 
   renderError = () => {
     // eslint-disable-next-line no-console
     console.log(this.props.errorMessage);
-    return <span className="badge badge-danger">Error</span>;
+    return <span className="badge badge-danger">{this.props.errorMessage}</span>;
   };
 
   renderCurreniesDropdown = () => {
@@ -57,13 +57,15 @@ class CurrenciesDropdown extends Component {
 CurrenciesDropdown.propTypes = {
   currentCurrencyId: PropTypes.string.isRequired,
   currencyOptions: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
-  isCurrenciesLoading: PropTypes.bool.isRequired,
-  hasLoadFailed: PropTypes.bool.isRequired,
+  isCurrenciesLoading: PropTypes.bool,
+  hasLoadFailed: PropTypes.bool,
   errorMessage: PropTypes.string,
   onCurrencyChange: PropTypes.func.isRequired,
 };
 
 CurrenciesDropdown.defaultProps = {
+  isCurrenciesLoading: false,
+  hasLoadFailed: false,
   errorMessage: '',
 };
 

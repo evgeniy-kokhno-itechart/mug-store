@@ -12,7 +12,7 @@ import ProductPrice from '../../cart/components/ProductPrice';
 import { addToCart } from '../../cart/cartActions';
 import '../../styles/CatalogTable.css';
 
-class CatalogTable extends Component {
+export class CatalogTable extends Component {
   state = {
     columns: [
       {
@@ -96,26 +96,42 @@ class CatalogTable extends Component {
   }
 
   render() {
-    const { productsOnPage, sortColumn } = this.props;
+    const { productsOnPage } = this.props;
 
-    return <Table columns={this.state.columns} sortColumn={sortColumn} items={productsOnPage} />;
+    return <Table columns={this.state.columns} items={productsOnPage} />;
   }
 }
 
 CatalogTable.propTypes = {
-  currentUser: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  isCurrencyLoading: PropTypes.bool.isRequired,
+  currentUser: PropTypes.shape({ name: PropTypes.string, roles: PropTypes.arrayOf(PropTypes.string) }),
+  isCurrencyLoading: PropTypes.bool,
 
-  productsOnPage: PropTypes.arrayOf(PropTypes.object).isRequired,
-  sortColumn: PropTypes.shape({ order: PropTypes.string, path: PropTypes.string }).isRequired,
+  productsOnPage: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      imageURL: PropTypes.string,
+      title: PropTypes.string,
+      description: PropTypes.string,
+      category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+      basePrice: PropTypes.number,
+      currentCurrencyPrice: PropTypes.number, // !!!
+      discount: PropTypes.number,
+      producer: PropTypes.string,
+      publishDate: PropTypes.string,
+      rate: PropTypes.string,
+    }),
+  ).isRequired,
   addToCart: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
+CatalogTable.defaultProps = {
+  currentUser: {},
+  isCurrencyLoading: true,
+};
+
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
-  currentCurrency: state.currency.currentCurrency,
   isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
 });
 

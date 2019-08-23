@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CatalogTableFooter /> check render properly 1`] = `
+"<div className=\\"row justify-content-between mx-0 mx-sm-2\\">
+  <div className=\\"col\\">
+    <Pagination itemsCount={3} pageSize={10} onPageChange={[Function: mockConstructor]} currentPage={1} pageSizeOptions={{...}} />
+  </div>
+  <div className=\\"col\\">
+    <Dropdown name=\\"itemsOnPage\\" label=\\"Items on page\\" options={{...}} value=\\"10\\" isOnelineElement={true} customClasses=\\"justify-content-end\\" onValueChange={[Function: mockConstructor]} error=\\"\\" defaultText=\\"\\" />
+  </div>
+</div>"
+`;

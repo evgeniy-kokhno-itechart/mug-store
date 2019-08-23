@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrderTable /> renders properly with default props 1`] = `
+"<Fragment>
+  <p>
+    Please check the list of products
+  </p>
+  <Table columns={{...}} sortColumn=\\"id\\" items={{...}} headerExcluded={false} />
+</Fragment>"
+`;

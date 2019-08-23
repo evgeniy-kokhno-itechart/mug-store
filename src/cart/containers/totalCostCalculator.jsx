@@ -19,7 +19,6 @@ TotalCostCalculator.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       currentCurrencyCost: PropTypes.number,
-      quantity: PropTypes.number,
     }),
   ).isRequired,
   customClasses: PropTypes.string,

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> check Input renders properly with default props 1`] = `
+"<div className=\\"form-group\\">
+  <label htmlFor=\\"testname\\">
+    Test label
+  </label>
+  <input name=\\"testname\\" id=\\"testname\\" onChange={[Function: onChange]} className=\\"form-control\\" />
+</div>"
+`;
+
+exports[`<Input /> check Input renders properly with error 1`] = `
+"<div className=\\"form-group\\">
+  <label htmlFor=\\"testname\\">
+    Test label
+  </label>
+  <input name=\\"testname\\" id=\\"testname\\" onChange={[Function: onChange]} className=\\"form-control\\" />
+  <div className=\\"alert alert-danger\\">
+    test error
+  </div>
+</div>"
+`;
+
+exports[`<Input /> check Input renders properly with matchedInputName provided 1`] = `
+"<div className=\\"form-group\\">
+  <label htmlFor=\\"testname\\">
+    Test label
+  </label>
+  <input name=\\"testname\\" id=\\"testname\\" onChange={[Function: onChange]} className=\\"form-control\\" />
+</div>"
+`;
+
+exports[`<Input /> check Input renders properly with value provided 1`] = `
+"<div className=\\"form-group\\">
+  <label htmlFor=\\"testname\\">
+    Test label
+  </label>
+  <input value=\\"Test value\\" name=\\"testname\\" id=\\"testname\\" onChange={[Function: onChange]} className=\\"form-control\\" />
+</div>"
+`;

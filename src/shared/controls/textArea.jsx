@@ -3,13 +3,13 @@ import { PropTypes } from 'prop-types';
 
 const TextArea = (props) => {
   const {
-    name, label, value, error, onChange,
+    name, label, value, error, onValueChange,
   } = props;
 
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
-      <textarea name={name} id={name} onChange={e => onChange(e)} className="form-control" value={value} />
+      <textarea name={name} id={name} onChange={e => onValueChange(e)} className="form-control" value={value} />
       {error && <div className="alert alert-danger">{error}</div>}
     </div>
   );
@@ -20,7 +20,7 @@ TextArea.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
   error: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func.isRequired,
 };
 
 TextArea.defaultProps = {

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBox /> renders with default props with Search... text in the input 1`] = `
+"<form className=\\"input-group\\" onSubmit={[Function]}>
+  <input className=\\"form-control\\" type=\\"text\\" name=\\"query\\" placeholder=\\"Search...\\" value=\\"Search...\\" onChange={[Function]} aria-label=\\"Search\\" />
+  <div className=\\"input-group-append\\">
+    <button type=\\"submit\\" className=\\"btn btn-outline-secondary\\">
+      <FontAwesomeIcon icon=\\"search\\" border={false} className=\\"\\" mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+    </button>
+  </div>
+</form>"
+`;
+
+exports[`<SearchBox /> renders with value = test search in the input 1`] = `
+"<form className=\\"input-group\\" onSubmit={[Function]}>
+  <input className=\\"form-control\\" type=\\"text\\" name=\\"query\\" placeholder=\\"Search...\\" value=\\"test search\\" onChange={[Function]} aria-label=\\"Search\\" />
+  <div className=\\"input-group-append\\">
+    <button type=\\"submit\\" className=\\"btn btn-outline-secondary\\">
+      <FontAwesomeIcon icon=\\"search\\" border={false} className=\\"\\" mask={{...}} fixedWidth={false} inverse={false} flip={{...}} listItem={false} pull={{...}} pulse={false} rotation={{...}} size={{...}} spin={false} symbol={false} title=\\"\\" transform={{...}} />
+    </button>
+  </div>
+</form>"
+`;

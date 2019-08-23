@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Cart /> renders properly with cart array not empty 1`] = `
+<Fragment>
+  <Connect(CartTable)
+    productsInCart={
+      Array [
+        Object {
+          "currentCurrencyPrice": 5,
+          "description": "test product 1 description",
+          "id": "1",
+          "imageURL": "#",
+          "quantity": 3,
+          "title": "test product 1",
+        },
+        Object {
+          "currentCurrencyPrice": 10,
+          "description": "test product 2 description",
+          "id": "2",
+          "imageURL": "#",
+          "quantity": 5,
+          "title": "test product 2",
+        },
+      ]
+    }
+    sortColumn="id"
+  />
+  <div
+    className="row justify-content-between mx-2"
+  >
+    <TotalCostCalculator
+      customClasses="h5"
+      products={
+        Array [
+          Object {
+            "currentCurrencyPrice": 5,
+            "description": "test product 1 description",
+            "id": "1",
+            "imageURL": "#",
+            "quantity": 3,
+            "title": "test product 1",
+          },
+          Object {
+            "currentCurrencyPrice": 10,
+            "description": "test product 2 description",
+            "id": "2",
+            "imageURL": "#",
+            "quantity": 5,
+            "title": "test product 2",
+          },
+        ]
+      }
+    />
+    <div>
+      <Link
+        className="btn btn-secondary justify-content-end"
+        to="/order"
+      >
+        Order Now!
+      </Link>
+    </div>
+  </div>
+</Fragment>
+`;
+
+exports[`<Cart /> renders properly with default props 1`] = `
+<h1
+  className="m-3 text-center"
+>
+  Your cart is empty
+</h1>
+`;
+
+exports[`<Cart /> renders properly with not empty cart and currentUserName provided 1`] = `
+<Fragment>
+  <Connect(CartTable)
+    productsInCart={
+      Array [
+        Object {
+          "currentCurrencyPrice": 5,
+          "description": "test product 1 description",
+          "id": "1",
+          "imageURL": "#",
+          "quantity": 3,
+          "title": "test product 1",
+        },
+      ]
+    }
+    sortColumn="id"
+  />
+  <div
+    className="row justify-content-between mx-2"
+  >
+    <TotalCostCalculator
+      customClasses="h5"
+      products={
+        Array [
+          Object {
+            "currentCurrencyPrice": 5,
+            "description": "test product 1 description",
+            "id": "1",
+            "imageURL": "#",
+            "quantity": 3,
+            "title": "test product 1",
+          },
+        ]
+      }
+    />
+    <div>
+      <Link
+        className="btn btn-secondary justify-content-end"
+        to="/order/mycart"
+      >
+        Order Now!
+      </Link>
+    </div>
+  </div>
+</Fragment>
+`;

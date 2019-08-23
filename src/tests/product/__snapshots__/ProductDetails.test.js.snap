@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductDetails /> render field info correctly with renderFieldInfo method 1`] = `
+"<Fragment>
+  <h1 className=\\"display-5 text-center m-3\\">
+    Mug 1 Details
+  </h1>
+  <div className=\\"col-10 col-md-9 col-lg-7 mx-auto\\">
+    <ImageGallery items={{...}} infinite={false} showPlayButton={false} showBullets={false} showFullscreenButton={false} useBrowserFullscreen={false} showNav={true} autoPlay={false} lazyLoad={false} showIndex={false} showThumbnails={true} disableThumbnailScroll={false} disableArrowKeys={false} disableSwipe={false} useTranslate3D={true} isRTL={false} preventDefaultTouchmoveEvent={false} flickThreshold={0.4} stopPropagation={false} indexSeparator=\\" / \\" thumbnailPosition=\\"bottom\\" startIndex={0} slideDuration={450} swipingTransitionDuration={0} slideInterval={3000} swipeThreshold={30} renderLeftNav={[Function: renderLeftNav]} renderRightNav={[Function: renderRightNav]} renderPlayPauseButton={[Function: renderPlayPauseButton]} renderFullscreenButton={[Function: renderFullscreenButton]} />
+  </div>
+  <InformationItem label=\\"Title\\" info=\\"Mug 1\\" />
+  <InformationItem label=\\"Description\\" info=\\"product 1 description\\" />
+  <InformationItem label=\\"Category\\" info=\\"category 1\\" />
+  <InformationItem label=\\"Producer\\" info=\\"test producer 1\\" />
+  <InformationItem label=\\"Price\\" info={5} />
+  <div className=\\"d-flex m-3\\">
+    <ToCatalogButton customClasses=\\"\\" />
+    <BuyNowButton customClasses=\\"ml-auto\\" onBuyNow={[Function: mockConstructor]} product={{...}} />
+  </div>
+</Fragment>"
+`;
+
+exports[`<ProductDetails /> renders ErrorMessage once hasProductLoadingFailed and errorWhileLoading provided 1`] = `"<ErrorMessage message=\\"test error\\" />"`;
+
+exports[`<ProductDetails /> renders Spinner properly with default props 1`] = `"<Spinner customSizeClassName=\\"product-details__spinner\\" marginBootstrapClassName=\\"mt-5\\" />"`;
+
+exports[`<ProductDetails /> renders product details once isProductLoading is succesfully done 1`] = `
+"<Fragment>
+  <h1 className=\\"display-5 text-center m-3\\">
+    Mug 1 Details
+  </h1>
+  <div className=\\"col-10 col-md-9 col-lg-7 mx-auto\\">
+    <ImageGallery items={{...}} infinite={false} showPlayButton={false} showBullets={false} showFullscreenButton={false} useBrowserFullscreen={false} showNav={true} autoPlay={false} lazyLoad={false} showIndex={false} showThumbnails={true} disableThumbnailScroll={false} disableArrowKeys={false} disableSwipe={false} useTranslate3D={true} isRTL={false} preventDefaultTouchmoveEvent={false} flickThreshold={0.4} stopPropagation={false} indexSeparator=\\" / \\" thumbnailPosition=\\"bottom\\" startIndex={0} slideDuration={450} swipingTransitionDuration={0} slideInterval={3000} swipeThreshold={30} renderLeftNav={[Function: renderLeftNav]} renderRightNav={[Function: renderRightNav]} renderPlayPauseButton={[Function: renderPlayPauseButton]} renderFullscreenButton={[Function: renderFullscreenButton]} />
+  </div>
+  <InformationItem label=\\"Title\\" info=\\"Mug 1\\" />
+  <InformationItem label=\\"Description\\" info=\\"product 1 description\\" />
+  <InformationItem label=\\"Category\\" info=\\"category 1\\" />
+  <InformationItem label=\\"Producer\\" info=\\"test producer 1\\" />
+  <InformationItem label=\\"Price\\" info={5} />
+  <div className=\\"d-flex m-3\\">
+    <ToCatalogButton customClasses=\\"\\" />
+    <BuyNowButton customClasses=\\"ml-auto\\" onBuyNow={[Function: mockConstructor]} product={{...}} />
+  </div>
+</Fragment>"
+`;

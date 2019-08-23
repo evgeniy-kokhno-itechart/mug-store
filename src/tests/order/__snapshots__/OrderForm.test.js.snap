@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrderForm /> renders properly with default props 1`] = `
+"<Fragment>
+  <p>
+    Please fill out the form to continue
+  </p>
+  <form onSubmit={[Function]}>
+    <Input type=\\"text\\" name=\\"name\\" label=\\"Name\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"country\\" label=\\"Country\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"city\\" label=\\"City\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"address\\" label=\\"Address\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"phone\\" label=\\"Phone\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <TextArea name=\\"comment\\" label=\\"Comment\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} />
+    <button type=\\"submit\\" disabled={{...}} className=\\"btn btn-secondary d-block mx-auto mx-md-0\\">
+      Submit Order
+    </button>
+  </form>
+</Fragment>"
+`;
+
+exports[`<OrderForm /> renders properly with default props 2`] = `
+"<Fragment>
+  <p>
+    Please fill out the form to continue
+  </p>
+  <form onSubmit={[Function]}>
+    <Input type=\\"text\\" name=\\"name\\" label=\\"Name\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"country\\" label=\\"Country\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"city\\" label=\\"City\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"address\\" label=\\"Address\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <Input type=\\"text\\" name=\\"phone\\" label=\\"Phone\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} matchedInputName=\\"\\" />
+    <TextArea name=\\"comment\\" label=\\"Comment\\" value=\\"\\" error=\\"\\" onValueChange={[Function]} />
+    <button type=\\"submit\\" disabled={{...}} className=\\"btn btn-secondary d-block mx-auto mx-md-0\\">
+      Submit Order
+    </button>
+  </form>
+</Fragment>"
+`;
