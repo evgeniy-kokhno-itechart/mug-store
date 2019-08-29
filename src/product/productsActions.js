@@ -13,16 +13,17 @@ export const gettingProductsInProgress = createAction(
   isGettingProductsInProcess => isGettingProductsInProcess,
 );
 
-export const gettingProductsFailed = createAction('GETTING_PRODUCTS_FAILED', (hasGettingProductsFailed, error) => ({
-  hasGettingProductsFailed,
+export const gettingProductsFailed = createAction('GETTING_PRODUCTS_FAILED', (hasGettingFailed, error) => ({
+  hasGettingFailed,
   error,
 }));
 
 export const gettingProductsSuccess = createAction('GETTING_PRODUCTS_SUCCESS', products => products);
 
+// GET PRODUCTS
 export const getProducts = () => (dispatch) => {
   dispatch(gettingProductsInProgress(true));
-  getProductsList()
+  return getProductsList()
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(response.statusText);
@@ -31,7 +32,10 @@ export const getProducts = () => (dispatch) => {
       return response.data;
     })
     .then(products => dispatch(gettingProductsSuccess(products)))
-    .catch(error => dispatch(gettingProductsFailed(true, error.message)));
+    .catch((error) => {
+      dispatch(gettingProductsInProgress(false));
+      dispatch(gettingProductsFailed(true, error.message));
+    });
 };
 
 //  GET PRODUCT BY ID
@@ -51,7 +55,7 @@ export const gettingProductByIdSuccess = createAction('GETTING_PRODUCT_BY_ID_SUC
 
 export const getProduct = productId => (dispatch) => {
   dispatch(gettingProductByIdInProgress(true));
-  getProductById(productId)
+  return getProductById(productId)
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(`${response.status} ${response.statusText}`);
@@ -59,10 +63,12 @@ export const getProduct = productId => (dispatch) => {
       return response.data;
     })
     .then((product) => {
+      // should send the product received to store and just then notify components that the fetch has been completed
       dispatch(gettingProductByIdSuccess(product));
       dispatch(gettingProductByIdInProgress(false));
     })
     .catch((error) => {
+      dispatch(gettingProductByIdInProgress(false));
       dispatch(gettingProductByIdFailed(true, error.message));
       if (error.message.includes('404')) {
         dispatch(replace('/not-found'));
@@ -77,7 +83,7 @@ export const savingProductFailed = createAction('SAVING_PRODUCT_FAILED', (hasSav
 
 export const saveProduct = (product, redirectUrl) => (dispatch) => {
   dispatch(savingProductInProcess(true));
-  saveProductInDB(product)
+  return saveProductInDB(product)
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(response.statusText);
@@ -90,8 +96,10 @@ export const saveProduct = (product, redirectUrl) => (dispatch) => {
       dispatch(push(redirectUrl));
     })
     .catch((error) => {
+      dispatch(savingProductInProcess(false));
+
       // !!! FAKE LOGIC delete once get proper back-end app
-      dispatch(savingProductFailed(false, error.message)); // should be true
+      dispatch(savingProductFailed(false, error.message)); // should be TRUE in app with proper back-end
       dispatch(push(redirectUrl));
     });
 };
@@ -102,11 +110,11 @@ export const deletingProductInProcess = createAction(
   isdeletingProductInProcess => isdeletingProductInProcess,
 );
 export const deletingProductSuccess = createAction('DELETING_PRODUCT_SUCCESS', resultMessage => resultMessage);
-export const deletingProductFailed = createAction('DELETING_PRODUCT_FAILED', (hasdeletingFailed, error) => ({ hasdeletingFailed, error }));
+export const deletingProductFailed = createAction('DELETING_PRODUCT_FAILED', (hasDeletingFailed, error) => ({ hasDeletingFailed, error }));
 
-export const deleteProduct = product => (dispatch) => {
+export const deleteProduct = productId => (dispatch) => {
   dispatch(deletingProductInProcess(true));
-  deleteProductFromDB(product)
+  return deleteProductFromDB(productId)
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(response.statusText);
@@ -115,5 +123,8 @@ export const deleteProduct = product => (dispatch) => {
       return response.data;
     })
     .then(resultMessage => dispatch(deletingProductSuccess(resultMessage)))
-    .catch(error => dispatch(deletingProductFailed(true, error.message)));
+    .catch((error) => {
+      dispatch(deletingProductInProcess(false));
+      dispatch(deletingProductFailed(true, error.message));
+    });
 };

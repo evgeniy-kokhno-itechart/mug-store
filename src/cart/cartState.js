@@ -1,6 +1,6 @@
 const initialCartState = {
   cart: [],
-  submitOrderStatus: { isInPropgress: false, hasFailed: false, error: 'Not started yet' },
+  submitOrderStatus: { isInProgress: false, hasFailed: false, error: 'Not started yet' },
 };
 
 export default initialCartState;

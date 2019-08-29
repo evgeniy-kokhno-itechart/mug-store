@@ -27,9 +27,34 @@ export const gettingCurrencyRatesSuccess = createAction('GETTING_CURRIENCY_RATES
   baseCurrencyName,
 }));
 
+// GETTING CURRENCY RATES
+export const getRates = currencies => (dispatch) => {
+  // consider usage response.data with rate is a JSON object with key 'currencyRateKeyInJson' defined in constants
+
+  // exclude base currency from currencies and get names for remaning
+  const arrayOfCurrencyNames = currencies.filter(currency => currency.name !== baseCurrencyName).map(currency => currency.name);
+  const arrayOfCurrencyApiCallPromises = getCurrencyRates(arrayOfCurrencyNames);
+  dispatch(gettingCurrencyRatesInProgress(true));
+  return Promise.all(arrayOfCurrencyApiCallPromises)
+    .then((currencyRatesResponses) => {
+      const currencyRatesArray = currencyRatesResponses.map(response => ({
+        name: response.data[currencyNameKeyInJson],
+        rate: 1 / response.data[currencyRateKeyInJson],
+      }));
+      dispatch(gettingCurrencyRatesInProgress(false));
+      return currencyRatesArray;
+    })
+    .then(ratesArray => dispatch(gettingCurrencyRatesSuccess(ratesArray)))
+    .catch((ratesError) => {
+      dispatch(gettingCurrencyRatesInProgress(false));
+      dispatch(gettingCurrencyRatesFailed(true, ratesError.message));
+    });
+};
+
+// GETTING CURRENCIES
 export const getCurrencies = () => (dispatch) => {
   dispatch(gettingCurrenciesInProgress(true));
-  getCurrenciesList()
+  return getCurrenciesList()
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(response.statusText);
@@ -39,28 +64,13 @@ export const getCurrencies = () => (dispatch) => {
     })
     .then((currencies) => {
       dispatch(gettingCurrenciesSuccess(currencies));
-      // GETTING CURRENCY RATES
-      // consider usage response.data with rate is a JSON object with key 'currencyRateKeyInJson' defined in constants
-
-      // exclude base currency from currencies and get names for remaning
-      const arrayOfCurrencyNames = currencies.filter(currency => currency.name !== baseCurrencyName).map(currency => currency.name);
-
-      const arrayOfCurrencyApiCallPromises = getCurrencyRates(arrayOfCurrencyNames);
-      dispatch(gettingCurrencyRatesInProgress(true));
-      Promise.all(arrayOfCurrencyApiCallPromises)
-        .then((currencyRatesResponses) => {
-          const currencyRatesArray = currencyRatesResponses.map(response => ({
-            name: response.data[currencyNameKeyInJson],
-            rate: 1 / response.data[currencyRateKeyInJson],
-          }));
-          dispatch(gettingCurrencyRatesInProgress(false));
-          return currencyRatesArray;
-        })
-        .then(ratesArray => dispatch(gettingCurrencyRatesSuccess(ratesArray)))
-        .catch(ratesError => dispatch(gettingCurrencyRatesFailed(true, ratesError.message)));
+      dispatch(getRates(currencies));
     })
 
-    .catch(error => dispatch(gettingCurrenciesFailed(true, error.message)));
+    .catch((error) => {
+      dispatch(gettingCurrenciesInProgress(false));
+      dispatch(gettingCurrenciesFailed(true, error.message));
+    });
 };
 
 // CHANGE CURRENCY

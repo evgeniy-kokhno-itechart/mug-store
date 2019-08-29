@@ -18,7 +18,7 @@ import {
 const userReducer = handleActions(
   {
     //  LOGIN
-    [loginUserInProcess]: (state, { payload: { isLoginInProcess } }) => ({
+    [loginUserInProcess]: (state, { payload: isLoginInProcess }) => ({
       ...state,
       loginStatus: { isLoginInProcess, hasLoginFailed: false, loginError: '' },
     }),
@@ -28,14 +28,14 @@ const userReducer = handleActions(
       loginStatus: { isLoginInProcess: false, hasLoginFailed, loginError },
     }),
 
-    [loginUserSuccess]: (state, { payload: { currentUser } }) => ({
+    [loginUserSuccess]: (state, { payload: currentUser }) => ({
       ...state,
       currentUser,
       loginStatus: { isLoginInProcess: false, hasLoginFailed: false, loginError: '' },
     }),
 
     // LOGOUT
-    [logoutUserInProcess]: (state, { payload: { isLogoutInProcess } }) => ({
+    [logoutUserInProcess]: (state, { payload: isLogoutInProcess }) => ({
       ...state,
       logoutStatus: { isLogoutInProcess, hasLogoutFailed: false, logoutError: '' },
     }),
@@ -45,10 +45,14 @@ const userReducer = handleActions(
       logoutStatus: { isLogoutInProcess: false, hasLogoutFailed, logoutError },
     }),
 
-    [logoutUserSuccess]: state => ({ ...state, ...initialUserState }),
+    [logoutUserSuccess]: (state, { payload: resultMessage }) => ({
+      ...state,
+      logoutResult: resultMessage, // added for future. will be empty since back-end is fake
+      ...initialUserState,
+    }),
 
     // SAVE EDITED
-    [savingUserInProcess]: (state, { payload: { isSavingInProcess } }) => ({
+    [savingUserInProcess]: (state, { payload: isSavingInProcess }) => ({
       ...state,
       savingStatus: { isSavingInProcess, hasSavingFailed: false, savingError: '' },
     }),
@@ -58,7 +62,7 @@ const userReducer = handleActions(
       savingStatus: { isSavingInProcess: false, hasSavingFailed, savingError },
     }),
 
-    [savingUserSuccess]: (state, { payload: { updatedUser } }) => ({
+    [savingUserSuccess]: (state, { payload: updatedUser }) => ({
       ...state,
       currentUser: updatedUser,
     }),

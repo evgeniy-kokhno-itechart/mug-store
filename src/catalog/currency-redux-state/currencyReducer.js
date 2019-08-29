@@ -52,22 +52,28 @@ const currencyReducer = handleActions(
 
     [gettingCurrencyRatesSuccess]: (state, { payload: { currencyRatesArray, baseCurrencyName } }) => {
       const { currencies } = state;
+
       const currenciesWithRatesAdded = currencies.map((currency) => {
-        const relatedRateObject = currencyRatesArray.find(currencyRate => currencyRate.name === currency.name);
+        const correspondingRateObject = currencyRatesArray.find(currencyRate => currencyRate.name === currency.name);
         let currentRate;
 
-        // need to compare weither the currency is base currency or not to separate the cases when rate for some reason wasn't fetched
-        // and will have wrong rate 1 (accordingly to the below code), from the cases when the currency is base currency
-        if (!relatedRateObject) {
+        // need to compare weither the currency is base currency or not to separate cases where rate for some reason wasn't
+        // fetched from API. So it would have rate 1 (accordingly to the below code) although this is incorrect and undefined
+        if (!correspondingRateObject) {
           if (currency.name === baseCurrencyName) {
-            currentRate = 1; // if NOT currentRate is undefined
+            currentRate = 1; // if NOT - then currentRate will be undefined
           }
         } else {
-          currentRate = relatedRateObject.rate;
+          currentRate = correspondingRateObject.rate;
         }
         return { ...currency, rate: currentRate };
       });
-      const currentCurrency = state.currentCurrency.rate ? state.currentCurrency : currenciesWithRatesAdded[0];
+
+      // set base currency as current if none is set
+      const currentCurrency = state.currentCurrency.rate
+        ? state.currentCurrency
+        : currenciesWithRatesAdded.find(currency => currency.name === baseCurrencyName);
+
       return {
         ...state,
         currencies: currenciesWithRatesAdded,

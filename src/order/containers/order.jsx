@@ -9,6 +9,7 @@ import { cartCostsSelector } from '../../cart/cartSelectors';
 
 export const Order = ({
   cart: orderList,
+  currentUser,
   // eslint-disable-next-line no-shadow
   submitCartOrder,
 }) => (
@@ -20,7 +21,7 @@ export const Order = ({
         <TotalCostCalculator products={orderList} customClasses="float-right" />
       </div>
       <div className="col-md-5 offset-md-1">
-        <OrderForm onOrderSubmit={submitCartOrder} />
+        <OrderForm currentUser={currentUser} onOrderSubmit={submitCartOrder} />
       </div>
     </div>
   </React.Fragment>
@@ -28,12 +29,27 @@ export const Order = ({
 
 Order.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentUser: PropTypes.shape({
+    id: PropTypes.string,
+    address: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    roles: PropTypes.arrayOf(PropTypes.string),
+    username: PropTypes.string,
+  }),
 
   submitCartOrder: PropTypes.func.isRequired,
 };
 
+Order.defaultProps = {
+  currentUser: {},
+};
+
 const mapStateToProps = state => ({
   cart: cartCostsSelector(state),
+  currentUser: state.user.currentUser,
 });
 
 const mapDipatchToProps = {

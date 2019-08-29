@@ -14,14 +14,19 @@ export function getProduct(id) {
 
 export function saveProduct(product) {
   let productInDb = {};
-  getProduct(product.id).then((response) => {
-    productInDb = response.data;
+  let errorGot = '';
+  getProduct(product.id)
+    .then((response) => {
+      productInDb = response.data;
+    })
+    .catch((error) => {
+      errorGot = error.message;
+    });
 
-    // in case of brand new product
-    if (!productInDb.id) {
-      productInDb.id = Date.now().toString();
-    }
-  });
+  // in case of brand new product
+  if (errorGot.includes('404') || !productInDb.id) {
+    productInDb.id = Date.now().toString();
+  }
 
   productInDb.title = product.title;
   productInDb.imageURL = product.imageURL;
@@ -32,7 +37,7 @@ export function saveProduct(product) {
   productInDb.publishDate = Date.now();
   productInDb.rate = product.rate;
 
-  const responseOnSave = Axios.post(`${rootUrl}/product/${product.id}`, JSON.stringify(productInDb));
+  const responseOnSave = Axios.post(`${rootUrl}/products/${product.id}`, JSON.stringify(productInDb));
 
   return responseOnSave;
 }

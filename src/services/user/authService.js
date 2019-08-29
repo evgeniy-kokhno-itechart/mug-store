@@ -35,6 +35,10 @@ export function login(username, password) {
     isKnownUser = true;
     response = Axios.get(`${rootUrl}/users/2`);
   }
+  if (username === 'testname' && password === 'testpassword') {
+    isKnownUser = true;
+    response = Axios.get(`${rootUrl}/users/2`);
+  }
   if (!isKnownUser) {
     throw new Error('Incorrect username or password');
   } else return response;

@@ -72,7 +72,7 @@ const productsReducer = handleActions(
 
     [savingProductSuccess]: (state, { payload: resultMessage }) => ({
       ...state,
-      saveResult: resultMessage, // added for future. will be empty because back-end is fake
+      saveResult: resultMessage, // added for future. will be empty since back-end is fake
       savingStatus: { isSavingInProcess: false, hasSavingFailed: false, error: '' },
     }),
 
@@ -89,7 +89,7 @@ const productsReducer = handleActions(
 
     [deletingProductSuccess]: (state, { payload: resultMessage }) => ({
       ...state,
-      deleteResult: resultMessage, // added for future. will be empty because sunce back-end is fake
+      deleteResult: resultMessage, // added for future. will be empty since back-end is fake
       deletingStatus: { isDeletingInProcess: false, hasDeletingFailed: false, error: '' },
     }),
   },

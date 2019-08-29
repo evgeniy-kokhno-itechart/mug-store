@@ -46,27 +46,27 @@ const cartReducer = handleActions(
       return { ...state, cart: [...newCart] };
     },
 
-    [deleteProductFromCart]: (state, { payload: { productId } }) => {
+    [deleteProductFromCart]: (state, { payload: productId }) => {
       const newCart = [...state.cart];
       newCart.splice(newCart.findIndex(p => p.id === productId), 1);
       return { ...state, cart: [...newCart] };
     },
 
     // SUBMIT CART ORDER
-    [submittingOrderInProgress]: (state, { payload: isInProcess }) => ({
+    [submittingOrderInProgress]: (state, { payload: isInProgress }) => ({
       ...state,
-      submitOrderStatus: { isInProcess, hasFailed: false, error: '' },
+      submitOrderStatus: { isInProgress, hasFailed: false, error: '' },
     }),
 
     [submittingOrderFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      submitOrderStatus: { isInProcess: false, hasFailed, error },
+      submitOrderStatus: { isInProgress: false, hasFailed, error },
     }),
 
     [submittingOrderSuccess]: (state, { payload: resultMessage }) => ({
       ...state,
       submitResult: resultMessage, // added for future. will be empty because back-end is fake
-      submitOrderStatus: { isInProcess: false, hasFailed: false, error: '' },
+      submitOrderStatus: { isInProgress: false, hasFailed: false, error: '' },
     }),
 
     [clearCart]: state => ({ ...state, cart: [] }),

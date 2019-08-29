@@ -11,7 +11,7 @@ export const changeCategory = createAction('CHANGE_CATEGORY', category => catego
 
 export const getCategories = () => (dispatch) => {
   dispatch(gettingCategoriesInProgress(true));
-  getCategoriesList()
+  return getCategoriesList()
     .then((response) => {
       if (!response.statusText === 'OK') {
         throw Error(response.statusText);
@@ -20,5 +20,8 @@ export const getCategories = () => (dispatch) => {
       return response.data;
     })
     .then(categories => dispatch(gettingCategoriesSuccess(categories)))
-    .catch(error => dispatch(gettingCategoriesFailed(true, error.message)));
+    .catch((error) => {
+      dispatch(gettingCategoriesInProgress(false));
+      dispatch(gettingCategoriesFailed(true, error.message));
+    });
 };
