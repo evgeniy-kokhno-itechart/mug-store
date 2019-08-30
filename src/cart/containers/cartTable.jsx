@@ -61,29 +61,24 @@ export class CartTable extends Component {
     {
       path: 'cost',
       label: 'Cost',
-      content: product => (
-        <ProductPrice
-          price={product.currentCurrencyCost}
-          isCurrencyLoading={this.props.isCurrencyLoading}
-        />
-      ),
+      content: product => <ProductPrice price={product.currentCurrencyCost} isCurrencyLoading={this.props.isCurrencyLoading} />,
       customClasses: 'text-center cart-table--column__cost',
     },
 
     {
       key: 'deleteFromCart',
       content: product => (
-        <button
-          type="button"
-          className="btn btn-secondary btn-sm"
-          onClick={() => this.props.deleteProductFromCart(product.id)}
-        >
+        <button type="button" id={product.id} className="btn btn-secondary btn-sm" onClick={this.handleDeleteProductFromCart}>
           <FontAwesomeIcon icon="trash" />
         </button>
       ),
       customClasses: 'cart-table--column__delete',
     },
   ];
+
+  handleDeleteProductFromCart = (e) => {
+    this.props.deleteProductFromCart(e.target.id);
+  };
 
   render() {
     const { productsInCart, sortColumn } = this.props;
@@ -94,14 +89,16 @@ export class CartTable extends Component {
 CartTable.propTypes = {
   isCurrencyLoading: PropTypes.bool.isRequired,
 
-  productsInCart: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    imageURL: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    currentCurrencyPrice: PropTypes.number,
-    quantity: PropTypes.number,
-  })).isRequired,
+  productsInCart: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      imageURL: PropTypes.string,
+      title: PropTypes.string,
+      description: PropTypes.string,
+      currentCurrencyPrice: PropTypes.number,
+      quantity: PropTypes.number,
+    }),
+  ).isRequired,
   sortColumn: PropTypes.string.isRequired,
   incrementQuantity: PropTypes.func.isRequired,
   decrementQuantity: PropTypes.func.isRequired,

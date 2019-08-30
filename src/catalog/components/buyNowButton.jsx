@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes } from 'prop-types';
 
-const BuyNowButton = ({ customClasses, product, onBuyNow }) => (
-  <button type="button" className={`btn btn-secondary ${customClasses}`} onClick={() => onBuyNow(product, 1)}>
-    <FontAwesomeIcon icon="cart-arrow-down" />
-  </button>
-);
+class BuyNowButton extends Component {
+  handleButtonClick = () => {
+    const { product, onBuyNow } = this.props;
+    onBuyNow(product, 1);
+  };
+
+  render() {
+    const { customClasses } = this.props;
+    return (
+      <button type="button" className={`btn btn-secondary ${customClasses}`} onClick={this.handleButtonClick}>
+        <FontAwesomeIcon icon="cart-arrow-down" />
+      </button>
+    );
+  }
+}
 
 BuyNowButton.propTypes = {
   customClasses: PropTypes.string,

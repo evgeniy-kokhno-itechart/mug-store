@@ -76,13 +76,16 @@ export class CatalogTable extends Component {
       content: product => (
         <Modal
           id="product-deletion-confirmation"
+          // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          productId={product.id}
+          // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           buttonLabel="Delete"
           buttonClasses="btn btn-danger btn-sm"
           title="Confirm product deletion"
           text={`You are about to completely delete ${product.title} from the database!`}
           textConfirm="Confirm"
           textAbort="Dismiss"
-          onConfirm={() => this.props.onDelete(product.id)}
+          onConfirm={this.handleDeleteConfirmed}
         />
       ),
     },
@@ -94,6 +97,11 @@ export class CatalogTable extends Component {
       this.setState(prevState => ({ columns: [...prevState.columns, ...this.adminColumns] }));
     }
   }
+
+  handleDeleteConfirmed = (e) => {
+    console.log('e.target.id', e.target.id);
+    this.props.onDelete(e.target.id);
+  };
 
   render() {
     const { productsOnPage } = this.props;

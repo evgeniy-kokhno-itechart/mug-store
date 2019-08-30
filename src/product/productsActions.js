@@ -78,7 +78,10 @@ export const getProduct = productId => (dispatch) => {
 
 //   SAVE PRODUCT
 export const savingProductInProcess = createAction('SAVING_PRODUCT_IN _PROCESS', isSavingProductInProcess => isSavingProductInProcess);
-export const savingProductSuccess = createAction('SAVING_PRODUCT_SUCCESS', resultMessage => resultMessage);
+export const savingProductSuccess = createAction('SAVING_PRODUCT_SUCCESS', (resultMessage, updatedProduct) => ({
+  resultMessage,
+  updatedProduct,
+}));
 export const savingProductFailed = createAction('SAVING_PRODUCT_FAILED', (hasSavingFailed, error) => ({ hasSavingFailed, error }));
 
 export const saveProduct = (product, redirectUrl) => (dispatch) => {
@@ -91,8 +94,9 @@ export const saveProduct = (product, redirectUrl) => (dispatch) => {
       dispatch(savingProductInProcess(false));
       return response.data;
     })
-    .then((resultMessage) => {
-      dispatch(savingProductSuccess(resultMessage));
+    .then((data) => {
+      const { resultMessage, updatedProduct } = data;
+      dispatch(savingProductSuccess(resultMessage, updatedProduct));
       dispatch(push(redirectUrl));
     })
     .catch((error) => {

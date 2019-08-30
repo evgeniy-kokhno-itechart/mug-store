@@ -70,9 +70,10 @@ const productsReducer = handleActions(
       savingStatus: { isSavingInProcess: false, hasSavingFailed, error },
     }),
 
-    [savingProductSuccess]: (state, { payload: resultMessage }) => ({
+    [savingProductSuccess]: (state, { payload: { resultMessage, updatedProduct } }) => ({
       ...state,
       saveResult: resultMessage, // added for future. will be empty since back-end is fake
+      currentProduct: updatedProduct || state.currentProduct,
       savingStatus: { isSavingInProcess: false, hasSavingFailed: false, error: '' },
     }),
 

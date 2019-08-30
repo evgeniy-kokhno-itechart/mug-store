@@ -4,8 +4,13 @@ import { PropTypes } from 'prop-types';
 class ListGroup extends Component {
   getClasses = (item, selectedItem) => (item === selectedItem ? 'active' : '');
 
+  handleItemSelect = (item) => {
+    const { onItemSelect } = this.props;
+    onItemSelect(item);
+  };
+
   render() {
-    const { items, selectedItem, onItemSelect } = this.props;
+    const { items, selectedItem } = this.props;
     return (
       <ul className="list-group">
         {items.map((item, index) => (
@@ -17,8 +22,8 @@ class ListGroup extends Component {
               item,
               selectedItem,
             )}`}
-            onClick={() => onItemSelect(item)}
-            onKeyUp={() => onItemSelect(item)} // to fulfill eslint-plugin-jsx-a11y/click-events-have-key-events rule
+            onClick={() => this.handleItemSelect(item)}
+            onKeyUp={() => this.handleItemSelect(item)} // to fulfill eslint-plugin-jsx-a11y/click-events-have-key-events rule
           >
             {item.name}
           </li>

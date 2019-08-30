@@ -143,12 +143,12 @@ describe('productActions', () => {
       .onGet(productURLRegExp)
       .reply(200, 'test result message')
       .onPost(productURLRegExp)
-      .reply(200, 'test result message');
+      .reply(200, { resultMessage: 'test result message', updatedProduct: fakeProducts[0] });
 
     const expectedActions = [
       actions.savingProductInProcess(true),
       actions.savingProductInProcess(false),
-      actions.savingProductSuccess('test result message'),
+      actions.savingProductSuccess('test result message', fakeProducts[0]),
       push('/testurl'),
     ];
 

@@ -9,8 +9,8 @@ const Dropdown = ({
       {label}
     </label>
 
-    <select name={name} id={name} value={value} onChange={e => onValueChange(e)} className="form-control">
-      {defaultText && <option value="-1">{defaultText}</option>}
+    <select name={name} id={name} value={value} onChange={onValueChange} className="form-control">
+      {defaultText && <option>{defaultText}</option>}
       {options.map(o => (
         <option key={o.id} value={o.id}>
           {o.name}

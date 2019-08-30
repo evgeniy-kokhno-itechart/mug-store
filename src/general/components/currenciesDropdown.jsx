@@ -16,20 +16,20 @@ class CurrenciesDropdown extends Component {
     return <span className="badge badge-danger">{this.props.errorMessage}</span>;
   };
 
+  handleCurrencyChange = (e) => {
+    const { currencyOptions, onCurrencyChange } = this.props;
+    onCurrencyChange(currencyOptions.find(currency => currency.id === e.currentTarget.value));
+  };
+
   renderCurreniesDropdown = () => {
-    const { currentCurrencyId, currencyOptions, onCurrencyChange } = this.props;
+    const { currentCurrencyId, currencyOptions } = this.props;
     return (
       <select
         className="text-white bg-dark border-0 ml-1 mr-3"
         type="dropdown"
         id="currencyDropdownButton"
         value={currentCurrencyId}
-        onChange={(e) => {
-          onCurrencyChange(currencyOptions.find(currency => currency.id === e.currentTarget.value));
-          // e.currentTarget.value, // id
-          // e.currentTarget.options[e.currentTarget.selectedIndex].text, // name
-          // .selectedOptions[0].text doesn't work for IE
-        }}
+        onChange={this.handleCurrencyChange}
       >
         {currencyOptions.map(option => (
           <option key={option.id} value={option.id}>

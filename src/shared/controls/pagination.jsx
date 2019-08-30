@@ -11,16 +11,20 @@ class Pagination extends Component {
     return { pagesCount, pages };
   }
 
+  handlePageChange = (page) => {
+    this.props.onPageChange(page);
+  };
+
   renderPages(pages) {
-    const { currentPage, onPageChange } = this.props;
+    const { currentPage } = this.props;
 
     return (
       <nav>
         <ul className="pagination">
-          {pages.map(p => (
-            <li key={p} className={currentPage === p ? 'page-item active' : 'page-item '}>
-              <button type="button" className="page-link clickable" onClick={() => onPageChange(p)}>
-                {p}
+          {pages.map(page => (
+            <li key={page} className={currentPage === page ? 'page-item active' : 'page-item '}>
+              <button type="button" className="page-link clickable" onClick={() => this.handlePageChange(page)}>
+                {page}
               </button>
             </li>
           ))}

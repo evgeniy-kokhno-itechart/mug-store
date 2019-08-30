@@ -35,17 +35,40 @@ export class ProductForm extends Component {
 
   productObjectSchema = {
     id: Yup.string(),
-    imageURL: Yup.string().min(5).label('Image URL'),
-    title: Yup.string().required().min(3).label('Title'),
-    description: Yup.string().required().max(500).label('Details'),
-    categoryId: Yup.string().required().label('Category'),
-    currentCurrencyPrice: Yup.number().typeError('Please enter a valid number').required().moreThan(0)
+    imageURL: Yup.string()
+      .min(5)
+      .label('Image URL'),
+    title: Yup.string()
+      .required()
+      .min(3)
+      .label('Title'),
+    description: Yup.string()
+      .required()
+      .max(500)
+      .label('Details'),
+    categoryId: Yup.number()
+      .typeError('Please choose category')
+      .required()
+      .label('Category'),
+    currentCurrencyPrice: Yup.number()
+      .typeError('Please enter a valid number')
+      .required()
+      .moreThan(0)
       .label('Price'),
-    discount: Yup.number().typeError('Please enter a valid number').min(0).max(100)
+    discount: Yup.number()
+      .typeError('Please enter a valid number')
+      .min(0)
+      .max(100)
       .label('Discount, %'),
-    producer: Yup.string().required().min(5).label('Producer'),
+    producer: Yup.string()
+      .required()
+      .min(5)
+      .label('Producer'),
     publishDate: Yup.date(),
-    rate: Yup.number().typeError('Please enter a valid number').required().min(0)
+    rate: Yup.number()
+      .typeError('Please enter a valid number')
+      .required()
+      .min(0)
       .max(5)
       .label('Rate'),
   };
@@ -92,9 +115,7 @@ export class ProductForm extends Component {
   handleChange = (e, matchedInputName) => {
     const { target: input } = e;
 
-    this.setState(prevState => (
-      FormService.handleChange(input, matchedInputName, prevState, this.productObjectSchema)
-    ));
+    this.setState(prevState => FormService.handleChange(input, matchedInputName, prevState, this.productObjectSchema));
   };
 
   mapToViewModel(product) {
@@ -136,44 +157,44 @@ export class ProductForm extends Component {
         <h1 className="text-center m-3">Product Info</h1>
         <form className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto" onSubmit={this.handleSubmit}>
           <Input
-            type='text'
-            name='title'
-            label='Title'
+            type="text"
+            name="title"
+            label="Title"
             value={_.get(data, 'title')}
             error={errors.title}
             onValueChange={this.handleChange}
           />
 
           <Input
-            type='text'
-            name='imageURL'
-            label='Image URL'
+            type="text"
+            name="imageURL"
+            label="Image URL"
             value={_.get(data, 'imageURL')}
             error={errors.imageURL}
             onValueChange={this.handleChange}
           />
 
           <TextArea
-            name='description'
-            label='Details'
+            name="description"
+            label="Details"
             value={data.description}
             error={errors.description}
             onValueChange={this.handleChange}
           />
 
           <Dropdown
-            name='categoryId'
-            label='Category'
+            name="categoryId"
+            label="Category"
             options={categories}
             value={data.categoryId}
             error={errors.categoryId}
-            defaultText='Please choose...'
+            defaultText="Please choose..."
             onValueChange={this.handleChange}
           />
 
           <Input
-            type='text'
-            name='currentCurrencyPrice'
+            type="text"
+            name="currentCurrencyPrice"
             label={`Price, ${currentCurrency.name}`}
             value={_.get(data, 'currentCurrencyPrice')}
             error={errors.currentCurrencyPrice}
@@ -181,40 +202,28 @@ export class ProductForm extends Component {
           />
 
           <Input
-            type='text'
-            name='discount'
-            label='Dicount, %'
+            type="text"
+            name="discount"
+            label="Dicount, %"
             value={_.get(data, 'discount')}
             error={errors.discount}
             onValueChange={this.handleChange}
           />
 
           <Input
-            type='text'
-            name='producer'
-            label='Producer'
+            type="text"
+            name="producer"
+            label="Producer"
             value={_.get(data, 'producer')}
             error={errors.producer}
             onValueChange={this.handleChange}
           />
 
-          <Input
-            type='text'
-            name='rate'
-            label='Rate'
-            value={_.get(data, 'rate')}
-            error={errors.rate}
-            onValueChange={this.handleChange}
-          />
+          <Input type="text" name="rate" label="Rate" value={_.get(data, 'rate')} error={errors.rate} onValueChange={this.handleChange} />
 
-          <button
-            type="submit"
-            disabled={FormService.validateForm(this.productObjectSchema, data)}
-            className='btn btn-secondary w-100'
-          >
+          <button type="submit" disabled={FormService.validateForm(this.productObjectSchema, data)} className="btn btn-secondary w-100">
             Save
           </button>
-
         </form>
       </React.Fragment>
     );
@@ -222,14 +231,19 @@ export class ProductForm extends Component {
 
   render() {
     const {
-      isProductLoading, hasProductLoadingFailed, errorWhileProductLoading, isSavingInProcess, hasSavingFailed, errorWhileProductSaving,
+      isProductLoading,
+      hasProductLoadingFailed,
+      errorWhileProductLoading,
+      isSavingInProcess,
+      hasSavingFailed,
+      errorWhileProductSaving,
     } = this.props;
-    return (
-      (isProductLoading || isSavingInProcess)
-        ? <Spinner customSizeClassName='product-form__spinner' marginBootstrapClassName='mt-5' />
-        : (hasProductLoadingFailed || hasSavingFailed)
-          ? <ErrorMessage message={errorWhileProductSaving || errorWhileProductLoading} />
-          : this.renderForm()
+    return isProductLoading || isSavingInProcess ? (
+      <Spinner customSizeClassName="product-form__spinner" marginBootstrapClassName="mt-5" />
+    ) : hasProductLoadingFailed || hasSavingFailed ? (
+      <ErrorMessage message={errorWhileProductSaving || errorWhileProductLoading} />
+    ) : (
+      this.renderForm()
     );
   }
 }
