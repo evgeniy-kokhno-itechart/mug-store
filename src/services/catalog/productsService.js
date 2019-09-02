@@ -1,5 +1,4 @@
 import Axios from 'axios';
-// import { getCategory } from './categoriesService';
 import { rootUrl } from '../general/constants';
 
 export function getProducts() {

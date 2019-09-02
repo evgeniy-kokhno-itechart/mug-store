@@ -191,7 +191,6 @@ export class Catalog extends Component {
 }
 
 Catalog.propTypes = {
-  // currentCurrency: PropTypes.shape({ name: PropTypes.string }).isRequired,
   currentUserRoles: PropTypes.arrayOf(PropTypes.string),
 
   isProductsLoading: PropTypes.bool,
@@ -204,7 +203,7 @@ Catalog.propTypes = {
     description: PropTypes.string,
     category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
     basePrice: PropTypes.number,
-    currentCurrencyPrice: PropTypes.number, // !!!
+    currentCurrencyPrice: PropTypes.number,
     discount: PropTypes.number,
     producer: PropTypes.string,
     publishDate: PropTypes.string,
@@ -246,7 +245,6 @@ Catalog.defaultProps = {
 
 const mapStateToProps = state => ({
   currentUserRoles: state.user.currentUser.roles,
-  // currentCurrency: state.currency.currentCurrency,
 
   products: productsPricesSelector(state),
   isProductsLoading: state.products.tableProductsStatus.isGettingInProcess,

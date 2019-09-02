@@ -3,13 +3,11 @@ import React from 'react';
 
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// import { createSerializer } from 'enzyme-to-json';
 
 import { BrowserRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../../shared/markup-usage/ProtectedRoute';
 import Spinner from '../../shared/markup-usage/Spinner';
 
-// expect.addSnapshotSerializer(createSerializer());
 configure({ adapter: new Adapter() });
 
 describe('<ProtectedRoute />', () => {

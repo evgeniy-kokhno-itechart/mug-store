@@ -62,7 +62,6 @@ class OrderForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.onOrderSubmit('/orderconfirm');
-    // this.props.routeReplace('/orderconfirm'); // this.props.routeHistory.replace('/orderconfirm');
   };
 
   mapToViewModel({
