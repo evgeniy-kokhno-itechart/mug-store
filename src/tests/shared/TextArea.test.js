@@ -17,16 +17,16 @@ describe('<TextArea />', () => {
   });
 
   it('check TextArea renders properly with default props', () => {
-    expect(TextAreaWrapper.debug()).toMatchSnapshot();
+    expect(TextAreaWrapper).toMatchSnapshot();
   });
 
   it('check TextArea renders properly with error', () => {
     TextAreaWrapper.setProps({ error: 'Test error' });
-    expect(TextAreaWrapper.debug()).toMatchSnapshot();
+    expect(TextAreaWrapper).toMatchSnapshot();
   });
 
   it('check TextArea renders properly with value provided', () => {
     TextAreaWrapper.setProps({ value: 'Test value' });
-    expect(TextAreaWrapper.debug()).toMatchSnapshot();
+    expect(TextAreaWrapper).toMatchSnapshot();
   });
 });

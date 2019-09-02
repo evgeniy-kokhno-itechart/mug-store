@@ -27,10 +27,6 @@ describe('userActions', () => {
 
   let store;
 
-  //   beforeEach(() => {
-  //     store = mockStore(initialUserState);
-  //   });
-
   afterEach(() => {
     mockAxios.resetHandlers();
     store.clearActions();

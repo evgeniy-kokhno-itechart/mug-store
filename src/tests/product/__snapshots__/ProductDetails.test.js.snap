@@ -1,45 +1,260 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductDetails /> render field info correctly with renderFieldInfo method 1`] = `
-"<Fragment>
-  <h1 className=\\"display-5 text-center m-3\\">
+<Fragment>
+  <h1
+    className="display-5 text-center m-3"
+  >
     Mug 1 Details
   </h1>
-  <div className=\\"col-10 col-md-9 col-lg-7 mx-auto\\">
-    <ImageGallery items={{...}} infinite={false} showPlayButton={false} showBullets={false} showFullscreenButton={false} useBrowserFullscreen={false} showNav={true} autoPlay={false} lazyLoad={false} showIndex={false} showThumbnails={true} disableThumbnailScroll={false} disableArrowKeys={false} disableSwipe={false} useTranslate3D={true} isRTL={false} preventDefaultTouchmoveEvent={false} flickThreshold={0.4} stopPropagation={false} indexSeparator=\\" / \\" thumbnailPosition=\\"bottom\\" startIndex={0} slideDuration={450} swipingTransitionDuration={0} slideInterval={3000} swipeThreshold={30} renderLeftNav={[Function: renderLeftNav]} renderRightNav={[Function: renderRightNav]} renderPlayPauseButton={[Function: renderPlayPauseButton]} renderFullscreenButton={[Function: renderFullscreenButton]} />
+  <div
+    className="col-10 col-md-9 col-lg-7 mx-auto"
+  >
+    <ImageGallery
+      autoPlay={false}
+      disableArrowKeys={false}
+      disableSwipe={false}
+      disableThumbnailScroll={false}
+      flickThreshold={0.4}
+      indexSeparator=" / "
+      infinite={false}
+      isRTL={false}
+      items={
+        Array [
+          Object {
+            "original": "https://picsum.photos/700/300?image=1080",
+            "thumbnail": "https://picsum.photos/250/150?image=1080",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=1068",
+            "thumbnail": "https://picsum.photos/250/150?image=1068",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=998",
+            "thumbnail": "https://picsum.photos/250/150?image=998",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=635",
+            "thumbnail": "https://picsum.photos/250/150?image=635",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=431",
+            "thumbnail": "https://picsum.photos/250/150?image=431",
+          },
+        ]
+      }
+      lazyLoad={false}
+      preventDefaultTouchmoveEvent={false}
+      renderFullscreenButton={[Function]}
+      renderLeftNav={[Function]}
+      renderPlayPauseButton={[Function]}
+      renderRightNav={[Function]}
+      showBullets={false}
+      showFullscreenButton={false}
+      showIndex={false}
+      showNav={true}
+      showPlayButton={false}
+      showThumbnails={true}
+      slideDuration={450}
+      slideInterval={3000}
+      startIndex={0}
+      stopPropagation={false}
+      swipeThreshold={30}
+      swipingTransitionDuration={0}
+      thumbnailPosition="bottom"
+      useBrowserFullscreen={false}
+      useTranslate3D={true}
+    />
   </div>
-  <InformationItem label=\\"Title\\" info=\\"Mug 1\\" />
-  <InformationItem label=\\"Description\\" info=\\"product 1 description\\" />
-  <InformationItem label=\\"Category\\" info=\\"category 1\\" />
-  <InformationItem label=\\"Producer\\" info=\\"test producer 1\\" />
-  <InformationItem label=\\"Price\\" info={5} />
-  <div className=\\"d-flex m-3\\">
-    <ToCatalogButton customClasses=\\"\\" />
-    <BuyNowButton customClasses=\\"ml-auto\\" onBuyNow={[Function: mockConstructor]} product={{...}} />
+  <InformationItem
+    info="Mug 1"
+    key="Title"
+    label="Title"
+  />
+  <InformationItem
+    info="product 1 description"
+    key="Description"
+    label="Description"
+  />
+  <InformationItem
+    info="category 1"
+    key="Category"
+    label="Category"
+  />
+  <InformationItem
+    info="test producer 1"
+    key="Producer"
+    label="Producer"
+  />
+  <InformationItem
+    info={5}
+    key="Price"
+    label="Price"
+  />
+  <div
+    className="d-flex m-3"
+  >
+    <ToCatalogButton
+      customClasses=""
+    />
+    <BuyNowButton
+      customClasses="ml-auto"
+      onBuyNow={[MockFunction]}
+      product={
+        Object {
+          "basePrice": 5,
+          "category": Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          "currentCurrencyPrice": 5,
+          "description": "product 1 description",
+          "discount": 0,
+          "id": "1",
+          "imageURL": "#",
+          "producer": "test producer 1",
+          "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+          "rate": "5",
+          "title": "Mug 1",
+        }
+      }
+    />
   </div>
-</Fragment>"
+</Fragment>
 `;
 
-exports[`<ProductDetails /> renders ErrorMessage once hasProductLoadingFailed and errorWhileLoading provided 1`] = `"<ErrorMessage message=\\"test error\\" />"`;
+exports[`<ProductDetails /> renders ErrorMessage once hasProductLoadingFailed and errorWhileLoading provided 1`] = `
+<ErrorMessage
+  message="test error"
+/>
+`;
 
-exports[`<ProductDetails /> renders Spinner properly with default props 1`] = `"<Spinner customSizeClassName=\\"product-details__spinner\\" marginBootstrapClassName=\\"mt-5\\" />"`;
+exports[`<ProductDetails /> renders Spinner properly with default props 1`] = `
+<Spinner
+  customSizeClassName="product-details__spinner"
+  marginBootstrapClassName="mt-5"
+/>
+`;
 
 exports[`<ProductDetails /> renders product details once isProductLoading is succesfully done 1`] = `
-"<Fragment>
-  <h1 className=\\"display-5 text-center m-3\\">
+<Fragment>
+  <h1
+    className="display-5 text-center m-3"
+  >
     Mug 1 Details
   </h1>
-  <div className=\\"col-10 col-md-9 col-lg-7 mx-auto\\">
-    <ImageGallery items={{...}} infinite={false} showPlayButton={false} showBullets={false} showFullscreenButton={false} useBrowserFullscreen={false} showNav={true} autoPlay={false} lazyLoad={false} showIndex={false} showThumbnails={true} disableThumbnailScroll={false} disableArrowKeys={false} disableSwipe={false} useTranslate3D={true} isRTL={false} preventDefaultTouchmoveEvent={false} flickThreshold={0.4} stopPropagation={false} indexSeparator=\\" / \\" thumbnailPosition=\\"bottom\\" startIndex={0} slideDuration={450} swipingTransitionDuration={0} slideInterval={3000} swipeThreshold={30} renderLeftNav={[Function: renderLeftNav]} renderRightNav={[Function: renderRightNav]} renderPlayPauseButton={[Function: renderPlayPauseButton]} renderFullscreenButton={[Function: renderFullscreenButton]} />
+  <div
+    className="col-10 col-md-9 col-lg-7 mx-auto"
+  >
+    <ImageGallery
+      autoPlay={false}
+      disableArrowKeys={false}
+      disableSwipe={false}
+      disableThumbnailScroll={false}
+      flickThreshold={0.4}
+      indexSeparator=" / "
+      infinite={false}
+      isRTL={false}
+      items={
+        Array [
+          Object {
+            "original": "https://picsum.photos/700/300?image=1080",
+            "thumbnail": "https://picsum.photos/250/150?image=1080",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=1068",
+            "thumbnail": "https://picsum.photos/250/150?image=1068",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=998",
+            "thumbnail": "https://picsum.photos/250/150?image=998",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=635",
+            "thumbnail": "https://picsum.photos/250/150?image=635",
+          },
+          Object {
+            "original": "https://picsum.photos/700/300?image=431",
+            "thumbnail": "https://picsum.photos/250/150?image=431",
+          },
+        ]
+      }
+      lazyLoad={false}
+      preventDefaultTouchmoveEvent={false}
+      renderFullscreenButton={[Function]}
+      renderLeftNav={[Function]}
+      renderPlayPauseButton={[Function]}
+      renderRightNav={[Function]}
+      showBullets={false}
+      showFullscreenButton={false}
+      showIndex={false}
+      showNav={true}
+      showPlayButton={false}
+      showThumbnails={true}
+      slideDuration={450}
+      slideInterval={3000}
+      startIndex={0}
+      stopPropagation={false}
+      swipeThreshold={30}
+      swipingTransitionDuration={0}
+      thumbnailPosition="bottom"
+      useBrowserFullscreen={false}
+      useTranslate3D={true}
+    />
   </div>
-  <InformationItem label=\\"Title\\" info=\\"Mug 1\\" />
-  <InformationItem label=\\"Description\\" info=\\"product 1 description\\" />
-  <InformationItem label=\\"Category\\" info=\\"category 1\\" />
-  <InformationItem label=\\"Producer\\" info=\\"test producer 1\\" />
-  <InformationItem label=\\"Price\\" info={5} />
-  <div className=\\"d-flex m-3\\">
-    <ToCatalogButton customClasses=\\"\\" />
-    <BuyNowButton customClasses=\\"ml-auto\\" onBuyNow={[Function: mockConstructor]} product={{...}} />
+  <InformationItem
+    info="Mug 1"
+    key="Title"
+    label="Title"
+  />
+  <InformationItem
+    info="product 1 description"
+    key="Description"
+    label="Description"
+  />
+  <InformationItem
+    info="category 1"
+    key="Category"
+    label="Category"
+  />
+  <InformationItem
+    info="test producer 1"
+    key="Producer"
+    label="Producer"
+  />
+  <InformationItem
+    info={5}
+    key="Price"
+    label="Price"
+  />
+  <div
+    className="d-flex m-3"
+  >
+    <ToCatalogButton
+      customClasses=""
+    />
+    <BuyNowButton
+      customClasses="ml-auto"
+      onBuyNow={[MockFunction]}
+      product={
+        Object {
+          "basePrice": 5,
+          "category": Object {
+            "id": "1",
+            "name": "category 1",
+          },
+          "currentCurrencyPrice": 5,
+          "description": "product 1 description",
+          "discount": 0,
+          "id": "1",
+          "imageURL": "#",
+          "producer": "test producer 1",
+          "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+          "rate": "5",
+          "title": "Mug 1",
+        }
+      }
+    />
   </div>
-</Fragment>"
+</Fragment>
 `;

@@ -27,15 +27,15 @@ export function login(username, password) {
   // !!! FAKE AUTHENTICATION LOGIC !!! should be replaced in prod app
   let response;
   let isKnownUser = false;
-  if (username === 'superadmin' && password === '12345') {
+  if (username === process.env.REACT_APP_ADMIN_NAME && password === process.env.REACT_APP_ADMIN_PASS) {
     isKnownUser = true;
     response = Axios.get(`${rootUrl}/users/1`);
   }
-  if (username === 'user' && password === '12345') {
+  if (username === process.env.REACT_APP_USER_NAME && password === process.env.REACT_APP_USER_PASS) {
     isKnownUser = true;
     response = Axios.get(`${rootUrl}/users/2`);
   }
-  if (username === 'testname' && password === 'testpassword') {
+  if (username === process.env.REACT_APP_TEST_NAME && password === process.env.REACT_APP_TEST_PASS) {
     isKnownUser = true;
     response = Axios.get(`${rootUrl}/users/2`);
   }

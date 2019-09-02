@@ -19,6 +19,6 @@ describe('<Order />', () => {
   });
 
   it('renders properly with default props', () => {
-    expect(OrderWrapper.debug()).toMatchSnapshot();
+    expect(OrderWrapper).toMatchSnapshot();
   });
 });

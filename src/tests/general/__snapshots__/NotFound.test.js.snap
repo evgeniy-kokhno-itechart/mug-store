@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<NotFound /> check NotFound renders properly 1`] = `
-"<h1 className=\\"text-center mt-3\\">
+<h1
+  className="text-center mt-3"
+>
   Not Found
-</h1>"
+</h1>
 `;

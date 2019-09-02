@@ -18,11 +18,6 @@ describe('<ListGroup />', () => {
   });
 
   it('renders with default props properly', () => {
-    expect(ListGroupWrapper.debug()).toMatchSnapshot();
-  });
-
-  it('renders and displays selected item as active', () => {
-    ListGroupWrapper.setProps({ selectedItem: itemToBeselectedMock });
-    expect(ListGroupWrapper.debug()).toMatchSnapshot();
+    expect(ListGroupWrapper).toMatchSnapshot();
   });
 });

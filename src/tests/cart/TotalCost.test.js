@@ -16,11 +16,11 @@ describe('<TotalCost />', () => {
   });
 
   it('check render without customClasses provided', () => {
-    expect(TotalCostWrapper.debug()).toMatchSnapshot();
+    expect(TotalCostWrapper).toMatchSnapshot();
   });
 
   it('check render with customClasses = testclass provided', () => {
     TotalCostWrapper.setProps({ customClasses: 'testclass' });
-    expect(TotalCostWrapper.debug()).toMatchSnapshot();
+    expect(TotalCostWrapper).toMatchSnapshot();
   });
 });

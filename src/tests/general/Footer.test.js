@@ -16,6 +16,6 @@ describe('<Footer />', () => {
   });
 
   it('check Footer renders properly', () => {
-    expect(FooterWrapper.debug()).toMatchSnapshot();
+    expect(FooterWrapper).toMatchSnapshot();
   });
 });

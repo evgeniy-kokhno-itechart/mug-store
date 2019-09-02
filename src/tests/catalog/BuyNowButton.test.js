@@ -32,11 +32,11 @@ describe('<BuyNowButton />', () => {
   });
 
   it('check render without customClasses provided', () => {
-    expect(BuyNowButtonWrapper.debug()).toMatchSnapshot();
+    expect(BuyNowButtonWrapper).toMatchSnapshot();
   });
 
   it('check render with customClasses = testclass provided', () => {
     BuyNowButtonWrapper.setProps({ customClasses: 'testclass' });
-    expect(BuyNowButtonWrapper.debug()).toMatchSnapshot();
+    expect(BuyNowButtonWrapper).toMatchSnapshot();
   });
 });

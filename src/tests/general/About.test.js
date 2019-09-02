@@ -16,6 +16,6 @@ describe('<About />', () => {
   });
 
   it('check About renders properly', () => {
-    expect(AboutWrapper.debug()).toMatchSnapshot();
+    expect(AboutWrapper).toMatchSnapshot();
   });
 });

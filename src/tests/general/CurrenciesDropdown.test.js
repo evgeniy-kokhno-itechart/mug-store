@@ -19,16 +19,16 @@ describe('<CurrensiesDropdown />', () => {
   });
 
   it('check the shapshot without optional props provided', () => {
-    expect(CurrensiesDropdownWrapper.debug()).toMatchSnapshot();
+    expect(CurrensiesDropdownWrapper).toMatchSnapshot();
   });
 
   it('check the shapshot with isCurrenciesLoading = true provided', () => {
     CurrensiesDropdownWrapper.setProps({ isCurrenciesLoading: true });
-    expect(CurrensiesDropdownWrapper.debug()).toMatchSnapshot();
+    expect(CurrensiesDropdownWrapper).toMatchSnapshot();
   });
 
   it('check the shapshot with hasLoadFailed = true and errorMessage provided', () => {
     CurrensiesDropdownWrapper.setProps({ hasLoadFailed: true, errorMessage: 'test error' });
-    expect(CurrensiesDropdownWrapper.debug()).toMatchSnapshot();
+    expect(CurrensiesDropdownWrapper).toMatchSnapshot();
   });
 });

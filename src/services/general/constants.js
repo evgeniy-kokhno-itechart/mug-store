@@ -1,6 +1,6 @@
-export const rootUrl = 'https://my-json-server.typicode.com/evgeniy-kokhno-itechart/mug-store-data';
-export const currencyRatesURL = 'http://www.nbrb.by/API/ExRates/Rates';
-export const baseCurrencyName = 'BYN';
+export const rootUrl = process.env.REACT_APP_API_URL;
+export const currencyRatesURL = process.env.REACT_APP_CURRENCY_API_URL;
+export const baseCurrencyName = process.env.REACT_APP_BASE_CURRENCY_NAME;
 
 // see http://www.nbrb.by/apihelp/exrates for references
 export const currencyNameKeyInJson = 'Cur_Abbreviation';

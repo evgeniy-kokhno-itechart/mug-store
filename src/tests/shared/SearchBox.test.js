@@ -17,12 +17,12 @@ describe('<SearchBox />', () => {
 
   it('renders with default props with Search... text in the input', () => {
     const SearchBoxWrapper = shallow(<SearchBox onSearchSubmit={onSearchSubmit} />);
-    expect(SearchBoxWrapper.debug()).toMatchSnapshot();
+    expect(SearchBoxWrapper).toMatchSnapshot();
   });
 
   it('renders with value = test search in the input', () => {
     const SearchBoxWrapper = shallow(<SearchBox value="test search" onSearchSubmit={onSearchSubmit} />);
     // SearchBoxWrapper.setState({ query: 'test search' }); // this is too late. value should be provided from the very beginning
-    expect(SearchBoxWrapper.debug()).toMatchSnapshot();
+    expect(SearchBoxWrapper).toMatchSnapshot();
   });
 });

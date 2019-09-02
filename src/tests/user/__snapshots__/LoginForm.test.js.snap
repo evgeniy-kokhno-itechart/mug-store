@@ -91,7 +91,7 @@ exports[`<LoginForm /> renders properly with default props 1`] = `
       }
       type="submit"
     >
-      Save
+      Login
     </button>
   </form>
 </LoginForm>
@@ -182,7 +182,7 @@ exports[`<LoginForm /> renders properly with location.fromPath provided 1`] = `
       }
       type="submit"
     >
-      Save
+      Login
     </button>
   </form>
 </LoginForm>

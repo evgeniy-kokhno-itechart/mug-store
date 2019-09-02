@@ -69,7 +69,7 @@ export class LoginForm extends Component {
           />
 
           <button type="submit" disabled={FormService.validateForm(this.loginObjectSchema, data)} className="btn btn-secondary w-100">
-            Save
+            Login
           </button>
         </form>
       </React.Fragment>

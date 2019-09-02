@@ -16,11 +16,11 @@ describe('<ProductPrice />', () => {
   });
 
   it('check render without isCurrencyLoading provided', () => {
-    expect(ProductPriceWrapper.debug()).toMatchSnapshot();
+    expect(ProductPriceWrapper).toMatchSnapshot();
   });
 
   it('check render with isCurrencyLoading = true provided', () => {
     ProductPriceWrapper.setProps({ isCurrencyLoading: true });
-    expect(ProductPriceWrapper.debug()).toMatchSnapshot();
+    expect(ProductPriceWrapper).toMatchSnapshot();
   });
 });

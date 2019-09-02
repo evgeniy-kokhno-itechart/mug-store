@@ -27,6 +27,6 @@ describe('<CatalogTableFooter />', () => {
   });
 
   it('check render properly', () => {
-    expect(CatalogTableFooterWrapper.debug()).toMatchSnapshot();
+    expect(CatalogTableFooterWrapper).toMatchSnapshot();
   });
 });

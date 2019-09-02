@@ -17,21 +17,21 @@ describe('<Input />', () => {
   });
 
   it('check Input renders properly with default props', () => {
-    expect(InputWrapper.debug()).toMatchSnapshot();
+    expect(InputWrapper).toMatchSnapshot();
   });
 
   it('check Input renders properly with error', () => {
     InputWrapper.setProps({ error: 'test error' });
-    expect(InputWrapper.debug()).toMatchSnapshot();
+    expect(InputWrapper).toMatchSnapshot();
   });
 
   it('check Input renders properly with matchedInputName provided', () => {
     InputWrapper.setProps({ matchedInputName: 'Test matchedInputName' });
-    expect(InputWrapper.debug()).toMatchSnapshot();
+    expect(InputWrapper).toMatchSnapshot();
   });
 
   it('check Input renders properly with value provided', () => {
     InputWrapper.setProps({ value: 'Test value' });
-    expect(InputWrapper.debug()).toMatchSnapshot();
+    expect(InputWrapper).toMatchSnapshot();
   });
 });

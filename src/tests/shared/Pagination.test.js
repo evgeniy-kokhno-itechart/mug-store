@@ -17,11 +17,11 @@ describe('<Pagination />', () => {
   });
 
   it('renders with default props with 1st page checked as active', () => {
-    expect(PaginationWrapper.debug()).toMatchSnapshot();
+    expect(PaginationWrapper).toMatchSnapshot();
   });
 
   it('renders and displays 2nd page as active', () => {
     PaginationWrapper.setProps({ currentPage: 2 });
-    expect(PaginationWrapper.debug()).toMatchSnapshot();
+    expect(PaginationWrapper).toMatchSnapshot();
   });
 });

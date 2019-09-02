@@ -39,6 +39,6 @@ describe('<OrderTable />', () => {
   });
 
   it('renders properly with default props', () => {
-    expect(OrderTableWrapper.debug()).toMatchSnapshot();
+    expect(OrderTableWrapper).toMatchSnapshot();
   });
 });

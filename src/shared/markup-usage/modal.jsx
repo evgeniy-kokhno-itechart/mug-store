@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 const Modal = ({
-  id, productId, buttonLabel, buttonClasses, title, text, textConfirm, textAbort, onConfirm,
+  id, buttonLabel, buttonClasses, title, text, textConfirm, textAbort, onConfirm,
 }) => (
   <React.Fragment>
     <button type="button" className={buttonClasses} data-toggle="modal" data-target={`#${id}`}>
@@ -24,7 +24,7 @@ const Modal = ({
             <button type="button" className="btn btn-secondary" data-dismiss="modal">
               {textAbort}
             </button>
-            <button type="button" id={productId} className="btn btn-danger" data-dismiss="modal" onClick={onConfirm}>
+            <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={onConfirm}>
               {textConfirm}
             </button>
           </div>
@@ -36,7 +36,6 @@ const Modal = ({
 
 Modal.propTypes = {
   id: PropTypes.string.isRequired,
-  productId: PropTypes.string.isRequired,
   buttonLabel: PropTypes.string.isRequired,
   buttonClasses: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

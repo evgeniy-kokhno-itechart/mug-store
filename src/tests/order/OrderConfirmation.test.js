@@ -16,6 +16,6 @@ describe('<OrderConfirmation />', () => {
   });
 
   it('check OrderConfirmation renders properly', () => {
-    expect(OrderConfirmationWrapper.debug()).toMatchSnapshot();
+    expect(OrderConfirmationWrapper).toMatchSnapshot();
   });
 });

@@ -16,11 +16,11 @@ describe('<ToCatalogButton />', () => {
   });
 
   it('check render without customClasses provided', () => {
-    expect(ToCatalogButtonWrapper.debug()).toMatchSnapshot();
+    expect(ToCatalogButtonWrapper).toMatchSnapshot();
   });
 
   it('check render with customClasses = testclass provided', () => {
     ToCatalogButtonWrapper.setProps({ customClasses: 'testclass' });
-    expect(ToCatalogButtonWrapper.debug()).toMatchSnapshot();
+    expect(ToCatalogButtonWrapper).toMatchSnapshot();
   });
 });

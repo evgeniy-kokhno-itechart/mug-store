@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import PaginationButton from './PaginationButton';
 import '../../styles/Pagination.css';
 
 class Pagination extends Component {
@@ -11,10 +12,6 @@ class Pagination extends Component {
     return { pagesCount, pages };
   }
 
-  handlePageChange = (page) => {
-    this.props.onPageChange(page);
-  };
-
   renderPages(pages) {
     const { currentPage } = this.props;
 
@@ -23,9 +20,7 @@ class Pagination extends Component {
         <ul className="pagination">
           {pages.map(page => (
             <li key={page} className={currentPage === page ? 'page-item active' : 'page-item '}>
-              <button type="button" className="page-link clickable" onClick={() => this.handlePageChange(page)}>
-                {page}
-              </button>
+              <PaginationButton page={page} handlePageChange={this.props.onPageChange} />
             </li>
           ))}
         </ul>

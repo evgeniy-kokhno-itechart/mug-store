@@ -1,13 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Footer /> check Footer renders properly 1`] = `
-"<footer id=\\"footer\\" className=\\"navbar-dark bg-dark text-center\\">
-  <div className=\\"cont pt-2\\">
+<footer
+  className="navbar-dark bg-dark text-center"
+  id="footer"
+>
+  <div
+    className="cont pt-2"
+  >
     <span>
       © 
       2019
        Copyright: Mug Store
     </span>
   </div>
-</footer>"
+</footer>
 `;

@@ -1,144 +1,337 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Navbar /> renders properly with default props 1`] = `
-"<nav className=\\"navbar navbar-expand-md navbar-dark bg-dark sticky-top\\">
-  <button className=\\"navbar-toggler\\" type=\\"button\\" data-toggle=\\"collapse\\" data-target=\\"#mugStoreNavbar\\" aria-controls=\\"mugStoreNavbar\\" aria-expanded=\\"false\\" aria-label=\\"Toggle navigation\\">
-    <span className=\\"navbar-toggler-icon\\" />
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
   </button>
-  <div className=\\"collapse navbar-collapse\\" id=\\"mugStoreNavbar\\">
-    <NavLink className=\\"navbar-brand\\" to=\\"/\\">
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
       Mug Store
     </NavLink>
-    <div className=\\"navbar-nav\\">
-      <NavLink to=\\"/catalog\\" className=\\" nav-item nav-link\\">
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
         Catalog
       </NavLink>
-      <NavLink to=\\"/about\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
         About
       </NavLink>
-      <NavLink to=\\"/cart\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
         Cart
       </NavLink>
     </div>
   </div>
   <div>
-    <CurrenciesDropdown currentCurrencyId=\\"0\\" currencyOptions={{...}} onCurrencyChange={[Function: mockConstructor]} isCurrenciesLoading={true} hasLoadFailed={false} errorMessage=\\"\\" />
+    <CurrenciesDropdown
+      currencyOptions={Array []}
+      currentCurrencyId="0"
+      errorMessage=""
+      hasLoadFailed={false}
+      isCurrenciesLoading={true}
+      onCurrencyChange={[MockFunction]}
+    />
     <Connect(LoginLogoutBar) />
   </div>
-</nav>"
+</nav>
 `;
 
 exports[`<Navbar /> renders with cart provided 1`] = `
-"<nav className=\\"navbar navbar-expand-md navbar-dark bg-dark sticky-top\\">
-  <button className=\\"navbar-toggler\\" type=\\"button\\" data-toggle=\\"collapse\\" data-target=\\"#mugStoreNavbar\\" aria-controls=\\"mugStoreNavbar\\" aria-expanded=\\"false\\" aria-label=\\"Toggle navigation\\">
-    <span className=\\"navbar-toggler-icon\\" />
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
   </button>
-  <div className=\\"collapse navbar-collapse\\" id=\\"mugStoreNavbar\\">
-    <NavLink className=\\"navbar-brand\\" to=\\"/\\">
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
       Mug Store
     </NavLink>
-    <div className=\\"navbar-nav\\">
-      <NavLink to=\\"/catalog\\" className=\\" nav-item nav-link\\">
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
         Catalog
       </NavLink>
-      <NavLink to=\\"/about\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
         About
       </NavLink>
-      <NavLink to=\\"/cart\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
         Cart
-        <span className=\\"badge badge-warning ml-1\\">
+        <span
+          className="badge badge-warning ml-1"
+        >
           11
         </span>
       </NavLink>
     </div>
   </div>
   <div>
-    <CurrenciesDropdown currentCurrencyId=\\"0\\" currencyOptions={{...}} onCurrencyChange={[Function: mockConstructor]} isCurrenciesLoading={true} hasLoadFailed={false} errorMessage=\\"\\" />
+    <CurrenciesDropdown
+      currencyOptions={Array []}
+      currentCurrencyId="0"
+      errorMessage=""
+      hasLoadFailed={false}
+      isCurrenciesLoading={true}
+      onCurrencyChange={[MockFunction]}
+    />
     <Connect(LoginLogoutBar) />
   </div>
-</nav>"
+</nav>
 `;
 
 exports[`<Navbar /> renders with currencies dropdown filled with currencies list 1`] = `
-"<nav className=\\"navbar navbar-expand-md navbar-dark bg-dark sticky-top\\">
-  <button className=\\"navbar-toggler\\" type=\\"button\\" data-toggle=\\"collapse\\" data-target=\\"#mugStoreNavbar\\" aria-controls=\\"mugStoreNavbar\\" aria-expanded=\\"false\\" aria-label=\\"Toggle navigation\\">
-    <span className=\\"navbar-toggler-icon\\" />
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
   </button>
-  <div className=\\"collapse navbar-collapse\\" id=\\"mugStoreNavbar\\">
-    <NavLink className=\\"navbar-brand\\" to=\\"/\\">
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
       Mug Store
     </NavLink>
-    <div className=\\"navbar-nav\\">
-      <NavLink to=\\"/catalog\\" className=\\" nav-item nav-link\\">
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
         Catalog
       </NavLink>
-      <NavLink to=\\"/about\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
         About
       </NavLink>
-      <NavLink to=\\"/cart\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
         Cart
       </NavLink>
     </div>
   </div>
   <div>
-    <CurrenciesDropdown currentCurrencyId=\\"0\\" currencyOptions={{...}} onCurrencyChange={[Function: mockConstructor]} isCurrenciesLoading={false} hasLoadFailed={false} errorMessage=\\"\\" />
+    <CurrenciesDropdown
+      currencyOptions={
+        Array [
+          Object {
+            "id": "1",
+            "name": "CURR1",
+          },
+          Object {
+            "id": "2",
+            "name": "CURR2",
+          },
+        ]
+      }
+      currentCurrencyId="0"
+      errorMessage=""
+      hasLoadFailed={false}
+      isCurrenciesLoading={false}
+      onCurrencyChange={[MockFunction]}
+    />
     <Connect(LoginLogoutBar) />
   </div>
-</nav>"
+</nav>
 `;
 
 exports[`<Navbar /> renders with currentUser provided 1`] = `
-"<nav className=\\"navbar navbar-expand-md navbar-dark bg-dark sticky-top\\">
-  <button className=\\"navbar-toggler\\" type=\\"button\\" data-toggle=\\"collapse\\" data-target=\\"#mugStoreNavbar\\" aria-controls=\\"mugStoreNavbar\\" aria-expanded=\\"false\\" aria-label=\\"Toggle navigation\\">
-    <span className=\\"navbar-toggler-icon\\" />
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
   </button>
-  <div className=\\"collapse navbar-collapse\\" id=\\"mugStoreNavbar\\">
-    <NavLink className=\\"navbar-brand\\" to=\\"/\\">
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
       Mug Store
     </NavLink>
-    <div className=\\"navbar-nav\\">
-      <NavLink to=\\"/catalog\\" className=\\" nav-item nav-link\\">
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
         Catalog
       </NavLink>
-      <NavLink to=\\"/about\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
         About
       </NavLink>
-      <NavLink to=\\"/cart\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
         Cart
       </NavLink>
     </div>
   </div>
   <div>
-    <CurrenciesDropdown currentCurrencyId=\\"0\\" currencyOptions={{...}} onCurrencyChange={[Function: mockConstructor]} isCurrenciesLoading={true} hasLoadFailed={false} errorMessage=\\"\\" />
+    <CurrenciesDropdown
+      currencyOptions={Array []}
+      currentCurrencyId="0"
+      errorMessage=""
+      hasLoadFailed={false}
+      isCurrenciesLoading={true}
+      onCurrencyChange={[MockFunction]}
+    />
     <Connect(LoginLogoutBar) />
   </div>
-</nav>"
+</nav>
 `;
 
 exports[`<Navbar /> renders with hasCurrenciesLoadFailed and errorCurrenciesLoading provided 1`] = `
-"<nav className=\\"navbar navbar-expand-md navbar-dark bg-dark sticky-top\\">
-  <button className=\\"navbar-toggler\\" type=\\"button\\" data-toggle=\\"collapse\\" data-target=\\"#mugStoreNavbar\\" aria-controls=\\"mugStoreNavbar\\" aria-expanded=\\"false\\" aria-label=\\"Toggle navigation\\">
-    <span className=\\"navbar-toggler-icon\\" />
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
   </button>
-  <div className=\\"collapse navbar-collapse\\" id=\\"mugStoreNavbar\\">
-    <NavLink className=\\"navbar-brand\\" to=\\"/\\">
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
       Mug Store
     </NavLink>
-    <div className=\\"navbar-nav\\">
-      <NavLink to=\\"/catalog\\" className=\\" nav-item nav-link\\">
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
         Catalog
       </NavLink>
-      <NavLink to=\\"/about\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
         About
       </NavLink>
-      <NavLink to=\\"/cart\\" className=\\"nav-item nav-link\\">
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
         Cart
       </NavLink>
     </div>
   </div>
   <div>
-    <CurrenciesDropdown currentCurrencyId=\\"0\\" currencyOptions={{...}} onCurrencyChange={[Function: mockConstructor]} isCurrenciesLoading={false} hasLoadFailed={true} errorMessage=\\"test error\\" />
+    <CurrenciesDropdown
+      currencyOptions={Array []}
+      currentCurrencyId="0"
+      errorMessage="test error"
+      hasLoadFailed={true}
+      isCurrenciesLoading={false}
+      onCurrencyChange={[MockFunction]}
+    />
     <Connect(LoginLogoutBar) />
   </div>
-</nav>"
+</nav>
 `;

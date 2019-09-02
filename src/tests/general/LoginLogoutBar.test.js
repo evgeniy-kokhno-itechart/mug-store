@@ -17,11 +17,11 @@ describe('<LoginLogoutBar />', () => {
   });
 
   it('check the shapshot without currentUserName provided', () => {
-    expect(LoginLogoutBarWrapper.debug()).toMatchSnapshot();
+    expect(LoginLogoutBarWrapper).toMatchSnapshot();
   });
 
   it('check the shapshot with currentUserName===testUsername provided', () => {
     LoginLogoutBarWrapper.setProps({ currentUserName: 'testUsername' });
-    expect(LoginLogoutBarWrapper.debug()).toMatchSnapshot();
+    expect(LoginLogoutBarWrapper).toMatchSnapshot();
   });
 });

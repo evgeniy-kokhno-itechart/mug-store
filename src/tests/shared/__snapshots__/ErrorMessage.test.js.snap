@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ErrorMessage /> check ErrorMessage renders properly 1`] = `
-"<span className=\\"text-danger\\">
+<span
+  className="text-danger"
+>
   The following error occurred: test error
-</span>"
+</span>
 `;

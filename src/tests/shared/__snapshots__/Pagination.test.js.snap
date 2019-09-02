@@ -1,35 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Pagination /> renders and displays 2nd page as active 1`] = `
-"<nav>
-  <ul className=\\"pagination\\">
-    <li className=\\"page-item \\">
-      <button type=\\"button\\" className=\\"page-link clickable\\" onClick={[Function: onClick]}>
-        1
-      </button>
+<nav>
+  <ul
+    className="pagination"
+  >
+    <li
+      className="page-item "
+      key="1"
+    >
+      <PaginationButton
+        handlePageChange={[MockFunction]}
+        page={1}
+      />
     </li>
-    <li className=\\"page-item active\\">
-      <button type=\\"button\\" className=\\"page-link clickable\\" onClick={[Function: onClick]}>
-        2
-      </button>
+    <li
+      className="page-item active"
+      key="2"
+    >
+      <PaginationButton
+        handlePageChange={[MockFunction]}
+        page={2}
+      />
     </li>
   </ul>
-</nav>"
+</nav>
 `;
 
 exports[`<Pagination /> renders with default props with 1st page checked as active 1`] = `
-"<nav>
-  <ul className=\\"pagination\\">
-    <li className=\\"page-item active\\">
-      <button type=\\"button\\" className=\\"page-link clickable\\" onClick={[Function: onClick]}>
-        1
-      </button>
+<nav>
+  <ul
+    className="pagination"
+  >
+    <li
+      className="page-item active"
+      key="1"
+    >
+      <PaginationButton
+        handlePageChange={[MockFunction]}
+        page={1}
+      />
     </li>
-    <li className=\\"page-item \\">
-      <button type=\\"button\\" className=\\"page-link clickable\\" onClick={[Function: onClick]}>
-        2
-      </button>
+    <li
+      className="page-item "
+      key="2"
+    >
+      <PaginationButton
+        handlePageChange={[MockFunction]}
+        page={2}
+      />
     </li>
   </ul>
-</nav>"
+</nav>
 `;

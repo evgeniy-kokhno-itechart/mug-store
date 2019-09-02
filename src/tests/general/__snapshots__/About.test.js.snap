@@ -1,11 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<About /> check About renders properly 1`] = `
-"<Fragment>
-  <h1 className=\\"text-center m-3\\">
+<Fragment>
+  <h1
+    className="text-center m-3"
+  >
     About
   </h1>
-  <div className=\\"col-10 col-md-8 col-lg-7 mx-auto text-justify\\">
+  <div
+    className="col-10 col-md-8 col-lg-7 mx-auto text-justify"
+  >
     <p>
       Donec lobortis eros lorem, ut aliquam ipsum fermentum quis. Quisque rutrum ligula vehicula massa porttitor, a dignissim sem suscipit. Sed vel cursus justo. Curabitur sit amet orci felis. Ut nulla diam, scelerisque a ante laoreet, varius volutpat ipsum. Praesent consequat purus a tellus fringilla pretium. Sed posuere tellus vel tortor imperdiet pellentesque. Vivamus ac nulla id leo mollis suscipit. Integer mattis enim a accumsan tempor. Nunc in iaculis metus, ut fermentum elit.
     </p>
@@ -22,5 +26,5 @@ exports[`<About /> check About renders properly 1`] = `
       Aliquam efficitur nec erat ac faucibus. Maecenas posuere, sapien et ultricies malesuada, risus dolor tempor erat, non fringilla purus nisi vitae orci. Suspendisse potenti. Ut metus purus, viverra ut massa et, gravida scelerisque sapien. Duis condimentum sem eu lacus elementum mollis. Fusce sollicitudin sed libero quis aliquam. Curabitur at dictum diam, quis pellentesque ante. Quisque eget orci urna. Praesent mi est, imperdiet non erat in, pulvinar euismod dui. Ut tempor, diam eget consequat dictum, dolor metus finibus nisi, et interdum diam arcu vitae enim. Ut posuere rutrum molestie. Phasellus nec leo eleifend, pretium mauris eu, vulputate augue.
     </p>
   </div>
-</Fragment>"
+</Fragment>
 `;

@@ -40,7 +40,7 @@ describe('<ProductDetails />', () => {
   });
 
   it('renders Spinner properly with default props', () => {
-    expect(ProductDetailsWrapper.debug()).toMatchSnapshot();
+    expect(ProductDetailsWrapper).toMatchSnapshot();
   });
 
   it('renders product details once isProductLoading is succesfully done', () => {
@@ -50,12 +50,12 @@ describe('<ProductDetails />', () => {
       errorWhileLoading: '',
       product: mockProduct,
     });
-    expect(ProductDetailsWrapper.debug()).toMatchSnapshot();
+    expect(ProductDetailsWrapper).toMatchSnapshot();
   });
 
   it('renders ErrorMessage once hasProductLoadingFailed and errorWhileLoading provided', () => {
     ProductDetailsWrapper.setProps({ isProductLoading: false, hasProductLoadingFailed: true, errorWhileLoading: 'test error' });
-    expect(ProductDetailsWrapper.debug()).toMatchSnapshot();
+    expect(ProductDetailsWrapper).toMatchSnapshot();
   });
 
   it('render field info correctly with renderFieldInfo method', () => {
@@ -66,6 +66,6 @@ describe('<ProductDetails />', () => {
       errorWhileLoading: '',
     });
     ProductDetailsWrapper.instance().renderFieldInfo({ label: 'Category', path: 'category.name' });
-    expect(ProductDetailsWrapper.debug()).toMatchSnapshot();
+    expect(ProductDetailsWrapper).toMatchSnapshot();
   });
 });

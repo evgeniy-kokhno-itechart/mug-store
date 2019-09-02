@@ -18,7 +18,7 @@ describe('<OrderForm />', () => {
 
   it('renders properly with default props', () => {
     OrderFormWrapper = shallow(<OrderForm onOrderSubmit={onOrderSubmit} />);
-    expect(OrderFormWrapper.debug()).toMatchSnapshot();
+    expect(OrderFormWrapper).toMatchSnapshot();
   });
 
   it('renders properly with default props', () => {
@@ -35,7 +35,7 @@ describe('<OrderForm />', () => {
         username: 'user@user.com',
       },
     });
-    expect(OrderFormWrapper.debug()).toMatchSnapshot();
+    expect(OrderFormWrapper).toMatchSnapshot();
   });
 
   it('rerenders with updated state on name input change', () => {

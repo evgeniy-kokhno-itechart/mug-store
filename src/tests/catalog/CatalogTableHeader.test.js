@@ -25,16 +25,16 @@ describe('<CatalogTableHeader />', () => {
   });
 
   it('check render properly', () => {
-    expect(CatalogTableHeaderWrapper.debug()).toMatchSnapshot();
+    expect(CatalogTableHeaderWrapper).toMatchSnapshot();
   });
 
   it('render AddNewProduct button with currentUserRole admin provided', () => {
     CatalogTableHeaderWrapper.setProps({ currentUserRoles: ['admin'] });
-    expect(CatalogTableHeaderWrapper.debug()).toMatchSnapshot();
+    expect(CatalogTableHeaderWrapper).toMatchSnapshot();
   });
 
   it('check render with searchQuery provided', () => {
     CatalogTableHeaderWrapper.setProps({ searchQuery: 'test query' });
-    expect(CatalogTableHeaderWrapper.debug()).toMatchSnapshot();
+    expect(CatalogTableHeaderWrapper).toMatchSnapshot();
   });
 });

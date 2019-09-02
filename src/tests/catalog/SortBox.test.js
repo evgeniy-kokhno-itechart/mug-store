@@ -19,6 +19,6 @@ describe('<SortBox />', () => {
   });
 
   it('check render properly', () => {
-    expect(SortBoxWrapper.debug()).toMatchSnapshot();
+    expect(SortBoxWrapper).toMatchSnapshot();
   });
 });

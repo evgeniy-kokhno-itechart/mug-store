@@ -16,6 +16,6 @@ describe('<Main />', () => {
   });
 
   it('check Main renders properly', () => {
-    expect(MainWrapper.debug()).toMatchSnapshot();
+    expect(MainWrapper).toMatchSnapshot();
   });
 });

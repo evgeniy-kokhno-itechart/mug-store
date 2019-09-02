@@ -27,11 +27,11 @@ describe('<ItemCounter />', () => {
   });
 
   it('renders with decrement button disabled if count=1', () => {
-    expect(ItemCounterWrapper.debug()).toMatchSnapshot();
+    expect(ItemCounterWrapper).toMatchSnapshot();
   });
 
   it('renders with decrement button enabled if count is 2 (i.e. greater than 1)', () => {
     ItemCounterWrapper.setProps({ count: 2 });
-    expect(ItemCounterWrapper.debug()).toMatchSnapshot();
+    expect(ItemCounterWrapper).toMatchSnapshot();
   });
 });

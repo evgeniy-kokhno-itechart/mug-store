@@ -16,6 +16,6 @@ describe('<ErrorMessage />', () => {
   });
 
   it('check ErrorMessage renders properly', () => {
-    expect(ErrorMessageWrapper.debug()).toMatchSnapshot();
+    expect(ErrorMessageWrapper).toMatchSnapshot();
   });
 });

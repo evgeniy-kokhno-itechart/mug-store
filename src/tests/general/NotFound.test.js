@@ -16,6 +16,6 @@ describe('<NotFound />', () => {
   });
 
   it('check NotFound renders properly', () => {
-    expect(NotFoundWrapper.debug()).toMatchSnapshot();
+    expect(NotFoundWrapper).toMatchSnapshot();
   });
 });

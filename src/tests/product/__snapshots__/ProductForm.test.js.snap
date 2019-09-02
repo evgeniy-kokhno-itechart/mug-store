@@ -366,9 +366,7 @@ exports[`<ProductForm /> renders empty form with match.params.id is set to new 1
           onChange={[Function]}
           value=""
         >
-          <option
-            value="-1"
-          >
+          <option>
             Please choose...
           </option>
           <option
@@ -502,7 +500,7 @@ exports[`<ProductForm /> renders empty form with match.params.id is set to new 1
       className="btn btn-secondary w-100"
       disabled={
         Object {
-          "categoryId": "Category is a required field",
+          "categoryId": "Please choose category",
           "currentCurrencyPrice": "Price must be greater than 0",
           "description": "Details is a required field",
           "imageURL": "Image URL must be at least 5 characters",
@@ -869,9 +867,7 @@ exports[`<ProductForm /> renders properly with product data provided 1`] = `
           onChange={[Function]}
           value=""
         >
-          <option
-            value="-1"
-          >
+          <option>
             Please choose...
           </option>
           <option
@@ -1005,7 +1001,7 @@ exports[`<ProductForm /> renders properly with product data provided 1`] = `
       className="btn btn-secondary w-100"
       disabled={
         Object {
-          "categoryId": "Category is a required field",
+          "categoryId": "Please choose category",
           "currentCurrencyPrice": "Price must be greater than 0",
           "description": "Details is a required field",
           "imageURL": "Image URL must be at least 5 characters",

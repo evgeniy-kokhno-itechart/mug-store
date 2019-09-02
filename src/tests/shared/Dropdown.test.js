@@ -24,31 +24,31 @@ describe('<Dropdown />', () => {
   });
 
   it('check Dropdown renders properly with default props', () => {
-    expect(DropdownWrapper.debug()).toMatchSnapshot();
+    expect(DropdownWrapper).toMatchSnapshot();
   });
 
   it('check Dropdown renders properly with error', () => {
     DropdownWrapper.setProps({ error: 'test error' });
-    expect(DropdownWrapper.debug()).toMatchSnapshot();
+    expect(DropdownWrapper).toMatchSnapshot();
   });
 
   it('check Dropdown renders properly with defaultText', () => {
     DropdownWrapper.setProps({ defaultText: 'test default text' });
-    expect(DropdownWrapper.debug()).toMatchSnapshot();
+    expect(DropdownWrapper).toMatchSnapshot();
   });
 
   it('check Dropdown renders properly with customClasses', () => {
     DropdownWrapper.setProps({ customClasses: 'testclass' });
-    expect(DropdownWrapper.debug()).toMatchSnapshot();
+    expect(DropdownWrapper).toMatchSnapshot();
   });
 
   it('check Dropdown renders properly with value provided', () => {
     DropdownWrapper.setProps({ value: '2' });
-    expect(DropdownWrapper.debug()).toMatchSnapshot();
+    expect(DropdownWrapper).toMatchSnapshot();
   });
 
   it('check Dropdown renders properly with isOnelineElement true', () => {
     DropdownWrapper.setProps({ isOnelineElement: true });
-    expect(DropdownWrapper.debug()).toMatchSnapshot();
+    expect(DropdownWrapper).toMatchSnapshot();
   });
 });

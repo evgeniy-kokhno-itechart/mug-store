@@ -6,9 +6,9 @@ import { PropTypes } from 'prop-types';
 import ResponsiveEllipsis from '../../shared/markup-usage/ResponsiveEllipsis';
 import Table from '../../shared/markup-usage/Table';
 import Rate from '../../shared/markup-usage/Rate';
-import Modal from '../../shared/markup-usage/Modal';
 import BuyNowButton from '../components/BuyNowButton';
 import ProductPrice from '../../cart/components/ProductPrice';
+import CatalogDeletAction from '../components/CatalogDeleteAction';
 import { addToCart } from '../../cart/cartActions';
 import '../../styles/CatalogTable.css';
 
@@ -73,21 +73,7 @@ export class CatalogTable extends Component {
     },
     {
       key: 'delete',
-      content: product => (
-        <Modal
-          id="product-deletion-confirmation"
-          // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          productId={product.id}
-          // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          buttonLabel="Delete"
-          buttonClasses="btn btn-danger btn-sm"
-          title="Confirm product deletion"
-          text={`You are about to completely delete ${product.title} from the database!`}
-          textConfirm="Confirm"
-          textAbort="Dismiss"
-          onConfirm={this.handleDeleteConfirmed}
-        />
-      ),
+      content: product => <CatalogDeletAction productId={product.id} productTitle={product.title} handleAction={this.props.onDelete} />,
     },
   ];
 
@@ -98,10 +84,10 @@ export class CatalogTable extends Component {
     }
   }
 
-  handleDeleteConfirmed = (e) => {
-    console.log('e.target.id', e.target.id);
-    this.props.onDelete(e.target.id);
-  };
+  // handleDeleteConfirmed = (e) => {
+  //   console.log('e.target.id', e.target.id);
+  //   this.props.onDelete(e.target.id);
+  // };
 
   render() {
     const { productsOnPage } = this.props;

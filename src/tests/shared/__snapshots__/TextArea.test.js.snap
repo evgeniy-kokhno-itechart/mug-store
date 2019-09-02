@@ -1,31 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TextArea /> check TextArea renders properly with default props 1`] = `
-"<div className=\\"form-group\\">
-  <label htmlFor=\\"testname\\">
+<div
+  className="form-group"
+>
+  <label
+    htmlFor="testname"
+  >
     Test label
   </label>
-  <textarea name=\\"testname\\" id=\\"testname\\" onChange={[Function: onChange]} className=\\"form-control\\" value=\\"\\" />
-</div>"
+  <textarea
+    className="form-control"
+    id="testname"
+    name="testname"
+    onChange={[MockFunction]}
+    value=""
+  />
+</div>
 `;
 
 exports[`<TextArea /> check TextArea renders properly with error 1`] = `
-"<div className=\\"form-group\\">
-  <label htmlFor=\\"testname\\">
+<div
+  className="form-group"
+>
+  <label
+    htmlFor="testname"
+  >
     Test label
   </label>
-  <textarea name=\\"testname\\" id=\\"testname\\" onChange={[Function: onChange]} className=\\"form-control\\" value=\\"\\" />
-  <div className=\\"alert alert-danger\\">
+  <textarea
+    className="form-control"
+    id="testname"
+    name="testname"
+    onChange={[MockFunction]}
+    value=""
+  />
+  <div
+    className="alert alert-danger"
+  >
     Test error
   </div>
-</div>"
+</div>
 `;
 
 exports[`<TextArea /> check TextArea renders properly with value provided 1`] = `
-"<div className=\\"form-group\\">
-  <label htmlFor=\\"testname\\">
+<div
+  className="form-group"
+>
+  <label
+    htmlFor="testname"
+  >
     Test label
   </label>
-  <textarea name=\\"testname\\" id=\\"testname\\" onChange={[Function: onChange]} className=\\"form-control\\" value=\\"Test value\\" />
-</div>"
+  <textarea
+    className="form-control"
+    id="testname"
+    name="testname"
+    onChange={[MockFunction]}
+    value="Test value"
+  />
+</div>
 `;

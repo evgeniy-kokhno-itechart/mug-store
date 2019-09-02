@@ -1,18 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Order /> renders properly with default props 1`] = `
-"<Fragment>
-  <h1 className=\\"text-center m-3\\">
+<Fragment>
+  <h1
+    className="text-center m-3"
+  >
     Please check your order
   </h1>
-  <div className=\\"row m-2\\">
-    <div className=\\"col-md-6\\">
-      <Connect(OrderTable) sortColumn=\\"title\\" products={{...}} />
-      <TotalCostCalculator products={{...}} customClasses=\\"float-right\\" />
+  <div
+    className="row m-2"
+  >
+    <div
+      className="col-md-6"
+    >
+      <Connect(OrderTable)
+        products={
+          Array [
+            Object {
+              "id": "1",
+              "title": "test product 1",
+            },
+            Object {
+              "id": "2",
+              "title": "test product 2",
+            },
+          ]
+        }
+        sortColumn="title"
+      />
+      <TotalCostCalculator
+        customClasses="float-right"
+        products={
+          Array [
+            Object {
+              "id": "1",
+              "title": "test product 1",
+            },
+            Object {
+              "id": "2",
+              "title": "test product 2",
+            },
+          ]
+        }
+      />
     </div>
-    <div className=\\"col-md-5 offset-md-1\\">
-      <OrderForm currentUser={{...}} onOrderSubmit={[Function: mockConstructor]} />
+    <div
+      className="col-md-5 offset-md-1"
+    >
+      <OrderForm
+        currentUser={Object {}}
+        onOrderSubmit={[MockFunction]}
+      />
     </div>
   </div>
-</Fragment>"
+</Fragment>
 `;

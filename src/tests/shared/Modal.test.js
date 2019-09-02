@@ -28,6 +28,6 @@ describe('<Modal />', () => {
   });
 
   it('check Modal renders properly with default props', () => {
-    expect(ModalWrapper.debug()).toMatchSnapshot();
+    expect(ModalWrapper).toMatchSnapshot();
   });
 });

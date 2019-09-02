@@ -16,16 +16,16 @@ describe('<InformationItem />', () => {
   });
 
   it('check InformationItem renders properly with default props', () => {
-    expect(InformationItemWrapper.debug()).toMatchSnapshot();
+    expect(InformationItemWrapper).toMatchSnapshot();
   });
 
   it('check InformationItem renders properly when info is number', () => {
     InformationItemWrapper.setProps({ info: 1 });
-    expect(InformationItemWrapper.debug()).toMatchSnapshot();
+    expect(InformationItemWrapper).toMatchSnapshot();
   });
 
   it('check InformationItem renders properly when info is string', () => {
     InformationItemWrapper.setProps({ info: 'test info' });
-    expect(InformationItemWrapper.debug()).toMatchSnapshot();
+    expect(InformationItemWrapper).toMatchSnapshot();
   });
 });
