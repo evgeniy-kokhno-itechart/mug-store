@@ -1,3 +1,17 @@
+@import url("App.css");
+@import url("CartTable.css");
+@import url("Catalog.css");
+@import url("CatalogTable.css");
+@import url("Footer.css");
+@import url("ItemCounter.css");
+@import url("Main.css");
+@import url("OrderTable.css");
+@import url("Pagination.css");
+@import url("ProductDetails.css");
+@import url("ProductForm.css");
+@import url("ProductPrice.css");
+@import url("Rate.css");
+
 body {
   margin: 0;
   padding: 0;

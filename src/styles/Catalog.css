@@ -1,4 +1,4 @@
-.catalog__spinner {
+#bootstrap-overrides .catalog__spinner {
   width: 5rem;
   height: 5rem;
 }

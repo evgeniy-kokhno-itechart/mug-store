@@ -2,16 +2,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import NavbarConnected from './general/containers/Navbar';
-import Footer from './general/components/Footer';
-import Routes from './general/components/Routes';
-import composeIconLibrary from './services/general/iconLibrary';
-import { getCategories } from './catalog/categories-redux-state/categoryActions';
-import { getCurrencies } from './catalog/currency-redux-state/currencyActions';
+import { NavbarConnected, Footer, Routes } from './app/root';
+import { IconService } from './app/shared';
+import { getCategories } from './app/catalog';
+import { getCurrencies } from './app/currency';
 import './styles/App.css';
 
 export const App = (props) => {
-  composeIconLibrary();
+  IconService.composeIconLibrary();
   props.getCategories();
   props.getCurrencies();
 

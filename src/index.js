@@ -11,7 +11,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import AppConnected from './App';
-import initializeStore, { history } from './general/store';
+import { initializeStore, history } from './app/root';
 
 const store = initializeStore();
 store.subscribe(() => {
