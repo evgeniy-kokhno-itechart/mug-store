@@ -3,19 +3,20 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { changeCurrency, CurrenciesDropdown } from '../../currency';
-import LoginLogoutPanel from './LoginLogoutBar';
+import { logoutUser } from '../../user';
+import { CartService } from '../../cart';
+import LoginLogoutBar from '../components/LoginLogoutBar';
 
 export const Navbar = ({
-  currentCurrency,
+  currentUserName,
+  currencyState,
   cart,
-  isCurrenciesLoading,
-  hasCurrenciesLoadFailed,
-  errorCurrenciesLoading,
-  currencies: currencyOptions,
   // eslint-disable-next-line no-shadow
   changeCurrency,
+  // eslint-disable-next-line no-shadow
+  logoutUser,
 }) => {
-  const cartCount = cart.reduce((sumQty, currentProduct) => sumQty + currentProduct.quantity, 0);
+  const cartCount = CartService.countProducts(cart);
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -47,58 +48,66 @@ export const Navbar = ({
 
           <NavLink to="/cart" className="nav-item nav-link">
             Cart
-            {cartCount !== 0 ? <span className="badge badge-warning ml-1">{cartCount}</span> : null}
+            {cartCount !== 0
+              ? <span className="badge badge-warning ml-1">{cartCount}</span>
+              : null}
           </NavLink>
         </div>
       </div>
 
       <div>
         <CurrenciesDropdown
-          currentCurrencyId={currentCurrency.id}
-          currencyOptions={currencyOptions}
-          onCurrencyChange={changeCurrency}
-          isCurrenciesLoading={isCurrenciesLoading}
-          hasLoadFailed={hasCurrenciesLoadFailed}
-          errorMessage={errorCurrenciesLoading}
+          currencyState={currencyState}
+          onChange={changeCurrency}
         />
 
-        <LoginLogoutPanel />
+        <LoginLogoutBar currentUserName={currentUserName} logoutUser={logoutUser} />
       </div>
     </nav>
   );
 };
 
 Navbar.propTypes = {
-  currentUser: PropTypes.shape({ name: PropTypes.string }),
-  currentCurrency: PropTypes.shape({ id: PropTypes.string }).isRequired,
-  isCurrenciesLoading: PropTypes.bool.isRequired,
-  hasCurrenciesLoadFailed: PropTypes.bool,
-  errorCurrenciesLoading: PropTypes.string,
   cart: PropTypes.arrayOf(PropTypes.shape({ quantity: PropTypes.number })),
-  currencies: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
+  currentUserName: PropTypes.string,
+
+  currencyState: PropTypes.shape({
+    currencies: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
+    currenciesStatus: PropTypes.shape({
+      isInProcess: PropTypes.bool,
+      hasFailed: PropTypes.bool,
+      error: PropTypes.string,
+    }),
+    currentCurrency: PropTypes.shape({ id: PropTypes.string }),
+  }),
   changeCurrency: PropTypes.func.isRequired,
+
+  logoutUser: PropTypes.func.isRequired,
 };
 
 Navbar.defaultProps = {
-  hasCurrenciesLoadFailed: false,
-  errorCurrenciesLoading: '',
-  currencies: [],
-  currentUser: { roles: [] },
+  currencyState: {
+    currencies: [],
+    currenciesStatus: {
+      isInProcess: true,
+      hasFailed: false,
+      error: '',
+    },
+    currentCurrency: { id: '0' },
+  },
+  currentUserName: '',
   cart: [],
 };
 
 const mapStateToProps = state => ({
   cart: state.cart.cart,
-  currentUser: state.user.currentUser,
-  currencies: state.currency.currencies,
-  isCurrenciesLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
-  hasCurrenciesLoadFailed: state.currency.currenciesStatus.hasGettingCurrenciesFailed,
-  errorCurrenciesLoading: state.currency.currenciesStatus.error,
-  currentCurrency: state.currency.currentCurrency,
+  currencyState: state.currency,
+  currentUserName: state.user.currentUser.name,
 });
 
 const mapDispatchToProps = {
   changeCurrency,
+  logoutUser,
 };
 
 export default connect(

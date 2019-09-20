@@ -23,6 +23,12 @@ class FormService {
 
   static validateFormItem = (input, matchedInputName, objectSchema, stateData) => {
     const { name, value } = input;
+    if (matchedInputName) {
+      if (value !== stateData[matchedInputName]) {
+        return `The value does not match to ${matchedInputName}`;
+      }
+    }
+
     const objectToValidate = { [name]: value };
     const propertySchema = Yup.object().shape({ [name]: objectSchema[name] });
     const result = {};
@@ -31,13 +37,6 @@ class FormService {
     } catch (propertyValidationError) {
       result.error = propertyValidationError;
     }
-
-    if (matchedInputName) {
-      if (value !== stateData[matchedInputName]) {
-        return `The value does not match to ${matchedInputName}`;
-      }
-    }
-
     return result.error ? result.error.message : null;
   };
 

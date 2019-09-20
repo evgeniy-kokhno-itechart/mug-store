@@ -19,20 +19,20 @@ import initialProductsState from './ProductsState';
 const productsReducer = handleActions(
   {
     //  GET PRODUCTS
-    [gettingProductsInProgress]: (state, { payload: isGettingInProcess }) => ({
+    [gettingProductsInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
-      tableProductsStatus: { isGettingInProcess, hasGettingFailed: false, error: '' },
+      catalogProductsStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [gettingProductsFailed]: (state, { payload: { hasGettingFailed, error } }) => ({
+    [gettingProductsFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      tableProductsStatus: { isGettingInProcess: false, hasGettingFailed, error },
+      catalogProductsStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [gettingProductsSuccess]: (state, { payload: products }) => ({
       ...state,
       products,
-      tableProductsStatus: { isGettingInProcess: false, hasGettingFailed: false, error: '' },
+      catalogProductsStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
     //  GET PRODUCT BY ID
@@ -42,56 +42,56 @@ const productsReducer = handleActions(
       currentProductStatus: initialProductsState.currentProductStatus,
     }),
 
-    [gettingProductByIdInProgress]: (state, { payload: isGettingByIdInProcess }) => ({
+    [gettingProductByIdInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
-      currentProductStatus: { isGettingByIdInProcess, hasGettingByIdFailed: false, error: '' },
+      currentProductStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [gettingProductByIdFailed]: (state, { payload: { hasGettingByIdFailed, error } }) => ({
+    [gettingProductByIdFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
       currentProduct: initialProductsState.currentProduct,
-      currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed, error },
+      currentProductStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [gettingProductByIdSuccess]: (state, { payload: product }) => ({
       ...state,
       currentProduct: product,
-      currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed: false, error: '' },
+      currentProductStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
     //  SAVE PRODUCT
-    [savingProductInProcess]: (state, { payload: isSavingInProcess }) => ({
+    [savingProductInProcess]: (state, { payload: isInProcess }) => ({
       ...state,
-      savingStatus: { isSavingInProcess, hasSavingFailed: false, error: '' },
+      savingStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [savingProductFailed]: (state, { payload: { hasSavingFailed, error } }) => ({
+    [savingProductFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      savingStatus: { isSavingInProcess: false, hasSavingFailed, error },
+      savingStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [savingProductSuccess]: (state, { payload: { resultMessage, updatedProduct } }) => ({
       ...state,
       saveResult: resultMessage, // added for future. will be empty since back-end is fake
       currentProduct: updatedProduct || state.currentProduct,
-      savingStatus: { isSavingInProcess: false, hasSavingFailed: false, error: '' },
+      savingStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
     // DELETE PRODUCT
-    [deletingProductInProcess]: (state, { payload: isDeletingInProcess }) => ({
+    [deletingProductInProcess]: (state, { payload: isInProcess }) => ({
       ...state,
-      deletingStatus: { isDeletingInProcess, hasDeletingFailed: false, error: '' },
+      deletingStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [deletingProductFailed]: (state, { payload: { hasDeletingFailed, error } }) => ({
+    [deletingProductFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      deletingStatus: { isDeletingInProcess: false, hasDeletingFailed, error },
+      deletingStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [deletingProductSuccess]: (state, { payload: resultMessage }) => ({
       ...state,
       deleteResult: resultMessage, // added for future. will be empty since back-end is fake
-      deletingStatus: { isDeletingInProcess: false, hasDeletingFailed: false, error: '' },
+      deletingStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
   },
   initialProductsState,

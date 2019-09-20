@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { getProduct, saveProduct, clearCurrentProductInfo } from '../ProductsActions';
 import { productCostSelector } from '../ProductsSelectors';
 import { getCategories } from '../../catalog';
-import { getCurrencies } from '../../currency';
 import {
   FormService, Input, Spinner, ErrorMessage, TextArea, Dropdown,
 } from '../../shared';
@@ -80,16 +79,16 @@ export class ProductForm extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { product, currentCurrency } = this.props;
+    const { productState, currentCurrency } = this.props;
 
     if (currentCurrency !== prevProps.currentCurrency) {
       const changedData = { ...prevState.data };
-      changedData.currentCurrencyPrice = product.currentCurrencyPrice;
+      changedData.currentCurrencyPrice = productState.product.currentCurrencyPrice;
       this.setState({ data: changedData });
     }
 
-    if (product.id !== prevState.data.id) {
-      this.setState({ data: this.mapToViewModel(this.props.product) });
+    if (productState.product.id !== prevState.data.id) {
+      this.setState({ data: this.mapToViewModel(this.props.productState.product) });
     }
   }
 
@@ -97,11 +96,29 @@ export class ProductForm extends Component {
     this.props.clearCurrentProductInfo();
   }
 
+  displayIsLoading = () => {
+    const { productState } = this.props;
+    if (productState.loadingStatus.isInProcess || productState.savingStatus.isInProcess) {
+      return <Spinner spinnerClasses="spinner--medium" wrapperClasses="mt-5" />;
+    }
+    return null;
+  }
+
+  displayGotError = () => {
+    const { productState } = this.props;
+    if (productState.loadingStatus.hasFailed || productState.savingStatus.hasFailed) {
+      return <ErrorMessage message={productState.loadingStatus.error || productState.savingStatus.error} />;
+    }
+    return null;
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const errors = FormService.validateForm(this.productObjectSchema, this.state.data);
     this.setState({ errors: errors || {} });
-    if (errors) return;
+    if (errors) {
+      return;
+    }
 
     // eslint-disable-next-line no-shadow
     const { saveProduct } = this.props;
@@ -186,7 +203,8 @@ export class ProductForm extends Component {
             value={data.categoryId}
             error={errors.categoryId}
             defaultText="Please choose..."
-            onValueChange={this.handleChange}
+            selectClasses="form-control"
+            onChange={this.handleChange}
           />
 
           <Input
@@ -227,21 +245,7 @@ export class ProductForm extends Component {
   };
 
   render() {
-    const {
-      isProductLoading,
-      hasProductLoadingFailed,
-      errorWhileProductLoading,
-      isSavingInProcess,
-      hasSavingFailed,
-      errorWhileProductSaving,
-    } = this.props;
-    return isProductLoading || isSavingInProcess ? (
-      <Spinner customSizeClassName="product-form__spinner" marginBootstrapClassName="mt-5" />
-    ) : hasProductLoadingFailed || hasSavingFailed ? (
-      <ErrorMessage message={errorWhileProductSaving || errorWhileProductLoading} />
-    ) : (
-      this.renderForm()
-    );
+    return this.displayIsLoading() || this.displayGotError() || this.renderForm();
   }
 }
 
@@ -256,28 +260,32 @@ ProductForm.propTypes = {
 
   categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
 
-  product: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    imageURL: PropTypes.string.isRequired,
-    category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
-    description: PropTypes.string,
-    producer: PropTypes.string,
-    discount: PropTypes.number,
-    currentCurrencyPrice: PropTypes.number,
-    rate: PropTypes.string,
+  productState: PropTypes.shape({
+    product: PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      imageURL: PropTypes.string.isRequired,
+      category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+      description: PropTypes.string,
+      producer: PropTypes.string,
+      discount: PropTypes.number,
+      currentCurrencyPrice: PropTypes.number,
+      rate: PropTypes.string,
+    }),
+    loadingStatus: PropTypes.shape({
+      isInProcess: PropTypes.bool,
+      hasFailed: PropTypes.bool,
+      error: PropTypes.string,
+    }),
+    savingStatus: PropTypes.shape({
+      isInProcess: PropTypes.bool,
+      hasFailed: PropTypes.bool,
+      error: PropTypes.string,
+    }),
   }),
 
   getProduct: PropTypes.func.isRequired,
-  isProductLoading: PropTypes.bool,
-  hasProductLoadingFailed: PropTypes.bool,
-  errorWhileProductLoading: PropTypes.string,
-
   saveProduct: PropTypes.func.isRequired,
-  isSavingInProcess: PropTypes.bool,
-  hasSavingFailed: PropTypes.bool,
-  errorWhileProductSaving: PropTypes.string,
-
   clearCurrentProductInfo: PropTypes.func.isRequired,
 };
 
@@ -285,45 +293,43 @@ ProductForm.defaultProps = {
   categories: [],
   match: { params: { id: '' } },
 
-  product: {
-    id: '',
-    imageURL: '',
-    title: 'defaultProduct',
-    description: '',
-    category: {},
-    currentCurrencyPrice: 0,
-    discount: 0,
-    producer: '',
-    rate: '',
+  productState: {
+    product: {
+      id: '',
+      imageURL: '',
+      title: 'defaultProduct',
+      description: '',
+      category: {},
+      currentCurrencyPrice: 0,
+      discount: 0,
+      producer: '',
+      rate: '',
+    },
+    loadingStatus: {
+      isInProcess: true,
+      hasFailed: false,
+      error: '',
+    },
+    savingStatus: {
+      isInProcess: true,
+      hasFailed: false,
+      error: '',
+    },
   },
-
-  isProductLoading: true,
-  hasProductLoadingFailed: false,
-  errorWhileProductLoading: '',
-
-  isSavingInProcess: true,
-  hasSavingFailed: false,
-  errorWhileProductSaving: '',
 };
 
 const mapStateToProps = state => ({
   currentCurrency: state.currency.currentCurrency,
-  currencies: state.currency.currencies,
   categories: state.category.categories,
 
-  product: productCostSelector(state),
-
-  isProductLoading: state.products.currentProductStatus.isGettingByIdInProcess,
-  hasProductLoadingFailed: state.products.currentProductStatus.hasGettingByIdFailed,
-  errorWhileProductLoading: state.products.currentProductStatus.error,
-
-  isSavingInProcess: state.products.savingStatus.isSavingInProcess,
-  hasSavingFailed: state.products.savingStatus.hasSavingFailed,
-  errorWhileProductSaving: state.products.savingStatus.error,
+  productState: {
+    product: productCostSelector(state),
+    loadingStatus: state.products.currentProductStatus,
+    savingStatus: state.products.savingStatus,
+  },
 });
 
 const mapDispatchToProps = {
-  getCurrencies,
   getCategories,
   getProduct,
   saveProduct,

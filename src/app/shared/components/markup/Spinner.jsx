@@ -1,22 +1,22 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const Spinner = ({ customSizeClassName, marginBootstrapClassName }) => (
-  <div className={`text-center ${marginBootstrapClassName}`}>
-    <div className={`spinner-border ${customSizeClassName}`} role="status">
+const Spinner = ({ spinnerClasses, wrapperClasses }) => (
+  <div className={`text-center ${wrapperClasses}`}>
+    <div className={`spinner-border ${spinnerClasses}`} role="status">
       <span className="sr-only">Loading...</span>
     </div>
   </div>
 );
 
 Spinner.propTypes = {
-  customSizeClassName: PropTypes.string,
-  marginBootstrapClassName: PropTypes.string,
+  spinnerClasses: PropTypes.string,
+  wrapperClasses: PropTypes.string,
 };
 
 Spinner.defaultProps = {
-  customSizeClassName: '',
-  marginBootstrapClassName: '',
+  spinnerClasses: '',
+  wrapperClasses: '',
 };
 
 export default Spinner;

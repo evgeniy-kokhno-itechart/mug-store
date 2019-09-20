@@ -4,11 +4,11 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
 const Table = (props) => {
-  const { columns, items, headerExcluded } = props;
+  const { columns, items, customClasses } = props;
   return (
     <div className="table-responsive-md">
-      <table className="table">
-        {!headerExcluded && <TableHeader columns={columns} />}
+      <table className={`table ${customClasses}`}>
+        <TableHeader columns={columns} />
         <TableBody items={items} columns={columns} />
       </table>
     </div>
@@ -18,11 +18,11 @@ const Table = (props) => {
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  headerExcluded: PropTypes.bool,
+  customClasses: PropTypes.string,
 };
 
 Table.defaultProps = {
-  headerExcluded: false,
+  customClasses: '',
 };
 
 export default Table;

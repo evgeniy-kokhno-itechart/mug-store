@@ -4,7 +4,9 @@ import { PropTypes } from 'prop-types';
 
 class TableBody extends Component {
   renderCell = (item, column) => {
-    if (column.content) return column.content(item);
+    if (column.content) {
+      return column.content(item);
+    }
 
     return _.get(item, column.path);
   };
@@ -20,7 +22,7 @@ class TableBody extends Component {
             {columns.map(column => (
               <td
                 key={this.createKey(item, column)}
-                className={`p-1 p-md-2 ${column.customClasses ? column.customClasses : ''}`}
+                className={`p-1 p-md-2 ${column.customClasses}`}
               >
                 {this.renderCell(item, column)}
               </td>

@@ -23,10 +23,10 @@ class ItemCounter extends Component {
   render() {
     const { count } = this.props;
     return (
-      <div className="input-group input-group-sm mx-auto flex-nowrap">
+      <div className="input-group input-group-sm mx-auto flex-nowrap item-counter">
         <button
           type="button"
-          className={`item_counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2 ${count > 1 ? '' : 'disabled'}`}
+          className={`item-counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2 ${count > 1 ? '' : 'disabled'}`}
           onClick={this.handleDecrementClick}
         >
           <FontAwesomeIcon icon="minus" className="my-auto" />
@@ -36,7 +36,7 @@ class ItemCounter extends Component {
 
         <button
           type="button"
-          className="item_counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
+          className="item-counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
           onClick={this.handleIncrementClick}
         >
           <FontAwesomeIcon icon="plus" className="my-auto" />

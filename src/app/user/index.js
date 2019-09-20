@@ -1,5 +1,5 @@
-export { default as LoginFormConnected } from './components/LoginForm';
-export { default as ProfileFormConnected } from './components/ProfileForm';
+export { default as LoginFormConnected } from './containers/LoginForm';
+export { default as ProfileFormConnected } from './containers/ProfileForm';
 
 export { default as AuthService } from './AuthService';
 export { default as UserService } from './UserService';

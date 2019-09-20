@@ -3,16 +3,8 @@ import { push, replace } from 'connected-react-router';
 import ProductsService from './ProductsService';
 
 // GET PRODUCTS LIST
-export const gettingProductsInProgress = createAction(
-  'GETING_PRODUCTS_IN_PROGRESS',
-  isGettingProductsInProcess => isGettingProductsInProcess,
-);
-
-export const gettingProductsFailed = createAction('GETTING_PRODUCTS_FAILED', (hasGettingFailed, error) => ({
-  hasGettingFailed,
-  error,
-}));
-
+export const gettingProductsInProgress = createAction('GETING_PRODUCTS_IN_PROGRESS', isInProcess => isInProcess);
+export const gettingProductsFailed = createAction('GETTING_PRODUCTS_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 export const gettingProductsSuccess = createAction('GETTING_PRODUCTS_SUCCESS', products => products);
 
 // GET PRODUCTS
@@ -33,19 +25,11 @@ export const getProducts = () => (dispatch) => {
     });
 };
 
-//  GET PRODUCT BY ID
 export const clearCurrentProductInfo = createAction('CLEAR_CURRENT_PRODUCT_INFO');
 
-export const gettingProductByIdInProgress = createAction(
-  'GETING_PRODUCT_BY_ID_IN_PROGRESS',
-  isGettingByIdInProcess => isGettingByIdInProcess,
-);
-
-export const gettingProductByIdFailed = createAction('GETTING_PRODUCT_BY_ID_FAILED', (hasGettingByIdFailed, error) => ({
-  hasGettingByIdFailed,
-  error,
-}));
-
+//  GET PRODUCT BY ID
+export const gettingProductByIdInProgress = createAction('GETING_PRODUCT_BY_ID_IN_PROGRESS', isInProcess => isInProcess);
+export const gettingProductByIdFailed = createAction('GETTING_PRODUCT_BY_ID_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 export const gettingProductByIdSuccess = createAction('GETTING_PRODUCT_BY_ID_SUCCESS', product => product);
 
 export const getProduct = productId => (dispatch) => {
@@ -72,12 +56,12 @@ export const getProduct = productId => (dispatch) => {
 };
 
 //   SAVE PRODUCT
-export const savingProductInProcess = createAction('SAVING_PRODUCT_IN _PROCESS', isSavingProductInProcess => isSavingProductInProcess);
+export const savingProductInProcess = createAction('SAVING_PRODUCT_IN _PROCESS', isInProcess => isInProcess);
 export const savingProductSuccess = createAction('SAVING_PRODUCT_SUCCESS', (resultMessage, updatedProduct) => ({
   resultMessage,
   updatedProduct,
 }));
-export const savingProductFailed = createAction('SAVING_PRODUCT_FAILED', (hasSavingFailed, error) => ({ hasSavingFailed, error }));
+export const savingProductFailed = createAction('SAVING_PRODUCT_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 
 export const saveProduct = (product, redirectUrl) => (dispatch) => {
   dispatch(savingProductInProcess(true));
@@ -104,12 +88,9 @@ export const saveProduct = (product, redirectUrl) => (dispatch) => {
 };
 
 //  DELETE PRODUCT
-export const deletingProductInProcess = createAction(
-  'DELETING_PRODUCT_IN _PROCESS',
-  isdeletingProductInProcess => isdeletingProductInProcess,
-);
+export const deletingProductInProcess = createAction('DELETING_PRODUCT_IN _PROCESS', isInProcess => isInProcess);
 export const deletingProductSuccess = createAction('DELETING_PRODUCT_SUCCESS', resultMessage => resultMessage);
-export const deletingProductFailed = createAction('DELETING_PRODUCT_FAILED', (hasDeletingFailed, error) => ({ hasDeletingFailed, error }));
+export const deletingProductFailed = createAction('DELETING_PRODUCT_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 
 export const deleteProduct = productId => (dispatch) => {
   dispatch(deletingProductInProcess(true));

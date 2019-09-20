@@ -2,10 +2,11 @@ import { createAction } from 'redux-actions';
 import { push, replace } from 'connected-react-router';
 import AuthService from './AuthService';
 import UserService from './UserService';
+import { clearCart } from '../cart';
 
 // LOGIN
-export const loginUserInProcess = createAction('LOGIN_USER_IN_PROCESS', isLoginInProcess => isLoginInProcess);
-export const loginUserFailed = createAction('LOGIN_USER_FAILED', (hasLoginFailed, loginError) => ({ hasLoginFailed, loginError }));
+export const loginUserInProcess = createAction('LOGIN_USER_IN_PROCESS', isInProcess => isInProcess);
+export const loginUserFailed = createAction('LOGIN_USER_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 export const loginUserSuccess = createAction('LOGIN_USER_SUCCESS', currentUser => currentUser);
 
 export const loginUser = (username, password, fromPath) => (dispatch) => {
@@ -29,8 +30,8 @@ export const loginUser = (username, password, fromPath) => (dispatch) => {
 };
 
 // LOGOUT
-export const logoutUserInProcess = createAction('LOGOUT_USER_IN_PROCESS', isLogoutInProcess => isLogoutInProcess);
-export const logoutUserFailed = createAction('LOGOUT_USER_FAILED', (hasLogoutFailed, logoutError) => ({ hasLogoutFailed, logoutError }));
+export const logoutUserInProcess = createAction('LOGOUT_USER_IN_PROCESS', isInProcess => isInProcess);
+export const logoutUserFailed = createAction('LOGOUT_USER_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 export const logoutUserSuccess = createAction('LOGOUT_USER_SUCCESS', resultMessage => resultMessage);
 
 export const logoutUser = () => (dispatch, getState) => {
@@ -45,6 +46,7 @@ export const logoutUser = () => (dispatch, getState) => {
       return response.data;
     })
     .then((resultMessage) => {
+      dispatch(clearCart());
       dispatch(logoutUserSuccess(resultMessage));
       dispatch(replace('/'));
     })
@@ -54,13 +56,14 @@ export const logoutUser = () => (dispatch, getState) => {
 
       // !!! FAKE LOGIC delete once get proper back-end app
       dispatch(logoutUserSuccess());
+      dispatch(clearCart());
       dispatch(replace('/'));
     });
 };
 
 // SAVE EDITED
-export const savingUserInProcess = createAction('SAVING_USER_IN_PROCESS', isSavingProcess => isSavingProcess);
-export const savingUserFailed = createAction('SAVING_USER_FAILED', (hasSavingFailed, savingError) => ({ hasSavingFailed, savingError }));
+export const savingUserInProcess = createAction('SAVING_USER_IN_PROCESS', isProcess => isProcess);
+export const savingUserFailed = createAction('SAVING_USER_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 export const savingUserSuccess = createAction('SAVING_USER_SUCCESS', editedUser => editedUser);
 
 export const saveEditedUserInfo = user => (dispatch) => {
@@ -87,11 +90,8 @@ export const saveEditedUserInfo = user => (dispatch) => {
 };
 
 // REGISTER
-export const registrationUserInProcess = createAction('REGISTRATION_USER_IN_PROCESS', isRegistrationInProcess => isRegistrationInProcess);
-export const registrationUserFailed = createAction('REGISTRATION_USER_FAILED', (hasRegistrationFailed, registrationError) => ({
-  hasRegistrationFailed,
-  registrationError,
-}));
+export const registrationUserInProcess = createAction('REGISTRATION_USER_IN_PROCESS', isInProcess => isInProcess);
+export const registrationUserFailed = createAction('REGISTRATION_USER_FAILED', (hasFailed, error) => ({ hasFailed, error }));
 export const registrationUserSuccess = createAction('REGISTRATION_USER_SUCCESS', registeredUser => registeredUser);
 
 export const registerNewUserAndLogin = user => (dispatch) => {

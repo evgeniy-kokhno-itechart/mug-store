@@ -35,7 +35,8 @@ export class LoginForm extends Component {
       // eslint-disable-next-line no-shadow
       const { location, loginUserAction } = this.props;
       const { fromPath } = location;
-      loginUserAction(data.username, data.password, fromPath.pathname);
+      const redirectPath = fromPath ? fromPath.pathname : null;
+      loginUserAction(data.username, data.password, redirectPath);
     } catch (ex) {
       const errors = {};
       errors.password = ex.message;

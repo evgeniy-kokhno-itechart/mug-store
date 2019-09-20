@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import OrderTableConnected from './OrderTable';
+import OrderTable from '../components/OrderTable';
 import OrderForm from './OrderForm';
 import { TotalCost, submitCartOrder, cartCostsSelector } from '../../cart';
 
 export const Order = ({
   cart,
   currentUser,
+  isCurrencyLoading,
   // eslint-disable-next-line no-shadow
   submitCartOrder,
 }) => (
@@ -15,7 +16,7 @@ export const Order = ({
     <h1 className="text-center m-3">Please check your order</h1>
     <div className="row m-2">
       <div className="col-md-6">
-        <OrderTableConnected sortColumn="title" products={cart.products} />
+        <OrderTable sortColumn="title" products={cart.products} isCurrencyLoading={isCurrencyLoading} />
         <TotalCost total={cart.totalCost} customClasses="float-right" />
       </div>
       <div className="col-md-5 offset-md-1">
@@ -48,16 +49,20 @@ Order.propTypes = {
     username: PropTypes.string,
   }),
 
+  isCurrencyLoading: PropTypes.bool,
+
   submitCartOrder: PropTypes.func.isRequired,
 };
 
 Order.defaultProps = {
   currentUser: {},
+  isCurrencyLoading: true,
 };
 
 const mapStateToProps = state => ({
   cart: cartCostsSelector(state),
   currentUser: state.user.currentUser,
+  isCurrencyLoading: state.currency.currenciesStatus.isInProcess,
 });
 
 const mapDipatchToProps = {

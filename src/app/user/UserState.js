@@ -1,9 +1,9 @@
 const initialUserState = {
   currentUser: { roles: [] },
-  loginStatus: { isLoginInProcess: false, hasLoginFailed: false, loginError: '' },
-  logoutStatus: { isLogoutInProcess: false, hasLogoutFailed: false, logoutError: '' },
-  savingStatus: { isSavingInProcess: false, hasSavingFailed: false, savingError: '' },
-  registrationStatus: { isRegistrationInProcess: false, hasRegistrationFailed: false, registrationError: '' },
+  loginStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
+  logoutStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
+  savingStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
+  registrationStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
 };
 
 export default initialUserState;

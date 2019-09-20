@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { ResponsiveEllipsis, Table, ItemCounter } from '../../shared';
-import ProductPrice from '../components/ProductPrice';
-import {
-  incrementQuantity, decrementQuantity, changeQuantity, deleteProductFromCart,
-} from '../CartActions';
+import ProductPrice from './ProductPrice';
 
 export class CartTable extends Component {
   columns = [
@@ -19,25 +15,25 @@ export class CartTable extends Component {
           <img src={product.imageURL} alt={product.title} className="img-fluid" />
         </Link>
       ),
-      customClasses: 'cart-table--column__image',
+      customClasses: 'cart-table--column-image',
     },
 
     {
       path: 'title',
       label: 'Title',
       content: product => (
-        <Link to={`/products/${product.id}`} className="clickable">
+        <Link to={`/products/${product.id}`} className="clickable product-title">
           {product.title}
         </Link>
       ),
-      customClasses: 'cart-table--column__title',
+      customClasses: 'cart-table--column-title',
     },
 
     {
       path: 'description',
       label: 'Details',
       content: product => <ResponsiveEllipsis text={product.description} maxLine="1" ellipsis="..." basedOn="words" />,
-      customClasses: 'cart-table--column__details',
+      customClasses: 'cart-table--column-details',
     },
 
     {
@@ -52,14 +48,14 @@ export class CartTable extends Component {
           onCountChange={this.props.changeQuantity}
         />
       ),
-      customClasses: 'cart-table--column__quantity',
+      customClasses: 'cart-table--column-quantity',
     },
 
     {
       path: 'cost',
       label: 'Cost',
       content: product => <ProductPrice price={product.currentCurrencyCost} isCurrencyLoading={this.props.isCurrencyLoading} />,
-      customClasses: 'text-center cart-table--column__cost',
+      customClasses: 'text-center cart-table--column-cost',
     },
 
     {
@@ -69,7 +65,7 @@ export class CartTable extends Component {
           <FontAwesomeIcon icon="trash" />
         </button>
       ),
-      customClasses: 'cart-table--column__delete',
+      customClasses: 'cart-table--column-delete',
     },
   ];
 
@@ -79,7 +75,7 @@ export class CartTable extends Component {
 
   render() {
     const { productsInCart, sortColumn } = this.props;
-    return <Table columns={this.columns} sortColumn={sortColumn} items={productsInCart} />;
+    return <Table columns={this.columns} sortColumn={sortColumn} items={productsInCart} customClasses="cart-table" />;
   }
 }
 
@@ -103,18 +99,4 @@ CartTable.propTypes = {
   deleteProductFromCart: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
-});
-
-const mapDispatchToProps = {
-  incrementQuantity,
-  decrementQuantity,
-  changeQuantity,
-  deleteProductFromCart,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CartTable);
+export default CartTable;

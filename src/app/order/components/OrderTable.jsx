@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Table } from '../../shared';
 import { ProductPrice } from '../../cart';
 
-export class OrderTable extends Component {
+class OrderTable extends Component {
   columns = [
     {
       key: 'title',
       label: 'Title',
       content: product => (
-        <Link to={`/products/${product.id}`} className="clickable">
+        <Link to={`/products/${product.id}`} className="clickable product-title">
           {product.title}
         </Link>
       ),
-      customClasses: 'order_table__column--title',
+      customClasses: 'order-table__column-title',
     },
     {
       path: 'quantity',
@@ -26,7 +25,7 @@ export class OrderTable extends Component {
       key: 'cost',
       label: 'Cost',
       content: product => <ProductPrice price={product.currentCurrencyCost} isCurrencyLoading={this.props.isCurrencyLoading} />,
-      customClasses: 'text-center order_table__column--cost',
+      customClasses: 'text-center order-table__column-cost',
     },
   ];
 
@@ -36,7 +35,7 @@ export class OrderTable extends Component {
     return (
       <React.Fragment>
         <p>Please check the list of products</p>
-        <Table columns={this.columns} sortColumn={sortColumn} items={products} />
+        <Table columns={this.columns} sortColumn={sortColumn} items={products} customClasses="order-table" />
       </React.Fragment>
     );
   }
@@ -53,11 +52,11 @@ OrderTable.propTypes = {
   ).isRequired,
   sortColumn: PropTypes.string.isRequired,
 
-  isCurrencyLoading: PropTypes.bool.isRequired,
+  isCurrencyLoading: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
-});
+OrderTable.defaultProps = {
+  isCurrencyLoading: true,
+};
 
-export default connect(mapStateToProps)(OrderTable);
+export default OrderTable;

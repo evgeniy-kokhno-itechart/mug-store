@@ -44,28 +44,28 @@ export class ProductDetails extends Component {
   }
 
   renderFieldInfo = (field) => {
-    const { product } = this.props;
+    const { productState } = this.props;
 
     let fieldInfo = null;
     if (!field.content) {
-      fieldInfo = this.getInfo(product, field.path);
+      fieldInfo = this.getInfo(productState.product, field.path);
     } else {
-      fieldInfo = field.content(product);
+      fieldInfo = field.content(productState.product);
     }
     return <InformationItem key={field.label} label={field.label} info={fieldInfo} />;
   };
 
-  renderSpinner = () => <Spinner customSizeClassName="product-details__spinner" marginBootstrapClassName="mt-5" />;
+  renderSpinner = () => <Spinner spinnerClasses="spinner--medium" wrapperClasses="mt-5" />;
 
   renderErrorMessage = message => <ErrorMessage message={message} />;
 
   renderProductDetails = () => {
     const { imageURLs } = this.state;
-    const { product } = this.props;
+    const { productState } = this.props;
 
     return (
       <React.Fragment>
-        <h1 className="display-5 text-center m-3">{`${product.title} Details`}</h1>
+        <h1 className="display-5 text-center m-3">{`${productState.product.title} Details`}</h1>
         {imageURLs && (
           <div className="col-10 col-md-9 col-lg-7 mx-auto">
             <ImageGallery
@@ -83,33 +83,39 @@ export class ProductDetails extends Component {
 
         <div className="d-flex m-3">
           <ToCatalogButton />
-          <BuyNowButton customClasses="ml-auto" onBuyNow={this.props.addToCart} product={product} />
+          <BuyNowButton customClasses="ml-auto" onBuyNow={this.props.addToCart} product={productState.product} />
         </div>
       </React.Fragment>
     );
   };
 
   render() {
-    return this.props.isProductLoading
+    const { productState } = this.props;
+    return productState.productStatus.isInProcess
       ? this.renderSpinner()
-      : this.props.hasProductLoadingFailed
-        ? this.renderErrorMessage(this.props.errorWhileLoading)
+      : productState.productStatus.hasFailed
+        ? this.renderErrorMessage(productState.productStatus.hasFailed.error)
         : this.renderProductDetails();
   }
 }
 
 ProductDetails.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
-    description: PropTypes.string,
-    producer: PropTypes.string,
-    currentCurrencyPrice: PropTypes.number,
+  productState: PropTypes.shape({
+    product: PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+      description: PropTypes.string,
+      producer: PropTypes.string,
+      currentCurrencyPrice: PropTypes.number,
+    }),
+    productStatus: PropTypes.shape({
+      isInProcess: PropTypes.bool,
+      hasFailed: PropTypes.bool,
+      error: PropTypes.string,
+    }),
   }),
-  isProductLoading: PropTypes.bool.isRequired,
-  hasProductLoadingFailed: PropTypes.bool,
-  errorWhileLoading: PropTypes.string,
+
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
 
   addToCart: PropTypes.func.isRequired,
@@ -118,27 +124,32 @@ ProductDetails.propTypes = {
 };
 
 ProductDetails.defaultProps = {
-  product: {
-    id: '',
-    imageURL: '',
-    title: 'defaultProduct',
-    description: '',
-    category: {},
-    basePrice: 0,
-    currentCurrencyPrice: 0,
-    discount: 0,
-    producer: '',
-    rate: '',
+  productState: {
+    product: {
+      id: '',
+      imageURL: '',
+      title: 'defaultProduct',
+      description: '',
+      category: {},
+      basePrice: 0,
+      currentCurrencyPrice: 0,
+      discount: 0,
+      producer: '',
+      rate: '',
+    },
+    productStatus: {
+      isInProcess: true,
+      hasProductLoadingFailed: false,
+      errorWhileLoading: '',
+    },
   },
-  hasProductLoadingFailed: false,
-  errorWhileLoading: '',
 };
 
 const mapStateToProps = state => ({
-  product: productCostSelector(state),
-  isProductLoading: state.products.currentProductStatus.isGettingByIdInProcess,
-  hasProductLoadingFailed: state.products.currentProductStatus.hasGettingByIdFailed,
-  errorWhileLoading: state.products.currentProductStatus.error,
+  productState: {
+    product: productCostSelector(state),
+    productStatus: state.products.currentProductStatus,
+  },
 });
 
 const mapDispatchToProps = {

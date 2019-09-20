@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Dropdown, Pagination } from '../../shared';
+import { DropdownInline, Pagination } from '../../shared';
 
 const CatalogTableFooter = ({
   totalCount, pageSize, pageSizeOptions, currentPage, onPageChange, onItemsCountChange,
@@ -16,14 +16,14 @@ const CatalogTableFooter = ({
       />
     </div>
     <div className="col">
-      <Dropdown
+      <DropdownInline
         name="itemsOnPage"
         label="Items on page"
         options={pageSizeOptions}
         value={pageSize.toString()}
-        isOnelineElement
-        customClasses="justify-content-end"
-        onValueChange={onItemsCountChange}
+        wrapperClasses="justify-content-end"
+        selectClasses="form-control"
+        onChange={onItemsCountChange}
       />
     </div>
   </div>

@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { changeCategory } from '../CategoryActions';
 import paginate from '../Paginate';
-import CatalogTableConnected from './CatalogTable';
+import CatalogTable from '../components/CatalogTable';
 import CatalogTableHeader from '../components/CatalogTableHeader';
 import CatalogTableFooter from '../components/CatalogTableFooter';
 import { ListGroup, ErrorMessage, Spinner } from '../../shared';
 import { deleteProduct, getProducts, productsPricesSelector } from '../../product';
+import { addToCart } from '../../cart';
 
 export class Catalog extends Component {
   state = {
@@ -20,11 +21,7 @@ export class Catalog extends Component {
     currentPage: 1,
   };
 
-  pageSizeOptions = [
-    { id: '5', name: '5' },
-    { id: '10', name: '10' },
-    { id: '15', name: '15' },
-  ];
+  pageSizeOptions = [{ id: '5', name: '5' }, { id: '10', name: '10' }, { id: '15', name: '15' }];
 
   sortOptions = [
     { id: 'currentCurrencyPrice_asc', name: 'Price A-Z' },
@@ -41,22 +38,44 @@ export class Catalog extends Component {
     this.props.getProducts();
   }
 
+  displayIsLoading = () => {
+    const { products, category } = this.props;
+    if (products.catalogProductsStatus.isInProcess || category.loadingStatus.isInProcess || products.productDeletingStatus.isInProcess) {
+      return <Spinner spinnerClasses="spinner--big" wrapperClasses="mt-5" />;
+    }
+    return null;
+  }
+
+  displayGotError = () => {
+    const { products, category } = this.props;
+    if (products.catalogProductsStatus.hasFailed || category.loadingStatus.hasFailed || products.productDeletingStatus.hasFailed) {
+      return (
+        <ErrorMessage message={products.catalogProductsStatus.error || category.loadingStatus.error || category.loadingStatus.error} />
+      );
+    }
+    return null;
+  }
+
+  displayPagedDataOrEmpty = () => {
+    const { totalCount, productsOnPage } = this.getPagedData();
+    return productsOnPage.length
+      ? this.renderProducts(totalCount, productsOnPage)
+      : this.renderEmptyMessage();
+  }
+
   getPagedData = () => {
     const {
-      pageSize,
-      currentPage,
-      sortColumn,
-      searchQuery,
+      pageSize, currentPage, sortColumn, searchQuery,
     } = this.state;
 
-    const { currentCategory } = this.props;
+    const { category } = this.props;
 
-    const allProducts = this.props.products;
+    const allProducts = this.props.products.productsForCatalog;
     let filtered = allProducts;
     if (searchQuery) {
       filtered = allProducts.filter(m => m.title.toLowerCase().includes(searchQuery.toLowerCase()));
-    } else if (currentCategory && currentCategory.id) {
-      filtered = allProducts.filter(m => m.category.id === currentCategory.id);
+    } else if (category.currentCategory && category.currentCategory.id) {
+      filtered = allProducts.filter(m => m.category.id === category.currentCategory.id);
     }
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
@@ -87,7 +106,9 @@ export class Catalog extends Component {
       const sortInfo = detailsToBeSplitted.split('_');
 
       this.setState({ sortColumn: { id: detailsToBeSplitted, path: sortInfo[0], order: sortInfo[1] } });
-    } else this.setState({ sortColumn: { path: 'title', order: 'asc' } });
+    } else {
+      this.setState({ sortColumn: { path: 'title', order: 'asc' } });
+    }
   };
 
   handleItemsCountChange = (e) => {
@@ -110,24 +131,24 @@ export class Catalog extends Component {
         </Link>
       </div>
     </h1>
-  )
+  );
 
   renderProducts = (totalCount, productsOnPage) => {
     const {
-      sortColumn,
-      searchQuery,
-      pageSize,
-      currentPage,
+      sortColumn, searchQuery, pageSize, currentPage,
     } = this.state;
 
-    const { currentUserRoles, categories, currentCategory } = this.props;
+    const {
+      // eslint-disable-next-line no-shadow
+      currentUserRoles, category, isCurrencyLoading, addToCart,
+    } = this.props;
 
     return (
       <div className="row mt-3">
         <div className="col-11 col-sm-3 col-lg-2 mx-auto mb-2">
           <ListGroup
-            items={[this.allProductsCategory, ...categories]}
-            selectedItem={currentCategory}
+            items={[this.allProductsCategory, ...category.categories]}
+            selectedItem={category.currentCategory}
             onItemSelect={this.handleItemSelect}
           />
         </div>
@@ -142,9 +163,12 @@ export class Catalog extends Component {
             handleSort={this.handleSort}
           />
 
-          <CatalogTableConnected
+          <CatalogTable
             sortColumn={sortColumn}
             productsOnPage={productsOnPage}
+            currentUserRoles={currentUserRoles}
+            isCurrencyLoading={isCurrencyLoading}
+            addToCart={addToCart}
             onDelete={this.handleDelete}
           />
 
@@ -159,109 +183,95 @@ export class Catalog extends Component {
         </div>
       </div>
     );
-  }
+  };
 
   render() {
-    const { totalCount, productsOnPage } = this.getPagedData();
-    const {
-      isProductsLoading,
-      hasProductsLoadingFailed,
-      errorWhileProductsLoading,
-      isCategoriesLoading,
-      hasCategoriesLoadingFailed,
-      errorWhileCategoriesLoading,
-      isProductDeletingInProcess,
-      hasProductDeletingFailed,
-      errorWhileProductDeleting,
-    } = this.props;
-    return (
-      (isProductsLoading || isCategoriesLoading || isProductDeletingInProcess)
-        ? <Spinner customSizeClassName='catalog__spinner' marginBootstrapClassName='mt-5' />
-        : ((hasProductsLoadingFailed || hasCategoriesLoadingFailed || hasProductDeletingFailed)
-          ? <ErrorMessage message={errorWhileProductsLoading || errorWhileCategoriesLoading || errorWhileProductDeleting} />
-          : (productsOnPage.length
-            ? this.renderProducts(totalCount, productsOnPage)
-            : this.renderEmptyMessage()))
-    );
+    return this.displayIsLoading() || this.displayGotError() || this.displayPagedDataOrEmpty();
   }
 }
 
 Catalog.propTypes = {
   currentUserRoles: PropTypes.arrayOf(PropTypes.string),
 
-  isProductsLoading: PropTypes.bool,
-  hasProductsLoadingFailed: PropTypes.bool,
-  errorWhileProductsLoading: PropTypes.string,
-  products: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    imageURL: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
-    basePrice: PropTypes.number,
-    currentCurrencyPrice: PropTypes.number,
-    discount: PropTypes.number,
-    producer: PropTypes.string,
-    publishDate: PropTypes.string,
-    rate: PropTypes.string,
-  })),
+  products: PropTypes.shape({
+    productsForCatalog: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        imageURL: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+        basePrice: PropTypes.number,
+        currentCurrencyPrice: PropTypes.number,
+        discount: PropTypes.number,
+        producer: PropTypes.string,
+        publishDate: PropTypes.string,
+        rate: PropTypes.string,
+      }),
+    ),
+    catalogProductsStatus: PropTypes.shape({
+      isInProcess: PropTypes.bool,
+      hasFailed: PropTypes.bool,
+      error: PropTypes.string,
+    }),
+    productDeletingStatus: PropTypes.shape({
+      isInProcess: PropTypes.bool,
+      hasFailed: PropTypes.bool,
+      error: PropTypes.string,
+    }),
+  }),
+
+  category: PropTypes.shape({
+    categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
+    currentCategory: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+    loadingStatus: PropTypes.shape({ isInProcess: PropTypes.bool, hasFailed: PropTypes.bool, error: PropTypes.string }),
+  }),
+
+  isCurrencyLoading: PropTypes.bool,
+
   getProducts: PropTypes.func.isRequired,
-
-  isProductDeletingInProcess: PropTypes.bool,
-  hasProductDeletingFailed: PropTypes.bool,
-  errorWhileProductDeleting: PropTypes.string,
   deleteProduct: PropTypes.func.isRequired,
-
-  categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
-  currentCategory: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
-  isCategoriesLoading: PropTypes.bool,
-  hasCategoriesLoadingFailed: PropTypes.bool,
-  errorWhileCategoriesLoading: PropTypes.string,
   changeCategory: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 Catalog.defaultProps = {
   currentUserRoles: [],
 
-  products: [],
-  isProductsLoading: false,
-  hasProductsLoadingFailed: false,
-  errorWhileProductsLoading: '',
+  products: {
+    productsForCatalog: [],
+    productsGettingStatus: { isInProcess: false, hasFailed: false, error: '' },
+    productDeletingStatus: { isInProcess: false, hasFailed: false, error: '' },
+  },
 
-  categories: [],
-  currentCategory: {},
-  isCategoriesLoading: false,
-  hasCategoriesLoadingFailed: false,
-  errorWhileCategoriesLoading: '',
+  category: {
+    categories: [],
+    currentCategory: {},
+    loadingStatus: { isInProcess: false, hasFailed: false, error: '' },
+  },
 
-  isProductDeletingInProcess: false,
-  hasProductDeletingFailed: false,
-  errorWhileProductDeleting: '',
+  isCurrencyLoading: true,
 };
 
 const mapStateToProps = state => ({
   currentUserRoles: state.user.currentUser.roles,
 
-  products: productsPricesSelector(state),
-  isProductsLoading: state.products.tableProductsStatus.isGettingInProcess,
-  hasProductsLoadingFailed: state.products.tableProductsStatus.hasGettingFailed,
-  errorWhileProductsLoading: state.products.tableProductsStatus.error,
+  products: {
+    productsForCatalog: productsPricesSelector(state),
+    catalogProductsStatus: state.products.catalogProductsStatus,
+    productDeletingStatus: state.products.deletingStatus,
+  },
 
-  currentCategory: state.category.currentCategory,
-  categories: state.category.categories,
-  isCategoriesLoading: state.category.categoriesStatus.isInProcess,
-  hasCategoriesLoadingFailed: state.category.categoriesStatus.hasFailed,
-  errorWhileCategoriesLoading: state.category.categoriesStatus.error,
+  isCurrencyLoading: state.currency.currenciesStatus.isInProcess,
 
-  isProductDeletingInProcess: state.products.deletingStatus.isDeletingInProcess,
-  hasProductDeletingFailed: state.products.deletingStatus.hasDeletingFailed,
-  errorWhileProductDeleting: state.products.deletingStatus.error,
+  category: state.category,
 });
 
 const mapDispatchToProps = {
   changeCategory,
   getProducts,
   deleteProduct,
+  addToCart,
 };
 
 export default connect(

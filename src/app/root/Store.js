@@ -11,14 +11,17 @@ export default function initializeStore() {
   const composedMiddlewares = compose(applyMiddleware(thunk, routerMiddleware(history)));
 
   const reduxStateLocalStoreKey = 'reduxState';
-  const persistedState = localStorage.getItem(reduxStateLocalStoreKey)
-    ? JSON.parse(localStorage.getItem(reduxStateLocalStoreKey))
-    : {
+  let persistedState;
+  if (localStorage.getItem(reduxStateLocalStoreKey)) {
+    persistedState = JSON.parse(localStorage.getItem(reduxStateLocalStoreKey))
+  } else {
+    persistedState = {
       cart: rootReducer.cart,
       user: rootReducer.user,
       currency: rootReducer.currency,
       products: rootReducer.products,
     };
+  }
   delete persistedState.router;
   return createStore(rootReducer, persistedState, composedMiddlewares);
 }

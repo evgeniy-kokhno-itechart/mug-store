@@ -13,13 +13,13 @@ import initialCurrencyState from './CurrencyState';
 const currencyReducer = handleActions(
   {
     // GETTING CURRENCIES
-    [gettingCurrenciesInProgress]: (state, { payload: isGettingCurrenciesInProcess }) => ({
+    [gettingCurrenciesInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
-      currenciesStatus: { isGettingCurrenciesInProcess, hasGettingCurrenciesFailed: false, error: '' },
+      currenciesStatus: { isInProcess, hasFailed: false, error: '' },
     }),
-    [gettingCurrenciesFailed]: (state, { payload: { hasGettingCurrenciesFailed, error } }) => ({
+    [gettingCurrenciesFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      currenciesStatus: { isGettingCurrenciesInProcess: false, hasGettingCurrenciesFailed, error },
+      currenciesStatus: { isInProcess: false, hasFailed, error },
     }),
     [gettingCurrenciesSuccess]: (state, { payload: { currencies, baseCurrencyName } }) => {
       const { currentCurrency } = state;
@@ -35,19 +35,19 @@ const currencyReducer = handleActions(
         ...state,
         currentCurrency: currentCurrencyToBeSet,
         currencies,
-        currenciesStatus: { isGettingCurrenciesInProcess: false, hasGettingCurrenciesFailed: false, error: '' },
+        currenciesStatus: { isInProcess: false, hasFailed: false, error: '' },
       };
     },
 
     // GETTING RATES
-    [gettingCurrencyRatesInProgress]: (state, { payload: isGettingCurrencyRatesInProcess }) => ({
+    [gettingCurrencyRatesInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
-      currencyRatesStatus: { isGettingCurrencyRatesInProcess, hasGettingCurrencyRatesFailed: false, error: '' },
+      currencyRatesStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [gettingCurrencyRatesFailed]: (state, { payload: { hasGettingCurrencyRatesFailed, error } }) => ({
+    [gettingCurrencyRatesFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      currencyRatesStatus: { isGettingCurrencyRatesInProcess: false, hasGettingCurrencyRatesFailed, error },
+      currencyRatesStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [gettingCurrencyRatesSuccess]: (state, { payload: { currencyRatesArray, baseCurrencyName } }) => {
@@ -78,7 +78,7 @@ const currencyReducer = handleActions(
         ...state,
         currencies: currenciesWithRatesAdded,
         currentCurrency,
-        currencyRatesStatus: { isGettingCurrencyRatesInProcess: false, hasGettingCurrencyRatesFailed: false, error: '' },
+        currencyRatesStatus: { isInProcess: false, hasFailed: false, error: '' },
       };
     },
 

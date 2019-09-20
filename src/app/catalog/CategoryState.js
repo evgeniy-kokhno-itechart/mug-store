@@ -1,7 +1,7 @@
 const initialCategoryState = {
   categories: [],
   currentCategory: {},
-  categoriesStatus: { isInProcess: false, hasFailed: false, error: '' },
+  loadingStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
 };
 
 export default initialCategoryState;

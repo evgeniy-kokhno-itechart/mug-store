@@ -6,13 +6,7 @@ export default class CurrencyService {
     return response;
   }
 
-  static getCurrencyRates(currencyNames) {
-    const arrayOfApiCallPromises = [];
-
-    for (let i = 0; i < currencyNames.length; i++) {
-      arrayOfApiCallPromises.push(currencyApi.get(`/${currencyNames[i]}?ParamMode=2`));
-    }
-
-    return arrayOfApiCallPromises;
+  static getCurrencyRates() {
+    return currencyApi.get('?Periodicity=0');
   }
 }

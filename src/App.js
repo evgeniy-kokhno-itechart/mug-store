@@ -16,10 +16,8 @@ export const App = (props) => {
   return (
     <React.Fragment>
       <NavbarConnected />
-      <div id="bootstrap-overrides" className="container-fluid">
-        <div id="app__content--wrap">
-          <Routes />
-        </div>
+      <div id="bootstrap-overrides" className="container-fluid content-wrap">
+        <Routes />
       </div>
       <Footer />
     </React.Fragment>

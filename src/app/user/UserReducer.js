@@ -18,31 +18,31 @@ import {
 const userReducer = handleActions(
   {
     //  LOGIN
-    [loginUserInProcess]: (state, { payload: isLoginInProcess }) => ({
+    [loginUserInProcess]: (state, { payload: isInProcess }) => ({
       ...state,
-      loginStatus: { isLoginInProcess, hasLoginFailed: false, loginError: '' },
+      loginStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [loginUserFailed]: (state, { payload: { hasLoginFailed, loginError } }) => ({
+    [loginUserFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      loginStatus: { isLoginInProcess: false, hasLoginFailed, loginError },
+      loginStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [loginUserSuccess]: (state, { payload: currentUser }) => ({
       ...state,
       currentUser,
-      loginStatus: { isLoginInProcess: false, hasLoginFailed: false, loginError: '' },
+      loginStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
     // LOGOUT
-    [logoutUserInProcess]: (state, { payload: isLogoutInProcess }) => ({
+    [logoutUserInProcess]: (state, { payload: isInProcess }) => ({
       ...state,
-      logoutStatus: { isLogoutInProcess, hasLogoutFailed: false, logoutError: '' },
+      logoutStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [logoutUserFailed]: (state, { payload: { hasLogoutFailed, logoutError } }) => ({
+    [logoutUserFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      logoutStatus: { isLogoutInProcess: false, hasLogoutFailed, logoutError },
+      logoutStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [logoutUserSuccess]: (state, { payload: resultMessage }) => ({
@@ -52,14 +52,14 @@ const userReducer = handleActions(
     }),
 
     // SAVE EDITED
-    [savingUserInProcess]: (state, { payload: isSavingInProcess }) => ({
+    [savingUserInProcess]: (state, { payload: isInProcess }) => ({
       ...state,
-      savingStatus: { isSavingInProcess, hasSavingFailed: false, savingError: '' },
+      savingStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [savingUserFailed]: (state, { payload: { hasSavingFailed, savingError } }) => ({
+    [savingUserFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      savingStatus: { isSavingInProcess: false, hasSavingFailed, savingError },
+      savingStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [savingUserSuccess]: (state, { payload: updatedUser }) => ({
@@ -68,14 +68,14 @@ const userReducer = handleActions(
     }),
 
     // REGISTER
-    [registrationUserInProcess]: (state, { payload: isRegistrationInProcess }) => ({
+    [registrationUserInProcess]: (state, { payload: isInProcess }) => ({
       ...state,
-      registrationStatus: { isRegistrationInProcess, hasRegistrationFailed: false, registrationError: '' },
+      registrationStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [registrationUserFailed]: (state, { payload: { hasRegistrationFailed, registrationError } }) => ({
+    [registrationUserFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      registrationStatus: { isRegistrationInProcess: false, hasRegistrationFailed, registrationError },
+      registrationStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [registrationUserSuccess]: (state, { payload: registeredUser }) => ({

@@ -1,16 +1,16 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Dropdown } from '../../shared';
+import { DropdownInline } from '../../shared';
 
 const SortBox = ({ sortColumnKey, sortOptions, onSortChange }) => (
-  <Dropdown
+  <DropdownInline
     name="sortDropdown"
     label="Sorted by:"
     options={sortOptions}
     value={sortColumnKey}
-    isOnelineElement
-    customClasses="justify-content-end mt-1 mt-lg-0"
-    onValueChange={onSortChange}
+    wrapperClasses="justify-content-end mt-1 mt-lg-0"
+    selectClasses='form-control'
+    onChange={onSortChange}
   />
 );
 

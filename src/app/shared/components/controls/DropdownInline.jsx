@@ -1,28 +1,25 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import Dropdown from './Dropdown';
 
-const Dropdown = ({
+const DropdownInline = ({
   name, label, error, value, options, defaultText, labelClasses, selectClasses, wrapperClasses, onChange,
 }) => (
-  <div className={`form-group flex-nowrap ${wrapperClasses}`}>
-    <label className={`mr-2 text-nowrap ${labelClasses}`} htmlFor={name}>
-      {label}
-    </label>
-
-    <select name={name} id={name} value={value} onChange={onChange} className={selectClasses}>
-      {defaultText && <option>{defaultText}</option>}
-      {options.map(o => (
-        <option key={o.id} value={o.id}>
-          {o.name}
-        </option>
-      ))}
-    </select>
-
-    {error && <div className="alert alert-danger">{error}</div>}
-  </div>
+  <Dropdown
+    name={name}
+    label={label}
+    error={error}
+    value={value}
+    options={options}
+    defaultText={defaultText}
+    labelClasses={labelClasses}
+    selectClasses={selectClasses}
+    wrapperClasses={`form-inline ${wrapperClasses}`}
+    onChange={onChange}
+  />
 );
 
-Dropdown.propTypes = {
+DropdownInline.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
@@ -35,7 +32,7 @@ Dropdown.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-Dropdown.defaultProps = {
+DropdownInline.defaultProps = {
   error: '',
   defaultText: '',
   labelClasses: '',
@@ -44,4 +41,4 @@ Dropdown.defaultProps = {
   value: '',
 };
 
-export default Dropdown;
+export default DropdownInline;

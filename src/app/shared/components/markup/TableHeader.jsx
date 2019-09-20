@@ -5,7 +5,10 @@ const TableHeader = ({ columns }) => (
   <thead>
     <tr>
       {columns.map(column => (
-        <th key={column.path || column.key} className={`p-1 p-md-2 p-lg-3 ${column.customClasses ? column.customClasses : ''}`}>
+        <th
+          key={column.path || column.key}
+          className={`p-1 p-md-2 p-lg-3 ${column.customClasses ? column.customClasses : ''}`}
+        >
           {column.label}
         </th>
       ))}

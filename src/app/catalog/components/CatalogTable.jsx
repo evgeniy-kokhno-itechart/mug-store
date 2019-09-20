@@ -1,14 +1,13 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import BuyNowButton from '../components/BuyNowButton';
-import CatalogDeleteAction from '../components/CatalogDeleteAction';
+import BuyNowButton from './BuyNowButton';
+import CatalogDeleteAction from './CatalogDeleteAction';
 import { ResponsiveEllipsis, Table, Rate } from '../../shared';
-import { ProductPrice, addToCart } from '../../cart';
+import { ProductPrice } from '../../cart';
 
-export class CatalogTable extends Component {
+class CatalogTable extends Component {
   state = {
     columns: [
       {
@@ -19,39 +18,39 @@ export class CatalogTable extends Component {
             <img src={product.imageURL} alt={product.title} className="img-fluid" />
           </Link>
         ),
-        customClasses: 'catalog_table__column--image',
+        customClasses: 'catalog-table__column-image',
       },
       {
         key: 'title',
         label: 'Title',
         content: product => (
-          <Link to={`/products/${product.id}`} className="clickable catalog_table__product_title">
+          <Link to={`/products/${product.id}`} className="clickable product-title">
             {product.title}
           </Link>
         ),
-        customClasses: 'catalog_table__column--title',
+        customClasses: 'catalog-table__column-title',
       },
       {
         key: 'description',
         label: 'Details',
         content: product => <ResponsiveEllipsis text={product.description} maxLine="3" ellipsis="..." basedOn="words" />,
-        customClasses: 'd-none d-md-table-cell catalog_table__column--details',
+        customClasses: 'd-none d-md-table-cell catalog-table__column-details',
       },
       {
         key: 'rate',
         content: product => <Rate rate={product.rate} />,
-        customClasses: 'catalog_table__column--rate',
+        customClasses: 'catalog-table__column-rate',
       },
       {
         key: 'price',
         label: 'Price',
         content: product => <ProductPrice price={product.currentCurrencyPrice} isCurrencyLoading={this.props.isCurrencyLoading} />,
-        customClasses: 'catalog_table__column--price',
+        customClasses: 'catalog-table__column-price',
       },
       {
         key: 'buyNow',
         content: product => <BuyNowButton customClasses="btn-sm" onBuyNow={this.props.addToCart} product={product} />,
-        customClasses: 'catalog_table__column--buynow',
+        customClasses: 'catalog-table__column-buynow',
       },
     ],
   };
@@ -74,8 +73,8 @@ export class CatalogTable extends Component {
   ];
 
   componentDidMount() {
-    const { currentUser: user } = this.props;
-    if (user.name && user.roles.includes('admin')) {
+    const { currentUserRoles } = this.props;
+    if (currentUserRoles.includes('admin')) {
       this.setState(prevState => ({ columns: [...prevState.columns, ...this.adminColumns] }));
     }
   }
@@ -83,12 +82,12 @@ export class CatalogTable extends Component {
   render() {
     const { productsOnPage } = this.props;
 
-    return <Table columns={this.state.columns} items={productsOnPage} />;
+    return <Table columns={this.state.columns} items={productsOnPage} customClasses="catalog-table" />;
   }
 }
 
 CatalogTable.propTypes = {
-  currentUser: PropTypes.shape({ name: PropTypes.string, roles: PropTypes.arrayOf(PropTypes.string) }),
+  currentUserRoles: PropTypes.arrayOf(PropTypes.string),
   isCurrencyLoading: PropTypes.bool,
 
   productsOnPage: PropTypes.arrayOf(
@@ -106,25 +105,14 @@ CatalogTable.propTypes = {
       rate: PropTypes.string,
     }),
   ).isRequired,
+
   addToCart: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
 CatalogTable.defaultProps = {
-  currentUser: {},
+  currentUserRoles: [],
   isCurrencyLoading: true,
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
-  isCurrencyLoading: state.currency.currenciesStatus.isGettingCurrenciesInProcess,
-});
-
-const mapDispatchToProps = {
-  addToCart,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CatalogTable);
+export default CatalogTable;

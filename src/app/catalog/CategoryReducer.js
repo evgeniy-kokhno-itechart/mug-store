@@ -8,18 +8,18 @@ const categoryReducer = handleActions(
   {
     [gettingCategoriesInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
-      categoriesStatus: { isInProcess, hasFailed: false, error: '' },
+      loadingStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
     [gettingCategoriesFailed]: (state, { payload: { hasFailed, error } }) => ({
       ...state,
-      categoriesStatus: { isInProcess: false, hasFailed, error },
+      loadingStatus: { isInProcess: false, hasFailed, error },
     }),
 
     [gettingCategoriesSuccess]: (state, { payload: categories }) => ({
       ...state,
       categories,
-      categoriesStatus: { isInProcess: false, hasFailed: false, error: '' },
+      loadingStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
     [changeCategory]: (state, { payload: category }) => ({
