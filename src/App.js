@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { NavbarConnected, Footer, Routes } from './app/root';
 import { IconService } from './app/shared';
-import { getCategories } from './app/catalog';
-import { getCurrencies } from './app/currency';
+import { categoryActions } from './app/catalog';
+import { currencyActions } from './app/currency';
 import './styles/App.css';
 
 export const App = (props) => {
@@ -30,8 +30,8 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = {
-  getCategories,
-  getCurrencies,
+  getCategories: categoryActions.GetCategories.InitiateApiCall,
+  getCurrencies: currencyActions.GetCurrencies.InitiateApiCall,
 };
 
 export default connect(

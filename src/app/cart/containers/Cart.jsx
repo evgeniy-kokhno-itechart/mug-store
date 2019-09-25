@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import CartTableConnected from '../components/CartTable';
+import CartTable from '../components/CartTable';
 import TotalCost from '../components/TotalCost';
 import { cartCostsSelector } from '../CartSelectors';
-import {
-  incrementQuantity, decrementQuantity, changeQuantity, deleteProductFromCart,
-} from '../CartActions';
+import { cartActions } from '../CartActions';
 
 export class Cart extends Component {
   renderCartDetails(products) {
@@ -17,7 +15,7 @@ export class Cart extends Component {
     } = this.props;
     return (
       <React.Fragment>
-        <CartTableConnected
+        <CartTable
           sortColumn="id"
           productsInCart={products}
           isCurrencyLoading={isCurrencyLoading}
@@ -86,10 +84,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  incrementQuantity,
-  decrementQuantity,
-  changeQuantity,
-  deleteProductFromCart,
+  incrementQuantity: cartActions.IncrementQuantity,
+  decrementQuantity: cartActions.DecrementQuantity,
+  changeQuantity: cartActions.ChangeQuantity,
+  deleteProductFromCart: cartActions.DeleteFromCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -1,28 +1,26 @@
 import { handleActions } from 'redux-actions';
-import {
-  gettingCategoriesInProgress, gettingCategoriesFailed, gettingCategoriesSuccess, changeCategory,
-} from './CategoryActions';
+import { categoryActions } from './CategoryActions';
 import initialCategoryState from './CategoryState';
 
 const categoryReducer = handleActions(
   {
-    [gettingCategoriesInProgress]: (state, { payload: isInProcess }) => ({
+    [categoryActions.GetCategories.CallIsInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
       loadingStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [gettingCategoriesFailed]: (state, { payload: { hasFailed, error } }) => ({
+    [categoryActions.GetCategories.Failure]: (state, { payload: error }) => ({
       ...state,
-      loadingStatus: { isInProcess: false, hasFailed, error },
+      loadingStatus: { isInProcess: false, hasFailed: true, error },
     }),
 
-    [gettingCategoriesSuccess]: (state, { payload: categories }) => ({
+    [categoryActions.GetCategories.Success]: (state, { payload: categories }) => ({
       ...state,
       categories,
       loadingStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
-    [changeCategory]: (state, { payload: category }) => ({
+    [categoryActions.ChangeCategory]: (state, { payload: category }) => ({
       ...state,
       currentCategory: category,
     }),

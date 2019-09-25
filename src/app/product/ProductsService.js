@@ -12,33 +12,13 @@ export default class ProductsService {
   }
 
   static saveProduct(product) {
-    let productInDb = {};
-    let errorGot = '';
-    this.getProduct(product.id) // !!!!!!CHECK THIS
-      .then((response) => {
-        productInDb = response.data;
-      })
-      .catch((error) => {
-        errorGot = error.message;
-      });
-
-    // in case of brand new product
-    if (errorGot.includes('404') || !productInDb.id) {
-      productInDb.id = Date.now().toString();
+    let response;
+    if (product.id) {
+      response = applicationApi.post('/products/edit', JSON.stringify(product));
+    } else {
+      response = applicationApi.post('/products/create', JSON.stringify(product));
     }
-
-    productInDb.title = product.title;
-    productInDb.imageURL = product.imageURL;
-    productInDb.price = product.price;
-    productInDb.description = product.description;
-    productInDb.discount = product.discount;
-    productInDb.producer = product.producer;
-    productInDb.publishDate = Date.now();
-    productInDb.rate = product.rate;
-
-    const responseOnSave = applicationApi.post(`/products/${product.id}`, JSON.stringify(productInDb));
-
-    return responseOnSave;
+    return response;
   }
 
   static deleteProduct(id) {

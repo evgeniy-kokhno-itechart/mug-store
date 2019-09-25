@@ -26,3 +26,4 @@ export { default as TableHeader } from './components/markup/TableHeader';
 export { default as IconService } from './services/IconService';
 export * from './services/ApiService';
 export { default as FormService } from './services/FormService';
+export { default as createHttpAction } from './services/ActionsService';

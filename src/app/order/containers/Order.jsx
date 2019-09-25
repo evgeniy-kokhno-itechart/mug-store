@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import OrderTable from '../components/OrderTable';
 import OrderForm from './OrderForm';
-import { TotalCost, submitCartOrder, cartCostsSelector } from '../../cart';
+import { TotalCost, cartActions, cartCostsSelector } from '../../cart';
 
 export const Order = ({
   cart,
@@ -66,7 +66,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDipatchToProps = {
-  submitCartOrder,
+  submitCartOrder: cartActions.SubmitCartOrder.InitiateApiCall,
 };
 
 export default connect(

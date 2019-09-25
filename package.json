@@ -27,7 +27,7 @@
     "react-scripts": "^3.0.1",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
-    "redux-thunk": "^2.3.0",
+    "redux-saga": "^1.1.1",
     "reselect": "^4.0.0",
     "typescript": "^3.5.3",
     "unorm": "^1.6.0",

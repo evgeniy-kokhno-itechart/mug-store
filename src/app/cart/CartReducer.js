@@ -1,22 +1,12 @@
 import { combineActions, handleActions } from 'redux-actions';
 import initialCartState from './CartState';
-import {
-  addToCart,
-  incrementQuantity,
-  decrementQuantity,
-  changeQuantity,
-  deleteProductFromCart,
-  clearCart,
-  submittingOrderInProgress,
-  submittingOrderFailed,
-  submittingOrderSuccess,
-} from './CartActions';
+import { cartActions } from './CartActions';
 
-const incrementDecrementQuantity = combineActions(incrementQuantity, decrementQuantity);
+const incrementDecrementQuantity = combineActions(cartActions.IncrementQuantity, cartActions.DecrementQuantity);
 
 const cartReducer = handleActions(
   {
-    [addToCart]: (state, { payload: { product, quantity } }) => {
+    [cartActions.AddToCart]: (state, { payload: { product, quantity } }) => {
       const id = product.id.toString();
       const newCart = [...state.cart];
       const existedProduct = newCart.find(item => item.id === id);
@@ -37,7 +27,7 @@ const cartReducer = handleActions(
       return { ...state, cart: [...newCart] };
     },
 
-    [changeQuantity]: (state, { payload: { productId, value } }) => {
+    [cartActions.ChangeQuantity]: (state, { payload: { productId, value } }) => {
       const newCart = [...state.cart];
       const index = newCart.findIndex(p => p.id === productId);
       const newProdInCart = { ...newCart[index] };
@@ -46,30 +36,31 @@ const cartReducer = handleActions(
       return { ...state, cart: [...newCart] };
     },
 
-    [deleteProductFromCart]: (state, { payload: productId }) => {
+    [cartActions.DeleteFromCart]: (state, { payload: productId }) => {
       const newCart = [...state.cart];
       newCart.splice(newCart.findIndex(p => p.id === productId), 1);
       return { ...state, cart: [...newCart] };
     },
 
     // SUBMIT CART ORDER
-    [submittingOrderInProgress]: (state, { payload: isInProgress }) => ({
+    [cartActions.SubmitCartOrder.CallIsInProgress]: (state, { payload: isInProgress }) => ({
       ...state,
       submitOrderStatus: { isInProgress, hasFailed: false, error: '' },
     }),
 
-    [submittingOrderFailed]: (state, { payload: { hasFailed, error } }) => ({
+    [cartActions.SubmitCartOrder.Failure]: (state, { payload: error }) => ({
       ...state,
-      submitOrderStatus: { isInProgress: false, hasFailed, error },
+      submitOrderStatus: { isInProgress: false, hasFailed: true, error },
     }),
 
-    [submittingOrderSuccess]: (state, { payload: resultMessage }) => ({
+    [cartActions.SubmitCartOrder.Success]: (state, { payload: resultMessage }) => ({
       ...state,
       submitResult: resultMessage, // added for future. will be empty because back-end is fake
       submitOrderStatus: { isInProgress: false, hasFailed: false, error: '' },
+      cart: [],
     }),
 
-    [clearCart]: state => ({ ...state, cart: [] }),
+    [cartActions.ClearCart]: state => ({ ...state, cart: [] }),
   },
 
   initialCartState,

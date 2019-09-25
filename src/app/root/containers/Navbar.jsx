@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { changeCurrency, CurrenciesDropdown } from '../../currency';
-import { logoutUser } from '../../user';
+import { currencyActions, CurrenciesDropdown } from '../../currency';
+import { userActions } from '../../user';
 import { CartService } from '../../cart';
 import LoginLogoutBar from '../components/LoginLogoutBar';
 
@@ -106,8 +106,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  changeCurrency,
-  logoutUser,
+  changeCurrency: currencyActions.ChangeCurrency,
+  logoutUser: userActions.Logout.InitiateApiCall,
 };
 
 export default connect(

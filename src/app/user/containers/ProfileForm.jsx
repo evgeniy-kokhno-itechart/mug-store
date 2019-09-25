@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { saveEditedUserInfo, registerNewUserAndLogin } from '../UserActions';
+import { userActions } from '../UserActions';
 import { FormService, Input } from '../../shared';
 
 export class ProfileForm extends Component {
@@ -203,8 +203,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  saveEditedUserInfo,
-  registerNewUserAndLogin,
+  saveEditedUserInfo: userActions.SaveEdited.InitiateApiCall,
+  registerNewUserAndLogin: userActions.Register.InitiateApiCall,
 };
 
 export default connect(

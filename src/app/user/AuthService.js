@@ -4,11 +4,10 @@ import { applicationApi } from '../shared';
 const jwtTokenKey = 'token';
 
 export default class AuthService {
-  static parseUserToken(response) {
-    let user = response.data;
-    localStorage.setItem(jwtTokenKey, user.token);
-    const decodedInfo = jwtDecode(user.token);
-    user = { ...user, roles: decodedInfo.roles };
+  static parseUserToken(responseUser) {
+    localStorage.setItem(jwtTokenKey, responseUser.token);
+    const decodedInfo = jwtDecode(responseUser.token);
+    const user = { ...responseUser, roles: decodedInfo.roles };
     return user;
   }
 
@@ -46,7 +45,7 @@ export default class AuthService {
   static logout(currentUserId) {
     // !!! FAKE LOGOUT LOGIC !!! should be replaced in prod app
     const response = applicationApi.post(`/logout/${currentUserId}`);
-    this.removeUserTokenFromStorage(); // !!!!!!!!!!! CHECK THIS
+    AuthService.removeUserTokenFromStorage();
     return response;
   }
 }

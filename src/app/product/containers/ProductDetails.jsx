@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import getProductImageURLs from '../ImageService';
 import { productCostSelector } from '../ProductsSelectors';
-import { getProduct, clearCurrentProductInfo } from '../ProductsActions';
+import { productsActions } from '../ProductsActions';
 import { InformationItem, ErrorMessage, Spinner } from '../../shared';
-import { addToCart } from '../../cart';
+import { cartActions } from '../../cart';
 import { BuyNowButton, ToCatalogButton } from '../../catalog';
 
 export class ProductDetails extends Component {
@@ -153,9 +153,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addToCart,
-  getProduct,
-  clearCurrentProductInfo,
+  addToCart: cartActions.AddToCart,
+  getProduct: productsActions.GetProduct.InitiateApiCall,
+  clearCurrentProductInfo: productsActions.ClearCurrentProductInfo,
 };
 
 export default connect(

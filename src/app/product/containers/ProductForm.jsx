@@ -5,9 +5,10 @@ import * as Yup from 'yup';
 import _ from 'lodash';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { getProduct, saveProduct, clearCurrentProductInfo } from '../ProductsActions';
+import { // getProduct, saveProduct, clearCurrentProductInfo
+  productsActions,
+} from '../ProductsActions';
 import { productCostSelector } from '../ProductsSelectors';
-import { getCategories } from '../../catalog';
 import {
   FormService, Input, Spinner, ErrorMessage, TextArea, Dropdown,
 } from '../../shared';
@@ -79,21 +80,28 @@ export class ProductForm extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { productState, currentCurrency } = this.props;
+    this.reflectCurrencyChange(prevProps, prevState);
+    this.reflectProductChange(prevState);
+  }
 
+  componentWillUnmount() {
+    this.props.clearCurrentProductInfo();
+  }
+
+  reflectCurrencyChange = (prevProps, prevState) => {
+    const { productState, currentCurrency } = this.props;
     if (currentCurrency !== prevProps.currentCurrency) {
       const changedData = { ...prevState.data };
       changedData.currentCurrencyPrice = productState.product.currentCurrencyPrice;
       this.setState({ data: changedData });
     }
+  }
 
+  reflectProductChange = (prevState) => {
+    const { productState } = this.props;
     if (productState.product.id !== prevState.data.id) {
       this.setState({ data: this.mapToViewModel(this.props.productState.product) });
     }
-  }
-
-  componentWillUnmount() {
-    this.props.clearCurrentProductInfo();
   }
 
   displayIsLoading = () => {
@@ -123,7 +131,7 @@ export class ProductForm extends Component {
     // eslint-disable-next-line no-shadow
     const { saveProduct } = this.props;
     const product = this.mapFromViewModel(this.state.data);
-    saveProduct(product, '/catalog');
+    saveProduct({ product, redirectUrl: '/catalog' });
   };
 
   handleChange = (e, matchedInputName) => {
@@ -330,10 +338,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getCategories,
-  getProduct,
-  saveProduct,
-  clearCurrentProductInfo,
+  getProduct: productsActions.GetProduct.InitiateApiCall,
+  saveProduct: productsActions.SaveProduct.InitiateApiCall,
+  clearCurrentProductInfo: productsActions.ClearCurrentProductInfo,
 };
 
 export default connect(

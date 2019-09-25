@@ -4,3 +4,4 @@ export { default as ProductsService } from './ProductsService';
 export { default as ProductsReducer } from './ProductsReducer';
 export * from './ProductsSelectors';
 export * from './ProductsActions';
+export * from './ProductsWatch';

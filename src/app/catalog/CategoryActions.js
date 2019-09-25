@@ -1,27 +1,8 @@
 import { createAction } from 'redux-actions';
-import CategoriesService from './CategoriesService';
+import { createHttpAction } from '../shared';
 
-export const gettingCategoriesInProgress = createAction('GETING_CATEGORIES_IN_PROGRESS', isInProcess => isInProcess);
-
-export const gettingCategoriesFailed = createAction('GETTING_CATEGORIES_FAILED', (hasFailed, error) => ({ hasFailed, error }));
-
-export const gettingCategoriesSuccess = createAction('GETTING_CATEGORIES_SUCCESS', categories => categories);
-
-export const changeCategory = createAction('CHANGE_CATEGORY', category => category);
-
-export const getCategories = () => (dispatch) => {
-  dispatch(gettingCategoriesInProgress(true));
-  return CategoriesService.getCategories()
-    .then((response) => {
-      if (!response.statusText === 'OK') {
-        throw Error(response.statusText);
-      }
-      dispatch(gettingCategoriesInProgress(false));
-      return response.data;
-    })
-    .then(categories => dispatch(gettingCategoriesSuccess(categories)))
-    .catch((error) => {
-      dispatch(gettingCategoriesInProgress(false));
-      dispatch(gettingCategoriesFailed(true, error.message));
-    });
+// eslint-disable-next-line import/prefer-default-export
+export const categoryActions = {
+  GetCategories: createHttpAction('GET_CATEGORIES'),
+  ChangeCategory: createAction('CHANGE_CATEGORY'),
 };

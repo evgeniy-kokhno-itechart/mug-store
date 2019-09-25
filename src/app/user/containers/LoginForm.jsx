@@ -4,7 +4,7 @@ import _ from 'lodash';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { loginUser as loginUserAction } from '../UserActions';
+import { userActions } from '../UserActions';
 import { FormService, Input } from '../../shared';
 
 export class LoginForm extends Component {
@@ -36,7 +36,7 @@ export class LoginForm extends Component {
       const { location, loginUserAction } = this.props;
       const { fromPath } = location;
       const redirectPath = fromPath ? fromPath.pathname : null;
-      loginUserAction(data.username, data.password, redirectPath);
+      loginUserAction({ username: data.username, password: data.password, redirectPath });
     } catch (ex) {
       const errors = {};
       errors.password = ex.message;
@@ -95,7 +95,7 @@ LoginForm.defaultProps = {
 const mapStateToProps = state => ({ currentUserName: state.user.currentUser.name });
 
 const mapDispatchToProps = {
-  loginUserAction,
+  loginUserAction: userActions.Login.InitiateApiCall,
 };
 
 export default connect(

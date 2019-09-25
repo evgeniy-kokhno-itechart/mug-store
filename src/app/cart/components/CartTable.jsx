@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 import { ResponsiveEllipsis, Table, ItemCounter } from '../../shared';
 import ProductPrice from './ProductPrice';
 
-export class CartTable extends Component {
+class CartTable extends Component {
   columns = [
     {
       key: 'image',

@@ -1,19 +1,22 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
 import createRootReducer from './RootReducer';
+import rootSaga from './RootSaga';
+
 
 export const history = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware();
 
 export default function initializeStore() {
   const rootReducer = createRootReducer(history);
-  const composedMiddlewares = compose(applyMiddleware(thunk, routerMiddleware(history)));
+  const composedMiddlewares = compose(applyMiddleware(sagaMiddleware, routerMiddleware(history)));
 
   const reduxStateLocalStoreKey = 'reduxState';
   let persistedState;
   if (localStorage.getItem(reduxStateLocalStoreKey)) {
-    persistedState = JSON.parse(localStorage.getItem(reduxStateLocalStoreKey))
+    persistedState = JSON.parse(localStorage.getItem(reduxStateLocalStoreKey));
   } else {
     persistedState = {
       cart: rootReducer.cart,
@@ -23,5 +26,7 @@ export default function initializeStore() {
     };
   }
   delete persistedState.router;
-  return createStore(rootReducer, persistedState, composedMiddlewares);
+  const store = createStore(rootReducer, persistedState, composedMiddlewares);
+  sagaMiddleware.run(rootSaga);
+  return store;
 }

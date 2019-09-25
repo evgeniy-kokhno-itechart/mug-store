@@ -4,14 +4,17 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { changeCategory } from '../CategoryActions';
+import { categoryActions } from '../CategoryActions';
 import paginate from '../Paginate';
 import CatalogTable from '../components/CatalogTable';
 import CatalogTableHeader from '../components/CatalogTableHeader';
 import CatalogTableFooter from '../components/CatalogTableFooter';
 import { ListGroup, ErrorMessage, Spinner } from '../../shared';
-import { deleteProduct, getProducts, productsPricesSelector } from '../../product';
-import { addToCart } from '../../cart';
+import { // deleteProduct, getProducts,
+  productsPricesSelector,
+  productsActions,
+} from '../../product';
+import { cartActions } from '../../cart';
 
 export class Catalog extends Component {
   state = {
@@ -268,10 +271,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  changeCategory,
-  getProducts,
-  deleteProduct,
-  addToCart,
+  changeCategory: categoryActions.ChangeCategory,
+  getProducts: productsActions.GetProducts.InitiateApiCall,
+  deleteProduct: productsActions.DeleteProduct.InitiateApiCall,
+  addToCart: cartActions.AddToCart,
 };
 
 export default connect(

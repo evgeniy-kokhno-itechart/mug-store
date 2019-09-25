@@ -1,84 +1,71 @@
 import { handleActions } from 'redux-actions';
 import initialUserState from './UserState';
-import {
-  loginUserInProcess,
-  loginUserFailed,
-  loginUserSuccess,
-  logoutUserInProcess,
-  logoutUserFailed,
-  logoutUserSuccess,
-  savingUserInProcess,
-  savingUserFailed,
-  savingUserSuccess,
-  registrationUserInProcess,
-  registrationUserFailed,
-  registrationUserSuccess,
-} from './UserActions';
+import { userActions } from './UserActions';
 
 const userReducer = handleActions(
   {
     //  LOGIN
-    [loginUserInProcess]: (state, { payload: isInProcess }) => ({
+    [userActions.Login.CallIsInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
       loginStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [loginUserFailed]: (state, { payload: { hasFailed, error } }) => ({
+    [userActions.Login.Failure]: (state, { payload: error }) => ({
       ...state,
-      loginStatus: { isInProcess: false, hasFailed, error },
+      loginStatus: { isInProcess: false, hasFailed: true, error },
     }),
 
-    [loginUserSuccess]: (state, { payload: currentUser }) => ({
+    [userActions.Login.Success]: (state, { payload: currentUser }) => ({
       ...state,
       currentUser,
       loginStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
     // LOGOUT
-    [logoutUserInProcess]: (state, { payload: isInProcess }) => ({
+    [userActions.Logout.CallIsInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
       logoutStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [logoutUserFailed]: (state, { payload: { hasFailed, error } }) => ({
+    [userActions.Logout.Failure]: (state, { payload: error }) => ({
       ...state,
-      logoutStatus: { isInProcess: false, hasFailed, error },
+      logoutStatus: { isInProcess: false, hasFailed: true, error },
     }),
 
-    [logoutUserSuccess]: (state, { payload: resultMessage }) => ({
+    [userActions.Logout.Success]: (state, { payload: resultMessage }) => ({
       ...state,
       logoutResult: resultMessage, // added for future. will be empty since back-end is fake
       ...initialUserState,
     }),
 
     // SAVE EDITED
-    [savingUserInProcess]: (state, { payload: isInProcess }) => ({
+    [userActions.SaveEdited.CallIsInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
       savingStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [savingUserFailed]: (state, { payload: { hasFailed, error } }) => ({
+    [userActions.SaveEdited.Failure]: (state, { payload: error }) => ({
       ...state,
-      savingStatus: { isInProcess: false, hasFailed, error },
+      savingStatus: { isInProcess: false, hasFailed: true, error },
     }),
 
-    [savingUserSuccess]: (state, { payload: updatedUser }) => ({
+    [userActions.SaveEdited.Success]: (state, { payload: updatedUser }) => ({
       ...state,
       currentUser: updatedUser,
     }),
 
     // REGISTER
-    [registrationUserInProcess]: (state, { payload: isInProcess }) => ({
+    [userActions.Register.CallIsInProgress]: (state, { payload: isInProcess }) => ({
       ...state,
       registrationStatus: { isInProcess, hasFailed: false, error: '' },
     }),
 
-    [registrationUserFailed]: (state, { payload: { hasFailed, error } }) => ({
+    [userActions.Register.Failure]: (state, { payload: error }) => ({
       ...state,
-      registrationStatus: { isInProcess: false, hasFailed, error },
+      registrationStatus: { isInProcess: false, hasFailed: true, error },
     }),
 
-    [registrationUserSuccess]: (state, { payload: registeredUser }) => ({
+    [userActions.Register.Success]: (state, { payload: registeredUser }) => ({
       ...state,
       currentUser: registeredUser,
     }),
