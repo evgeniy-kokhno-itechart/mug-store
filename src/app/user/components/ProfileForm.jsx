@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import _ from 'lodash';
-import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { userActions } from '../UserActions';
-import { FormService, Input } from '../../shared';
+import { FormBase, Input } from '../../shared';
 
-export class ProfileForm extends Component {
+class ProfileForm extends FormBase {
   state = {
     data: {
+      id: '',
       username: '',
       name: '',
       country: '',
@@ -22,6 +21,7 @@ export class ProfileForm extends Component {
   };
 
   profileObjectSchema = {
+    id: Yup.string(),
     username: Yup.string()
       .email()
       .required()
@@ -63,47 +63,21 @@ export class ProfileForm extends Component {
   componentDidMount() {
     const { user } = this.props;
     if (user.name) {
-      this.setState({ data: this.mapToViewModel(user) });
+      this.setState({ data: { ...user, password: '', confirmPassword: '' } });
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (!this.props.user.name) {
-      try {
-        const { data } = this.state;
-        this.props.registerNewUserAndLogin(data);
-      } catch (ex) {
-        this.setState((prevState) => {
-          const errors = { ...prevState.errors, ...{ confirmPassword: ex.message } };
-          return { errors };
-        });
-      }
-    } else {
-      this.props.saveEditedUserInfo(this.state.data);
+    try {
+      this.props.onSubmit(this.state.data);
+    } catch (ex) {
+      this.setState((prevState) => {
+        const errors = { ...prevState.errors, ...{ confirmPassword: ex.message } };
+        return { errors };
+      });
     }
   };
-
-  handleChange = (e, matchedInputName) => {
-    const { target: input } = e;
-
-    this.setState(prevState => FormService.handleChange(input, matchedInputName, prevState, this.profileObjectSchema));
-  };
-
-  mapToViewModel({
-    username, name, country, city, address, phone,
-  }) {
-    return {
-      username,
-      name,
-      country,
-      city,
-      address,
-      phone,
-      password: '',
-      confirmPassword: '',
-    };
-  }
 
   render() {
     const { data, errors } = this.state;
@@ -117,10 +91,19 @@ export class ProfileForm extends Component {
             label="Username (a valid E-mail)"
             value={_.get(data, 'username')}
             error={errors.username}
-            onValueChange={this.handleChange}
+            validationSchema={this.profileObjectSchema.username}
+            onChange={this.handleControlChange}
           />
 
-          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onValueChange={this.handleChange} />
+          <Input
+            type="text"
+            name="name"
+            label="Name"
+            value={_.get(data, 'name')}
+            error={errors.name}
+            validationSchema={this.profileObjectSchema.name}
+            onChange={this.handleControlChange}
+          />
 
           <Input
             type="text"
@@ -128,10 +111,19 @@ export class ProfileForm extends Component {
             label="Country"
             value={_.get(data, 'country')}
             error={errors.country}
-            onValueChange={this.handleChange}
+            validationSchema={this.profileObjectSchema.country}
+            onChange={this.handleControlChange}
           />
 
-          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onValueChange={this.handleChange} />
+          <Input
+            type="text"
+            name="city"
+            label="City"
+            value={_.get(data, 'city')}
+            error={errors.city}
+            validationSchema={this.profileObjectSchema.city}
+            onChange={this.handleControlChange}
+          />
 
           <Input
             type="text"
@@ -139,7 +131,8 @@ export class ProfileForm extends Component {
             label="Address"
             value={_.get(data, 'address')}
             error={errors.address}
-            onValueChange={this.handleChange}
+            validationSchema={this.profileObjectSchema.address}
+            onChange={this.handleControlChange}
           />
 
           <Input
@@ -148,7 +141,8 @@ export class ProfileForm extends Component {
             label="Phone"
             value={_.get(data, 'phone')}
             error={errors.phone}
-            onValueChange={this.handleChange}
+            validationSchema={this.profileObjectSchema.phone}
+            onChange={this.handleControlChange}
           />
 
           <Input
@@ -157,7 +151,8 @@ export class ProfileForm extends Component {
             label="Password"
             value={_.get(data, 'password')}
             error={errors.password}
-            onValueChange={this.handleChange}
+            validationSchema={this.profileObjectSchema.password}
+            onChange={this.handleControlChange}
           />
 
           <Input
@@ -166,11 +161,12 @@ export class ProfileForm extends Component {
             label="Confirm Password"
             value={_.get(data, 'confirmPassword')}
             error={errors.confirmPassword}
-            matchedInputName="password"
-            onValueChange={this.handleChange}
+            validationSchema={this.profileObjectSchema.confirmPassword}
+            matchedInput={{ name: 'Password', value: this.state.data.password }}
+            onChange={this.handleControlChange}
           />
 
-          <button type="submit" disabled={FormService.validateForm(this.profileObjectSchema, data)} className="btn btn-secondary w-100">
+          <button type="submit" disabled={this.validateForm(this.profileObjectSchema, data)} className="btn btn-secondary w-100">
             Save
           </button>
         </form>
@@ -190,24 +186,11 @@ ProfileForm.propTypes = {
     roles: PropTypes.arrayOf(PropTypes.string),
     username: PropTypes.string,
   }),
-  saveEditedUserInfo: PropTypes.func.isRequired,
-  registerNewUserAndLogin: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 ProfileForm.defaultProps = {
   user: {},
 };
 
-const mapStateToProps = state => ({
-  user: state.user.currentUser,
-});
-
-const mapDispatchToProps = {
-  saveEditedUserInfo: userActions.SaveEdited.InitiateApiCall,
-  registerNewUserAndLogin: userActions.Register.InitiateApiCall,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ProfileForm);
+export default ProfileForm;

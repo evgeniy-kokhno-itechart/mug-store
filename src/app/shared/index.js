@@ -1,3 +1,4 @@
+export { default as FormBase } from './components/controls/FormBase';
 export { default as Dropdown } from './components/controls/Dropdown';
 export { default as DropdownInline } from './components/controls/DropdownInline';
 export { default as Input } from './components/controls/Input';
@@ -25,5 +26,4 @@ export { default as TableHeader } from './components/markup/TableHeader';
 
 export { default as IconService } from './services/IconService';
 export * from './services/ApiService';
-export { default as FormService } from './services/FormService';
 export { default as createHttpAction } from './services/ActionsService';

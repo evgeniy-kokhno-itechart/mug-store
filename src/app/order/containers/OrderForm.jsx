@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import _ from 'lodash';
 import { PropTypes } from 'prop-types';
-import { Input, TextArea, FormService } from '../../shared';
+import { Input, TextArea, FormBase } from '../../shared';
 
-class OrderForm extends Component {
+class OrderForm extends FormBase {
   state = {
     data: {
       name: '',
@@ -44,35 +44,14 @@ class OrderForm extends Component {
 
   componentDidMount() {
     if (this.props.currentUser.name) {
-      this.setState({
-        data: this.mapToViewModel(this.props.currentUser),
-      });
+      this.setState({ data: this.props.currentUser });
     }
   }
 
-  handleChange = (e) => {
-    const { target: input } = e;
-
-    // null stands for matchedInputName
-    this.setState(prevState => FormService.handleChange(input, null, prevState, this.orderFormSchema));
-  };
-
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onOrderSubmit('/orderconfirm');
+    this.props.onSubmit();
   };
-
-  mapToViewModel({
-    name, country, city, address, phone,
-  }) {
-    return {
-      name,
-      country,
-      city,
-      address,
-      phone,
-    };
-  }
 
   render() {
     const { data, errors } = this.state;
@@ -80,7 +59,15 @@ class OrderForm extends Component {
       <React.Fragment>
         <p>Please fill out the form to continue</p>
         <form onSubmit={this.handleSubmit}>
-          <Input type="text" name="name" label="Name" value={_.get(data, 'name')} error={errors.name} onValueChange={this.handleChange} />
+          <Input
+            type="text"
+            name="name"
+            label="Name"
+            value={_.get(data, 'name')}
+            error={errors.name}
+            validationSchema={this.orderFormSchema.name}
+            onChange={this.handleControlChange}
+          />
 
           <Input
             type="text"
@@ -88,10 +75,19 @@ class OrderForm extends Component {
             label="Country"
             value={_.get(data, 'country')}
             error={errors.country}
-            onValueChange={this.handleChange}
+            validationSchema={this.orderFormSchema.country}
+            onChange={this.handleControlChange}
           />
 
-          <Input type="text" name="city" label="City" value={_.get(data, 'city')} error={errors.city} onValueChange={this.handleChange} />
+          <Input
+            type="text"
+            name="city"
+            label="City"
+            value={_.get(data, 'city')}
+            error={errors.city}
+            validationSchema={this.orderFormSchema.city}
+            onChange={this.handleControlChange}
+          />
 
           <Input
             type="text"
@@ -99,7 +95,8 @@ class OrderForm extends Component {
             label="Address"
             value={_.get(data, 'address')}
             error={errors.address}
-            onValueChange={this.handleChange}
+            validationSchema={this.orderFormSchema.address}
+            onChange={this.handleControlChange}
           />
 
           <Input
@@ -108,16 +105,20 @@ class OrderForm extends Component {
             label="Phone"
             value={_.get(data, 'phone')}
             error={errors.phone}
-            onValueChange={this.handleChange}
+            validationSchema={this.orderFormSchema.phone}
+            onChange={this.handleControlChange}
           />
 
-          <TextArea name="comment" label="Comment" value={data.comment} error={errors.comment} onValueChange={this.handleChange} />
+          <TextArea
+            name="comment"
+            label="Comment"
+            value={data.comment}
+            error={errors.comment}
+            validationSchema={this.orderFormSchema.comment}
+            onChange={this.handleControlChange}
+          />
 
-          <button
-            type="submit"
-            disabled={FormService.validateForm(this.orderFormSchema, data)}
-            className="btn btn-secondary d-block mx-auto mx-md-0"
-          >
+          <button type="submit" disabled={this.validateForm(this.orderFormSchema)} className="btn btn-secondary d-block mx-auto mx-md-0">
             Submit Order
           </button>
         </form>
@@ -137,7 +138,7 @@ OrderForm.propTypes = {
     roles: PropTypes.arrayOf(PropTypes.string),
     username: PropTypes.string,
   }),
-  onOrderSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 OrderForm.defaultProps = {

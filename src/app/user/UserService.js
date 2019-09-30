@@ -1,7 +1,7 @@
 import { applicationApi } from '../shared';
 
 export default class UserService {
-  static registerUser() {
+  static registerUser(/* userInfo */) {
     //  !!! FAKE REGISTRATION LOGIC should be replaced in prod app
     // const response = applicationApi.post('/users/register', userInfo);
     const response = applicationApi.get('/users/2');

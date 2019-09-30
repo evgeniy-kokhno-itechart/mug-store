@@ -10,8 +10,7 @@ import { cartActions } from '../CartActions';
 export class Cart extends Component {
   renderCartDetails(products) {
     const {
-      // eslint-disable-next-line no-shadow
-      currentUserName, cart, isCurrencyLoading, incrementQuantity, decrementQuantity, changeQuantity, deleteProductFromCart,
+      currentUserName, cart, isCurrencyLoading, changeQuantity, deleteProductFromCart,
     } = this.props;
     return (
       <React.Fragment>
@@ -19,8 +18,6 @@ export class Cart extends Component {
           sortColumn="id"
           productsInCart={products}
           isCurrencyLoading={isCurrencyLoading}
-          incrementQuantity={incrementQuantity}
-          decrementQuantity={decrementQuantity}
           changeQuantity={changeQuantity}
           deleteProductFromCart={deleteProductFromCart}
         />
@@ -66,8 +63,6 @@ Cart.propTypes = {
 
   currentUserName: PropTypes.string,
 
-  incrementQuantity: PropTypes.func.isRequired,
-  decrementQuantity: PropTypes.func.isRequired,
   changeQuantity: PropTypes.func.isRequired,
   deleteProductFromCart: PropTypes.func.isRequired,
 };
@@ -84,8 +79,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  incrementQuantity: cartActions.IncrementQuantity,
-  decrementQuantity: cartActions.DecrementQuantity,
   changeQuantity: cartActions.ChangeQuantity,
   deleteProductFromCart: cartActions.DeleteFromCart,
 };

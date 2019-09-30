@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 class BuyNowButton extends Component {
   handleButtonClick = () => {
     const { product, onBuyNow } = this.props;
-    onBuyNow({ product, quantity: 1 });
+    onBuyNow(product);
   };
 
   render() {

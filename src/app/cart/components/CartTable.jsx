@@ -41,11 +41,8 @@ class CartTable extends Component {
       label: 'Quantity',
       content: product => (
         <ItemCounter
-          count={product.quantity}
-          itemId={product.id}
-          onIncrementClick={this.props.incrementQuantity}
-          onDecrementClick={this.props.decrementQuantity}
-          onCountChange={this.props.changeQuantity}
+          item={product}
+          onQuantityChanged={this.props.changeQuantity}
         />
       ),
       customClasses: 'cart-table--column-quantity',
@@ -93,8 +90,6 @@ CartTable.propTypes = {
     }),
   ).isRequired,
   sortColumn: PropTypes.string.isRequired,
-  incrementQuantity: PropTypes.func.isRequired,
-  decrementQuantity: PropTypes.func.isRequired,
   changeQuantity: PropTypes.func.isRequired,
   deleteProductFromCart: PropTypes.func.isRequired,
 };

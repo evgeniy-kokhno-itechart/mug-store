@@ -1,30 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import OrderTable from '../components/OrderTable';
 import OrderForm from './OrderForm';
 import { TotalCost, cartActions, cartCostsSelector } from '../../cart';
 
-export const Order = ({
-  cart,
-  currentUser,
-  isCurrencyLoading,
-  // eslint-disable-next-line no-shadow
-  submitCartOrder,
-}) => (
-  <React.Fragment>
-    <h1 className="text-center m-3">Please check your order</h1>
-    <div className="row m-2">
-      <div className="col-md-6">
-        <OrderTable sortColumn="title" products={cart.products} isCurrencyLoading={isCurrencyLoading} />
-        <TotalCost total={cart.totalCost} customClasses="float-right" />
-      </div>
-      <div className="col-md-5 offset-md-1">
-        <OrderForm currentUser={currentUser} onOrderSubmit={submitCartOrder} />
-      </div>
-    </div>
-  </React.Fragment>
-);
+class Order extends Component {
+  submitOrder = () => {
+    this.props.submitCartOrder('/orderconfirm');
+  }
+
+  render() {
+    const { cart, currentUser, isCurrencyLoading } = this.props;
+    return (
+      <React.Fragment>
+        <h1 className="text-center m-3">Please check your order</h1>
+        <div className="row m-2">
+          <div className="col-md-6">
+            <OrderTable sortColumn="title" products={cart.products} isCurrencyLoading={isCurrencyLoading} />
+            <TotalCost total={cart.totalCost} customClasses="float-right" />
+          </div>
+          <div className="col-md-5 offset-md-1">
+            <OrderForm currentUser={currentUser} onSubmit={this.submitOrder} />
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
+}
 
 Order.propTypes = {
   cart: PropTypes.shape({

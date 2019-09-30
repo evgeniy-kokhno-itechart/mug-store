@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
+import FormGroup from '../markup/FormGroup';
+import ControlBase from './ControlBase';
 
-class Input extends Component {
-  handleValueChange = (e) => {
-    const { onValueChange, matchedInputName } = this.props;
-    onValueChange(e, matchedInputName);
-  };
-
+class Input extends ControlBase {
   render() {
     const {
-      name, label, error, matchedInputName, onValueChange, ...rest
+      name, label, error, type, value,
     } = this.props;
     return (
-      <div className="form-group">
-        <label htmlFor={name}>{label}</label>
-
-        <input {...rest} key={name} name={name} id={name} onChange={this.handleValueChange} className="form-control" />
-
-        {error && <div className="alert alert-danger">{error}</div>}
-      </div>
+      <FormGroup name={name} label={label} error={error}>
+        <input type={type} value={value} key={name} name={name} id={name} onChange={this.handleChange} className="form-control" />
+      </FormGroup>
     );
   }
 }
@@ -27,12 +20,11 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
-  matchedInputName: PropTypes.string,
-  onValueChange: PropTypes.func.isRequired,
+  type: PropTypes.string,
 };
 
 Input.defaultProps = {
-  matchedInputName: '',
+  type: 'text',
   error: '',
 };
 

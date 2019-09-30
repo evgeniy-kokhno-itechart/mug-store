@@ -1,38 +1,27 @@
-import { combineActions, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import initialCartState from './CartState';
 import { cartActions } from './CartActions';
 
-const incrementDecrementQuantity = combineActions(cartActions.IncrementQuantity, cartActions.DecrementQuantity);
-
 const cartReducer = handleActions(
   {
-    [cartActions.AddToCart]: (state, { payload: { product, quantity } }) => {
-      const id = product.id.toString();
+    [cartActions.AddToCart]: (state, { payload: product }) => {
       const newCart = [...state.cart];
-      const existedProduct = newCart.find(item => item.id === id);
-      if (existedProduct) {
-        existedProduct.quantity += parseInt(quantity, 10);
+
+      const index = newCart.findIndex(item => item.id === product.id);
+      if (index >= 0) { // if product already exists
+        const newProduct = { ...newCart[index] };
+        newProduct.quantity++;
+        newCart[index] = newProduct;
       } else {
-        newCart.push({ ...product, quantity });
+        newCart.push({ ...product, quantity: 1 });
       }
       return { ...state, cart: [...newCart] };
     },
 
-    [incrementDecrementQuantity]: (state, { payload: { productId, delta } }) => {
+    [cartActions.ChangeQuantity]: (state, { payload: product }) => {
+      const index = state.cart.findIndex(p => p.id === product.id);
       const newCart = [...state.cart];
-      const prodInCart = newCart.find(p => p.id === productId);
-      if (prodInCart.quantity > 1 || delta > 0) {
-        prodInCart.quantity += delta;
-      }
-      return { ...state, cart: [...newCart] };
-    },
-
-    [cartActions.ChangeQuantity]: (state, { payload: { productId, value } }) => {
-      const newCart = [...state.cart];
-      const index = newCart.findIndex(p => p.id === productId);
-      const newProdInCart = { ...newCart[index] };
-      newProdInCart.quantity = value;
-      newCart[index] = newProdInCart;
+      newCart[index] = product;
       return { ...state, cart: [...newCart] };
     },
 

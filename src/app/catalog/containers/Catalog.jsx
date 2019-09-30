@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
@@ -10,10 +9,7 @@ import CatalogTable from '../components/CatalogTable';
 import CatalogTableHeader from '../components/CatalogTableHeader';
 import CatalogTableFooter from '../components/CatalogTableFooter';
 import { ListGroup, ErrorMessage, Spinner } from '../../shared';
-import { // deleteProduct, getProducts,
-  productsPricesSelector,
-  productsActions,
-} from '../../product';
+import { productsPricesSelector, productsActions } from '../../product';
 import { cartActions } from '../../cart';
 
 export class Catalog extends Component {
@@ -142,7 +138,6 @@ export class Catalog extends Component {
     } = this.state;
 
     const {
-      // eslint-disable-next-line no-shadow
       currentUserRoles, category, isCurrencyLoading, addToCart,
     } = this.props;
 

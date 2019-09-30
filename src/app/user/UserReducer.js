@@ -21,6 +21,11 @@ const userReducer = handleActions(
       loginStatus: { isInProcess: false, hasFailed: false, error: '' },
     }),
 
+    [userActions.ResetLoginStatus]: state => ({
+      ...state,
+      loginStatus: initialUserState.loginStatus,
+    }),
+
     // LOGOUT
     [userActions.Logout.CallIsInProgress]: (state, { payload: isInProcess }) => ({
       ...state,

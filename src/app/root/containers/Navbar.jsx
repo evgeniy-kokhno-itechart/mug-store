@@ -11,9 +11,7 @@ export const Navbar = ({
   currentUserName,
   currencyState,
   cart,
-  // eslint-disable-next-line no-shadow
   changeCurrency,
-  // eslint-disable-next-line no-shadow
   logoutUser,
 }) => {
   const cartCount = CartService.countProducts(cart);

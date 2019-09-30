@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Modal } from '../../shared';
 
-class CatalogDeletAction extends Component {
+class CatalogDeleteAction extends Component {
   handleDeleteAction = () => {
     const { productId, handleAction } = this.props;
     handleAction(productId);
@@ -25,10 +25,10 @@ class CatalogDeletAction extends Component {
   }
 }
 
-CatalogDeletAction.propTypes = {
+CatalogDeleteAction.propTypes = {
   productId: PropTypes.string.isRequired,
   productTitle: PropTypes.string.isRequired,
   handleAction: PropTypes.func.isRequired,
 };
 
-export default CatalogDeletAction;
+export default CatalogDeleteAction;

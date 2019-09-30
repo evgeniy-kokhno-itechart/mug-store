@@ -1,26 +1,33 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import FormGroup from '../markup/FormGroup';
+import ControlBase from './ControlBase';
 
-const Dropdown = ({
-  name, label, error, value, options, defaultText, labelClasses, selectClasses, wrapperClasses, onChange,
-}) => (
-  <div className={`form-group flex-nowrap ${wrapperClasses}`}>
-    <label className={`mr-2 text-nowrap ${labelClasses}`} htmlFor={name}>
-      {label}
-    </label>
-
-    <select name={name} id={name} value={value} onChange={onChange} className={selectClasses}>
-      {defaultText && <option>{defaultText}</option>}
-      {options.map(o => (
-        <option key={o.id} value={o.id}>
-          {o.name}
-        </option>
-      ))}
-    </select>
-
-    {error && <div className="alert alert-danger">{error}</div>}
-  </div>
-);
+class Dropdown extends ControlBase {
+  render() {
+    const {
+      name, label, error, value, options, defaultText, labelClasses, selectClasses, wrapperClasses,
+    } = this.props;
+    return (
+      <FormGroup
+        name={name}
+        label={label}
+        error={error}
+        groupClasses={`form-group flex-nowrap ${wrapperClasses}`}
+        labelClasses={`mr-2 text-nowrap ${labelClasses}`}
+      >
+        <select name={name} id={name} value={value} onChange={this.handleChange} className={selectClasses}>
+          {defaultText && <option>{defaultText}</option>}
+          {options.map(o => (
+            <option key={o.id} value={o.id}>
+              {o.name}
+            </option>
+          ))}
+        </select>
+      </FormGroup>
+    );
+  }
+}
 
 Dropdown.propTypes = {
   name: PropTypes.string.isRequired,
@@ -32,7 +39,6 @@ Dropdown.propTypes = {
   labelClasses: PropTypes.string,
   selectClasses: PropTypes.string,
   wrapperClasses: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
 };
 
 Dropdown.defaultProps = {

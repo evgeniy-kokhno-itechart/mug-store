@@ -1,26 +1,27 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import FormGroup from '../markup/FormGroup';
+import ControlBase from './ControlBase';
 
-const TextArea = (props) => {
-  const {
-    name, label, value, error, onValueChange,
-  } = props;
+class TextArea extends ControlBase {
+  render() {
+    const {
+      name, label, value, error,
+    } = this.props;
 
-  return (
-    <div className="form-group">
-      <label htmlFor={name}>{label}</label>
-      <textarea name={name} id={name} onChange={onValueChange} className="form-control" value={value} />
-      {error && <div className="alert alert-danger">{error}</div>}
-    </div>
-  );
-};
+    return (
+      <FormGroup name={name} label={label} error={error}>
+        <textarea name={name} id={name} onChange={this.handleChange} className="form-control" value={value} />
+      </FormGroup>
+    );
+  }
+}
 
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
   error: PropTypes.string,
-  onValueChange: PropTypes.func.isRequired,
 };
 
 TextArea.defaultProps = {

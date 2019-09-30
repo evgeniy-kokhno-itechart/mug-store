@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { Cart } from '../../cart/containers/Cart';
+import { Cart } from '../../app/cart/containers/Cart';
 
 configure({ adapter: new Adapter() });
 
