@@ -1,0 +1,386 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navbar /> renders cart count badge with cart provided 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
+      Mug Store
+    </NavLink>
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
+        Catalog
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
+        About
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
+        Cart
+        <span
+          className="badge badge-warning ml-1"
+        >
+          11
+        </span>
+      </NavLink>
+    </div>
+  </div>
+  <div>
+    <CurrenciesDropdown
+      currencyState={
+        Object {
+          "currencies": Array [],
+          "currenciesStatus": Object {
+            "error": "",
+            "hasFailed": false,
+            "isInProcess": true,
+          },
+          "currentCurrency": Object {
+            "id": "0",
+          },
+        }
+      }
+      onChange={[MockFunction]}
+    />
+    <LoginLogoutBar
+      currentUserName=""
+      logoutUser={[MockFunction]}
+    />
+  </div>
+</nav>
+`;
+
+exports[`<Navbar /> renders currencies dropdown filled with currencies list when provided 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
+      Mug Store
+    </NavLink>
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
+        Catalog
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
+        About
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
+        Cart
+      </NavLink>
+    </div>
+  </div>
+  <div>
+    <CurrenciesDropdown
+      currencyState={
+        Object {
+          "currencies": Array [
+            Object {
+              "id": "1",
+              "name": "CURR1",
+            },
+            Object {
+              "id": "2",
+              "name": "CURR2",
+            },
+          ],
+          "currenciesStatus": Object {
+            "error": "",
+            "hasFailed": false,
+            "isInProcess": false,
+          },
+          "currentCurrency": Object {
+            "id": "2",
+          },
+        }
+      }
+      onChange={[MockFunction]}
+    />
+    <LoginLogoutBar
+      currentUserName=""
+      logoutUser={[MockFunction]}
+    />
+  </div>
+</nav>
+`;
+
+exports[`<Navbar /> renders properly with default props 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
+      Mug Store
+    </NavLink>
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
+        Catalog
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
+        About
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
+        Cart
+      </NavLink>
+    </div>
+  </div>
+  <div>
+    <CurrenciesDropdown
+      currencyState={
+        Object {
+          "currencies": Array [],
+          "currenciesStatus": Object {
+            "error": "",
+            "hasFailed": false,
+            "isInProcess": true,
+          },
+          "currentCurrency": Object {
+            "id": "0",
+          },
+        }
+      }
+      onChange={[MockFunction]}
+    />
+    <LoginLogoutBar
+      currentUserName=""
+      logoutUser={[MockFunction]}
+    />
+  </div>
+</nav>
+`;
+
+exports[`<Navbar /> renders user name with currentUser provided 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
+      Mug Store
+    </NavLink>
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
+        Catalog
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
+        About
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
+        Cart
+      </NavLink>
+    </div>
+  </div>
+  <div>
+    <CurrenciesDropdown
+      currencyState={
+        Object {
+          "currencies": Array [],
+          "currenciesStatus": Object {
+            "error": "",
+            "hasFailed": false,
+            "isInProcess": true,
+          },
+          "currentCurrency": Object {
+            "id": "0",
+          },
+        }
+      }
+      onChange={[MockFunction]}
+    />
+    <LoginLogoutBar
+      currentUserName="testUsername"
+      logoutUser={[MockFunction]}
+    />
+  </div>
+</nav>
+`;
+
+exports[`<Navbar /> renders with currenciesStatus.hasFailed and error provided 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+>
+  <button
+    aria-controls="mugStoreNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler"
+    data-target="#mugStoreNavbar"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse"
+    id="mugStoreNavbar"
+  >
+    <NavLink
+      className="navbar-brand"
+      to="/"
+    >
+      Mug Store
+    </NavLink>
+    <div
+      className="navbar-nav"
+    >
+      <NavLink
+        className=" nav-item nav-link"
+        to="/catalog"
+      >
+        Catalog
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/about"
+      >
+        About
+      </NavLink>
+      <NavLink
+        className="nav-item nav-link"
+        to="/cart"
+      >
+        Cart
+      </NavLink>
+    </div>
+  </div>
+  <div>
+    <CurrenciesDropdown
+      currencyState={
+        Object {
+          "currenciesStatus": Object {
+            "error": "test error",
+            "hasFailed": true,
+            "isInProcess": false,
+          },
+        }
+      }
+      onChange={[MockFunction]}
+    />
+    <LoginLogoutBar
+      currentUserName=""
+      logoutUser={[MockFunction]}
+    />
+  </div>
+</nav>
+`;

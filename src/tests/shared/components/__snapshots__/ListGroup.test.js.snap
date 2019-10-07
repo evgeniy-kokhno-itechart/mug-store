@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListGroup /> renders with default props properly 1`] = `
+<ul
+  className="list-group"
+>
+  <ListGroupItem
+    handleItemSelect={[MockFunction]}
+    index={0}
+    item={
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      }
+    }
+    key="1"
+    selectedItem={null}
+  />
+  <ListGroupItem
+    handleItemSelect={[MockFunction]}
+    index={1}
+    item={
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      }
+    }
+    key="2"
+    selectedItem={null}
+  />
+</ul>
+`;
+
+exports[`<ListGroup /> renders with second item selected 1`] = `
+<ul
+  className="list-group"
+>
+  <ListGroupItem
+    handleItemSelect={[MockFunction]}
+    index={0}
+    item={
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      }
+    }
+    key="1"
+    selectedItem={
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      }
+    }
+  />
+  <ListGroupItem
+    handleItemSelect={[MockFunction]}
+    index={1}
+    item={
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      }
+    }
+    key="2"
+    selectedItem={
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      }
+    }
+  />
+</ul>
+`;

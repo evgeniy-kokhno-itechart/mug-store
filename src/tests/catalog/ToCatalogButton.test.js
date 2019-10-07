@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import ToCatalogButton from '../../catalog/components/ToCatalogButton';
+import ToCatalogButton from '../../app/catalog/components/ToCatalogButton';
 
 configure({ adapter: new Adapter() });
 

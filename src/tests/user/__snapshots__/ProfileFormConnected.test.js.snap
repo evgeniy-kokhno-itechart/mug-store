@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileForm /> renders properly with default props 1`] = `
+<ProfileForm
+  onSubmit={[Function]}
+  user={Object {}}
+/>
+`;
+
+exports[`<ProfileForm /> renders properly with user data provided 1`] = `
+<ProfileForm
+  onSubmit={[Function]}
+  user={
+    Object {
+      "address": "Test Adress",
+      "city": "Test city",
+      "country": "Test country",
+      "id": "1",
+      "name": "Test user name",
+      "phone": "+000000000000",
+      "roles": Array [
+        "user",
+      ],
+      "username": "user@user.com",
+    }
+  }
+/>
+`;

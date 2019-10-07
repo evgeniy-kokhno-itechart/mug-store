@@ -13,7 +13,8 @@ exports[`<Order /> renders properly with default props 1`] = `
     <div
       className="col-md-6"
     >
-      <Connect(OrderTable)
+      <OrderTable
+        isCurrencyLoading={true}
         products={
           Array [
             Object {
@@ -28,20 +29,9 @@ exports[`<Order /> renders properly with default props 1`] = `
         }
         sortColumn="title"
       />
-      <TotalCostCalculator
+      <TotalCost
         customClasses="float-right"
-        products={
-          Array [
-            Object {
-              "id": "1",
-              "title": "test product 1",
-            },
-            Object {
-              "id": "2",
-              "title": "test product 2",
-            },
-          ]
-        }
+        total={10}
       />
     </div>
     <div
@@ -49,7 +39,7 @@ exports[`<Order /> renders properly with default props 1`] = `
     >
       <OrderForm
         currentUser={Object {}}
-        onOrderSubmit={[MockFunction]}
+        onSubmit={[Function]}
       />
     </div>
   </div>

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginFormConnected /> renders properly with default props 1`] = `
+<Fragment>
+  <LoginForm
+    currentUserName=""
+    onSubmit={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`<LoginFormConnected /> renders redirect on currentUserName provide 1`] = `
+<Redirect
+  to="/"
+/>
+`;

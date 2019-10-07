@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { ProductDetails } from '../../product/containers/ProductDetails';
+import { ProductDetails } from '../../app/product/containers/ProductDetails';
 
 configure({ adapter: new Adapter() });
 
@@ -24,13 +24,35 @@ describe('<ProductDetails />', () => {
     rate: '5',
   };
 
+  const defaultProductState = {
+    productState: {
+      product: {
+        id: '',
+        imageURL: '',
+        title: 'defaultProduct',
+        description: '',
+        category: {},
+        basePrice: 0,
+        currentCurrencyPrice: 0,
+        discount: 0,
+        producer: '',
+        rate: '',
+      },
+      productStatus: {
+        isInProcess: true,
+        hasProductLoadingFailed: false,
+        errorWhileLoading: '',
+      },
+    },
+  };
+
   beforeEach(() => {
     const addToCart = jest.fn();
     const getProduct = jest.fn();
     const clearCurrentProductInfo = jest.fn();
+
     ProductDetailsWrapper = shallow(
       <ProductDetails
-        isProductLoading
         match={{ params: { id: '100' } }}
         addToCart={addToCart}
         getProduct={getProduct}
@@ -39,33 +61,37 @@ describe('<ProductDetails />', () => {
     );
   });
 
-  it('renders Spinner properly with default props', () => {
+  it('renders Spinner with default props', () => {
     expect(ProductDetailsWrapper).toMatchSnapshot();
   });
 
-  it('renders product details once isProductLoading is succesfully done', () => {
+  it('renders product details if productStatus.isInProcess = false', () => {
     ProductDetailsWrapper.setProps({
-      isProductLoading: false,
-      hasProductLoadingFailed: false,
-      errorWhileLoading: '',
-      product: mockProduct,
+      productState: {
+        product: mockProduct,
+        productStatus: { isInProcess: false, hasFailed: false, error: '' },
+      },
     });
     expect(ProductDetailsWrapper).toMatchSnapshot();
   });
 
-  it('renders ErrorMessage once hasProductLoadingFailed and errorWhileLoading provided', () => {
-    ProductDetailsWrapper.setProps({ isProductLoading: false, hasProductLoadingFailed: true, errorWhileLoading: 'test error' });
+  it('renders ErrorMessage once productStatus.hasFailed and error provided', () => {
+    ProductDetailsWrapper.setProps({
+      productState: {
+        productStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
+      },
+    });
     expect(ProductDetailsWrapper).toMatchSnapshot();
   });
 
   it('render field info correctly with renderFieldInfo method', () => {
     ProductDetailsWrapper.setProps({
-      product: mockProduct,
-      isProductLoading: false,
-      hasProductLoadingFailed: false,
-      errorWhileLoading: '',
+      productState: {
+        product: mockProduct,
+        productStatus: { isInProcess: false, hasFailed: false, error: '' },
+      },
     });
-    ProductDetailsWrapper.instance().renderFieldInfo({ label: 'Category', path: 'category.name' });
-    expect(ProductDetailsWrapper).toMatchSnapshot();
+    const informationItem = ProductDetailsWrapper.instance().renderFieldInfo({ label: 'Category', path: 'category.name' });
+    expect(informationItem).toMatchSnapshot();
   });
 });

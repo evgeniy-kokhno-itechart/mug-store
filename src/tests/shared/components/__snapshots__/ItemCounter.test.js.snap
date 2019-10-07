@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ItemCounter /> renders with decrement button disabled if count=1 1`] = `
+<div
+  className="input-group input-group-sm mx-auto flex-nowrap item-counter"
+>
+  <button
+    className="item-counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2"
+    disabled="disabled"
+    onClick={[Function]}
+    type="button"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className="my-auto"
+      fixedWidth={false}
+      flip={null}
+      icon="minus"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </button>
+  <input
+    className="form-control inline text-center p-1 p-lg-2"
+    onChange={[Function]}
+    type="text"
+    value={1}
+  />
+  <button
+    className="item-counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
+    onClick={[Function]}
+    type="button"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className="my-auto"
+      fixedWidth={false}
+      flip={null}
+      icon="plus"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </button>
+</div>
+`;
+
+exports[`<ItemCounter /> renders with decrement button enabled if count is 2 (i.e. greater than 1) 1`] = `
+<div
+  className="input-group input-group-sm mx-auto flex-nowrap item-counter"
+>
+  <button
+    className="item-counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2"
+    disabled=""
+    onClick={[Function]}
+    type="button"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className="my-auto"
+      fixedWidth={false}
+      flip={null}
+      icon="minus"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </button>
+  <input
+    className="form-control inline text-center p-1 p-lg-2"
+    onChange={[Function]}
+    type="text"
+    value={2}
+  />
+  <button
+    className="item-counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
+    onClick={[Function]}
+    type="button"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className="my-auto"
+      fixedWidth={false}
+      flip={null}
+      icon="plus"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </button>
+</div>
+`;

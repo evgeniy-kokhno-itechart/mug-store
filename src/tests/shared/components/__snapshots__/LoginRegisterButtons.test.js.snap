@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginRegisterButtons /> renders properly with default props 1`] = `
+<Fragment>
+  <Link
+    className="nav navbar-text mr-3 d-inline clickable"
+    to="/login"
+  >
+    Login
+  </Link>
+  <Link
+    className="nav navbar-text d-inline clickable"
+    to="/register"
+  >
+    Register
+  </Link>
+</Fragment>
+`;

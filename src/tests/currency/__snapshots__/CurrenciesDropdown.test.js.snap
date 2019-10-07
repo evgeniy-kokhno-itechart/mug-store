@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CurrensiesDropdown /> renders badge within error with when currenciesStatus.hasFailed=true and errorMessage provided 1`] = `
+<span
+  className="badge badge-danger"
+>
+  test error
+</span>
+`;
+
+exports[`<CurrensiesDropdown /> renders currencies dropdown with currencies provided 1`] = `
+<DropdownInline
+  defaultText=""
+  error=""
+  label="Currency:"
+  labelClasses="d-inline"
+  name="currencyDropdown"
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test",
+      },
+    ]
+  }
+  selectClasses="text-white bg-dark border-0 mr-3"
+  value="1"
+  wrapperClasses="navbar-text d-inline"
+/>
+`;
+
+exports[`<CurrensiesDropdown /> renders spinner with default props provided 1`] = `
+<Spinner
+  spinnerClasses="spinner-border-sm text-light"
+  wrapperClasses="d-inline mr-3"
+/>
+`;

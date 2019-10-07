@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { Catalog } from '../../catalog/containers/Catalog';
+import { Catalog } from '../../app/catalog/containers/Catalog';
 
 configure({ adapter: new Adapter() });
 
@@ -52,62 +52,116 @@ const fakeProducts = [
 
 const fakeCategories = [{ id: '1', name: 'category 1' }, { id: '2', name: 'category 2' }];
 
+const sideTasksCompletedProps = {
+  products: {
+    productsForCatalog: fakeProducts,
+    catalogProductsStatus: { isInProcess: false, hasFailed: false, error: '' },
+    productDeletingStatus: { isInProcess: false, hasFailed: false, error: '' },
+  },
+  category: {
+    categories: fakeCategories,
+    currentCategory: {},
+    loadingStatus: { isInProcess: false, hasFailed: false, error: '' },
+  },
+};
+
 describe('<Catalog />', () => {
   let CatalogWrapper;
   let getProducts;
   let deleteProduct;
   let changeCategory;
+  let addToCart;
 
   beforeEach(() => {
     getProducts = jest.fn();
     deleteProduct = jest.fn();
     changeCategory = jest.fn();
-    CatalogWrapper = shallow(<Catalog getProducts={getProducts} deleteProduct={deleteProduct} changeCategory={changeCategory} />);
+    addToCart = jest.fn();
+
+    CatalogWrapper = shallow(
+      <Catalog
+        getProducts={getProducts}
+        deleteProduct={deleteProduct}
+        changeCategory={changeCategory}
+        addToCart={addToCart}
+      />,
+    );
   });
 
   it('renders with default props', () => {
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
-  it('renders Spinner when isProductsLoading is true', () => {
-    CatalogWrapper.setProps({ isProductsLoading: true });
+  it('renders Spinner when catalogProductsStatus.isInProcess is true', () => {
+    CatalogWrapper.setProps({
+      products: {
+        catalogProductsStatus: { isInProcess: true, hasFailed: false, error: '' },
+        productDeletingStatus: { isInProcess: false, hasFailed: false, error: '' },
+      },
+    });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
-  it('renders Spinner when isProductDeletingInProcess is true', () => {
-    CatalogWrapper.setProps({ isProductDeletingInProcess: true });
+  it('renders Spinner when productDeletingStatus.isInProcess is true', () => {
+    CatalogWrapper.setProps({
+      products: {
+        catalogProductsStatus: { isInProcess: false, hasFailed: false, error: '' },
+        productDeletingStatus: { isInProcess: true, hasFailed: false, error: '' },
+      },
+    });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
-  it('renders Spinner when isCategoriesLoading is true', () => {
-    CatalogWrapper.setProps({ isCategoriesLoading: true });
+  it('renders Spinner when category.loadingStatus.isInProcess is true', () => {
+    CatalogWrapper.setProps({
+      category: {
+        loadingStatus: { isInProcess: true, hasFailed: false, error: '' },
+      },
+    });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
-  it("renders ErrorMessage 'test error products loading' when hasProductsLoadingFailed is true", () => {
-    CatalogWrapper.setProps({ hasProductsLoadingFailed: true, errorWhileProductsLoading: 'test error products loading' });
+  it("renders ErrorMessage 'test error products loading' when catalogProductsStatus.hasFailed is true", () => {
+    CatalogWrapper.setProps({
+      products: {
+        catalogProductsStatus: { isInProcess: false, hasFailed: true, error: 'test error products loading' },
+        productDeletingStatus: { isInProcess: false, hasFailed: false, error: '' },
+      },
+    });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
-  it("renders ErrorMessage 'test error product deleting' when hasProductDeletingFailed is true", () => {
-    CatalogWrapper.setProps({ hasProductDeletingFailed: true, errorWhileProductDeleting: 'test error product deleting' });
+  it("renders ErrorMessage 'test error product deleting' when productDeletingStatus.hasFailed is true", () => {
+    CatalogWrapper.setProps({
+      products: {
+        catalogProductsStatus: { isInProcess: false, hasFailed: false, error: '' },
+        productDeletingStatus: { isInProcess: false, hasFailed: true, error: 'test error product deleting' },
+      },
+    });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
-  it("renders ErrorMessage 'test error categories loading' when hasCategoriesLoadingFailed is true", () => {
-    CatalogWrapper.setProps({ hasCategoriesLoadingFailed: true, errorWhileCategoriesLoading: 'test error categories loading' });
+  it("renders ErrorMessage 'test error categories loading' when category.loadingStatus.hasFailed is true", () => {
+    CatalogWrapper.setProps({
+      category: {
+        loadingStatus: { isInProcess: false, hasFailed: true, error: 'test error categories loading' },
+      },
+    });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
   it('renders catalog table and categories when their arrays both are not empty', () => {
-    CatalogWrapper.setProps({ products: fakeProducts, categories: fakeCategories });
+    CatalogWrapper.setProps({
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
+    });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
   it('renders Add New Product button with products, categories and currentUserRoles admin included', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
       currentUserRoles: ['admin'],
     });
     expect(CatalogWrapper).toMatchSnapshot();
@@ -116,16 +170,16 @@ describe('<Catalog />', () => {
   // sort options testing
   it('renders product table with default sorting option which is { path: title, order: asc } ', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
   it('renders product table with sorting option { path: title, order: desc } ', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ sortColumn: { id: 'title_desc', path: 'title', order: 'desc' } });
     expect(CatalogWrapper).toMatchSnapshot();
@@ -133,8 +187,8 @@ describe('<Catalog />', () => {
 
   it('renders product table with sorting option { path: rate, order: asc } ', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ sortColumn: { id: 'rate_asc', path: 'rate', order: 'asc' } });
     expect(CatalogWrapper).toMatchSnapshot();
@@ -142,8 +196,8 @@ describe('<Catalog />', () => {
 
   it('renders product table with sorting option { path: rate, order: desc } ', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ sortColumn: { id: 'rate_desc', path: 'rate', order: 'desc' } });
     expect(CatalogWrapper).toMatchSnapshot();
@@ -151,8 +205,8 @@ describe('<Catalog />', () => {
 
   it('renders product table with sorting option { path: currentCurrencyPrice, order: asc } ', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ sortColumn: { id: 'currentCurrencyPrice_asc', path: 'currentCurrencyPrice', order: 'asc' } });
     expect(CatalogWrapper).toMatchSnapshot();
@@ -160,37 +214,37 @@ describe('<Catalog />', () => {
 
   it('renders product table with sorting option { path: currentCurrencyPrice, order: desc } ', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ sortColumn: { id: 'currentCurrencyPrice_desc', path: 'currentCurrencyPrice', order: 'desc' } });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
   // page size and current page testing
-  it('renders the very first product table with pageSize 2', () => {
+  it('renders the very first product page of table with pageSize 2', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ pageSize: 2 });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
-  it('renders the 2nd page with pageSize 2', () => {
+  it('renders the 2nd page with pageSize 2 and currentPage 2', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ pageSize: 2, currentPage: 2 });
     expect(CatalogWrapper).toMatchSnapshot();
   });
 
   // search testing
-  it('renders products those titles are contain Mug word', () => {
+  it('renders products whose titles are contain Mug word', () => {
     CatalogWrapper.setProps({
-      products: fakeProducts,
-      categories: fakeCategories,
+      products: sideTasksCompletedProps.products,
+      category: sideTasksCompletedProps.category,
     });
     CatalogWrapper.setState({ searchQuery: 'Mug' });
     expect(CatalogWrapper).toMatchSnapshot();

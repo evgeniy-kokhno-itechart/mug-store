@@ -10,9 +10,21 @@ configure({ adapter: new Adapter() });
 
 describe('<Cart />', () => {
   let CartWrapper;
+  let changeQuantity;
+  let deleteProductFromCart;
+
 
   beforeEach(() => {
-    CartWrapper = shallow(<Cart cart={[]} />);
+    changeQuantity = jest.fn();
+    deleteProductFromCart = jest.fn();
+
+    CartWrapper = shallow(
+      <Cart
+        cart={{ products: [], totalCost: 0 }}
+        changeQuantity={changeQuantity}
+        deleteProductFromCart={deleteProductFromCart}
+      />,
+    );
   });
 
   it('renders properly with default props', () => {
@@ -21,40 +33,46 @@ describe('<Cart />', () => {
 
   it('renders properly with cart array not empty', () => {
     CartWrapper.setProps({
-      cart: [
-        {
-          id: '1',
-          imageURL: '#',
-          title: 'test product 1',
-          description: 'test product 1 description',
-          currentCurrencyPrice: 5,
-          quantity: 3,
-        },
-        {
-          id: '2',
-          imageURL: '#',
-          title: 'test product 2',
-          description: 'test product 2 description',
-          currentCurrencyPrice: 10,
-          quantity: 5,
-        },
-      ],
+      cart: {
+        products: [
+          {
+            id: '1',
+            imageURL: '#',
+            title: 'test product 1',
+            description: 'test product 1 description',
+            currentCurrencyCost: 5,
+            quantity: 3,
+          },
+          {
+            id: '2',
+            imageURL: '#',
+            title: 'test product 2',
+            description: 'test product 2 description',
+            currentCurrencyCost: 10,
+            quantity: 5,
+          },
+        ],
+        totalCost: 15,
+      },
     });
     expect(CartWrapper).toMatchSnapshot();
   });
 
   it('renders properly with not empty cart and currentUserName provided', () => {
     CartWrapper.setProps({
-      cart: [
-        {
-          id: '1',
-          imageURL: '#',
-          title: 'test product 1',
-          description: 'test product 1 description',
-          currentCurrencyPrice: 5,
-          quantity: 3,
-        },
-      ],
+      cart: {
+        products: [
+          {
+            id: '1',
+            imageURL: '#',
+            title: 'test product 1',
+            description: 'test product 1 description',
+            currentCurrencyCost: 5,
+            quantity: 3,
+          },
+        ],
+        totalCost: 5,
+      },
       currentUserName: 'test user',
     });
     expect(CartWrapper).toMatchSnapshot();

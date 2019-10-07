@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductFormConnected /> renders Spinner when loadingStatus.isInProcess is true 1`] = `
+<Spinner
+  spinnerClasses="spinner--medium"
+  wrapperClasses="mt-5"
+/>
+`;
+
+exports[`<ProductFormConnected /> renders Spinner when savingStatus.isInProcess is true 1`] = `
+<Spinner
+  spinnerClasses="spinner--medium"
+  wrapperClasses="mt-5"
+/>
+`;
+
+exports[`<ProductFormConnected /> renders error message when loadingStatus.hasFailed is true 1`] = `
+<ErrorMessage
+  customClasses=""
+  message="test product loading error"
+/>
+`;
+
+exports[`<ProductFormConnected /> renders error message when savingStatus.hasFailed is true 1`] = `
+<ErrorMessage
+  customClasses=""
+  message="test product saving error"
+/>
+`;
+
+exports[`<ProductFormConnected /> renders properly with product data provided 1`] = `
+<ProductForm
+  categories={
+    Array [
+      Object {
+        "id": "1",
+        "name": "category1",
+      },
+      Object {
+        "id": "2",
+        "name": "category2",
+      },
+    ]
+  }
+  currentCurrencyName="CURR1"
+  onSubmit={[Function]}
+  product={
+    Object {
+      "categoryId": "1",
+      "currentCurrencyPrice": 5,
+      "description": "product 1 description",
+      "discount": 0,
+      "id": "1",
+      "imageURL": "#",
+      "producer": "test producer 1",
+      "publishDate": "Tue Aug 20 2019 16:27:02 GMT+0300 (Moscow Standard Time)",
+      "rate": "5",
+      "title": "Mug 1",
+    }
+  }
+/>
+`;
+
+exports[`<ProductFormConnected /> renders spinner with default props and calls getProduct 1`] = `
+<Spinner
+  spinnerClasses="spinner--medium"
+  wrapperClasses="mt-5"
+/>
+`;

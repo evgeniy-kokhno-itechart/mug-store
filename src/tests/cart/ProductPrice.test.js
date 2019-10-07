@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import ProductPrice from '../../cart/components/ProductPrice';
+import ProductPrice from '../../app/cart/components/ProductPrice';
 
 configure({ adapter: new Adapter() });
 

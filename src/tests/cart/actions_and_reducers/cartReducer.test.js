@@ -1,17 +1,7 @@
 /* eslint-disable no-undef */
-import cartReducer from '../../../cart/cartReducer';
-import initialCartState from '../../../cart/cartState';
-import {
-  addToCart,
-  incrementQuantity,
-  decrementQuantity,
-  changeQuantity,
-  deleteProductFromCart,
-  clearCart,
-  submittingOrderInProgress,
-  submittingOrderFailed,
-  submittingOrderSuccess,
-} from '../../../cart/cartActions';
+import cartReducer from '../../../app/cart/CartReducer';
+import initialCartState from '../../../app/cart/CartState';
+import { cartActions } from '../../../app/cart/CartActions';
 
 describe('cart reducer', () => {
   const fakeCart = [
@@ -38,7 +28,7 @@ describe('cart reducer', () => {
     expect(cartReducer(initialCartState, {})).toEqual(initialCartState);
   });
 
-  it('should handle addToCart with brand new product', () => {
+  it('should handle cartActions.AddToCart with brand new product', () => {
     const newProduct = {
       id: '3',
       imageURL: '#',
@@ -47,13 +37,13 @@ describe('cart reducer', () => {
       currentCurrencyPrice: 10,
     };
 
-    expect(cartReducer(cartState, addToCart(newProduct, 1))).toEqual({
+    expect(cartReducer(cartState, cartActions.AddToCart(newProduct))).toEqual({
       ...cartState,
       cart: [...fakeCart, { ...newProduct, quantity: 1 }],
     });
   });
 
-  it('should handle addToCart with an existed product', () => {
+  it('should handle cartActions.AddToCart with an existed product', () => {
     const newProduct = fakeCart[0];
 
     const newCart = [...fakeCart];
@@ -61,82 +51,58 @@ describe('cart reducer', () => {
     prod0WithIncreasedQuantity.quantity++;
     newCart[0] = prod0WithIncreasedQuantity;
 
-    expect(cartReducer(cartState, addToCart(newProduct, 1))).toEqual({
+    expect(cartReducer(cartState, cartActions.AddToCart(newProduct))).toEqual({
       ...cartState,
       cart: newCart,
     });
   });
 
-  it('should handle incrementQuantity by 1', () => {
-    const newCart = [...fakeCart];
-    const prod0WithIncreasedQuantity = { ...newCart[0] };
-    prod0WithIncreasedQuantity.quantity++;
-    newCart[0] = prod0WithIncreasedQuantity;
-
-    expect(cartReducer(cartState, incrementQuantity('1', 1))).toEqual({
-      ...cartState,
-      cart: newCart,
-    });
-  });
-
-  it('should handle decrementQuantity by 1', () => {
-    const newCart = [...fakeCart];
-    const prod0WithDecreasedQuantity = { ...newCart[0] };
-    prod0WithDecreasedQuantity.quantity--;
-    newCart[0] = prod0WithDecreasedQuantity;
-
-    expect(cartReducer(cartState, decrementQuantity('1', 1))).toEqual({
-      ...cartState,
-      cart: newCart,
-    });
-  });
-
-  it('should handle changeQuantity with new value', () => {
+  it('should handle cartActions.ChangeQuantity with new value', () => {
     const newQuantityValue = 100;
     const newCart = [...fakeCart];
     const prod0WithCangedQuantity = { ...newCart[0] };
     prod0WithCangedQuantity.quantity = newQuantityValue;
     newCart[0] = prod0WithCangedQuantity;
 
-    expect(cartReducer(cartState, changeQuantity('1', newQuantityValue))).toEqual({
+    expect(cartReducer(cartState, cartActions.ChangeQuantity(prod0WithCangedQuantity))).toEqual({
       ...cartState,
       cart: newCart,
     });
   });
 
-  it('should handle deleteProductFromCart', () => {
+  it('should handle cartActions.DeleteFromCart', () => {
     const newCart = [...fakeCart];
     newCart.splice(0, 1); // delete the 1st product with id==='1'
 
-    expect(cartReducer(cartState, deleteProductFromCart('1'))).toEqual({
+    expect(cartReducer(cartState, cartActions.DeleteFromCart('1'))).toEqual({
       ...cartState,
       cart: newCart,
     });
   });
 
-  it('should handle clearCart', () => {
-    expect(cartReducer(cartState, clearCart())).toEqual({
+  it('should handle cartActions.ClearCart', () => {
+    expect(cartReducer(cartState, cartActions.ClearCart())).toEqual({
       ...cartState,
       cart: [],
     });
   });
 
-  it('should handle submittingOrderInProgress', () => {
-    expect(cartReducer(initialCartState, submittingOrderInProgress(true))).toEqual({
+  it('should handle cartActions.SubmitCartOrder.CallIsInProgress', () => {
+    expect(cartReducer(initialCartState, cartActions.SubmitCartOrder.CallIsInProgress(true))).toEqual({
       ...initialCartState,
       submitOrderStatus: { isInProgress: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle submittingOrderFailed', () => {
-    expect(cartReducer(initialCartState, submittingOrderFailed(true, 'test error'))).toEqual({
+  it('should handle cartActions.SubmitCartOrder.Failure', () => {
+    expect(cartReducer(initialCartState, cartActions.SubmitCartOrder.Failure('test error'))).toEqual({
       ...initialCartState,
       submitOrderStatus: { isInProgress: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle submittingOrderSuccess', () => {
-    expect(cartReducer(initialCartState, submittingOrderSuccess('test result message'))).toEqual({
+  it('should handle cartActions.SubmitCartOrder.Success', () => {
+    expect(cartReducer(initialCartState, cartActions.SubmitCartOrder.Success('test result message'))).toEqual({
       ...initialCartState,
       submitResult: 'test result message',
       submitOrderStatus: { isInProgress: false, hasFailed: false, error: '' },

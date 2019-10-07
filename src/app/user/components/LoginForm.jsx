@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
 import * as Yup from 'yup';
 import { PropTypes } from 'prop-types';
@@ -26,7 +25,7 @@ export class LoginForm extends FormBase {
     this.props.onSubmit(data.username, data.password);
   };
 
-  renderForm = () => {
+  render() {
     const { data, errors } = this.state;
     return (
       <React.Fragment>
@@ -58,10 +57,6 @@ export class LoginForm extends FormBase {
         </form>
       </React.Fragment>
     );
-  };
-
-  render() {
-    return this.props.currentUserName ? <Redirect to="/" /> : this.renderForm();
   }
 }
 

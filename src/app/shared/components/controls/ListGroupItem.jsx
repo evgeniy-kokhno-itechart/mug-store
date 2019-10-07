@@ -37,7 +37,7 @@ ListGroupItem.propTypes = {
 };
 
 ListGroupItem.defaultProps = {
-  selectedItem: null,
+  selectedItem: {},
 };
 
 export default ListGroupItem;

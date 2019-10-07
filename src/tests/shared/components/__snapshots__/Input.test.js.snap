@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> check Input renders properly with custom type provided 1`] = `
+<FormGroup
+  error=""
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <input
+    className="form-control"
+    id="testname"
+    key="testname"
+    name="testname"
+    onChange={[Function]}
+    type="password"
+    value=""
+  />
+</FormGroup>
+`;
+
+exports[`<Input /> check Input renders properly with default props 1`] = `
+<FormGroup
+  error=""
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <input
+    className="form-control"
+    id="testname"
+    key="testname"
+    name="testname"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+</FormGroup>
+`;
+
+exports[`<Input /> check Input renders properly with error 1`] = `
+<FormGroup
+  error="test error"
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <input
+    className="form-control"
+    id="testname"
+    key="testname"
+    name="testname"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+</FormGroup>
+`;
+
+exports[`<Input /> check Input renders properly with number value provided 1`] = `
+<FormGroup
+  error=""
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <input
+    className="form-control"
+    id="testname"
+    key="testname"
+    name="testname"
+    onChange={[Function]}
+    type="text"
+    value={5}
+  />
+</FormGroup>
+`;
+
+exports[`<Input /> check Input renders properly with string value provided 1`] = `
+<FormGroup
+  error=""
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <input
+    className="form-control"
+    id="testname"
+    key="testname"
+    name="testname"
+    onChange={[Function]}
+    type="text"
+    value="Test value"
+  />
+</FormGroup>
+`;

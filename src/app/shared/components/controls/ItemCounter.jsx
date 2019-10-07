@@ -5,8 +5,8 @@ import { PropTypes } from 'prop-types';
 class ItemCounter extends Component {
   handleInputEdited = (e) => {
     // ternary operator was added to avoid NaN when input is empty
-    const newValue = e.currentTarget.value;
-    const newQuantity = (newValue && newValue > 0) ? parseInt(e.currentTarget.value, 10) : 1;
+    const newValue = e.target.value;
+    const newQuantity = (newValue && newValue > 0) ? parseInt(newValue, 10) : 1;
     this.handleQuantityChange(newQuantity);
   }
 

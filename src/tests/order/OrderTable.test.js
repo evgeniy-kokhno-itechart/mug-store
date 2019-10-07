@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { OrderTable } from '../../order/containers/OrderTable';
+import OrderTable from '../../app/order/components/OrderTable';
 
 configure({ adapter: new Adapter() });
 
@@ -20,7 +20,7 @@ describe('<OrderTable />', () => {
             imageURL: '#',
             title: 'test product 1',
             description: 'test product 1 description',
-            currentCurrencyPrice: 5,
+            currentCurrencyCost: 5,
             quantity: 3,
           },
           {
@@ -28,7 +28,7 @@ describe('<OrderTable />', () => {
             imageURL: '#',
             title: 'test product 2',
             description: 'test product 2 description',
-            currentCurrencyPrice: 10,
+            currentCurrencyCost: 10,
             quantity: 5,
           },
         ]}

@@ -2,8 +2,8 @@
 
 exports[`<ProductPrice /> check render with isCurrencyLoading = true provided 1`] = `
 <Spinner
-  customSizeClassName="product-price__spinner"
-  marginBootstrapClassName=""
+  spinnerClasses="spinner--small"
+  wrapperClasses=""
 />
 `;
 

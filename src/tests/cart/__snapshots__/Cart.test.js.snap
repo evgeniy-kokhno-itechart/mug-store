@@ -2,11 +2,14 @@
 
 exports[`<Cart /> renders properly with cart array not empty 1`] = `
 <Fragment>
-  <Connect(CartTable)
+  <CartTable
+    changeQuantity={[MockFunction]}
+    deleteProductFromCart={[MockFunction]}
+    isCurrencyLoading={true}
     productsInCart={
       Array [
         Object {
-          "currentCurrencyPrice": 5,
+          "currentCurrencyCost": 5,
           "description": "test product 1 description",
           "id": "1",
           "imageURL": "#",
@@ -14,7 +17,7 @@ exports[`<Cart /> renders properly with cart array not empty 1`] = `
           "title": "test product 1",
         },
         Object {
-          "currentCurrencyPrice": 10,
+          "currentCurrencyCost": 10,
           "description": "test product 2 description",
           "id": "2",
           "imageURL": "#",
@@ -28,37 +31,16 @@ exports[`<Cart /> renders properly with cart array not empty 1`] = `
   <div
     className="row justify-content-between mx-2"
   >
-    <TotalCostCalculator
-      customClasses="h5"
-      products={
-        Array [
-          Object {
-            "currentCurrencyPrice": 5,
-            "description": "test product 1 description",
-            "id": "1",
-            "imageURL": "#",
-            "quantity": 3,
-            "title": "test product 1",
-          },
-          Object {
-            "currentCurrencyPrice": 10,
-            "description": "test product 2 description",
-            "id": "2",
-            "imageURL": "#",
-            "quantity": 5,
-            "title": "test product 2",
-          },
-        ]
-      }
+    <TotalCost
+      customClasses="h5 my-auto"
+      total={15}
     />
-    <div>
-      <Link
-        className="btn btn-secondary justify-content-end"
-        to="/order"
-      >
-        Order Now!
-      </Link>
-    </div>
+    <Link
+      className="btn btn-secondary justify-content-end"
+      to="/order"
+    >
+      Order Now!
+    </Link>
   </div>
 </Fragment>
 `;
@@ -73,11 +55,14 @@ exports[`<Cart /> renders properly with default props 1`] = `
 
 exports[`<Cart /> renders properly with not empty cart and currentUserName provided 1`] = `
 <Fragment>
-  <Connect(CartTable)
+  <CartTable
+    changeQuantity={[MockFunction]}
+    deleteProductFromCart={[MockFunction]}
+    isCurrencyLoading={true}
     productsInCart={
       Array [
         Object {
-          "currentCurrencyPrice": 5,
+          "currentCurrencyCost": 5,
           "description": "test product 1 description",
           "id": "1",
           "imageURL": "#",
@@ -91,29 +76,16 @@ exports[`<Cart /> renders properly with not empty cart and currentUserName provi
   <div
     className="row justify-content-between mx-2"
   >
-    <TotalCostCalculator
-      customClasses="h5"
-      products={
-        Array [
-          Object {
-            "currentCurrencyPrice": 5,
-            "description": "test product 1 description",
-            "id": "1",
-            "imageURL": "#",
-            "quantity": 3,
-            "title": "test product 1",
-          },
-        ]
-      }
+    <TotalCost
+      customClasses="h5 my-auto"
+      total={5}
     />
-    <div>
-      <Link
-        className="btn btn-secondary justify-content-end"
-        to="/order/mycart"
-      >
-        Order Now!
-      </Link>
-    </div>
+    <Link
+      className="btn btn-secondary justify-content-end"
+      to="/order/mycart"
+    >
+      Order Now!
+    </Link>
   </div>
 </Fragment>
 `;

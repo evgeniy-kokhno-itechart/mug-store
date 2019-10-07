@@ -1,21 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<LoginForm /> renders properly with currentUserName provided 1`] = `
-<Redirect
-  to="/"
-/>
-`;
-
 exports[`<LoginForm /> renders properly with default props 1`] = `
-<LoginForm
-  currentUserName=""
-  location={
-    Object {
-      "fromPath": null,
-    }
-  }
-  loginUserAction={[MockFunction]}
->
+<Fragment>
   <h1
     className="text-center m-3"
   >
@@ -28,59 +14,81 @@ exports[`<LoginForm /> renders properly with default props 1`] = `
     <Input
       error=""
       label="Username"
-      matchedInputName=""
       name="username"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "required": true,
+          },
+          "_label": "Username",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="username"
-        >
-          Username
-        </label>
-        <input
-          className="form-control"
-          id="username"
-          key="username"
-          name="username"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
       label="Password"
-      matchedInputName=""
       name="password"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="password"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "required": true,
+          },
+          "_label": "Password",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          className="form-control"
-          id="password"
-          key="password"
-          name="password"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <button
       className="btn btn-secondary w-100"
       disabled={
@@ -94,96 +102,5 @@ exports[`<LoginForm /> renders properly with default props 1`] = `
       Login
     </button>
   </form>
-</LoginForm>
-`;
-
-exports[`<LoginForm /> renders properly with location.fromPath provided 1`] = `
-<LoginForm
-  currentUserName=""
-  location={
-    Object {
-      "fromPath": "testpath",
-    }
-  }
-  loginUserAction={[MockFunction]}
->
-  <h1
-    className="text-center m-3"
-  >
-    Login
-  </h1>
-  <form
-    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
-    onSubmit={[Function]}
-  >
-    <Input
-      error=""
-      label="Username"
-      matchedInputName=""
-      name="username"
-      onValueChange={[Function]}
-      type="text"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="username"
-        >
-          Username
-        </label>
-        <input
-          className="form-control"
-          id="username"
-          key="username"
-          name="username"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
-    <Input
-      error=""
-      label="Password"
-      matchedInputName=""
-      name="password"
-      onValueChange={[Function]}
-      type="password"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          className="form-control"
-          id="password"
-          key="password"
-          name="password"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-    </Input>
-    <button
-      className="btn btn-secondary w-100"
-      disabled={
-        Object {
-          "password": "Password is a required field",
-          "username": "Username is a required field",
-        }
-      }
-      type="submit"
-    >
-      Login
-    </button>
-  </form>
-</LoginForm>
+</Fragment>
 `;

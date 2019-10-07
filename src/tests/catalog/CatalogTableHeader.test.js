@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import CatalogTableHeader from '../../catalog/components/CatalogTableHeader';
+import CatalogTableHeader from '../../app/catalog/components/CatalogTableHeader';
 
 configure({ adapter: new Adapter() });
 

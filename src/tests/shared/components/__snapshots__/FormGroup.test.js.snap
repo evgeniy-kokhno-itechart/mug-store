@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormGroup /> renders properly with default props 1`] = `
+<div
+  className="form-group "
+>
+  <label
+    className=""
+    htmlFor="testname"
+  >
+    Test label
+  </label>
+  <span>
+    test child
+  </span>
+</div>
+`;
+
+exports[`<FormGroup /> renders properly with error 1`] = `
+<div
+  className="form-group "
+>
+  <label
+    className=""
+    htmlFor="testname"
+  >
+    Test label
+  </label>
+  <span>
+    test child
+  </span>
+  <div
+    className="alert alert-danger"
+  >
+    test error
+  </div>
+</div>
+`;
+
+exports[`<FormGroup /> renders properly with groupClasses 1`] = `
+<div
+  className="form-group testgroupclass"
+>
+  <label
+    className=""
+    htmlFor="testname"
+  >
+    Test label
+  </label>
+  <span>
+    test child
+  </span>
+</div>
+`;
+
+exports[`<FormGroup /> renders properly with labelClasses 1`] = `
+<div
+  className="form-group "
+>
+  <label
+    className="testlabelclass"
+    htmlFor="testname"
+  >
+    Test label
+  </label>
+  <span>
+    test child
+  </span>
+</div>
+`;

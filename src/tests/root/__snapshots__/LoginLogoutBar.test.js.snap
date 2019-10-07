@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginLogoutBar /> renders Login and Register buttons without currentUserName provided 1`] = `<LoginRegisterButtons />`;
+
+exports[`<LoginLogoutBar /> renders user name and Profile button with currentUserName===testUsername provided 1`] = `
+<NameLogoutButtons
+  currentUserName="testUsername"
+  logoutUser={[MockFunction]}
+/>
+`;

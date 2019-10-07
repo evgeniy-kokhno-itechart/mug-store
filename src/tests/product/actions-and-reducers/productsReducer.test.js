@@ -1,21 +1,7 @@
 /* eslint-disable no-undef */
-import productsReducer from '../../../product/productsReducer';
-import initialProductsState from '../../../product/productsState';
-import {
-  gettingProductsInProgress,
-  gettingProductsFailed,
-  gettingProductsSuccess,
-  clearCurrentProductInfo,
-  gettingProductByIdInProgress,
-  gettingProductByIdFailed,
-  gettingProductByIdSuccess,
-  savingProductInProcess,
-  savingProductFailed,
-  savingProductSuccess,
-  deletingProductInProcess,
-  deletingProductFailed,
-  deletingProductSuccess,
-} from '../../../product/productsActions';
+import productsReducer from '../../../app/product/ProductsReducer';
+import initialProductsState from '../../../app/product/ProductsState';
+import { productsActions } from '../../../app/product/ProductsActions';
 
 describe('products reducer', () => {
   const fakeProducts = [
@@ -50,102 +36,117 @@ describe('products reducer', () => {
   });
 
   // GET PRODUCTS
-  it('should handle gettingProductsInProgress', () => {
-    expect(productsReducer(initialProductsState, gettingProductsInProgress(true))).toEqual({
+  it('should handle productsActions.GetProducts.CallIsInProgress', () => {
+    expect(productsReducer(initialProductsState, productsActions.GetProducts.CallIsInProgress(true))).toEqual({
       ...initialProductsState,
-      tableProductsStatus: { isGettingInProcess: true, hasGettingFailed: false, error: '' },
+      catalogProductsStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle gettingProductsFailed', () => {
-    expect(productsReducer(initialProductsState, gettingProductsFailed(true, 'test error'))).toEqual({
+  it('should handle productsActions.GetProducts.Failure', () => {
+    expect(productsReducer(initialProductsState, productsActions.GetProducts.Failure('test error'))).toEqual({
       ...initialProductsState,
-      tableProductsStatus: { isGettingInProcess: false, hasGettingFailed: true, error: 'test error' },
+      catalogProductsStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle gettingProductsSuccess', () => {
-    expect(productsReducer(initialProductsState, gettingProductsSuccess(fakeProducts))).toEqual({
+  it('should handle productsActions.GetProducts.Success', () => {
+    expect(productsReducer(initialProductsState, productsActions.GetProducts.Success(fakeProducts))).toEqual({
       ...initialProductsState,
       products: fakeProducts,
-      tableProductsStatus: { isGettingInProcess: false, hasGettingFailed: false, error: '' },
+      catalogProductsStatus: { isInProcess: false, hasFailed: false, error: '' },
     });
   });
 
   //  GET PRODUCT BY ID
-  it('should handle clearCurrentProductInfo', () => {
-    expect(productsReducer(initialProductsState, clearCurrentProductInfo(true))).toEqual({
+  it('should handle productsActions.ClearCurrentProductInfo', () => {
+    expect(productsReducer(initialProductsState, productsActions.ClearCurrentProductInfo())).toEqual({
       ...initialProductsState,
       currentProduct: initialProductsState.currentProduct,
       currentProductStatus: initialProductsState.currentProductStatus,
     });
   });
 
-  it('should handle gettingProductByIdInProgress', () => {
-    expect(productsReducer(initialProductsState, gettingProductByIdInProgress(true))).toEqual({
+  it('should handle productsActions.GetProduct.CallIsInProgress', () => {
+    expect(productsReducer(initialProductsState, productsActions.GetProduct.CallIsInProgress(true))).toEqual({
       ...initialProductsState,
-      currentProductStatus: { isGettingByIdInProcess: true, hasGettingByIdFailed: false, error: '' },
+      currentProductStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle gettingProductByIdFailed', () => {
-    expect(productsReducer(initialProductsState, gettingProductByIdFailed(true, 'test error'))).toEqual({
+  it('should handle productsActions.GetProduct.Failure', () => {
+    expect(productsReducer(initialProductsState, productsActions.GetProduct.Failure('test error'))).toEqual({
       ...initialProductsState,
-      currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed: true, error: 'test error' },
+      currentProductStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle gettingProductByIdSuccess', () => {
-    expect(productsReducer(initialProductsState, gettingProductByIdSuccess(fakeProducts[0]))).toEqual({
+  it('should handle productsActions.GetProduct.Success', () => {
+    expect(productsReducer(initialProductsState, productsActions.GetProduct.Success(fakeProducts[0]))).toEqual({
       ...initialProductsState,
       currentProduct: fakeProducts[0],
-      currentProductStatus: { isGettingByIdInProcess: false, hasGettingByIdFailed: false, error: '' },
+      currentProductStatus: { isInProcess: false, hasFailed: false, error: '' },
     });
   });
 
   // SAVE PRODUCT
-  it('should handle savingProductInProcess', () => {
-    expect(productsReducer(initialProductsState, savingProductInProcess(true))).toEqual({
+  it('should handle productsActions.SaveProduct.CallIsInProgress', () => {
+    expect(productsReducer(initialProductsState, productsActions.SaveProduct.CallIsInProgress(true))).toEqual({
       ...initialProductsState,
-      savingStatus: { isSavingInProcess: true, hasSavingFailed: false, error: '' },
+      savingStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle savingProductFailed', () => {
-    expect(productsReducer(initialProductsState, savingProductFailed(true, 'test error'))).toEqual({
+  it('should handle productsActions.SaveProduct.Failure', () => {
+    expect(productsReducer(initialProductsState, productsActions.SaveProduct.Failure('test error'))).toEqual({
       ...initialProductsState,
-      savingStatus: { isSavingInProcess: false, hasSavingFailed: true, error: 'test error' },
+      savingStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle savingProductSuccess', () => {
-    expect(productsReducer(initialProductsState, savingProductSuccess('test result message'))).toEqual({
-      ...initialProductsState,
-      saveResult: 'test result message',
-      savingStatus: { isSavingInProcess: false, hasSavingFailed: false, error: '' },
-    });
+  it('should handle productsActions.SaveProduct.Success with updatedProduct provided', () => {
+    expect(productsReducer(initialProductsState, productsActions.SaveProduct.Success({
+      resultMessage: 'test result message', updatedProduct: fakeProducts[0],
+    })))
+      .toEqual({
+        ...initialProductsState,
+        saveResult: 'test result message',
+        currentProduct: fakeProducts[0],
+        savingStatus: { isInProcess: false, hasFailed: false, error: '' },
+      });
+  });
+
+  it('should handle productsActions.SaveProduct.Success with updatedProduct null', () => {
+    expect(productsReducer(initialProductsState, productsActions.SaveProduct.Success({
+      resultMessage: 'test result message', updatedProduct: null,
+    })))
+      .toEqual({
+        ...initialProductsState,
+        saveResult: 'test result message',
+        savingStatus: { isInProcess: false, hasFailed: false, error: '' },
+      });
   });
 
   // DELETE PRODUCT
-  it('should handle deletingProductInProcess', () => {
-    expect(productsReducer(initialProductsState, deletingProductInProcess(true))).toEqual({
+  it('should handle productsActions.DeleteProduct.CallIsInProgress', () => {
+    expect(productsReducer(initialProductsState, productsActions.DeleteProduct.CallIsInProgress(true))).toEqual({
       ...initialProductsState,
-      deletingStatus: { isDeletingInProcess: true, hasDeletingFailed: false, error: '' },
+      deletingStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle deletingProductFailed', () => {
-    expect(productsReducer(initialProductsState, deletingProductFailed(true, 'test error'))).toEqual({
+  it('should handle productsActions.DeleteProduct.Failure', () => {
+    expect(productsReducer(initialProductsState, productsActions.DeleteProduct.Failure('test error'))).toEqual({
       ...initialProductsState,
-      deletingStatus: { isDeletingInProcess: false, hasDeletingFailed: true, error: 'test error' },
+      deletingStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle deletingProductSuccess', () => {
-    expect(productsReducer(initialProductsState, deletingProductSuccess('test result message'))).toEqual({
+  it('should handle productsActions.DeleteProduct.Success', () => {
+    expect(productsReducer(initialProductsState, productsActions.DeleteProduct.Success('test result message'))).toEqual({
       ...initialProductsState,
       deleteResult: 'test result message',
-      deletingStatus: { isDeletingInProcess: false, hasDeletingFailed: false, error: '' },
+      deletingStatus: { isInProcess: false, hasFailed: false, error: '' },
     });
   });
 });

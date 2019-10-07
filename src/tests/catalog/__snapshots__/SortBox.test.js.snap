@@ -1,14 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SortBox /> check render properly 1`] = `
-<Dropdown
-  customClasses="justify-content-end mt-1 mt-lg-0"
+<DropdownInline
   defaultText=""
   error=""
-  isOnelineElement={true}
   label="Sorted by:"
+  labelClasses=""
   name="sortDropdown"
-  onValueChange={[MockFunction]}
+  onChange={[MockFunction]}
   options={
     Array [
       Object {
@@ -17,6 +16,8 @@ exports[`<SortBox /> check render properly 1`] = `
       },
     ]
   }
+  selectClasses="form-control"
   value="title"
+  wrapperClasses="justify-content-end mt-1 mt-lg-0"
 />
 `;

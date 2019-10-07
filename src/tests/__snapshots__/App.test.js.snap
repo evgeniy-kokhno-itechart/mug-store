@@ -4,14 +4,10 @@ exports[`<App /> renders properly with default props 1`] = `
 <Fragment>
   <Connect(Navbar) />
   <div
-    className="container-fluid"
+    className="container-fluid content-wrap"
     id="bootstrap-overrides"
   >
-    <div
-      id="app__content--wrap"
-    >
-      <Routes />
-    </div>
+    <Routes />
   </div>
   <Footer />
 </Fragment>

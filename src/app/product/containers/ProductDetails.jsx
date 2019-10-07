@@ -94,7 +94,7 @@ export class ProductDetails extends Component {
     return productState.productStatus.isInProcess
       ? this.renderSpinner()
       : productState.productStatus.hasFailed
-        ? this.renderErrorMessage(productState.productStatus.hasFailed.error)
+        ? this.renderErrorMessage(productState.productStatus.error)
         : this.renderProductDetails();
   }
 }
@@ -139,8 +139,8 @@ ProductDetails.defaultProps = {
     },
     productStatus: {
       isInProcess: true,
-      hasProductLoadingFailed: false,
-      errorWhileLoading: '',
+      hasFailed: false,
+      error: '',
     },
   },
 };

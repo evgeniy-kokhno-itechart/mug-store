@@ -238,7 +238,7 @@ Catalog.defaultProps = {
 
   products: {
     productsForCatalog: [],
-    productsGettingStatus: { isInProcess: false, hasFailed: false, error: '' },
+    catalogProductsStatus: { isInProcess: false, hasFailed: false, error: '' },
     productDeletingStatus: { isInProcess: false, hasFailed: false, error: '' },
   },
 

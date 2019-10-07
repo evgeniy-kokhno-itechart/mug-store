@@ -1,44 +1,39 @@
 /* eslint-disable no-undef */
-import categoryReducer from '../../../catalog/categories-redux-state/categoryReducer';
-import initialCategoryState from '../../../catalog/categories-redux-state/categoryState';
-import {
-  gettingCategoriesInProgress,
-  gettingCategoriesFailed,
-  gettingCategoriesSuccess,
-  changeCategory,
-} from '../../../catalog/categories-redux-state/categoryActions';
+import categoryReducer from '../../../app/catalog/CategoryReducer';
+import initialCategoryState from '../../../app/catalog/CategoryState';
+import { categoryActions } from '../../../app/catalog/CategoryActions';
 
-describe('products reducer', () => {
+describe('category reducer', () => {
   const fakeCategories = [{ id: '1', name: 'category 1' }, { id: '2', name: 'category 2' }];
 
   it('should return the initial state', () => {
     expect(categoryReducer(initialCategoryState, {})).toEqual(initialCategoryState);
   });
 
-  it('should handle gettingCategoriesInProgress', () => {
-    expect(categoryReducer(initialCategoryState, gettingCategoriesInProgress(true))).toEqual({
+  it('should handle categoryActions.GetCategories.CallIsInProgress', () => {
+    expect(categoryReducer(initialCategoryState, categoryActions.GetCategories.CallIsInProgress(true))).toEqual({
       ...initialCategoryState,
-      categoriesStatus: { isInProcess: true, hasFailed: false, error: '' },
+      loadingStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle gettingCategoriesFailed', () => {
-    expect(categoryReducer(initialCategoryState, gettingCategoriesFailed(true, 'test error'))).toEqual({
+  it('should handle categoryActions.GetCategories.Failure', () => {
+    expect(categoryReducer(initialCategoryState, categoryActions.GetCategories.Failure('test error'))).toEqual({
       ...initialCategoryState,
-      categoriesStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
+      loadingStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle gettingCategoriesSuccess', () => {
-    expect(categoryReducer(initialCategoryState, gettingCategoriesSuccess(fakeCategories))).toEqual({
+  it('should handle categoryActions.GetCategories.Success', () => {
+    expect(categoryReducer(initialCategoryState, categoryActions.GetCategories.Success(fakeCategories))).toEqual({
       ...initialCategoryState,
       categories: fakeCategories,
-      categoriesStatus: { isInProcess: false, hasFailed: false, error: '' },
+      loadingStatus: { isInProcess: false, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle changeCategory', () => {
-    expect(categoryReducer(initialCategoryState, changeCategory(fakeCategories[0]))).toEqual({
+  it('should handle categoryActions.ChangeCategory', () => {
+    expect(categoryReducer(initialCategoryState, categoryActions.ChangeCategory(fakeCategories[0]))).toEqual({
       ...initialCategoryState,
       currentCategory: fakeCategories[0],
     });

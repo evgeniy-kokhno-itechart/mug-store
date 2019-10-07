@@ -25,7 +25,7 @@ exports[`<Catalog /> renders Add New Product button with products, categories an
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -70,7 +70,14 @@ exports[`<Catalog /> renders Add New Product button with products, categories an
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={
+        Array [
+          "admin",
+        ]
+      }
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -159,42 +166,45 @@ exports[`<Catalog /> renders Add New Product button with products, categories an
 </div>
 `;
 
-exports[`<Catalog /> renders ErrorMessage 'test error categories loading' when hasCategoriesLoadingFailed is true 1`] = `
+exports[`<Catalog /> renders ErrorMessage 'test error categories loading' when category.loadingStatus.hasFailed is true 1`] = `
 <ErrorMessage
+  customClasses=""
   message="test error categories loading"
 />
 `;
 
-exports[`<Catalog /> renders ErrorMessage 'test error product deleting' when hasProductDeletingFailed is true 1`] = `
+exports[`<Catalog /> renders ErrorMessage 'test error product deleting' when productDeletingStatus.hasFailed is true 1`] = `
 <ErrorMessage
-  message="test error product deleting"
+  customClasses=""
+  message=""
 />
 `;
 
-exports[`<Catalog /> renders ErrorMessage 'test error products loading' when hasProductsLoadingFailed is true 1`] = `
+exports[`<Catalog /> renders ErrorMessage 'test error products loading' when catalogProductsStatus.hasFailed is true 1`] = `
 <ErrorMessage
+  customClasses=""
   message="test error products loading"
 />
 `;
 
-exports[`<Catalog /> renders Spinner when isCategoriesLoading is true 1`] = `
+exports[`<Catalog /> renders Spinner when catalogProductsStatus.isInProcess is true 1`] = `
 <Spinner
-  customSizeClassName="catalog__spinner"
-  marginBootstrapClassName="mt-5"
+  spinnerClasses="spinner--big"
+  wrapperClasses="mt-5"
 />
 `;
 
-exports[`<Catalog /> renders Spinner when isProductDeletingInProcess is true 1`] = `
+exports[`<Catalog /> renders Spinner when category.loadingStatus.isInProcess is true 1`] = `
 <Spinner
-  customSizeClassName="catalog__spinner"
-  marginBootstrapClassName="mt-5"
+  spinnerClasses="spinner--big"
+  wrapperClasses="mt-5"
 />
 `;
 
-exports[`<Catalog /> renders Spinner when isProductsLoading is true 1`] = `
+exports[`<Catalog /> renders Spinner when productDeletingStatus.isInProcess is true 1`] = `
 <Spinner
-  customSizeClassName="catalog__spinner"
-  marginBootstrapClassName="mt-5"
+  spinnerClasses="spinner--big"
+  wrapperClasses="mt-5"
 />
 `;
 
@@ -223,7 +233,7 @@ exports[`<Catalog /> renders catalog table and categories when their arrays both
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -264,7 +274,10 @@ exports[`<Catalog /> renders catalog table and categories when their arrays both
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -378,7 +391,7 @@ exports[`<Catalog /> renders product table with default sorting option which is 
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -419,7 +432,10 @@ exports[`<Catalog /> renders product table with default sorting option which is 
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -533,7 +549,7 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -574,7 +590,10 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -688,7 +707,7 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -729,7 +748,10 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -843,7 +865,7 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -884,7 +906,10 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -998,7 +1023,7 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -1039,7 +1064,10 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -1153,7 +1181,7 @@ exports[`<Catalog /> renders product table with sorting option { path: title, or
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -1194,7 +1222,10 @@ exports[`<Catalog /> renders product table with sorting option { path: title, or
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -1283,7 +1314,7 @@ exports[`<Catalog /> renders product table with sorting option { path: title, or
 </div>
 `;
 
-exports[`<Catalog /> renders products those titles are contain Mug word 1`] = `
+exports[`<Catalog /> renders products whose titles are contain Mug word 1`] = `
 <div
   className="row mt-3"
 >
@@ -1308,7 +1339,7 @@ exports[`<Catalog /> renders products those titles are contain Mug word 1`] = `
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -1349,7 +1380,10 @@ exports[`<Catalog /> renders products those titles are contain Mug word 1`] = `
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -1422,7 +1456,7 @@ exports[`<Catalog /> renders products those titles are contain Mug word 1`] = `
 </div>
 `;
 
-exports[`<Catalog /> renders the 2nd page with pageSize 2 1`] = `
+exports[`<Catalog /> renders the 2nd page with pageSize 2 and currentPage 2 1`] = `
 <div
   className="row mt-3"
 >
@@ -1447,7 +1481,7 @@ exports[`<Catalog /> renders the 2nd page with pageSize 2 1`] = `
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -1488,7 +1522,10 @@ exports[`<Catalog /> renders the 2nd page with pageSize 2 1`] = `
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [
@@ -1545,7 +1582,7 @@ exports[`<Catalog /> renders the 2nd page with pageSize 2 1`] = `
 </div>
 `;
 
-exports[`<Catalog /> renders the very first product table with pageSize 2 1`] = `
+exports[`<Catalog /> renders the very first product page of table with pageSize 2 1`] = `
 <div
   className="row mt-3"
 >
@@ -1570,7 +1607,7 @@ exports[`<Catalog /> renders the very first product table with pageSize 2 1`] = 
         ]
       }
       onItemSelect={[Function]}
-      selectedItem={null}
+      selectedItem={Object {}}
     />
   </div>
   <div
@@ -1611,7 +1648,10 @@ exports[`<Catalog /> renders the very first product table with pageSize 2 1`] = 
         ]
       }
     />
-    <Connect(CatalogTable)
+    <CatalogTable
+      addToCart={[MockFunction]}
+      currentUserRoles={Array []}
+      isCurrencyLoading={true}
       onDelete={[Function]}
       productsOnPage={
         Array [

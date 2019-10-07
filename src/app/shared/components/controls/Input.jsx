@@ -21,11 +21,13 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
   type: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Input.defaultProps = {
   type: 'text',
   error: '',
+  value: '',
 };
 
 export default Input;

@@ -180,13 +180,13 @@ class ProductForm extends FormBase {
 ProductForm.propTypes = {
   currentCurrencyName: PropTypes.string.isRequired,
 
-  categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
+  categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
 
   product: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     imageURL: PropTypes.string.isRequired,
-    category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
+    categoryId: PropTypes.string,
     description: PropTypes.string,
     producer: PropTypes.string,
     discount: PropTypes.number,
@@ -198,14 +198,12 @@ ProductForm.propTypes = {
 };
 
 ProductForm.defaultProps = {
-  categories: [],
-
   product: {
     id: '',
     imageURL: '',
     title: 'defaultProduct',
     description: '',
-    category: {},
+    categoryId: '',
     currentCurrencyPrice: 0,
     discount: 0,
     producer: '',

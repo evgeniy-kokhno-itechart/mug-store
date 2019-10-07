@@ -59,7 +59,8 @@
     "eslint-plugin-react": "^7.14.2",
     "jest": "^24.7.1",
     "react-test-renderer": "^16.9.0",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "redux-saga-test-plan": "^4.0.0-rc.1"
   },
   "jest": {
     "snapshotSerializers": [

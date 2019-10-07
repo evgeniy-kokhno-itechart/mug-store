@@ -46,7 +46,7 @@ OrderTable.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       quantity: PropTypes.number,
-      price: PropTypes.object,
+      currentCurrencyCost: PropTypes.number,
       title: PropTypes.string,
     }),
   ).isRequired,

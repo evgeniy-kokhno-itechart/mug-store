@@ -1,11 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProfileForm /> renders properly with default props 1`] = `
-<ProfileForm
-  registerNewUserAndLogin={[MockFunction]}
-  saveEditedUserInfo={[MockFunction]}
-  user={Object {}}
->
+<Fragment>
   <h1
     className="text-center m-3"
   >
@@ -18,227 +14,345 @@ exports[`<ProfileForm /> renders properly with default props 1`] = `
     <Input
       error=""
       label="Username (a valid E-mail)"
-      matchedInputName=""
       name="username"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+            "undefined": false,
+          },
+          "_label": "Username",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="username"
-        >
-          Username (a valid E-mail)
-        </label>
-        <input
-          className="form-control"
-          id="username"
-          key="username"
-          name="username"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
       label="Name"
-      matchedInputName=""
       name="name"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Name",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="name"
-        >
-          Name
-        </label>
-        <input
-          className="form-control"
-          id="name"
-          key="name"
-          name="name"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
       label="Country"
-      matchedInputName=""
       name="country"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Country",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="country"
-        >
-          Country
-        </label>
-        <input
-          className="form-control"
-          id="country"
-          key="country"
-          name="country"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
       label="City"
-      matchedInputName=""
       name="city"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "City",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="city"
-        >
-          City
-        </label>
-        <input
-          className="form-control"
-          id="city"
-          key="city"
-          name="city"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
       label="Address"
-      matchedInputName=""
       name="address"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Address",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="address"
-        >
-          Address
-        </label>
-        <input
-          className="form-control"
-          id="address"
-          key="address"
-          name="address"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
       label="Phone"
-      matchedInputName=""
       name="phone"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Phone",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="phone"
-        >
-          Phone
-        </label>
-        <input
-          className="form-control"
-          id="phone"
-          key="phone"
-          name="phone"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
       label="Password"
-      matchedInputName=""
       name="password"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="password"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Password",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          className="form-control"
-          id="password"
-          key="password"
-          name="password"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
-      label="Title"
-      matchedInputName="password"
+      label="Confirm Password"
+      matchedInput={
+        Object {
+          "name": "Password",
+          "value": "",
+        }
+      }
       name="confirmPassword"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="password"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Confirm Password",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="confirmPassword"
-        >
-          Title
-        </label>
-        <input
-          className="form-control"
-          id="confirmPassword"
-          key="confirmPassword"
-          name="confirmPassword"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <button
       className="btn btn-secondary w-100"
       disabled={
@@ -258,28 +372,11 @@ exports[`<ProfileForm /> renders properly with default props 1`] = `
       Save
     </button>
   </form>
-</ProfileForm>
+</Fragment>
 `;
 
 exports[`<ProfileForm /> renders properly with user data provided 1`] = `
-<ProfileForm
-  registerNewUserAndLogin={[MockFunction]}
-  saveEditedUserInfo={[MockFunction]}
-  user={
-    Object {
-      "address": "Test Adress",
-      "city": "Test city",
-      "country": "Test country",
-      "id": "1",
-      "name": "Test user name",
-      "phone": "+000000000000",
-      "roles": Array [
-        "user",
-      ],
-      "username": "user@user.com",
-    }
-  }
->
+<Fragment>
   <h1
     className="text-center m-3"
   >
@@ -292,239 +389,351 @@ exports[`<ProfileForm /> renders properly with user data provided 1`] = `
     <Input
       error=""
       label="Username (a valid E-mail)"
-      matchedInputName=""
       name="username"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="username"
-        >
-          Username (a valid E-mail)
-        </label>
-        <input
-          className="form-control"
-          id="username"
-          key="username"
-          name="username"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+            "undefined": false,
+          },
+          "_label": "Username",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="user@user.com"
+    />
     <Input
       error=""
       label="Name"
-      matchedInputName=""
       name="name"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="name"
-        >
-          Name
-        </label>
-        <input
-          className="form-control"
-          id="name"
-          key="name"
-          name="name"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Name",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="Test user name"
+    />
     <Input
       error=""
       label="Country"
-      matchedInputName=""
       name="country"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="country"
-        >
-          Country
-        </label>
-        <input
-          className="form-control"
-          id="country"
-          key="country"
-          name="country"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Country",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="Test country"
+    />
     <Input
       error=""
       label="City"
-      matchedInputName=""
       name="city"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="city"
-        >
-          City
-        </label>
-        <input
-          className="form-control"
-          id="city"
-          key="city"
-          name="city"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "City",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="Test city"
+    />
     <Input
       error=""
       label="Address"
-      matchedInputName=""
       name="address"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="address"
-        >
-          Address
-        </label>
-        <input
-          className="form-control"
-          id="address"
-          key="address"
-          name="address"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Address",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="Test Adress"
+    />
     <Input
       error=""
       label="Phone"
-      matchedInputName=""
       name="phone"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
-      value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="phone"
-        >
-          Phone
-        </label>
-        <input
-          className="form-control"
-          id="phone"
-          key="phone"
-          name="phone"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-    </Input>
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Phone",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="+000000000000"
+    />
     <Input
       error=""
       label="Password"
-      matchedInputName=""
       name="password"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="password"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Password",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          className="form-control"
-          id="password"
-          key="password"
-          name="password"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <Input
       error=""
-      label="Title"
-      matchedInputName="password"
+      label="Confirm Password"
+      matchedInput={
+        Object {
+          "name": "Password",
+          "value": "",
+        }
+      }
       name="confirmPassword"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="password"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Confirm Password",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="confirmPassword"
-        >
-          Title
-        </label>
-        <input
-          className="form-control"
-          id="confirmPassword"
-          key="confirmPassword"
-          name="confirmPassword"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-    </Input>
+    />
     <button
       className="btn btn-secondary w-100"
       disabled={
         Object {
-          "address": "Address is a required field",
-          "city": "City is a required field",
           "confirmPassword": "Confirm Password must be at least 5 characters",
-          "country": "Country is a required field",
-          "name": "Name is a required field",
           "password": "Password must be at least 5 characters",
-          "phone": "Phone must be at least 12 characters",
-          "username": "Username is a required field",
         }
       }
       type="submit"
@@ -532,5 +741,5 @@ exports[`<ProfileForm /> renders properly with user data provided 1`] = `
       Save
     </button>
   </form>
-</ProfileForm>
+</Fragment>
 `;

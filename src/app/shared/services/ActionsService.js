@@ -8,7 +8,7 @@ const ActionsStatusEnum = Object.freeze({
   Success: 'SUCCESS',
 });
 
-function defineHttpAction(actionName) {
+export function defineHttpAction(actionName) {
   let action = {};
   const actionsStatusEnumKeys = Object.keys(ActionsStatusEnum);
   // avoided for of loop due to arbnb restriction

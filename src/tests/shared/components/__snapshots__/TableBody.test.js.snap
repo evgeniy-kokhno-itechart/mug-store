@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TableBody /> renders properly 1`] = `
+<tbody>
+  <tr
+    key="1"
+  >
+    <td
+      className="p-1 p-md-2 undefined"
+      key="1id"
+    >
+      1
+    </td>
+    <td
+      className="p-1 p-md-2 undefined"
+      key="1name"
+    >
+      one
+    </td>
+    <td
+      className="p-1 p-md-2 undefined"
+      key="1description"
+    >
+      <span>
+        Test Content first
+      </span>
+    </td>
+  </tr>
+  <tr
+    key="2"
+  >
+    <td
+      className="p-1 p-md-2 undefined"
+      key="2id"
+    >
+      2
+    </td>
+    <td
+      className="p-1 p-md-2 undefined"
+      key="2name"
+    >
+      two
+    </td>
+    <td
+      className="p-1 p-md-2 undefined"
+      key="2description"
+    >
+      <span>
+        Test Content second
+      </span>
+    </td>
+  </tr>
+  <tr
+    key="3"
+  >
+    <td
+      className="p-1 p-md-2 undefined"
+      key="3id"
+    >
+      3
+    </td>
+    <td
+      className="p-1 p-md-2 undefined"
+      key="3name"
+    >
+      three
+    </td>
+    <td
+      className="p-1 p-md-2 undefined"
+      key="3description"
+    >
+      <span>
+        Test Content third
+      </span>
+    </td>
+  </tr>
+</tbody>
+`;

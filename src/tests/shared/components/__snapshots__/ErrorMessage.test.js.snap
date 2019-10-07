@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorMessage /> check ErrorMessage renders properly custom class testclass 1`] = `
+<span
+  className="text-danger testclass"
+>
+  test error
+</span>
+`;
+
+exports[`<ErrorMessage /> check ErrorMessage renders properly with default props 1`] = `
+<span
+  className="text-danger "
+>
+  test error
+</span>
+`;

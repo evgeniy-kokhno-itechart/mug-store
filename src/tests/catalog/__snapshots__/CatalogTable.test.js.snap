@@ -25,7 +25,7 @@ exports[`<CatalogTable /> passes isCurrencyLoading to ProductPrice component onc
 >
   <CatalogTable
     addToCart={[MockFunction]}
-    currentUser={Object {}}
+    currentUserRoles={Array []}
     isCurrencyLoading={false}
     onDelete={[MockFunction]}
     productsOnPage={
@@ -91,49 +91,41 @@ exports[`<CatalogTable /> renders admin columns with user.roles contains admin 1
     Array [
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--image",
+        "customClasses": "catalog-table__column-image",
         "key": "image",
         "label": "",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--title",
+        "customClasses": "catalog-table__column-title",
         "key": "title",
         "label": "Title",
       },
       Object {
         "content": [Function],
-        "customClasses": "d-none d-md-table-cell catalog_table__column--details",
+        "customClasses": "d-none d-md-table-cell catalog-table__column-details",
         "key": "description",
         "label": "Details",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--rate",
+        "customClasses": "catalog-table__column-rate",
         "key": "rate",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--price",
+        "customClasses": "catalog-table__column-price",
         "key": "price",
         "label": "Price",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--buynow",
+        "customClasses": "catalog-table__column-buynow",
         "key": "buyNow",
-      },
-      Object {
-        "content": [Function],
-        "key": "edit",
-      },
-      Object {
-        "content": [Function],
-        "key": "delete",
       },
     ]
   }
-  headerExcluded={false}
+  customClasses="catalog-table"
   items={
     Array [
       Object {
@@ -195,41 +187,41 @@ exports[`<CatalogTable /> renders with default props 1`] = `
     Array [
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--image",
+        "customClasses": "catalog-table__column-image",
         "key": "image",
         "label": "",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--title",
+        "customClasses": "catalog-table__column-title",
         "key": "title",
         "label": "Title",
       },
       Object {
         "content": [Function],
-        "customClasses": "d-none d-md-table-cell catalog_table__column--details",
+        "customClasses": "d-none d-md-table-cell catalog-table__column-details",
         "key": "description",
         "label": "Details",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--rate",
+        "customClasses": "catalog-table__column-rate",
         "key": "rate",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--price",
+        "customClasses": "catalog-table__column-price",
         "key": "price",
         "label": "Price",
       },
       Object {
         "content": [Function],
-        "customClasses": "catalog_table__column--buynow",
+        "customClasses": "catalog-table__column-buynow",
         "key": "buyNow",
       },
     ]
   }
-  headerExcluded={false}
+  customClasses="catalog-table"
   items={
     Array [
       Object {

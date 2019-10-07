@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import OrderTable from '../components/OrderTable';
-import OrderForm from './OrderForm';
+import OrderForm from '../components/OrderForm';
 import { TotalCost, cartActions, cartCostsSelector } from '../../cart';
 
-class Order extends Component {
+export class Order extends Component {
   submitOrder = () => {
     this.props.submitCartOrder('/orderconfirm');
   }

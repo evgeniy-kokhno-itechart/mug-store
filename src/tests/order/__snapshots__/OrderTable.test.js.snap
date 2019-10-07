@@ -10,7 +10,7 @@ exports[`<OrderTable /> renders properly with default props 1`] = `
       Array [
         Object {
           "content": [Function],
-          "customClasses": "order_table__column--title",
+          "customClasses": "order-table__column-title",
           "key": "title",
           "label": "Title",
         },
@@ -21,17 +21,17 @@ exports[`<OrderTable /> renders properly with default props 1`] = `
         },
         Object {
           "content": [Function],
-          "customClasses": "text-center order_table__column--cost",
+          "customClasses": "text-center order-table__column-cost",
           "key": "cost",
           "label": "Cost",
         },
       ]
     }
-    headerExcluded={false}
+    customClasses="order-table"
     items={
       Array [
         Object {
-          "currentCurrencyPrice": 5,
+          "currentCurrencyCost": 5,
           "description": "test product 1 description",
           "id": "1",
           "imageURL": "#",
@@ -39,7 +39,7 @@ exports[`<OrderTable /> renders properly with default props 1`] = `
           "title": "test product 1",
         },
         Object {
-          "currentCurrencyPrice": 10,
+          "currentCurrencyCost": 10,
           "description": "test product 2 description",
           "id": "2",
           "imageURL": "#",

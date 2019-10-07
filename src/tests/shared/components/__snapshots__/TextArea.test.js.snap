@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextArea /> check TextArea renders properly with default props 1`] = `
+<FormGroup
+  error=""
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <textarea
+    className="form-control"
+    id="testname"
+    name="testname"
+    onChange={[Function]}
+    value=""
+  />
+</FormGroup>
+`;
+
+exports[`<TextArea /> check TextArea renders properly with error 1`] = `
+<FormGroup
+  error="Test error"
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <textarea
+    className="form-control"
+    id="testname"
+    name="testname"
+    onChange={[Function]}
+    value=""
+  />
+</FormGroup>
+`;
+
+exports[`<TextArea /> check TextArea renders properly with value provided 1`] = `
+<FormGroup
+  error=""
+  groupClasses=""
+  label="Test label"
+  labelClasses=""
+  name="testname"
+>
+  <textarea
+    className="form-control"
+    id="testname"
+    name="testname"
+    onChange={[Function]}
+    value="Test value"
+  />
+</FormGroup>
+`;

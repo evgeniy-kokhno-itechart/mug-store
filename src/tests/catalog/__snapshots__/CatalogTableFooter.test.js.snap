@@ -25,14 +25,13 @@ exports[`<CatalogTableFooter /> check render properly 1`] = `
   <div
     className="col"
   >
-    <Dropdown
-      customClasses="justify-content-end"
+    <DropdownInline
       defaultText=""
       error=""
-      isOnelineElement={true}
       label="Items on page"
+      labelClasses=""
       name="itemsOnPage"
-      onValueChange={[MockFunction]}
+      onChange={[MockFunction]}
       options={
         Array [
           Object {
@@ -41,7 +40,9 @@ exports[`<CatalogTableFooter /> check render properly 1`] = `
           },
         ]
       }
+      selectClasses="form-control"
       value="10"
+      wrapperClasses="justify-content-end"
     />
   </div>
 </div>

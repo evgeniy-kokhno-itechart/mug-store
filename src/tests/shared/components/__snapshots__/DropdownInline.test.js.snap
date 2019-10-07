@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DropdownInline /> renders properly with default props 1`] = `
+<Dropdown
+  defaultText=""
+  error=""
+  label="label"
+  labelClasses=""
+  name="name"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      },
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      },
+    ]
+  }
+  selectClasses=""
+  value=""
+  wrapperClasses="form-inline "
+/>
+`;
+
+exports[`<DropdownInline /> renders properly with defaultText 1`] = `
+<Dropdown
+  defaultText="test default text"
+  error=""
+  label="label"
+  labelClasses=""
+  name="name"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      },
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      },
+    ]
+  }
+  selectClasses=""
+  value=""
+  wrapperClasses="form-inline "
+/>
+`;
+
+exports[`<DropdownInline /> renders properly with error 1`] = `
+<Dropdown
+  defaultText=""
+  error="test error"
+  label="label"
+  labelClasses=""
+  name="name"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      },
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      },
+    ]
+  }
+  selectClasses=""
+  value=""
+  wrapperClasses="form-inline "
+/>
+`;
+
+exports[`<DropdownInline /> renders properly with labelClasses 1`] = `
+<Dropdown
+  defaultText=""
+  error=""
+  label="label"
+  labelClasses="testlabelclass"
+  name="name"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      },
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      },
+    ]
+  }
+  selectClasses=""
+  value=""
+  wrapperClasses="form-inline "
+/>
+`;
+
+exports[`<DropdownInline /> renders properly with selectClasses 1`] = `
+<Dropdown
+  defaultText=""
+  error=""
+  label="label"
+  labelClasses=""
+  name="name"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      },
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      },
+    ]
+  }
+  selectClasses="testselectclass"
+  value=""
+  wrapperClasses="form-inline "
+/>
+`;
+
+exports[`<DropdownInline /> renders properly with value provided 1`] = `
+<Dropdown
+  defaultText=""
+  error=""
+  label="label"
+  labelClasses=""
+  name="name"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      },
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      },
+    ]
+  }
+  selectClasses=""
+  value="2"
+  wrapperClasses="form-inline "
+/>
+`;
+
+exports[`<DropdownInline /> renders properly with wrapperClasses 1`] = `
+<Dropdown
+  defaultText=""
+  error=""
+  label="label"
+  labelClasses=""
+  name="name"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "name": "test name 1",
+      },
+      Object {
+        "id": "2",
+        "name": "test name 2",
+      },
+    ]
+  }
+  selectClasses=""
+  value=""
+  wrapperClasses="form-inline testwrapperclass"
+/>
+`;

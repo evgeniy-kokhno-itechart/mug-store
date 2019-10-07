@@ -1,5 +1,265 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<OrderForm /> renders properly with currentUser provided 1`] = `
+<Fragment>
+  <p>
+    Please fill out the form to continue
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <Input
+      error=""
+      label="Name"
+      name="name"
+      onChange={[Function]}
+      type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Name",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="test usename"
+    />
+    <Input
+      error=""
+      label="Country"
+      name="country"
+      onChange={[Function]}
+      type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Country",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="test country"
+    />
+    <Input
+      error=""
+      label="City"
+      name="city"
+      onChange={[Function]}
+      type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "City",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="test city"
+    />
+    <Input
+      error=""
+      label="Address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Address",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="test address"
+    />
+    <Input
+      error=""
+      label="Phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Phone",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value="+000000000123"
+    />
+    <TextArea
+      error=""
+      label="Comment"
+      name="comment"
+      onChange={[Function]}
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {},
+          "_label": "Comment",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
+      value=""
+    />
+    <button
+      className="btn btn-secondary d-block mx-auto mx-md-0"
+      disabled={null}
+      type="submit"
+    >
+      Submit Order
+    </button>
+  </form>
+</Fragment>
+`;
+
 exports[`<OrderForm /> renders properly with default props 1`] = `
 <Fragment>
   <p>
@@ -11,132 +271,242 @@ exports[`<OrderForm /> renders properly with default props 1`] = `
     <Input
       error=""
       label="Name"
-      matchedInputName=""
       name="name"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
-      value=""
-    />
-    <Input
-      error=""
-      label="Country"
-      matchedInputName=""
-      name="country"
-      onValueChange={[Function]}
-      type="text"
-      value=""
-    />
-    <Input
-      error=""
-      label="City"
-      matchedInputName=""
-      name="city"
-      onValueChange={[Function]}
-      type="text"
-      value=""
-    />
-    <Input
-      error=""
-      label="Address"
-      matchedInputName=""
-      name="address"
-      onValueChange={[Function]}
-      type="text"
-      value=""
-    />
-    <Input
-      error=""
-      label="Phone"
-      matchedInputName=""
-      name="phone"
-      onValueChange={[Function]}
-      type="text"
-      value=""
-    />
-    <TextArea
-      error=""
-      label="Comment"
-      name="comment"
-      onValueChange={[Function]}
-      value=""
-    />
-    <button
-      className="btn btn-secondary d-block mx-auto mx-md-0"
-      disabled={
-        Object {
-          "address": "Address is a required field",
-          "city": "City is a required field",
-          "country": "Country is a required field",
-          "name": "Name is a required field",
-          "phone": "Phone must be at least 12 characters",
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Name",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
         }
       }
-      type="submit"
-    >
-      Submit Order
-    </button>
-  </form>
-</Fragment>
-`;
-
-exports[`<OrderForm /> renders properly with default props 2`] = `
-<Fragment>
-  <p>
-    Please fill out the form to continue
-  </p>
-  <form
-    onSubmit={[Function]}
-  >
-    <Input
-      error=""
-      label="Name"
-      matchedInputName=""
-      name="name"
-      onValueChange={[Function]}
-      type="text"
       value=""
     />
     <Input
       error=""
       label="Country"
-      matchedInputName=""
       name="country"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Country",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
     />
     <Input
       error=""
       label="City"
-      matchedInputName=""
       name="city"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "City",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
     />
     <Input
       error=""
       label="Address"
-      matchedInputName=""
       name="address"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "required": true,
+          },
+          "_label": "Address",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
     />
     <Input
       error=""
       label="Phone"
-      matchedInputName=""
       name="phone"
-      onValueChange={[Function]}
+      onChange={[Function]}
       type="text"
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {
+            "max": true,
+            "min": true,
+            "required": true,
+          },
+          "_label": "Phone",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [
+            [Function],
+            [Function],
+            [Function],
+          ],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
     />
     <TextArea
       error=""
       label="Comment"
       name="comment"
-      onValueChange={[Function]}
+      onChange={[Function]}
+      validationSchema={
+        StringSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_deps": Array [],
+          "_exclusive": Object {},
+          "_label": "Comment",
+          "_mutate": undefined,
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "string",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "tests": Array [],
+          "transforms": Array [
+            [Function],
+          ],
+        }
+      }
       value=""
     />
     <button

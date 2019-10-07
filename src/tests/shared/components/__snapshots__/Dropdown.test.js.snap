@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> renders properly with default props 1`] = `
+<FormGroup
+  error=""
+  groupClasses="form-group flex-nowrap "
+  label="label"
+  labelClasses="mr-2 text-nowrap "
+  name="name"
+>
+  <select
+    className=""
+    id="name"
+    name="name"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      key="1"
+      value="1"
+    >
+      test name 1
+    </option>
+    <option
+      key="2"
+      value="2"
+    >
+      test name 2
+    </option>
+  </select>
+</FormGroup>
+`;
+
+exports[`<Dropdown /> renders properly with defaultText 1`] = `
+<FormGroup
+  error=""
+  groupClasses="form-group flex-nowrap "
+  label="label"
+  labelClasses="mr-2 text-nowrap "
+  name="name"
+>
+  <select
+    className=""
+    id="name"
+    name="name"
+    onChange={[Function]}
+    value=""
+  >
+    <option>
+      test default text
+    </option>
+    <option
+      key="1"
+      value="1"
+    >
+      test name 1
+    </option>
+    <option
+      key="2"
+      value="2"
+    >
+      test name 2
+    </option>
+  </select>
+</FormGroup>
+`;
+
+exports[`<Dropdown /> renders properly with error 1`] = `
+<FormGroup
+  error="test error"
+  groupClasses="form-group flex-nowrap "
+  label="label"
+  labelClasses="mr-2 text-nowrap "
+  name="name"
+>
+  <select
+    className=""
+    id="name"
+    name="name"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      key="1"
+      value="1"
+    >
+      test name 1
+    </option>
+    <option
+      key="2"
+      value="2"
+    >
+      test name 2
+    </option>
+  </select>
+</FormGroup>
+`;
+
+exports[`<Dropdown /> renders properly with labelClasses 1`] = `
+<FormGroup
+  error=""
+  groupClasses="form-group flex-nowrap "
+  label="label"
+  labelClasses="mr-2 text-nowrap testlabelclass"
+  name="name"
+>
+  <select
+    className=""
+    id="name"
+    name="name"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      key="1"
+      value="1"
+    >
+      test name 1
+    </option>
+    <option
+      key="2"
+      value="2"
+    >
+      test name 2
+    </option>
+  </select>
+</FormGroup>
+`;
+
+exports[`<Dropdown /> renders properly with selectClasses 1`] = `
+<FormGroup
+  error=""
+  groupClasses="form-group flex-nowrap "
+  label="label"
+  labelClasses="mr-2 text-nowrap "
+  name="name"
+>
+  <select
+    className="testselectclass"
+    id="name"
+    name="name"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      key="1"
+      value="1"
+    >
+      test name 1
+    </option>
+    <option
+      key="2"
+      value="2"
+    >
+      test name 2
+    </option>
+  </select>
+</FormGroup>
+`;
+
+exports[`<Dropdown /> renders properly with value provided 1`] = `
+<FormGroup
+  error=""
+  groupClasses="form-group flex-nowrap "
+  label="label"
+  labelClasses="mr-2 text-nowrap "
+  name="name"
+>
+  <select
+    className=""
+    id="name"
+    name="name"
+    onChange={[Function]}
+    value="2"
+  >
+    <option
+      key="1"
+      value="1"
+    >
+      test name 1
+    </option>
+    <option
+      key="2"
+      value="2"
+    >
+      test name 2
+    </option>
+  </select>
+</FormGroup>
+`;
+
+exports[`<Dropdown /> renders properly with wrapperClasses 1`] = `
+<FormGroup
+  error=""
+  groupClasses="form-group flex-nowrap testwrapperclass"
+  label="label"
+  labelClasses="mr-2 text-nowrap "
+  name="name"
+>
+  <select
+    className=""
+    id="name"
+    name="name"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      key="1"
+      value="1"
+    >
+      test name 1
+    </option>
+    <option
+      key="2"
+      value="2"
+    >
+      test name 2
+    </option>
+  </select>
+</FormGroup>
+`;

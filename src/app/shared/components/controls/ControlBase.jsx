@@ -5,11 +5,11 @@ import { PropTypes } from 'prop-types';
 class ControlBase extends Component {
    handleChange = (e) => {
      const { currentTarget: input } = e;
-     const error = this.validateFormItem(input);
+     const error = this.validateControl(input);
      this.props.onChange(e, error);
    };
 
-   validateFormItem = (input) => {
+   validateControl = (input) => {
      const { name, value } = input;
      const { matchedInput } = this.props;
 

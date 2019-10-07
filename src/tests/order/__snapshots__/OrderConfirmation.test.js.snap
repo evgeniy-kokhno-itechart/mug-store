@@ -6,10 +6,12 @@ exports[`<OrderConfirmation /> check OrderConfirmation renders properly 1`] = `
     className="text-center m-3"
   >
     Thank you for your order!
-    <br />
-    <br />
-    Our operator will call you shortly.
   </h1>
+  <p
+    className="h3 text-center"
+  >
+    Our operator will call you shortly
+  </p>
   <div
     className="d-flex"
   >

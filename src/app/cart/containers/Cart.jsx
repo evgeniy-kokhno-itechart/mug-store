@@ -52,7 +52,7 @@ Cart.propTypes = {
         imageURL: PropTypes.string,
         title: PropTypes.string,
         description: PropTypes.string,
-        currentCurrencyPrice: PropTypes.number,
+        currentCurrencyCost: PropTypes.number,
         quantity: PropTypes.number,
       }),
     ),

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Spinner /> renders properly with default props 1`] = `
+<div
+  className="text-center "
+>
+  <div
+    className="spinner-border "
+    role="status"
+  >
+    <span
+      className="sr-only"
+    >
+      Loading...
+    </span>
+  </div>
+</div>
+`;
+
+exports[`<Spinner /> renders properly with spinnerClasses provided 1`] = `
+<div
+  className="text-center "
+>
+  <div
+    className="spinner-border testspinnerclass"
+    role="status"
+  >
+    <span
+      className="sr-only"
+    >
+      Loading...
+    </span>
+  </div>
+</div>
+`;
+
+exports[`<Spinner /> renders properly with wrapperClasses provided 1`] = `
+<div
+  className="text-center testwrapperclass"
+>
+  <div
+    className="spinner-border "
+    role="status"
+  >
+    <span
+      className="sr-only"
+    >
+      Loading...
+    </span>
+  </div>
+</div>
+`;

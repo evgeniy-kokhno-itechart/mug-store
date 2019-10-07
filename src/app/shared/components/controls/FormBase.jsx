@@ -42,7 +42,10 @@ class FormBase extends PureComponent {
        return { data: newData, errors };
      });
    };
-}
 
+   render() {
+     return null;
+   }
+}
 
 export default FormBase;

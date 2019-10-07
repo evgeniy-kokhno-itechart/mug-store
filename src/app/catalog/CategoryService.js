@@ -5,9 +5,4 @@ export default class CategoryService {
     const response = applicationApi.get('/categories');
     return response;
   }
-
-  // static getCategory(id) {
-  //   const response = applicationApi.get(`/categories/${id}`);
-  //   return response;
-  // }
 }

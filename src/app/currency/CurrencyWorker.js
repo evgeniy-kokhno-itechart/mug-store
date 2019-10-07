@@ -2,13 +2,14 @@ import { put, call, select } from 'redux-saga/effects';
 import { currencyActions } from './CurrencyActions';
 import CurrencyService from './CurrencyService';
 
-// eslint-disable-next-line import/prefer-default-export
+export const currentCurrencySelector = state => state.currency.currentCurrency;
+
 export function* workerGetCurrencies() {
   try {
     yield put(currencyActions.GetCurrencies.CallIsInProgress(true));
     const result = yield call(CurrencyService.getCurrenciesList);
     const currencies = result.data;
-    const currentCurrency = yield select(state => state.currency.currentCurrency);
+    const currentCurrency = yield select(currentCurrencySelector);
 
     const currencyToBeSet = CurrencyService.setCurrencyIfNone(currentCurrency, currencies);
 

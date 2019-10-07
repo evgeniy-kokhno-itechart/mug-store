@@ -17,14 +17,18 @@ export default class CurrencyService {
     let currencyToBeSet;
     if (!currentCurrency.rate) {
       currencyToBeSet = currenciesList.find(currency => currency.name === baseCurrencyName);
-      currencyToBeSet.rate = 1;
+      if (!currencyToBeSet) { // if not found in the list
+        currencyToBeSet = { ...currenciesList[0], rate: 'ERROR!' };
+      } else {
+        currencyToBeSet.rate = 1;
+      }
     } else {
       currencyToBeSet = currentCurrency;
     }
     return currencyToBeSet;
   }
 
-  static matchCurrenciesAndRates(currencies, rates) {
+  static matchCurrenciesAndRates(currencies, ratesResponseArray) {
     // exclude base currency from currencies and get names for remaning
     const baseCurrencyName = process.env.REACT_APP_BASE_CURRENCY_NAME;
     const arrayOfCurrencyNames = currencies
@@ -34,7 +38,7 @@ export default class CurrencyService {
     const nameKey = process.env.REACT_APP_CURRENCY_NAME_KEY_IN_JSON;
     const rateKey = process.env.REACT_APP_CURRENCY_RATE_KEY_IN_JSON;
 
-    const currencyRatesArray = rates
+    const currencyRatesArray = ratesResponseArray
       .filter(currency => arrayOfCurrencyNames.includes(currency[nameKey])) // extract rates for app currencies only
       .map(filteredCurrencies => ({ // compose handy array
         name: filteredCurrencies[nameKey],
@@ -58,5 +62,9 @@ export default class CurrencyService {
       return { ...currency, rate: currentRate };
     });
     return currenciesWithRates;
+  }
+
+  static getBasePrice(currencyPrice, currencyRate) {
+    return currencyPrice / currencyRate;
   }
 }

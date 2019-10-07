@@ -5,6 +5,7 @@ import { productsActions } from '../ProductsActions';
 import { productCostSelector } from '../ProductsSelectors';
 import { FormBase, Spinner, ErrorMessage } from '../../shared';
 import ProductForm from '../components/ProductForm';
+import { CurrencyService } from '../../currency';
 
 
 export class ProductFormConnected extends FormBase {
@@ -64,7 +65,7 @@ export class ProductFormConnected extends FormBase {
       imageURL: data.imageURL,
       description: data.description,
       category: this.props.categories.find(category => category.id === data.categoryId),
-      basePrice: data.currentCurrencyPrice / this.props.currentCurrency.rate,
+      basePrice: CurrencyService.getBasePrice(data.currentCurrencyPrice, this.props.currentCurrency.rate),
       discount: data.discount,
       producer: data.producer,
       rate: data.rate,
@@ -77,7 +78,7 @@ export class ProductFormConnected extends FormBase {
       <ProductForm
         currentCurrencyName={currentCurrency.name}
         categories={categories}
-        product={this.mapToViewModel(productState.product)}
+        product={productState.product.id ? this.mapToViewModel(productState.product) : {}}
         onSubmit={this.handleSubmit}
       />
     );
@@ -97,7 +98,7 @@ ProductFormConnected.propTypes = {
     rate: PropTypes.number,
   }).isRequired,
 
-  categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })),
+  categories: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
 
   productState: PropTypes.shape({
     product: PropTypes.shape({

@@ -5,7 +5,8 @@ import { cartActions } from '../cart';
 import UserService from './UserService';
 import AuthService from './AuthService';
 
-// eslint-disable-next-line import/prefer-default-export
+export const currentUserSelector = state => state.user.currentUser;
+
 export function* workerLogin(action) {
   try {
     yield put(userActions.Login.CallIsInProgress(true));
@@ -20,8 +21,8 @@ export function* workerLogin(action) {
 
 export function* workerLogout() {
   try {
-    const user = yield select(state => state.user.currentUser);
     yield put(userActions.Logout.CallIsInProgress(true));
+    const user = yield select(currentUserSelector);
     const result = yield call(AuthService.logout, user.id);
     yield put(userActions.Logout.Success(result.data));
     yield put(cartActions.ClearCart());

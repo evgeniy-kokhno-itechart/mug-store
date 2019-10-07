@@ -1,20 +1,7 @@
 /* eslint-disable no-undef */
-import userReducer from '../../../user/userReduser';
-import initialUserState from '../../../user/userState';
-import {
-  loginUserInProcess,
-  loginUserFailed,
-  loginUserSuccess,
-  logoutUserInProcess,
-  logoutUserFailed,
-  logoutUserSuccess,
-  savingUserInProcess,
-  savingUserFailed,
-  savingUserSuccess,
-  registrationUserInProcess,
-  registrationUserFailed,
-  registrationUserSuccess,
-} from '../../../user/userActions';
+import userReducer from '../../../app/user/UserReducer';
+import initialUserState from '../../../app/user/UserState';
+import { userActions } from '../../../app/user/UserActions';
 
 describe('user reducer', () => {
   const testUser = { id: '1', name: 'test user', roles: ['user', 'admin'] };
@@ -24,94 +11,101 @@ describe('user reducer', () => {
   });
 
   // LOGIN
-  it('should handle loginUserInProcess', () => {
-    expect(userReducer(initialUserState, loginUserInProcess(true))).toEqual({
+  it('should handle userActions.Login.CallIsInProgress', () => {
+    expect(userReducer(initialUserState, userActions.Login.CallIsInProgress(true))).toEqual({
       ...initialUserState,
-      loginStatus: { isLoginInProcess: true, hasLoginFailed: false, loginError: '' },
+      loginStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle loginUserFailed', () => {
-    expect(userReducer(initialUserState, loginUserFailed(true, 'test error'))).toEqual({
+  it('should handle userActions.Login.Failure', () => {
+    expect(userReducer(initialUserState, userActions.Login.Failure('test error'))).toEqual({
       ...initialUserState,
-      loginStatus: { isLoginInProcess: false, hasLoginFailed: true, loginError: 'test error' },
+      loginStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle loginUserSuccess', () => {
-    expect(userReducer(initialUserState, loginUserSuccess(testUser))).toEqual({
+  it('should handle userActions.Login.Success', () => {
+    expect(userReducer(initialUserState, userActions.Login.Success(testUser))).toEqual({
       ...initialUserState,
       currentUser: testUser,
-      loginStatus: { isLoginInProcess: false, hasLoginFailed: false, loginError: '' },
+      loginStatus: { isInProcess: false, hasFailed: false, error: '' },
+    });
+  });
+
+  it('should handle userActions.ResetLoginStatus', () => {
+    expect(userReducer(initialUserState, userActions.ResetLoginStatus())).toEqual({
+      ...initialUserState,
+      loginStatus: initialUserState.loginStatus,
     });
   });
 
   // LOGOUT
-  it('should handle logoutUserInProcess', () => {
-    expect(userReducer(initialUserState, logoutUserInProcess(true))).toEqual({
+  it('should handle userActions.Logout.CallIsInProgress', () => {
+    expect(userReducer(initialUserState, userActions.Logout.CallIsInProgress(true))).toEqual({
       ...initialUserState,
-      logoutStatus: { isLogoutInProcess: true, hasLogoutFailed: false, logoutError: '' },
+      logoutStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle logoutUserFailed', () => {
-    expect(userReducer(initialUserState, logoutUserFailed(true, 'test error'))).toEqual({
+  it('should handle userActions.Logout.Failure', () => {
+    expect(userReducer(initialUserState, userActions.Logout.Failure('test error'))).toEqual({
       ...initialUserState,
-      logoutStatus: { isLogoutInProcess: false, hasLogoutFailed: true, logoutError: 'test error' },
+      logoutStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle logoutUserSuccess', () => {
-    expect(userReducer(initialUserState, logoutUserSuccess('test result message'))).toEqual({
+  it('should handle userActions.Logout.Success', () => {
+    expect(userReducer(initialUserState, userActions.Logout.Success('test result message'))).toEqual({
       ...initialUserState,
       logoutResult: 'test result message',
     });
   });
 
   // SAVE EDITED
-  it('should handle savingUserInProcess', () => {
-    expect(userReducer(initialUserState, savingUserInProcess(true))).toEqual({
+  it('should handle userActions.SaveEdited.CallIsInProgress', () => {
+    expect(userReducer(initialUserState, userActions.SaveEdited.CallIsInProgress(true))).toEqual({
       ...initialUserState,
-      savingStatus: { isSavingInProcess: true, hasSavingFailed: false, savingError: '' },
+      savingStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle savingUserFailed', () => {
-    expect(userReducer(initialUserState, savingUserFailed(true, 'test error'))).toEqual({
+  it('should handle userActions.SaveEdited.Failure', () => {
+    expect(userReducer(initialUserState, userActions.SaveEdited.Failure('test error'))).toEqual({
       ...initialUserState,
-      savingStatus: { isSavingInProcess: false, hasSavingFailed: true, savingError: 'test error' },
+      savingStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle savingUserSuccess', () => {
+  it('should handle userActions.SaveEdited.Success', () => {
     const userStateWithUser = { ...initialUserState, currentUser: { id: '0', name: 'user before update' } };
-    expect(userReducer(initialUserState, savingUserSuccess(testUser))).toEqual({
+    expect(userReducer(initialUserState, userActions.SaveEdited.Success(testUser))).toEqual({
       ...userStateWithUser,
       currentUser: testUser,
-      savingStatus: { isSavingInProcess: false, hasSavingFailed: false, savingError: '' },
+      savingStatus: { isInProcess: false, hasFailed: false, error: '' },
     });
   });
 
   // REGISTER
-  it('should handle registrationUserInProcess', () => {
-    expect(userReducer(initialUserState, registrationUserInProcess(true))).toEqual({
+  it('should handle userActions.Register.CallIsInProgress', () => {
+    expect(userReducer(initialUserState, userActions.Register.CallIsInProgress(true))).toEqual({
       ...initialUserState,
-      registrationStatus: { isRegistrationInProcess: true, hasRegistrationFailed: false, registrationError: '' },
+      registrationStatus: { isInProcess: true, hasFailed: false, error: '' },
     });
   });
 
-  it('should handle registrationUserFailed', () => {
-    expect(userReducer(initialUserState, registrationUserFailed(true, 'test error'))).toEqual({
+  it('should handle userActions.Register.Failure', () => {
+    expect(userReducer(initialUserState, userActions.Register.Failure('test error'))).toEqual({
       ...initialUserState,
-      registrationStatus: { isRegistrationInProcess: false, hasRegistrationFailed: true, registrationError: 'test error' },
+      registrationStatus: { isInProcess: false, hasFailed: true, error: 'test error' },
     });
   });
 
-  it('should handle registrationUserSuccess', () => {
-    expect(userReducer(initialUserState, registrationUserSuccess(testUser))).toEqual({
+  it('should handle userActions.Register.Success', () => {
+    expect(userReducer(initialUserState, userActions.Register.Success(testUser))).toEqual({
       ...initialUserState,
       currentUser: testUser,
-      registrationStatus: { isRegistrationInProcess: false, hasRegistrationFailed: false, registrationError: '' },
+      registrationStatus: { isInProcess: false, hasFailed: false, error: '' },
     });
   });
 });

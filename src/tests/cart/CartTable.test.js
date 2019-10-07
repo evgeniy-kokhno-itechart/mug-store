@@ -10,14 +10,10 @@ configure({ adapter: new Adapter() });
 
 describe('<CartTable />', () => {
   let CartTableWrapper;
-  let incrementQuantity;
-  let decrementQuantity;
   let changeQuantity;
   let deleteProductFromCart;
 
   beforeEach(() => {
-    incrementQuantity = jest.fn();
-    decrementQuantity = jest.fn();
     changeQuantity = jest.fn();
     deleteProductFromCart = jest.fn();
 
@@ -43,8 +39,6 @@ describe('<CartTable />', () => {
           },
         ]}
         sortColumn="id"
-        incrementQuantity={incrementQuantity}
-        decrementQuantity={decrementQuantity}
         changeQuantity={changeQuantity}
         deleteProductFromCart={deleteProductFromCart}
       />,
