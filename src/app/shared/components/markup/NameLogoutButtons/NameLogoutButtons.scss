@@ -1,0 +1,59 @@
+@import "Variables";
+
+.name-logout-bar {
+    display: inline-block;
+    position: relative;
+
+    &__username {
+        display: inline-block;
+        margin-right: 0.5rem;
+    }
+
+    &__profile-button {
+        font: inherit;
+        margin-left: 0.5rem;
+        border: none;
+        background-color: $color-primary-dark;
+        padding: 0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__profile-menu {
+        position: absolute;
+        background-color: $color-white;
+        border: 1px solid $color-gray-dark;
+        border-radius: 3px;
+        top: 2rem;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem 1rem;
+    }
+}
+
+.profile-menu {
+    &__link {
+        white-space: nowrap;
+        color: inherit;
+        padding: 0.5rem;
+        border-bottom: 1px solid $color-gray-dark;
+        &:hover {
+            color: $color-gray-light;
+            text-decoration: none;
+        }
+    }
+
+    &__logout-btn {
+        font: inherit;
+        color: inherit;
+        padding: 0.5rem;
+        border: none;
+        background-color: transparent;
+        &:hover {
+            color: $color-gray-light;
+        }
+    }
+}

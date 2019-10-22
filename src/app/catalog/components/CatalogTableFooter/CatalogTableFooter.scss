@@ -1,0 +1,21 @@
+@import "Variables";
+
+.catalog__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 1rem 1rem 0;
+}
+
+.page-links{
+    flex: 1;
+}
+
+.page-size {
+    flex: 1;
+    justify-content: flex-end;
+
+    &__dropdown {
+        padding: $padding-vertical;
+    }
+}

@@ -1,0 +1,12 @@
+@import "Variables";
+
+.search-form {
+    display: flex;
+
+    &__input {
+        font: inherit;
+        padding-left: 0.5rem;
+        border: 1px solid $color-gray-light-2;
+        border-right: none;
+    }
+}

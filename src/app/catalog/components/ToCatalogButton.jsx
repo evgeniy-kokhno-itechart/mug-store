@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
 const ToCatalogButton = ({ customClasses }) => (
-  <Link className={`btn btn-secondary ${customClasses}`} to="/catalog">
+  <Link className={`button button-solid ${customClasses}`} to="/catalog">
     Back To Catalog
   </Link>
 );

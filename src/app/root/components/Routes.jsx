@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import MainPage from './Main';
-import About from './About';
+import MainPage from './Main/Main';
+import About from './About/About';
 import { CatalogConnected } from '../../catalog';
 import { NotFound, ProtectedRouteConnected } from '../../shared';
 import { ProductFormConnected, ProductDetailsConnected } from '../../product';

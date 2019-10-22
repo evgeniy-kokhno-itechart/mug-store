@@ -1,0 +1,27 @@
+@import "Variables";
+
+.item-counter {
+  display: flex;
+  max-width: 7rem;
+
+  &__input {
+    font: inherit;
+    max-width: 35%;
+    text-align: center;
+  }
+
+  &__btn {
+    line-height: 1.2rem;
+    font-size: 0.75rem;
+    min-width: 1.7rem;
+    padding: $padding-vertical-small;
+    color: $color-white;
+    border: 1px solid $color-gray-light;
+    background-image: linear-gradient(to right bottom, rgba($color-gray-dark, 0.8), rgba($color-gray-dark, 1));
+    
+    &:disabled {
+      background-image: linear-gradient(to right bottom, rgba($color-gray-light-2, 0.8), rgba($color-gray-light-2, 1));
+    }
+    
+  }
+}

@@ -1,0 +1,19 @@
+@import "Variables";
+
+.pagination-list {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.pagination-item {
+    background-image: linear-gradient( to right bottom, rgba($color-gray-light-2, 0.7), rgba($color-gray-light-2, 1));
+    border-color: $color-white;
+    
+    &--active {
+        background-image: linear-gradient( to right bottom, rgba($color-primary-dark, 0.7), rgba($color-primary-dark, 1));
+        border-color: $color-primary-dark;
+        color: $color-white;
+    }
+}

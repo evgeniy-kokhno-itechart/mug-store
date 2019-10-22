@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 const TotalCost = ({ total, customClasses }) => (
-  <p className={customClasses}>{total ? `Total cost: ${total}` : ''}</p>
+  <span className={customClasses}>{total ? `Total cost: ${total}` : ''}</span>
 );
 
 TotalCost.propTypes = {

@@ -1,0 +1,17 @@
+@import "Variables";
+
+.login-btn {
+    margin-right: 0.5rem;
+    &:hover {
+        text-decoration: none;
+        color: $color-white;
+    }
+}
+
+.register-btn {
+    margin-left: 0.5rem;
+    &:hover {
+        text-decoration: none;
+        color: $color-white;
+    }
+}

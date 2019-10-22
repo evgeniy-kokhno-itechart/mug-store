@@ -8,10 +8,27 @@ import {
   faArrowRight,
   faArrowLeft,
   faSpinner,
+  faPen,
+  faTimes,
+  faSyncAlt,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default class IconService {
   static composeIconLibrary() {
-    library.add(faSearch, faCartArrowDown, faTrash, faMinus, faPlus, faArrowRight, faArrowLeft, faSpinner);
+    library.add(
+      faSearch,
+      faCartArrowDown,
+      faTrash,
+      faMinus,
+      faPlus,
+      faArrowRight,
+      faArrowLeft,
+      faSpinner,
+      faPen,
+      faTimes,
+      faSyncAlt,
+      faBars,
+    );
   }
 }

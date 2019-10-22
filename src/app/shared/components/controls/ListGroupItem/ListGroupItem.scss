@@ -1,0 +1,24 @@
+@import "Variables";
+
+.group-item {
+    list-style: none;
+    border: solid 1px $color-gray-dark;
+    background-image: linear-gradient( to right bottom, rgba($color-gray-light, 0.8), rgba($color-gray-dark, 0.9));
+    color: $color-white;
+    padding: 0.7rem 1.5rem;
+
+    &:hover {
+      background-image: linear-gradient( to right bottom, rgba($color-gray-dark, 0.8), rgba($color-gray-dark, 0.9));
+    }
+    &:focus {
+        outline: none;
+    }
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+
+    &--active {
+        background-image: linear-gradient( to right bottom, rgba($color-primary-dark, 0.9), rgba($color-primary-dark, 1));
+    }
+}

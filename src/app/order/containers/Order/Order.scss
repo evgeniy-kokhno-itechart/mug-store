@@ -1,0 +1,31 @@
+.order {
+  margin: 1rem;
+
+  &__header {
+    text-align: center;
+  }
+
+  &__content {
+    display: flex;
+  }
+}
+
+.order-information {
+    &__summary {
+        flex: 1;
+        margin: 0.5rem 1.5rem 0.5rem 0.5rem;
+    }
+
+    &__form {
+        flex: 1;
+        margin: 0.5rem 0.5rem 0.5rem 1.5em;
+    }
+}
+
+.order-summary {
+  &__total-cost {
+    float: right;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}

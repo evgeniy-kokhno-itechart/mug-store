@@ -1,0 +1,10 @@
+@import 'Variables';
+
+.infotable__header {
+    border-bottom: 3px solid $color-gray-light-2;
+}
+
+.header-row__cell {
+    text-align: left;
+    padding: 1rem 0.5rem;
+}

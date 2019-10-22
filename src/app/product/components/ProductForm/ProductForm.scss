@@ -1,0 +1,29 @@
+.product-form {
+    &__header {
+        text-align: center;
+        margin: 1.5rem;
+    }
+
+    &__content {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
+.category-dropdown {
+    &__label {
+        margin-bottom: 0.5rem;
+    }
+
+    &__selector {
+        width: 100%;
+        padding: 0.4rem 0.5rem;
+    }
+}
+
+.prod-form-content {
+    &__button {
+        margin: 0.5rem 0;
+        width: 100%;
+    }
+}

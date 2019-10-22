@@ -1,0 +1,10 @@
+@import "Variables";
+
+.pagination-button {
+    font: inherit;
+    padding: $padding-vertical;
+    min-width: 2.3rem;
+    background-color: transparent;
+    color: inherit;
+    border-color: inherit;
+}

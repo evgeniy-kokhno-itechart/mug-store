@@ -1,0 +1,23 @@
+.order-summary {
+  &__message {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+}
+
+.order-table {
+  width: 100%;
+  margin: 0.5rem 0;
+
+  &__column-title {
+    width: 70%;
+  }
+
+  &__column-quantity{
+    text-align: center;
+  }
+
+  &__column-cost {
+    width: 10%;
+  }
+}

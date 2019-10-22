@@ -1,0 +1,26 @@
+.cart-table {
+  margin: 0 1.5rem 1.5rem 1.5rem;
+  &--column-image {
+    width: 12%;
+  }
+
+  &--column-title {
+    width: 10%;
+  }
+
+  &--column-details {
+    width: 58%;
+  }
+
+  &--column-quantity {
+    width: 7%;
+  }
+
+  &--column-cost {
+    width: 7%;
+  }
+
+  &--column-delete {
+    width: 5%;
+  }
+}

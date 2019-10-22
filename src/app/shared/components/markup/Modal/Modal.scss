@@ -1,0 +1,56 @@
+@import "Variables";
+
+.modal-page {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($color-primary-dark, 0.8);
+    left: 0;
+    top: 0;
+    z-index: 9999;
+
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+        padding: 2rem;
+        animation: openModal 0.5s ease-in-out;
+    }
+    &__header {
+        font-size: 2rem;
+        text-align: center;
+
+    }
+
+    &__body {
+        text-align: center;
+        padding: 2rem 0.5rem;
+        border-bottom: 1px solid $color-primary-dark;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin: 0.5rem 1rem 0;
+    }
+
+    @keyframes openModal {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+
+        80% {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+    
+        100% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+     
+}

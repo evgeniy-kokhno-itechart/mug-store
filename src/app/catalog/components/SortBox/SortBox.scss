@@ -1,0 +1,10 @@
+@import "Variables";
+
+.sort-box {
+    display: flex;
+    justify-content: flex-end;
+
+    &__dropdown {
+        padding: $padding-vertical;
+    }
+}

@@ -1,0 +1,18 @@
+.catalog__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 1rem 1rem;
+}
+
+.search-box {
+    flex: 3;
+}
+
+.add-product-btn {
+    flex: 3;
+}
+
+.sort-box {
+    flex: 3;
+}

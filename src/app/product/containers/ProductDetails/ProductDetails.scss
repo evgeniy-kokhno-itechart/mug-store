@@ -1,0 +1,21 @@
+.prod-details{
+    &__spinner {
+        margin-top: 2rem;
+    }
+
+    &__header {
+        text-align: center;
+        margin: 2rem;
+    }
+
+    &__images {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem;
+    }
+}

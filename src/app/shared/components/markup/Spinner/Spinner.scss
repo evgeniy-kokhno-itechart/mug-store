@@ -1,0 +1,35 @@
+@import "Variables";
+
+.spinner {
+  text-align: center;
+  color: $color-primary-dark;
+  
+
+  &__icon {
+    animation-name: spin;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  &--big {
+    font-size: 5rem;
+  }
+
+  &--medium {
+    font-size: 3rem;
+  }
+
+  &--small {
+    font-size: 1rem;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}

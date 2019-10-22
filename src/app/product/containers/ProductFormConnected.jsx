@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 import { productsActions } from '../ProductsActions';
 import { productCostSelector } from '../ProductsSelectors';
 import { FormBase, Spinner, ErrorMessage } from '../../shared';
-import ProductForm from '../components/ProductForm';
+import ProductForm from '../components/ProductForm/ProductForm';
 import { CurrencyService } from '../../currency';
 
 
 export class ProductFormConnected extends FormBase {
+  // define state and componentDidUpdate to avoid direct mapping props to child when productId is "new"
+  // and componentWillUnmount wasn't called so clearCurrentProductInfo wasn't call as well
+  state = { data: {} }
+
   componentDidMount() {
     const productId = this.props.match.params.id;
     if (productId === 'new') {
@@ -18,8 +22,13 @@ export class ProductFormConnected extends FormBase {
     this.props.getProduct(productId);
   }
 
-  componentWillUnmount() {
-    this.props.clearCurrentProductInfo();
+  componentDidUpdate(prevProps, prevState) {
+    const { productState } = this.props;
+
+    if (prevState.data.id !== productState.product.id) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ data: this.mapToViewModel(this.props.productState.product) });
+    }
   }
 
   displayIsLoading = () => {
@@ -73,12 +82,12 @@ export class ProductFormConnected extends FormBase {
   }
 
   renderForm = () => {
-    const { categories, currentCurrency, productState } = this.props;
+    const { categories, currentCurrency } = this.props;
     return (
       <ProductForm
         currentCurrencyName={currentCurrency.name}
         categories={categories}
-        product={productState.product.id ? this.mapToViewModel(productState.product) : {}}
+        product={this.state.data}
         onSubmit={this.handleSubmit}
       />
     );
@@ -126,7 +135,6 @@ ProductFormConnected.propTypes = {
 
   getProduct: PropTypes.func.isRequired,
   saveProduct: PropTypes.func.isRequired,
-  clearCurrentProductInfo: PropTypes.func.isRequired,
 };
 
 ProductFormConnected.defaultProps = {
@@ -172,7 +180,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getProduct: productsActions.GetProduct.InitiateApiCall,
   saveProduct: productsActions.SaveProduct.InitiateApiCall,
-  clearCurrentProductInfo: productsActions.ClearCurrentProductInfo,
 };
 
 export default connect(

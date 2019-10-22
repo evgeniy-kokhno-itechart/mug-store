@@ -1,0 +1,25 @@
+.catalog-table {
+  &__column-image {
+    width: 18%;
+  }
+
+  &__column-title {
+    width: 10%;
+  }
+
+  &__column-details {
+    width: 50%;
+  }
+
+  &__column-rate {
+    width: 11%;
+  }
+
+  &__column-price {
+    width: 5%;
+  }
+
+  &__column-buynow {
+    width: 10%;
+  }
+}

@@ -1,0 +1,13 @@
+.about {
+
+    &__header {
+        text-align: center;
+        margin: 1.5rem;
+    }
+
+    &__content {
+        width: 50%;
+        margin: 1rem auto;
+        text-align: justify;
+    }
+}

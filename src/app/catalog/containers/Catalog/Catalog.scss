@@ -1,0 +1,30 @@
+.catalog-page {
+    display: flex;
+    margin: 1rem;
+
+    &__spinner {
+        margin-top: 2.5rem;
+    }
+}
+
+.empty-message {
+    &__header {
+        margin: 2rem;
+        text-align: center;
+    }
+
+    &__redirect-button {
+        width: 40%;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+.categories-list {
+    margin: 0 1rem 2rem;
+    flex: 2;
+}
+
+.catalog {
+    flex: 10;
+}

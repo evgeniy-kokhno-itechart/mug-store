@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { userActions } from '../UserActions';
-import ProfileForm from '../components/ProfileForm';
+import ProfileForm from '../components/ProfileForm/ProfileForm';
 
 export class ProfileFormConnected extends Component {
   handleSubmit = (user) => {
