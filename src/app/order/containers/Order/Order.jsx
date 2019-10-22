@@ -16,12 +16,12 @@ export class Order extends Component {
     return (
       <div className="order">
         <h1 className="order__header">Please check your order</h1>
-        <div className="order__content order-information">
-          <div className="order-information__summary order-summary">
+        <div className="order__content">
+          <div className="order__summary">
             <OrderTable sortColumn="title" products={cart.products} isCurrencyLoading={isCurrencyLoading} />
-            <TotalCost total={cart.totalCost} customClasses="order-summary__total-cost" />
+            <TotalCost total={cart.totalCost} customClasses="order-total-cost" />
           </div>
-          <div className="order-information__form order-form">
+          <div className="order__order-form">
             <OrderForm currentUser={currentUser} onSubmit={this.submitOrder} />
           </div>
         </div>

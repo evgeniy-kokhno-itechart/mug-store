@@ -24,14 +24,11 @@ class SearchBox extends PureComponent {
           placeholder="Search..."
           value={this.state.query}
           onChange={this.handleChange}
-          aria-label="Search"
         />
 
-        <div className="search-form__btn">
-          <button type="submit" className="button button-outline focusable">
-            <FontAwesomeIcon icon="search" />
-          </button>
-        </div>
+        <button type="submit" className="button button-outline focusable search-form__btn">
+          <FontAwesomeIcon icon="search" />
+        </button>
       </form>
     );
   }

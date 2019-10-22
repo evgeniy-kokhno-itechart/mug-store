@@ -9,17 +9,15 @@ const CatalogTableHeader = ({
   currentUserRoles, searchQuery, sortColumnKey, sortOptions, handleSearch, handleSort,
 }) => (
   <div className="catalog__header">
-    <div className="search-box">
+    <div className="catalog-search-box">
       <SearchBox value={searchQuery} onSearchSubmit={handleSearch} key={searchQuery} />
     </div>
     {currentUserRoles.includes('admin') && (
-      <Link to="/edit/products/new" className="button button-solid add-product-btn">
+      <Link to="/edit/products/new" className="button button-solid catalog-add-product-btn">
         Add New Product
       </Link>
     )}
-    <div className="sort-box">
-      <SortBox sortColumnKey={sortColumnKey} sortOptions={sortOptions} onSortChange={handleSort} />
-    </div>
+    <SortBox sortColumnKey={sortColumnKey} sortOptions={sortOptions} onSortChange={handleSort} customClasses="catalog-sort-box" />
   </div>
 );
 

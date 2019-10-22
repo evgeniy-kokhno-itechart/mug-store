@@ -1,7 +1,13 @@
+@import "Mixins";
+
 .order-form {
     &__message {
         font-size: 1.5rem;
         font-weight: 400;
+
+        @include respond(tab-portrait) {
+            text-align: center;
+        }
     }
 
     &__form {

@@ -1,6 +1,12 @@
+@import "Mixins";
+
 .catalog-page {
     display: flex;
     margin: 1rem;
+
+    @include respond(tab-portrait) {
+        display: block;
+    }
 
     &__spinner {
         margin-top: 2.5rem;
@@ -23,6 +29,12 @@
 .categories-list {
     margin: 0 1rem 2rem;
     flex: 2;
+
+    @include respond(tab-portrait) {
+        text-align: center;
+        width: 70%;
+        margin: 1rem auto;
+    }
 }
 
 .catalog {

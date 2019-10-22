@@ -1,18 +1,46 @@
-.catalog__header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 0 1rem 1rem;
-}
+@import "Mixins";
 
-.search-box {
-    flex: 3;
-}
+.catalog {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0 1rem 1rem;
 
-.add-product-btn {
-    flex: 3;
-}
+        @include respond(tab-portrait) {
+            flex-direction: column;
+            width: 70%;
+            margin: 0 auto;
+        }
+    }
 
-.sort-box {
-    flex: 3;
+    &-search-box {
+        @include respond(tab-portrait) {
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+    }
+
+    &-add-product-btn {
+        white-space: nowrap;
+        min-width: 10rem;
+        padding-right: 3rem;
+        padding-left: 3rem;
+
+        @include respond(tab-portrait) {
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+    }
+
+    &-sort-box {
+        margin: 0;
+
+        @include respond(tab-portrait) {
+            width: 70%;
+            margin: 0.5rem auto;
+            text-align: center;
+        }
+    }
 }

@@ -16,7 +16,7 @@ export const App = (props) => {
   return (
     <React.Fragment>
       <NavbarConnected />
-      <div>
+      <div className="content-wrap">
         <Routes />
       </div>
       <Footer />

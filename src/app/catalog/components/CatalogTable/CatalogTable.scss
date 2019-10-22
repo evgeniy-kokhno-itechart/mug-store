@@ -1,3 +1,5 @@
+@import "Mixins";
+
 .catalog-table {
   &__column-image {
     width: 18%;
@@ -9,6 +11,14 @@
 
   &__column-details {
     width: 50%;
+
+    @include respond(tab-portrait) {
+      width: 25%;
+    }
+
+    @include respond(phone) {
+      display: none;
+    }
   }
 
   &__column-rate {

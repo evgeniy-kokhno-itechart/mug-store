@@ -1,10 +1,9 @@
 @import "Variables";
 
 .sort-box {
-    display: flex;
-    justify-content: flex-end;
-
     &__dropdown {
         padding: $padding-vertical;
+        width: 100%;
+        text-align-last:center
     }
 }
