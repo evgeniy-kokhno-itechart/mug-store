@@ -113,7 +113,7 @@ ProductFormConnected.propTypes = {
     product: PropTypes.shape({
       id: PropTypes.string,
       title: PropTypes.string,
-      imageURL: PropTypes.string.isRequired,
+      imageURL: PropTypes.string,
       category: PropTypes.shape({ id: PropTypes.string, name: PropTypes.string }),
       description: PropTypes.string,
       producer: PropTypes.string,

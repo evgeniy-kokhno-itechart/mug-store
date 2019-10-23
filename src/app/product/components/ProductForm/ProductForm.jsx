@@ -183,7 +183,7 @@ class ProductForm extends FormBase {
           <button
             type="submit"
             disabled={this.validateForm(this.objectSchema, data)}
-            className="button button-solid prod-form-content__button"
+            className="button button-solid prod-form-button"
           >
             Save
           </button>

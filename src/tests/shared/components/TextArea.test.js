@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import TextArea from '../../../app/shared/components/controls/TextArea';
+import TextArea from '../../../app/shared/components/controls/TextArea/TextArea';
 
 configure({ adapter: new Adapter() });
 

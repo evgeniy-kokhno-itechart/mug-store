@@ -77,6 +77,7 @@ describe('<ProductFormConnected />', () => {
   it('renders Spinner when loadingStatus.isInProcess is true', () => {
     ProductFormWrapper.setProps({
       productState: {
+        product: { id: '0', category: { id: 'test' } },
         loadingStatus: { isInProcess: true, hasFailed: false, error: '' },
         savingStatus: { isInProcess: false, hasFailed: false, error: '' },
       },
@@ -87,6 +88,7 @@ describe('<ProductFormConnected />', () => {
   it('renders Spinner when savingStatus.isInProcess is true', () => {
     ProductFormWrapper.setProps({
       productState: {
+        product: { id: '0', category: { id: 'test' } },
         loadingStatus: { isInProcess: false, hasFailed: false, error: '' },
         savingStatus: { isInProcess: true, hasFailed: false, error: '' },
       },
@@ -97,6 +99,7 @@ describe('<ProductFormConnected />', () => {
   it('renders error message when loadingStatus.hasFailed is true', () => {
     ProductFormWrapper.setProps({
       productState: {
+        product: { id: '0', category: { id: 'test' } },
         loadingStatus: { isInProcess: false, hasFailed: true, error: 'test product loading error' },
         savingStatus: { isInProcess: false, hasFailed: false, error: '' },
       },
@@ -107,6 +110,7 @@ describe('<ProductFormConnected />', () => {
   it('renders error message when savingStatus.hasFailed is true', () => {
     ProductFormWrapper.setProps({
       productState: {
+        product: { id: '0', category: { id: 'test' } },
         loadingStatus: { isInProcess: false, hasFailed: false, error: '' },
         savingStatus: { isInProcess: false, hasFailed: true, error: 'test product saving error' },
       },

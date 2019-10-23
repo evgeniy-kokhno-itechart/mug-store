@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DeleteProductButton /> check render properly 1`] = `
+<Fragment>
+  <button
+    className="button button-solid button-danger focusable"
+    onClick={[Function]}
+    type="button"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="times"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </button>
+</Fragment>
+`;

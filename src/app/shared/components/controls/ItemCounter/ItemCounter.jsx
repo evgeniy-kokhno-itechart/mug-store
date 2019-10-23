@@ -33,21 +33,21 @@ class ItemCounter extends Component {
       <div className="item-counter">
         <button
           type="button"
-          className='item-counter__btn focusable'
+          className='item-counter__btn counter-btn-decrease focusable'
           onClick={this.handleDecremented}
           disabled={item.quantity <= 1 ? 'disabled' : ''}
         >
-          <FontAwesomeIcon icon="minus" className="my-auto" />
+          <FontAwesomeIcon icon="minus" />
         </button>
 
         <input className="item-counter__input focusable" type="text" value={item.quantity} onChange={this.handleInputEdited} />
 
         <button
           type="button"
-          className="item-counter__btn focusable"
+          className="item-counter__btn counter-btn-increase focusable"
           onClick={this.handleIncremented}
         >
-          <FontAwesomeIcon icon="plus" className="my-auto" />
+          <FontAwesomeIcon icon="plus" />
         </button>
       </div>
     );

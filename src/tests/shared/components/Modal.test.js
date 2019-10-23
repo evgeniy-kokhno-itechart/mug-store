@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import Modal from '../../../app/shared/components/markup/Modal';
+import Modal from '../../../app/shared/components/markup/Modal/Modal';
 
 configure({ adapter: new Adapter() });
 
@@ -13,15 +13,15 @@ describe('<Modal />', () => {
 
   beforeEach(() => {
     const onConfirm = jest.fn();
+    const onClose = jest.fn();
+
     ModalWrapper = shallow(
       <Modal
-        id="100"
-        buttonLabel="Test Button"
-        buttonClasses="testbuttonclasses"
         title="Test Title"
         text="Test Text"
         textConfirm="Test confirmation text"
         textAbort="Test Abort"
+        onClose={onClose}
         onConfirm={onConfirm}
       />,
     );

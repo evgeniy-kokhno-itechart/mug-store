@@ -16,7 +16,7 @@ class CartTable extends Component {
           <img src={product.imageURL} alt={product.title} className="product-image" />
         </Link>
       ),
-      customClasses: 'cart-table--column-image',
+      customClasses: 'cart-table__column-image',
     },
 
     {
@@ -27,7 +27,7 @@ class CartTable extends Component {
           {product.title}
         </Link>
       ),
-      customClasses: 'cart-table--column-title',
+      customClasses: 'cart-table__column-title',
     },
 
     {
@@ -42,7 +42,7 @@ class CartTable extends Component {
           customClasses="product-description"
         />
       ),
-      customClasses: 'cart-table--column-details',
+      customClasses: 'cart-table__column-details',
     },
 
     {
@@ -54,14 +54,14 @@ class CartTable extends Component {
           onQuantityChanged={this.props.changeQuantity}
         />
       ),
-      customClasses: 'cart-table--column-quantity',
+      customClasses: 'cart-table__column-quantity',
     },
 
     {
       path: 'cost',
       label: 'Cost',
       content: product => <ProductPrice price={product.currentCurrencyCost} isCurrencyLoading={this.props.isCurrencyLoading} />,
-      customClasses: 'text-center cart-table--column-cost',
+      customClasses: 'cart-table__column-cost',
     },
 
     {
@@ -71,7 +71,7 @@ class CartTable extends Component {
           <FontAwesomeIcon icon="trash" />
         </button>
       ),
-      customClasses: 'cart-table--column-delete',
+      customClasses: 'cart-table__column-delete',
     },
   ];
 

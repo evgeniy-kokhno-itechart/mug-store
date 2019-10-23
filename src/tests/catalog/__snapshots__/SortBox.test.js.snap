@@ -4,7 +4,7 @@ exports[`<SortBox /> check render properly 1`] = `
 <DropdownInline
   defaultText=""
   error=""
-  label="Sorted by:"
+  label="Sorted by"
   labelClasses=""
   name="sortDropdown"
   onChange={[MockFunction]}
@@ -16,8 +16,8 @@ exports[`<SortBox /> check render properly 1`] = `
       },
     ]
   }
-  selectClasses="form-control"
+  selectClasses="sort-box__dropdown"
   value="title"
-  wrapperClasses="justify-content-end mt-1 mt-lg-0"
+  wrapperClasses="sort-box "
 />
 `;

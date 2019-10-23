@@ -2,7 +2,7 @@
 
 exports[`<ListGroup /> renders with default props properly 1`] = `
 <ul
-  className="list-group"
+  className="group-list"
 >
   <ListGroupItem
     handleItemSelect={[MockFunction]}
@@ -33,7 +33,7 @@ exports[`<ListGroup /> renders with default props properly 1`] = `
 
 exports[`<ListGroup /> renders with second item selected 1`] = `
 <ul
-  className="list-group"
+  className="group-list"
 >
   <ListGroupItem
     handleItemSelect={[MockFunction]}

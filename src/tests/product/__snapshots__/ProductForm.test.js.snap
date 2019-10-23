@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductForm /> renders empty form with default props 1`] = `
-<Fragment>
+<div
+  className="product-form"
+>
   <h1
-    className="text-center m-3"
+    className="product-form__header"
   >
     Product Info
   </h1>
   <form
-    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+    className="product-form__content prod-form-content"
     onSubmit={[Function]}
   >
     <Input
@@ -135,7 +137,7 @@ exports[`<ProductForm /> renders empty form with default props 1`] = `
       defaultText="Please choose..."
       error=""
       label="Category"
-      labelClasses=""
+      labelClasses="category-dropdown__label"
       name="categoryId"
       onChange={[Function]}
       options={
@@ -150,7 +152,7 @@ exports[`<ProductForm /> renders empty form with default props 1`] = `
           },
         ]
       }
-      selectClasses="form-control"
+      selectClasses="category-dropdown__selector"
       validationSchema={
         NumberSchema {
           "_blacklist": RefSet {
@@ -183,7 +185,7 @@ exports[`<ProductForm /> renders empty form with default props 1`] = `
         }
       }
       value=""
-      wrapperClasses=""
+      wrapperClasses="category-dropdown"
     />
     <Input
       error=""
@@ -352,7 +354,7 @@ exports[`<ProductForm /> renders empty form with default props 1`] = `
       value={0}
     />
     <button
-      className="btn btn-secondary w-100"
+      className="button button-solid prod-form-button"
       disabled={
         Object {
           "categoryId": "Please choose category",
@@ -368,18 +370,20 @@ exports[`<ProductForm /> renders empty form with default props 1`] = `
       Save
     </button>
   </form>
-</Fragment>
+</div>
 `;
 
 exports[`<ProductForm /> renders not empty fields with product data provided 1`] = `
-<Fragment>
+<div
+  className="product-form"
+>
   <h1
-    className="text-center m-3"
+    className="product-form__header"
   >
     Product Info
   </h1>
   <form
-    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+    className="product-form__content prod-form-content"
     onSubmit={[Function]}
   >
     <Input
@@ -506,7 +510,7 @@ exports[`<ProductForm /> renders not empty fields with product data provided 1`]
       defaultText="Please choose..."
       error=""
       label="Category"
-      labelClasses=""
+      labelClasses="category-dropdown__label"
       name="categoryId"
       onChange={[Function]}
       options={
@@ -521,7 +525,7 @@ exports[`<ProductForm /> renders not empty fields with product data provided 1`]
           },
         ]
       }
-      selectClasses="form-control"
+      selectClasses="category-dropdown__selector"
       validationSchema={
         NumberSchema {
           "_blacklist": RefSet {
@@ -554,7 +558,7 @@ exports[`<ProductForm /> renders not empty fields with product data provided 1`]
         }
       }
       value="2"
-      wrapperClasses=""
+      wrapperClasses="category-dropdown"
     />
     <Input
       error=""
@@ -723,7 +727,7 @@ exports[`<ProductForm /> renders not empty fields with product data provided 1`]
       value="5"
     />
     <button
-      className="btn btn-secondary w-100"
+      className="button button-solid prod-form-button"
       disabled={
         Object {
           "imageURL": "Image URL must be at least 5 characters",
@@ -734,5 +738,5 @@ exports[`<ProductForm /> renders not empty fields with product data provided 1`]
       Save
     </button>
   </form>
-</Fragment>
+</div>
 `;

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Cart /> renders properly with cart array not empty 1`] = `
-<Fragment>
+<div
+  className="cart"
+>
   <CartTable
     changeQuantity={[MockFunction]}
     deleteProductFromCart={[MockFunction]}
@@ -29,32 +31,38 @@ exports[`<Cart /> renders properly with cart array not empty 1`] = `
     sortColumn="id"
   />
   <div
-    className="row justify-content-between mx-2"
+    className="cart-footer"
   >
     <TotalCost
-      customClasses="h5 my-auto"
+      customClasses="cart-footer__total"
       total={15}
     />
     <Link
-      className="btn btn-secondary justify-content-end"
+      className="button button-solid cart-footer__order-button"
       to="/order"
     >
       Order Now!
     </Link>
   </div>
-</Fragment>
+</div>
 `;
 
 exports[`<Cart /> renders properly with default props 1`] = `
-<h1
-  className="m-3 text-center"
+<div
+  className="cart"
 >
-  Your cart is empty
-</h1>
+  <h1
+    className="cart__empty-message"
+  >
+    Your cart is empty
+  </h1>
+</div>
 `;
 
 exports[`<Cart /> renders properly with not empty cart and currentUserName provided 1`] = `
-<Fragment>
+<div
+  className="cart"
+>
   <CartTable
     changeQuantity={[MockFunction]}
     deleteProductFromCart={[MockFunction]}
@@ -74,18 +82,18 @@ exports[`<Cart /> renders properly with not empty cart and currentUserName provi
     sortColumn="id"
   />
   <div
-    className="row justify-content-between mx-2"
+    className="cart-footer"
   >
     <TotalCost
-      customClasses="h5 my-auto"
+      customClasses="cart-footer__total"
       total={5}
     />
     <Link
-      className="btn btn-secondary justify-content-end"
+      className="button button-solid cart-footer__order-button"
       to="/order/mycart"
     >
       Order Now!
     </Link>
   </div>
-</Fragment>
+</div>
 `;

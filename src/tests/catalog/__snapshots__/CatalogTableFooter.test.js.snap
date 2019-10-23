@@ -2,48 +2,41 @@
 
 exports[`<CatalogTableFooter /> check render properly 1`] = `
 <div
-  className="row justify-content-between mx-0 mx-sm-2"
+  className="catalog__footer"
 >
-  <div
-    className="col"
-  >
-    <Pagination
-      currentPage={1}
-      itemsCount={3}
-      onPageChange={[MockFunction]}
-      pageSize={10}
-      pageSizeOptions={
-        Array [
-          Object {
-            "id": "5",
-            "name": "5",
-          },
-        ]
-      }
-    />
-  </div>
-  <div
-    className="col"
-  >
-    <DropdownInline
-      defaultText=""
-      error=""
-      label="Items on page"
-      labelClasses=""
-      name="itemsOnPage"
-      onChange={[MockFunction]}
-      options={
-        Array [
-          Object {
-            "id": "5",
-            "name": "5",
-          },
-        ]
-      }
-      selectClasses="form-control"
-      value="10"
-      wrapperClasses="justify-content-end"
-    />
-  </div>
+  <Pagination
+    currentPage={1}
+    itemsCount={3}
+    onPageChange={[MockFunction]}
+    pageSize={10}
+    pageSizeOptions={
+      Array [
+        Object {
+          "id": "5",
+          "name": "5",
+        },
+      ]
+    }
+    wrapperClasses="page-links"
+  />
+  <DropdownInline
+    defaultText=""
+    error=""
+    label="Items on page"
+    labelClasses=""
+    name="itemsOnPage"
+    onChange={[MockFunction]}
+    options={
+      Array [
+        Object {
+          "id": "5",
+          "name": "5",
+        },
+      ]
+    }
+    selectClasses="page-size__dropdown"
+    value="10"
+    wrapperClasses="page-size"
+  />
 </div>
 `;

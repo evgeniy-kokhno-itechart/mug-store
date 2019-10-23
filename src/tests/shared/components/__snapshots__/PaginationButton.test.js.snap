@@ -2,7 +2,7 @@
 
 exports[`<PaginationButton /> check render properly 1`] = `
 <button
-  className="page-link clickable"
+  className="pagination-button focusable clickable"
   onClick={[Function]}
   type="button"
 >

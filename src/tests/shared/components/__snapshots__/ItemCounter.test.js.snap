@@ -2,17 +2,17 @@
 
 exports[`<ItemCounter /> renders with decrement button disabled if count=1 1`] = `
 <div
-  className="input-group input-group-sm mx-auto flex-nowrap item-counter"
+  className="item-counter"
 >
   <button
-    className="item-counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2"
+    className="item-counter__btn counter-btn-decrease focusable"
     disabled="disabled"
     onClick={[Function]}
     type="button"
   >
     <FontAwesomeIcon
       border={false}
-      className="my-auto"
+      className=""
       fixedWidth={false}
       flip={null}
       icon="minus"
@@ -30,19 +30,19 @@ exports[`<ItemCounter /> renders with decrement button disabled if count=1 1`] =
     />
   </button>
   <input
-    className="form-control inline text-center p-1 p-lg-2"
+    className="item-counter__input focusable"
     onChange={[Function]}
     type="text"
     value={1}
   />
   <button
-    className="item-counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
+    className="item-counter__btn counter-btn-increase focusable"
     onClick={[Function]}
     type="button"
   >
     <FontAwesomeIcon
       border={false}
-      className="my-auto"
+      className=""
       fixedWidth={false}
       flip={null}
       icon="plus"
@@ -64,17 +64,17 @@ exports[`<ItemCounter /> renders with decrement button disabled if count=1 1`] =
 
 exports[`<ItemCounter /> renders with decrement button enabled if count is 2 (i.e. greater than 1) 1`] = `
 <div
-  className="input-group input-group-sm mx-auto flex-nowrap item-counter"
+  className="item-counter"
 >
   <button
-    className="item-counter__btn input-group-prepend btn btn-secondary btn-sm p-1 p-lg-2"
+    className="item-counter__btn counter-btn-decrease focusable"
     disabled=""
     onClick={[Function]}
     type="button"
   >
     <FontAwesomeIcon
       border={false}
-      className="my-auto"
+      className=""
       fixedWidth={false}
       flip={null}
       icon="minus"
@@ -92,19 +92,19 @@ exports[`<ItemCounter /> renders with decrement button enabled if count is 2 (i.
     />
   </button>
   <input
-    className="form-control inline text-center p-1 p-lg-2"
+    className="item-counter__input focusable"
     onChange={[Function]}
     type="text"
     value={2}
   />
   <button
-    className="item-counter__btn input-group-append btn btn-secondary btn-sm p-1 p-lg-2"
+    className="item-counter__btn counter-btn-increase focusable"
     onClick={[Function]}
     type="button"
   >
     <FontAwesomeIcon
       border={false}
-      className="my-auto"
+      className=""
       fixedWidth={false}
       flip={null}
       icon="plus"

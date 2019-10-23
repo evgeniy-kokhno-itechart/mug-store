@@ -2,9 +2,11 @@
 
 exports[`<OrderTable /> renders properly with default props 1`] = `
 <Fragment>
-  <p>
+  <h2
+    className="order-summary__message"
+  >
     Please check the list of products
-  </p>
+  </h2>
   <Table
     columns={
       Array [
@@ -15,7 +17,7 @@ exports[`<OrderTable /> renders properly with default props 1`] = `
           "label": "Title",
         },
         Object {
-          "customClasses": "text-center",
+          "customClasses": "order-table__column-quantity",
           "label": "Quantity",
           "path": "quantity",
         },
@@ -27,7 +29,7 @@ exports[`<OrderTable /> renders properly with default props 1`] = `
         },
       ]
     }
-    customClasses="order-table"
+    customClasses="order-summary__table order-table"
     items={
       Array [
         Object {

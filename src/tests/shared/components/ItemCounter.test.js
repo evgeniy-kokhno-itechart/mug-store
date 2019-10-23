@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import ItemCounter from '../../../app/shared/components/controls/ItemCounter';
+import ItemCounter from '../../../app/shared/components/controls/ItemCounter/ItemCounter';
 
 configure({ adapter: new Adapter() });
 
@@ -33,13 +33,13 @@ describe('<ItemCounter />', () => {
   });
 
   it('calls onQuantityChanged with increased by 1 value on increment button click', () => {
-    ItemCounterWrapper.find('.input-group-append').simulate('click');
+    ItemCounterWrapper.find('.counter-btn-increase').simulate('click');
     expect(onQuantityChanged).toHaveBeenCalledWith({ id: '1', quantity: 2 });
   });
 
   it('calls onQuantityChanged with decreased by 1 value on decrement button click', () => {
     ItemCounterWrapper.setProps({ item: { id: '1', quantity: 3 } });
-    ItemCounterWrapper.find('.input-group-prepend').simulate('click');
+    ItemCounterWrapper.find('.counter-btn-decrease').simulate('click');
     expect(onQuantityChanged).toHaveBeenCalledWith({ id: '1', quantity: 2 });
   });
 

@@ -2,55 +2,49 @@
 
 exports[`<InformationItem /> check InformationItem renders properly when info is number 1`] = `
 <div
-  className="row justify-content-center mx-3 my-2 mx-md-2"
+  className="information-item"
 >
-  <span
-    className="col-md-4 text-md-right px-0 px-md-1"
+  <p
+    className="information-item__label"
   >
-    <b>
-      test label
-    </b>
-  </span>
-  <span
-    className="col-md-4 text-md-left px-0 px-md-1"
+    test label
+  </p>
+  <p
+    className="information-item__info"
   >
     1
-  </span>
+  </p>
 </div>
 `;
 
 exports[`<InformationItem /> check InformationItem renders properly when info is string 1`] = `
 <div
-  className="row justify-content-center mx-3 my-2 mx-md-2"
+  className="information-item"
 >
-  <span
-    className="col-md-4 text-md-right px-0 px-md-1"
+  <p
+    className="information-item__label"
   >
-    <b>
-      test label
-    </b>
-  </span>
-  <span
-    className="col-md-4 text-md-left px-0 px-md-1"
+    test label
+  </p>
+  <p
+    className="information-item__info"
   >
     test info
-  </span>
+  </p>
 </div>
 `;
 
 exports[`<InformationItem /> check InformationItem renders properly with default props 1`] = `
 <div
-  className="row justify-content-center mx-3 my-2 mx-md-2"
+  className="information-item"
 >
-  <span
-    className="col-md-4 text-md-right px-0 px-md-1"
+  <p
+    className="information-item__label"
   >
-    <b>
-      test label
-    </b>
-  </span>
-  <span
-    className="col-md-4 text-md-left px-0 px-md-1"
+    test label
+  </p>
+  <p
+    className="information-item__info"
   />
 </div>
 `;

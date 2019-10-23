@@ -2,7 +2,7 @@
 
 exports[`<NotFound /> check NotFound renders properly 1`] = `
 <h1
-  className="text-center mt-3"
+  className="not-found"
 >
   Not Found
 </h1>

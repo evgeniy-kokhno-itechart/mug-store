@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TotalCost /> check render with customClasses = testclass provided 1`] = `
-<p
+<span
   className="testclass"
 >
   Total cost: 100
-</p>
+</span>
 `;
 
 exports[`<TotalCost /> check render without customClasses provided 1`] = `
-<p
+<span
   className=""
 >
   Total cost: 100
-</p>
+</span>
 `;

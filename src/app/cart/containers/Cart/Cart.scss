@@ -1,6 +1,11 @@
 .cart {
     margin: 1rem 0;
+
+    &__empty-message {
+        text-align: center;
+    }
 }
+
 .cart-footer {
     display: flex;
     flex-wrap: wrap;
@@ -18,8 +23,4 @@
         flex: 1;
         justify-content: flex-end;
     }
-}
-
-.cart__empty-message {
-    text-align: center;
 }

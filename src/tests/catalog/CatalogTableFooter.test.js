@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import CatalogTableFooter from '../../app/catalog/components/CatalogTableFooter';
+import CatalogTableFooter from '../../app/catalog/components/CatalogTableFooter/CatalogTableFooter';
 
 configure({ adapter: new Adapter() });
 

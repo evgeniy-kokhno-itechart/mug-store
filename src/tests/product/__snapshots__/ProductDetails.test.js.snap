@@ -17,19 +17,21 @@ exports[`<ProductDetails /> renders ErrorMessage once productStatus.hasFailed an
 exports[`<ProductDetails /> renders Spinner with default props 1`] = `
 <Spinner
   spinnerClasses="spinner--medium"
-  wrapperClasses="mt-5"
+  wrapperClasses="prod-details__spinner"
 />
 `;
 
 exports[`<ProductDetails /> renders product details if productStatus.isInProcess = false 1`] = `
-<Fragment>
+<div
+  className="prod-details"
+>
   <h1
-    className="display-5 text-center m-3"
+    className="prod-details__header"
   >
     Mug 1 Details
   </h1>
   <div
-    className="col-10 col-md-9 col-lg-7 mx-auto"
+    className="prod-details__images"
   >
     <ImageGallery
       autoPlay={false}
@@ -113,13 +115,13 @@ exports[`<ProductDetails /> renders product details if productStatus.isInProcess
     label="Price"
   />
   <div
-    className="d-flex m-3"
+    className="prod-details__footer"
   >
     <ToCatalogButton
       customClasses=""
     />
     <BuyNowButton
-      customClasses="ml-auto"
+      customClasses=""
       onBuyNow={[MockFunction]}
       product={
         Object {
@@ -141,5 +143,5 @@ exports[`<ProductDetails /> renders product details if productStatus.isInProcess
       }
     />
   </div>
-</Fragment>
+</div>
 `;

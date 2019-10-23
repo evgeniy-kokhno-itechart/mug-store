@@ -9,7 +9,7 @@ exports[`<Input /> check Input renders properly with custom type provided 1`] = 
   name="testname"
 >
   <input
-    className="form-control"
+    className="formgroup__input focusable"
     id="testname"
     key="testname"
     name="testname"
@@ -29,7 +29,7 @@ exports[`<Input /> check Input renders properly with default props 1`] = `
   name="testname"
 >
   <input
-    className="form-control"
+    className="formgroup__input focusable"
     id="testname"
     key="testname"
     name="testname"
@@ -49,7 +49,7 @@ exports[`<Input /> check Input renders properly with error 1`] = `
   name="testname"
 >
   <input
-    className="form-control"
+    className="formgroup__input focusable"
     id="testname"
     key="testname"
     name="testname"
@@ -69,7 +69,7 @@ exports[`<Input /> check Input renders properly with number value provided 1`] =
   name="testname"
 >
   <input
-    className="form-control"
+    className="formgroup__input focusable"
     id="testname"
     key="testname"
     name="testname"
@@ -89,7 +89,7 @@ exports[`<Input /> check Input renders properly with string value provided 1`] =
   name="testname"
 >
   <input
-    className="form-control"
+    className="formgroup__input focusable"
     id="testname"
     key="testname"
     name="testname"

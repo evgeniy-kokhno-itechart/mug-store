@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import ProductForm from '../../app/product/components/ProductForm';
+import ProductForm from '../../app/product/components/ProductForm/ProductForm';
 
 configure({ adapter: new Adapter() });
 

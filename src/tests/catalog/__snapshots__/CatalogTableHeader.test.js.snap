@@ -2,10 +2,10 @@
 
 exports[`<CatalogTableHeader /> check render properly 1`] = `
 <div
-  className="row justify-content-between mx-1 mx-sm-2"
+  className="catalog__header"
 >
   <div
-    className="col-12 col-md-5 col-lg-4 col-xl-3"
+    className="catalog-search-box"
   >
     <SearchBox
       key=""
@@ -13,31 +13,28 @@ exports[`<CatalogTableHeader /> check render properly 1`] = `
       value=""
     />
   </div>
-  <div
-    className="col-12 col-md col-lg-3 col-xl-2"
-  >
-    <SortBox
-      onSortChange={[MockFunction]}
-      sortColumnKey="title"
-      sortOptions={
-        Array [
-          Object {
-            "id": "title_desc",
-            "name": "Title Z-A",
-          },
-        ]
-      }
-    />
-  </div>
+  <SortBox
+    customClasses="catalog-sort-box"
+    onSortChange={[MockFunction]}
+    sortColumnKey="title"
+    sortOptions={
+      Array [
+        Object {
+          "id": "title_desc",
+          "name": "Title Z-A",
+        },
+      ]
+    }
+  />
 </div>
 `;
 
 exports[`<CatalogTableHeader /> check render with searchQuery provided 1`] = `
 <div
-  className="row justify-content-between mx-1 mx-sm-2"
+  className="catalog__header"
 >
   <div
-    className="col-12 col-md-5 col-lg-4 col-xl-3"
+    className="catalog-search-box"
   >
     <SearchBox
       key="test query"
@@ -45,31 +42,28 @@ exports[`<CatalogTableHeader /> check render with searchQuery provided 1`] = `
       value="test query"
     />
   </div>
-  <div
-    className="col-12 col-md col-lg-3 col-xl-2"
-  >
-    <SortBox
-      onSortChange={[MockFunction]}
-      sortColumnKey="title"
-      sortOptions={
-        Array [
-          Object {
-            "id": "title_desc",
-            "name": "Title Z-A",
-          },
-        ]
-      }
-    />
-  </div>
+  <SortBox
+    customClasses="catalog-sort-box"
+    onSortChange={[MockFunction]}
+    sortColumnKey="title"
+    sortOptions={
+      Array [
+        Object {
+          "id": "title_desc",
+          "name": "Title Z-A",
+        },
+      ]
+    }
+  />
 </div>
 `;
 
 exports[`<CatalogTableHeader /> render AddNewProduct button with currentUserRole admin provided 1`] = `
 <div
-  className="row justify-content-between mx-1 mx-sm-2"
+  className="catalog__header"
 >
   <div
-    className="col-12 col-md-5 col-lg-4 col-xl-3"
+    className="catalog-search-box"
   >
     <SearchBox
       key=""
@@ -77,31 +71,24 @@ exports[`<CatalogTableHeader /> render AddNewProduct button with currentUserRole
       value=""
     />
   </div>
-  <div
-    className="col-12 col-md-4 col-lg-3 col-xl-3"
+  <Link
+    className="button button-solid catalog-add-product-btn"
+    to="/edit/products/new"
   >
-    <Link
-      className="btn btn-secondary mt-1 mt-md-0 w-100 px-md-2"
-      to="/edit/products/new"
-    >
-      Add New Product
-    </Link>
-  </div>
-  <div
-    className="col-12 col-md col-lg-3 col-xl-2"
-  >
-    <SortBox
-      onSortChange={[MockFunction]}
-      sortColumnKey="title"
-      sortOptions={
-        Array [
-          Object {
-            "id": "title_desc",
-            "name": "Title Z-A",
-          },
-        ]
-      }
-    />
-  </div>
+    Add New Product
+  </Link>
+  <SortBox
+    customClasses="catalog-sort-box"
+    onSortChange={[MockFunction]}
+    sortColumnKey="title"
+    sortOptions={
+      Array [
+        Object {
+          "id": "title_desc",
+          "name": "Title Z-A",
+        },
+      ]
+    }
+  />
 </div>
 `;

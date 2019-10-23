@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LoginForm /> renders properly with default props 1`] = `
-<Fragment>
+<div
+  className="login-form"
+>
   <h1
-    className="text-center m-3"
+    className="login-form__header"
   >
     Login
   </h1>
   <form
-    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+    className="login-form__content"
     onSubmit={[Function]}
   >
     <Input
@@ -90,7 +92,7 @@ exports[`<LoginForm /> renders properly with default props 1`] = `
       value=""
     />
     <button
-      className="btn btn-secondary w-100"
+      className="button button-solid login-form-button"
       disabled={
         Object {
           "password": "Password is a required field",
@@ -102,5 +104,5 @@ exports[`<LoginForm /> renders properly with default props 1`] = `
       Login
     </button>
   </form>
-</Fragment>
+</div>
 `;

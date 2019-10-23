@@ -22,7 +22,7 @@ exports[`<DropdownInline /> renders properly with default props 1`] = `
   }
   selectClasses=""
   value=""
-  wrapperClasses="form-inline "
+  wrapperClasses="dropdown--inline "
 />
 `;
 
@@ -48,7 +48,7 @@ exports[`<DropdownInline /> renders properly with defaultText 1`] = `
   }
   selectClasses=""
   value=""
-  wrapperClasses="form-inline "
+  wrapperClasses="dropdown--inline "
 />
 `;
 
@@ -74,7 +74,7 @@ exports[`<DropdownInline /> renders properly with error 1`] = `
   }
   selectClasses=""
   value=""
-  wrapperClasses="form-inline "
+  wrapperClasses="dropdown--inline "
 />
 `;
 
@@ -100,7 +100,7 @@ exports[`<DropdownInline /> renders properly with labelClasses 1`] = `
   }
   selectClasses=""
   value=""
-  wrapperClasses="form-inline "
+  wrapperClasses="dropdown--inline "
 />
 `;
 
@@ -126,7 +126,7 @@ exports[`<DropdownInline /> renders properly with selectClasses 1`] = `
   }
   selectClasses="testselectclass"
   value=""
-  wrapperClasses="form-inline "
+  wrapperClasses="dropdown--inline "
 />
 `;
 
@@ -152,7 +152,7 @@ exports[`<DropdownInline /> renders properly with value provided 1`] = `
   }
   selectClasses=""
   value="2"
-  wrapperClasses="form-inline "
+  wrapperClasses="dropdown--inline "
 />
 `;
 
@@ -178,6 +178,6 @@ exports[`<DropdownInline /> renders properly with wrapperClasses 1`] = `
   }
   selectClasses=""
   value=""
-  wrapperClasses="form-inline testwrapperclass"
+  wrapperClasses="dropdown--inline testwrapperclass"
 />
 `;

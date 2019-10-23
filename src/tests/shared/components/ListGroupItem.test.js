@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import ListGroupItem from '../../../app/shared/components/controls/ListGroupItem';
+import ListGroupItem from '../../../app/shared/components/controls/ListGroupItem/ListGroupItem';
 
 configure({ adapter: new Adapter() });
 

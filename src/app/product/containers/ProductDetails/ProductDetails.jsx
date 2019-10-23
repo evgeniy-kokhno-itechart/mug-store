@@ -84,7 +84,7 @@ export class ProductDetails extends Component {
 
         <div className="prod-details__footer">
           <ToCatalogButton />
-          <BuyNowButton customClasses="" onBuyNow={this.props.addToCart} product={productState.product} />
+          <BuyNowButton onBuyNow={this.props.addToCart} product={productState.product} />
         </div>
       </div>
     );

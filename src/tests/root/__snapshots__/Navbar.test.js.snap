@@ -2,385 +2,485 @@
 
 exports[`<Navbar /> renders cart count badge with cart provided 1`] = `
 <nav
-  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+  className="nav-bar"
 >
-  <button
-    aria-controls="mugStoreNavbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    className="navbar-toggler"
-    data-target="#mugStoreNavbar"
-    data-toggle="collapse"
-    type="button"
+  <input
+    className="nav-bar__checkbox"
+    id="nav-toggle"
+    type="checkbox"
+  />
+  <label
+    className="nav-bar__burger-btn"
+    htmlFor="nav-toggle"
+    role="button"
   >
-    <span
-      className="navbar-toggler-icon"
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="bars"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
     />
-  </button>
+  </label>
   <div
-    className="collapse navbar-collapse"
-    id="mugStoreNavbar"
+    className="nav-bar__collapse-wrapper"
   >
-    <NavLink
-      className="navbar-brand"
-      to="/"
-    >
-      Mug Store
-    </NavLink>
     <div
-      className="navbar-nav"
+      className="nav-bar__left"
     >
       <NavLink
-        className=" nav-item nav-link"
+        className="navbrand"
+        to="/"
+      >
+        Mug Store
+      </NavLink>
+      <NavLink
+        className="navlink"
+        role="navigation"
         to="/catalog"
       >
         Catalog
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/about"
       >
         About
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/cart"
       >
         Cart
         <span
-          className="badge badge-warning ml-1"
+          className="cart-count-badge"
         >
           11
         </span>
       </NavLink>
     </div>
-  </div>
-  <div>
-    <CurrenciesDropdown
-      currencyState={
-        Object {
-          "currencies": Array [],
-          "currenciesStatus": Object {
-            "error": "",
-            "hasFailed": false,
-            "isInProcess": true,
-          },
-          "currentCurrency": Object {
-            "id": "0",
-          },
+    <div
+      className="nav-bar__right"
+    >
+      <CurrenciesDropdown
+        currencyState={
+          Object {
+            "currencies": Array [],
+            "currenciesStatus": Object {
+              "error": "",
+              "hasFailed": false,
+              "isInProcess": true,
+            },
+            "currentCurrency": Object {
+              "id": "0",
+            },
+          }
         }
-      }
-      onChange={[MockFunction]}
-    />
-    <LoginLogoutBar
-      currentUserName=""
-      logoutUser={[MockFunction]}
-    />
+        onChange={[MockFunction]}
+      />
+      <LoginLogoutBar
+        currentUserName=""
+        logoutUser={[MockFunction]}
+      />
+    </div>
   </div>
 </nav>
 `;
 
 exports[`<Navbar /> renders currencies dropdown filled with currencies list when provided 1`] = `
 <nav
-  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+  className="nav-bar"
 >
-  <button
-    aria-controls="mugStoreNavbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    className="navbar-toggler"
-    data-target="#mugStoreNavbar"
-    data-toggle="collapse"
-    type="button"
+  <input
+    className="nav-bar__checkbox"
+    id="nav-toggle"
+    type="checkbox"
+  />
+  <label
+    className="nav-bar__burger-btn"
+    htmlFor="nav-toggle"
+    role="button"
   >
-    <span
-      className="navbar-toggler-icon"
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="bars"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
     />
-  </button>
+  </label>
   <div
-    className="collapse navbar-collapse"
-    id="mugStoreNavbar"
+    className="nav-bar__collapse-wrapper"
   >
-    <NavLink
-      className="navbar-brand"
-      to="/"
-    >
-      Mug Store
-    </NavLink>
     <div
-      className="navbar-nav"
+      className="nav-bar__left"
     >
       <NavLink
-        className=" nav-item nav-link"
+        className="navbrand"
+        to="/"
+      >
+        Mug Store
+      </NavLink>
+      <NavLink
+        className="navlink"
+        role="navigation"
         to="/catalog"
       >
         Catalog
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/about"
       >
         About
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/cart"
       >
         Cart
       </NavLink>
     </div>
-  </div>
-  <div>
-    <CurrenciesDropdown
-      currencyState={
-        Object {
-          "currencies": Array [
-            Object {
-              "id": "1",
-              "name": "CURR1",
+    <div
+      className="nav-bar__right"
+    >
+      <CurrenciesDropdown
+        currencyState={
+          Object {
+            "currencies": Array [
+              Object {
+                "id": "1",
+                "name": "CURR1",
+              },
+              Object {
+                "id": "2",
+                "name": "CURR2",
+              },
+            ],
+            "currenciesStatus": Object {
+              "error": "",
+              "hasFailed": false,
+              "isInProcess": false,
             },
-            Object {
+            "currentCurrency": Object {
               "id": "2",
-              "name": "CURR2",
             },
-          ],
-          "currenciesStatus": Object {
-            "error": "",
-            "hasFailed": false,
-            "isInProcess": false,
-          },
-          "currentCurrency": Object {
-            "id": "2",
-          },
+          }
         }
-      }
-      onChange={[MockFunction]}
-    />
-    <LoginLogoutBar
-      currentUserName=""
-      logoutUser={[MockFunction]}
-    />
+        onChange={[MockFunction]}
+      />
+      <LoginLogoutBar
+        currentUserName=""
+        logoutUser={[MockFunction]}
+      />
+    </div>
   </div>
 </nav>
 `;
 
 exports[`<Navbar /> renders properly with default props 1`] = `
 <nav
-  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+  className="nav-bar"
 >
-  <button
-    aria-controls="mugStoreNavbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    className="navbar-toggler"
-    data-target="#mugStoreNavbar"
-    data-toggle="collapse"
-    type="button"
+  <input
+    className="nav-bar__checkbox"
+    id="nav-toggle"
+    type="checkbox"
+  />
+  <label
+    className="nav-bar__burger-btn"
+    htmlFor="nav-toggle"
+    role="button"
   >
-    <span
-      className="navbar-toggler-icon"
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="bars"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
     />
-  </button>
+  </label>
   <div
-    className="collapse navbar-collapse"
-    id="mugStoreNavbar"
+    className="nav-bar__collapse-wrapper"
   >
-    <NavLink
-      className="navbar-brand"
-      to="/"
-    >
-      Mug Store
-    </NavLink>
     <div
-      className="navbar-nav"
+      className="nav-bar__left"
     >
       <NavLink
-        className=" nav-item nav-link"
+        className="navbrand"
+        to="/"
+      >
+        Mug Store
+      </NavLink>
+      <NavLink
+        className="navlink"
+        role="navigation"
         to="/catalog"
       >
         Catalog
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/about"
       >
         About
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/cart"
       >
         Cart
       </NavLink>
     </div>
-  </div>
-  <div>
-    <CurrenciesDropdown
-      currencyState={
-        Object {
-          "currencies": Array [],
-          "currenciesStatus": Object {
-            "error": "",
-            "hasFailed": false,
-            "isInProcess": true,
-          },
-          "currentCurrency": Object {
-            "id": "0",
-          },
+    <div
+      className="nav-bar__right"
+    >
+      <CurrenciesDropdown
+        currencyState={
+          Object {
+            "currencies": Array [],
+            "currenciesStatus": Object {
+              "error": "",
+              "hasFailed": false,
+              "isInProcess": true,
+            },
+            "currentCurrency": Object {
+              "id": "0",
+            },
+          }
         }
-      }
-      onChange={[MockFunction]}
-    />
-    <LoginLogoutBar
-      currentUserName=""
-      logoutUser={[MockFunction]}
-    />
+        onChange={[MockFunction]}
+      />
+      <LoginLogoutBar
+        currentUserName=""
+        logoutUser={[MockFunction]}
+      />
+    </div>
   </div>
 </nav>
 `;
 
 exports[`<Navbar /> renders user name with currentUser provided 1`] = `
 <nav
-  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+  className="nav-bar"
 >
-  <button
-    aria-controls="mugStoreNavbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    className="navbar-toggler"
-    data-target="#mugStoreNavbar"
-    data-toggle="collapse"
-    type="button"
+  <input
+    className="nav-bar__checkbox"
+    id="nav-toggle"
+    type="checkbox"
+  />
+  <label
+    className="nav-bar__burger-btn"
+    htmlFor="nav-toggle"
+    role="button"
   >
-    <span
-      className="navbar-toggler-icon"
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="bars"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
     />
-  </button>
+  </label>
   <div
-    className="collapse navbar-collapse"
-    id="mugStoreNavbar"
+    className="nav-bar__collapse-wrapper"
   >
-    <NavLink
-      className="navbar-brand"
-      to="/"
-    >
-      Mug Store
-    </NavLink>
     <div
-      className="navbar-nav"
+      className="nav-bar__left"
     >
       <NavLink
-        className=" nav-item nav-link"
+        className="navbrand"
+        to="/"
+      >
+        Mug Store
+      </NavLink>
+      <NavLink
+        className="navlink"
+        role="navigation"
         to="/catalog"
       >
         Catalog
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/about"
       >
         About
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/cart"
       >
         Cart
       </NavLink>
     </div>
-  </div>
-  <div>
-    <CurrenciesDropdown
-      currencyState={
-        Object {
-          "currencies": Array [],
-          "currenciesStatus": Object {
-            "error": "",
-            "hasFailed": false,
-            "isInProcess": true,
-          },
-          "currentCurrency": Object {
-            "id": "0",
-          },
+    <div
+      className="nav-bar__right"
+    >
+      <CurrenciesDropdown
+        currencyState={
+          Object {
+            "currencies": Array [],
+            "currenciesStatus": Object {
+              "error": "",
+              "hasFailed": false,
+              "isInProcess": true,
+            },
+            "currentCurrency": Object {
+              "id": "0",
+            },
+          }
         }
-      }
-      onChange={[MockFunction]}
-    />
-    <LoginLogoutBar
-      currentUserName="testUsername"
-      logoutUser={[MockFunction]}
-    />
+        onChange={[MockFunction]}
+      />
+      <LoginLogoutBar
+        currentUserName="testUsername"
+        logoutUser={[MockFunction]}
+      />
+    </div>
   </div>
 </nav>
 `;
 
 exports[`<Navbar /> renders with currenciesStatus.hasFailed and error provided 1`] = `
 <nav
-  className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"
+  className="nav-bar"
 >
-  <button
-    aria-controls="mugStoreNavbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    className="navbar-toggler"
-    data-target="#mugStoreNavbar"
-    data-toggle="collapse"
-    type="button"
+  <input
+    className="nav-bar__checkbox"
+    id="nav-toggle"
+    type="checkbox"
+  />
+  <label
+    className="nav-bar__burger-btn"
+    htmlFor="nav-toggle"
+    role="button"
   >
-    <span
-      className="navbar-toggler-icon"
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="bars"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
     />
-  </button>
+  </label>
   <div
-    className="collapse navbar-collapse"
-    id="mugStoreNavbar"
+    className="nav-bar__collapse-wrapper"
   >
-    <NavLink
-      className="navbar-brand"
-      to="/"
-    >
-      Mug Store
-    </NavLink>
     <div
-      className="navbar-nav"
+      className="nav-bar__left"
     >
       <NavLink
-        className=" nav-item nav-link"
+        className="navbrand"
+        to="/"
+      >
+        Mug Store
+      </NavLink>
+      <NavLink
+        className="navlink"
+        role="navigation"
         to="/catalog"
       >
         Catalog
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/about"
       >
         About
       </NavLink>
       <NavLink
-        className="nav-item nav-link"
+        className="navlink"
+        role="navigation"
         to="/cart"
       >
         Cart
       </NavLink>
     </div>
-  </div>
-  <div>
-    <CurrenciesDropdown
-      currencyState={
-        Object {
-          "currenciesStatus": Object {
-            "error": "test error",
-            "hasFailed": true,
-            "isInProcess": false,
-          },
+    <div
+      className="nav-bar__right"
+    >
+      <CurrenciesDropdown
+        currencyState={
+          Object {
+            "currenciesStatus": Object {
+              "error": "test error",
+              "hasFailed": true,
+              "isInProcess": false,
+            },
+          }
         }
-      }
-      onChange={[MockFunction]}
-    />
-    <LoginLogoutBar
-      currentUserName=""
-      logoutUser={[MockFunction]}
-    />
+        onChange={[MockFunction]}
+      />
+      <LoginLogoutBar
+        currentUserName=""
+        logoutUser={[MockFunction]}
+      />
+    </div>
   </div>
 </nav>
 `;

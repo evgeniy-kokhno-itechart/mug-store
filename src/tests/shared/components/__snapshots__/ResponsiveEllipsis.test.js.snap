@@ -3,6 +3,7 @@
 exports[`<ResponsiveEllipsis /> renders properly with default props 1`] = `
 <Responsive(LinesEllipsis)
   basedOn="words"
+  className=""
   ellipsis="..."
   innerRef={[Function]}
   maxLine="1"
@@ -19,6 +20,7 @@ exports[`<ResponsiveEllipsis /> renders properly with default props 1`] = `
 exports[`<ResponsiveEllipsis /> renders properly with long text and maxLine provided 1`] = `
 <Responsive(LinesEllipsis)
   basedOn="words"
+  className=""
   ellipsis="..."
   innerRef={[Function]}
   maxLine="2"
@@ -35,6 +37,7 @@ exports[`<ResponsiveEllipsis /> renders properly with long text and maxLine prov
 exports[`<ResponsiveEllipsis /> renders properly with text and basedOn letters provided 1`] = `
 <Responsive(LinesEllipsis)
   basedOn="letters"
+  className=""
   ellipsis="..."
   innerRef={[Function]}
   maxLine="1"
@@ -51,6 +54,7 @@ exports[`<ResponsiveEllipsis /> renders properly with text and basedOn letters p
 exports[`<ResponsiveEllipsis /> renders properly with text and basedOn words provided 1`] = `
 <Responsive(LinesEllipsis)
   basedOn="words"
+  className=""
   ellipsis="..."
   innerRef={[Function]}
   maxLine="1"
@@ -67,6 +71,7 @@ exports[`<ResponsiveEllipsis /> renders properly with text and basedOn words pro
 exports[`<ResponsiveEllipsis /> renders properly with text and ellipsis provided 1`] = `
 <Responsive(LinesEllipsis)
   basedOn="words"
+  className=""
   ellipsis="***"
   innerRef={[Function]}
   maxLine="1"
@@ -83,6 +88,7 @@ exports[`<ResponsiveEllipsis /> renders properly with text and ellipsis provided
 exports[`<ResponsiveEllipsis /> renders properly with text provided 1`] = `
 <Responsive(LinesEllipsis)
   basedOn="words"
+  className=""
   ellipsis="..."
   innerRef={[Function]}
   maxLine="1"

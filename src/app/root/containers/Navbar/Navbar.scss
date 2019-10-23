@@ -43,7 +43,7 @@
         font-size: 2rem;
         text-align: center;
         color: $color-white;
-        background-color: $color-gray-dark;
+        background-image: linear-gradient(to right bottom, rgba($color-gray-dark, 0.7), rgba($color-gray-dark, 1));
         border: 1px solid black;
         min-width: 3rem;
         display: none;
@@ -81,13 +81,13 @@
 .navlink {
     color: $color-gray-light;
     margin: 0.5rem;
-    
-    &.active {
-        color: $color-white;
-    }
 
     &:hover {
         text-decoration: none;
+        color: $color-white;
+    }
+
+    &.active {
         color: $color-white;
     }
 }

@@ -21,7 +21,7 @@ export class Order extends Component {
             <OrderTable sortColumn="title" products={cart.products} isCurrencyLoading={isCurrencyLoading} />
             <TotalCost total={cart.totalCost} customClasses="order-total-cost" />
           </div>
-          <div className="order__order-form">
+          <div className="order-form">
             <OrderForm currentUser={currentUser} onSubmit={this.submitOrder} />
           </div>
         </div>

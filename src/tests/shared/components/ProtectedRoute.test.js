@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import { BrowserRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../../../app/shared/components/markup/ProtectedRoute';
-import Spinner from '../../../app/shared/components/markup/Spinner';
+import Spinner from '../../../app/shared/components/markup/Spinner/Spinner';
 
 configure({ adapter: new Adapter() });
 
@@ -32,7 +32,7 @@ describe('<ProtectedRoute />', () => {
   });
 
   it('renders properly with mock Component provided', () => {
-    jest.mock('../../../app/shared/components/markup/Spinner', () => {});
+    jest.mock('../../../app/shared/components/markup/Spinner/Spinner', () => {});
     ProtectedRouteWrapper = shallow(
       <BrowserRouter>
         <ProtectedRoute path="/about" currentUserName="Test User Name" component={<Spinner />} />

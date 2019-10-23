@@ -3,13 +3,13 @@
 exports[`<Dropdown /> renders properly with default props 1`] = `
 <FormGroup
   error=""
-  groupClasses="form-group flex-nowrap "
+  groupClasses="dropdown "
   label="label"
-  labelClasses="mr-2 text-nowrap "
+  labelClasses="dropdown__label "
   name="name"
 >
   <select
-    className=""
+    className="dropdown__selector focusable "
     id="name"
     name="name"
     onChange={[Function]}
@@ -34,13 +34,13 @@ exports[`<Dropdown /> renders properly with default props 1`] = `
 exports[`<Dropdown /> renders properly with defaultText 1`] = `
 <FormGroup
   error=""
-  groupClasses="form-group flex-nowrap "
+  groupClasses="dropdown "
   label="label"
-  labelClasses="mr-2 text-nowrap "
+  labelClasses="dropdown__label "
   name="name"
 >
   <select
-    className=""
+    className="dropdown__selector focusable "
     id="name"
     name="name"
     onChange={[Function]}
@@ -68,13 +68,13 @@ exports[`<Dropdown /> renders properly with defaultText 1`] = `
 exports[`<Dropdown /> renders properly with error 1`] = `
 <FormGroup
   error="test error"
-  groupClasses="form-group flex-nowrap "
+  groupClasses="dropdown "
   label="label"
-  labelClasses="mr-2 text-nowrap "
+  labelClasses="dropdown__label "
   name="name"
 >
   <select
-    className=""
+    className="dropdown__selector focusable "
     id="name"
     name="name"
     onChange={[Function]}
@@ -99,13 +99,13 @@ exports[`<Dropdown /> renders properly with error 1`] = `
 exports[`<Dropdown /> renders properly with labelClasses 1`] = `
 <FormGroup
   error=""
-  groupClasses="form-group flex-nowrap "
+  groupClasses="dropdown "
   label="label"
-  labelClasses="mr-2 text-nowrap testlabelclass"
+  labelClasses="dropdown__label testlabelclass"
   name="name"
 >
   <select
-    className=""
+    className="dropdown__selector focusable "
     id="name"
     name="name"
     onChange={[Function]}
@@ -130,13 +130,13 @@ exports[`<Dropdown /> renders properly with labelClasses 1`] = `
 exports[`<Dropdown /> renders properly with selectClasses 1`] = `
 <FormGroup
   error=""
-  groupClasses="form-group flex-nowrap "
+  groupClasses="dropdown "
   label="label"
-  labelClasses="mr-2 text-nowrap "
+  labelClasses="dropdown__label "
   name="name"
 >
   <select
-    className="testselectclass"
+    className="dropdown__selector focusable testselectclass"
     id="name"
     name="name"
     onChange={[Function]}
@@ -161,13 +161,13 @@ exports[`<Dropdown /> renders properly with selectClasses 1`] = `
 exports[`<Dropdown /> renders properly with value provided 1`] = `
 <FormGroup
   error=""
-  groupClasses="form-group flex-nowrap "
+  groupClasses="dropdown "
   label="label"
-  labelClasses="mr-2 text-nowrap "
+  labelClasses="dropdown__label "
   name="name"
 >
   <select
-    className=""
+    className="dropdown__selector focusable "
     id="name"
     name="name"
     onChange={[Function]}
@@ -192,13 +192,13 @@ exports[`<Dropdown /> renders properly with value provided 1`] = `
 exports[`<Dropdown /> renders properly with wrapperClasses 1`] = `
 <FormGroup
   error=""
-  groupClasses="form-group flex-nowrap testwrapperclass"
+  groupClasses="dropdown testwrapperclass"
   label="label"
-  labelClasses="mr-2 text-nowrap "
+  labelClasses="dropdown__label "
   name="name"
 >
   <select
-    className=""
+    className="dropdown__selector focusable "
     id="name"
     name="name"
     onChange={[Function]}

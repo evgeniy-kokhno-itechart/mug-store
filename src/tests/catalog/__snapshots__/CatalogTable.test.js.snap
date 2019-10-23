@@ -103,7 +103,7 @@ exports[`<CatalogTable /> renders admin columns with user.roles contains admin 1
       },
       Object {
         "content": [Function],
-        "customClasses": "d-none d-md-table-cell catalog-table__column-details",
+        "customClasses": "catalog-table__column-details",
         "key": "description",
         "label": "Details",
       },
@@ -199,7 +199,7 @@ exports[`<CatalogTable /> renders with default props 1`] = `
       },
       Object {
         "content": [Function],
-        "customClasses": "d-none d-md-table-cell catalog-table__column-details",
+        "customClasses": "catalog-table__column-details",
         "key": "description",
         "label": "Details",
       },

@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import ProfileForm from '../../app/user/components/ProfileForm';
+import ProfileForm from '../../app/user/components/ProfileForm/ProfileForm';
 
 configure({ adapter: new Adapter() });
 

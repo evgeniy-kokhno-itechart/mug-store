@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import BuyNowButton from '../../app/catalog/components/BuyNowButton';
+import BuyNowButton from '../../app/catalog/components/BuyNowButton/BuyNowButton';
 
 configure({ adapter: new Adapter() });
 

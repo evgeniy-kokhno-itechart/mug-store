@@ -2,88 +2,78 @@
 
 exports[`<SearchBox /> renders with default props with Search... text in the input 1`] = `
 <form
-  className="input-group"
+  className="search-form"
   onSubmit={[Function]}
 >
   <input
-    aria-label="Search"
-    className="form-control"
+    className="search-form__input focusable"
     name="query"
     onChange={[Function]}
     placeholder="Search..."
     type="text"
     value="Search..."
   />
-  <div
-    className="input-group-append"
+  <button
+    className="button button-outline focusable search-form__btn"
+    type="submit"
   >
-    <button
-      className="btn btn-outline-secondary"
-      type="submit"
-    >
-      <FontAwesomeIcon
-        border={false}
-        className=""
-        fixedWidth={false}
-        flip={null}
-        icon="search"
-        inverse={false}
-        listItem={false}
-        mask={null}
-        pull={null}
-        pulse={false}
-        rotation={null}
-        size={null}
-        spin={false}
-        symbol={false}
-        title=""
-        transform={null}
-      />
-    </button>
-  </div>
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="search"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </button>
 </form>
 `;
 
 exports[`<SearchBox /> renders with value = test search in the input 1`] = `
 <form
-  className="input-group"
+  className="search-form"
   onSubmit={[Function]}
 >
   <input
-    aria-label="Search"
-    className="form-control"
+    className="search-form__input focusable"
     name="query"
     onChange={[Function]}
     placeholder="Search..."
     type="text"
     value="test search"
   />
-  <div
-    className="input-group-append"
+  <button
+    className="button button-outline focusable search-form__btn"
+    type="submit"
   >
-    <button
-      className="btn btn-outline-secondary"
-      type="submit"
-    >
-      <FontAwesomeIcon
-        border={false}
-        className=""
-        fixedWidth={false}
-        flip={null}
-        icon="search"
-        inverse={false}
-        listItem={false}
-        mask={null}
-        pull={null}
-        pulse={false}
-        rotation={null}
-        size={null}
-        spin={false}
-        symbol={false}
-        title=""
-        transform={null}
-      />
-    </button>
-  </div>
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="search"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </button>
 </form>
 `;

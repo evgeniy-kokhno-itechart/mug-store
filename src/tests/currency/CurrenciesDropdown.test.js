@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import CurrensiesDropdown from '../../app/currency/components/CurrenciesDropdown';
+import CurrensiesDropdown from '../../app/currency/components/CurrenciesDropdown/CurrenciesDropdown';
 
 configure({ adapter: new Adapter() });
 

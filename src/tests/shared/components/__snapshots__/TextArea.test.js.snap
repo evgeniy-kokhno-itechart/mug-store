@@ -9,7 +9,7 @@ exports[`<TextArea /> check TextArea renders properly with default props 1`] = `
   name="testname"
 >
   <textarea
-    className="form-control"
+    className="formgroup__text-area focusable"
     id="testname"
     name="testname"
     onChange={[Function]}
@@ -27,7 +27,7 @@ exports[`<TextArea /> check TextArea renders properly with error 1`] = `
   name="testname"
 >
   <textarea
-    className="form-control"
+    className="formgroup__text-area focusable"
     id="testname"
     name="testname"
     onChange={[Function]}
@@ -45,7 +45,7 @@ exports[`<TextArea /> check TextArea renders properly with value provided 1`] = 
   name="testname"
 >
   <textarea
-    className="form-control"
+    className="formgroup__text-area focusable"
     id="testname"
     name="testname"
     onChange={[Function]}

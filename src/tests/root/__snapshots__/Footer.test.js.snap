@@ -2,17 +2,12 @@
 
 exports[`<Footer /> check Footer renders properly 1`] = `
 <footer
-  className="navbar-dark bg-dark text-center"
-  id="footer"
+  className="footer"
 >
-  <div
-    className="cont pt-2"
-  >
-    <span>
-      © 
-      2019
-       Copyright: Mug Store
-    </span>
-  </div>
+  <span>
+    © 
+    2019
+     Copyright: Mug Store
+  </span>
 </footer>
 `;

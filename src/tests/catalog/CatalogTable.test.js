@@ -5,7 +5,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter } from 'react-router-dom';
 
-import CatalogTable from '../../app/catalog/components/CatalogTable';
+import CatalogTable from '../../app/catalog/components/CatalogTable/CatalogTable';
 
 configure({ adapter: new Adapter() });
 

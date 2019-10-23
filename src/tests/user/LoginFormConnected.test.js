@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { LoginFormConnected } from '../../app/user/containers/LoginFormConnected';
+import { LoginFormConnected } from '../../app/user/containers/LoginFormConnected/LoginFormConnected';
 
 configure({ adapter: new Adapter() });
 

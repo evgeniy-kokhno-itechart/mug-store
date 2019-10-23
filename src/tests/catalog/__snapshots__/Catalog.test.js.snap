@@ -2,10 +2,10 @@
 
 exports[`<Catalog /> renders Add New Product button with products, categories and currentUserRoles admin included 1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -29,7 +29,7 @@ exports[`<Catalog /> renders Add New Product button with products, categories an
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={
@@ -190,30 +190,30 @@ exports[`<Catalog /> renders ErrorMessage 'test error products loading' when cat
 exports[`<Catalog /> renders Spinner when catalogProductsStatus.isInProcess is true 1`] = `
 <Spinner
   spinnerClasses="spinner--big"
-  wrapperClasses="mt-5"
+  wrapperClasses="catalog-page__spinner"
 />
 `;
 
 exports[`<Catalog /> renders Spinner when category.loadingStatus.isInProcess is true 1`] = `
 <Spinner
   spinnerClasses="spinner--big"
-  wrapperClasses="mt-5"
+  wrapperClasses="catalog-page__spinner"
 />
 `;
 
 exports[`<Catalog /> renders Spinner when productDeletingStatus.isInProcess is true 1`] = `
 <Spinner
   spinnerClasses="spinner--big"
-  wrapperClasses="mt-5"
+  wrapperClasses="catalog-page__spinner"
 />
 `;
 
 exports[`<Catalog /> renders catalog table and categories when their arrays both are not empty 1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -237,7 +237,7 @@ exports[`<Catalog /> renders catalog table and categories when their arrays both
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -368,10 +368,10 @@ exports[`<Catalog /> renders catalog table and categories when their arrays both
 
 exports[`<Catalog /> renders product table with default sorting option which is { path: title, order: asc }  1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -395,7 +395,7 @@ exports[`<Catalog /> renders product table with default sorting option which is 
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -526,10 +526,10 @@ exports[`<Catalog /> renders product table with default sorting option which is 
 
 exports[`<Catalog /> renders product table with sorting option { path: currentCurrencyPrice, order: asc }  1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -553,7 +553,7 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -684,10 +684,10 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
 
 exports[`<Catalog /> renders product table with sorting option { path: currentCurrencyPrice, order: desc }  1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -711,7 +711,7 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -842,10 +842,10 @@ exports[`<Catalog /> renders product table with sorting option { path: currentCu
 
 exports[`<Catalog /> renders product table with sorting option { path: rate, order: asc }  1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -869,7 +869,7 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -1000,10 +1000,10 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
 
 exports[`<Catalog /> renders product table with sorting option { path: rate, order: desc }  1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -1027,7 +1027,7 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -1158,10 +1158,10 @@ exports[`<Catalog /> renders product table with sorting option { path: rate, ord
 
 exports[`<Catalog /> renders product table with sorting option { path: title, order: desc }  1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -1185,7 +1185,7 @@ exports[`<Catalog /> renders product table with sorting option { path: title, or
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -1316,10 +1316,10 @@ exports[`<Catalog /> renders product table with sorting option { path: title, or
 
 exports[`<Catalog /> renders products whose titles are contain Mug word 1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -1343,7 +1343,7 @@ exports[`<Catalog /> renders products whose titles are contain Mug word 1`] = `
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -1458,10 +1458,10 @@ exports[`<Catalog /> renders products whose titles are contain Mug word 1`] = `
 
 exports[`<Catalog /> renders the 2nd page with pageSize 2 and currentPage 2 1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -1485,7 +1485,7 @@ exports[`<Catalog /> renders the 2nd page with pageSize 2 and currentPage 2 1`] 
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -1584,10 +1584,10 @@ exports[`<Catalog /> renders the 2nd page with pageSize 2 and currentPage 2 1`] 
 
 exports[`<Catalog /> renders the very first product page of table with pageSize 2 1`] = `
 <div
-  className="row mt-3"
+  className="catalog-page"
 >
   <div
-    className="col-11 col-sm-3 col-lg-2 mx-auto mb-2"
+    className="categories-list"
   >
     <ListGroup
       items={
@@ -1611,7 +1611,7 @@ exports[`<Catalog /> renders the very first product page of table with pageSize 
     />
   </div>
   <div
-    className="col-12 col-sm-9 col-lg-10"
+    className="catalog"
   >
     <CatalogTableHeader
       currentUserRoles={Array []}
@@ -1725,19 +1725,23 @@ exports[`<Catalog /> renders the very first product page of table with pageSize 
 `;
 
 exports[`<Catalog /> renders with default props 1`] = `
-<h1
-  className="m-2 text-center"
+<div
+  className="empty-message"
 >
-  There are no products in the catalog
+  <h1
+    className="empty-message__header"
+  >
+    There are no products in the catalog
+  </h1>
   <div
-    className="m-1 m-md-3 mx-auto"
+    className="empty-message__redirect-button"
   >
     <Link
-      className="btn btn-secondary"
+      className="button button-solid"
       to="/"
     >
       To Main Page
     </Link>
   </div>
-</h1>
+</div>
 `;

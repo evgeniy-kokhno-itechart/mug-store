@@ -1,24 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TableBody /> renders properly 1`] = `
-<tbody>
+<tbody
+  className="info-table__body"
+>
   <tr
+    className="body-row"
     key="1"
   >
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="1id"
     >
       1
     </td>
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="1name"
     >
       one
     </td>
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="1description"
     >
       <span>
@@ -27,22 +30,23 @@ exports[`<TableBody /> renders properly 1`] = `
     </td>
   </tr>
   <tr
+    className="body-row"
     key="2"
   >
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="2id"
     >
       2
     </td>
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="2name"
     >
       two
     </td>
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="2description"
     >
       <span>
@@ -51,22 +55,23 @@ exports[`<TableBody /> renders properly 1`] = `
     </td>
   </tr>
   <tr
+    className="body-row"
     key="3"
   >
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="3id"
     >
       3
     </td>
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="3name"
     >
       three
     </td>
     <td
-      className="p-1 p-md-2 undefined"
+      className="body-row__cell "
       key="3description"
     >
       <span>

@@ -15,7 +15,7 @@ export { default as InformationItem } from './components/markup/InformationItem/
 export { default as LoginRegisterButtons } from './components/markup/LoginRegisterButtons/LoginRegisterButtons';
 export { default as Modal } from './components/markup/Modal/Modal';
 export { default as NameLogoutButtons } from './components/markup/NameLogoutButtons/NameLogoutButtons';
-export { default as NotFound } from './components/markup/NotFound';
+export { default as NotFound } from './components/markup/NotFound/NotFound';
 export { default as ProtectedRouteConnected } from './components/markup/ProtectedRoute';
 export { default as Rate } from './components/markup/Rate/Rate';
 export { default as ResponsiveEllipsis } from './components/markup/ResponsiveEllipsis';

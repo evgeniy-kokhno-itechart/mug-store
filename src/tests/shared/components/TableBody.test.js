@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import TableBody from '../../../app/shared/components/markup/TableBody';
+import TableBody from '../../../app/shared/components/markup/TableBody/TableBody';
 
 configure({ adapter: new Adapter() });
 

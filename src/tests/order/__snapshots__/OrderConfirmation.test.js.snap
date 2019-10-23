@@ -1,23 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<OrderConfirmation /> check OrderConfirmation renders properly 1`] = `
-<Fragment>
+<div
+  className="order-confirm"
+>
   <h1
-    className="text-center m-3"
+    className="order-confirm__header"
   >
     Thank you for your order!
   </h1>
   <p
-    className="h3 text-center"
+    className="order-confirm__message"
   >
     Our operator will call you shortly
   </p>
-  <div
-    className="d-flex"
-  >
-    <ToCatalogButton
-      customClasses="mt-3 mx-auto w-50"
-    />
-  </div>
-</Fragment>
+  <ToCatalogButton
+    customClasses="order-confirm__button"
+  />
+</div>
 `;

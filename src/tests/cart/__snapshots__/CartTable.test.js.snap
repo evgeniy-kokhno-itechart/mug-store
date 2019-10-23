@@ -6,37 +6,37 @@ exports[`<CartTable /> renders properly with default props 1`] = `
     Array [
       Object {
         "content": [Function],
-        "customClasses": "cart-table--column-image",
+        "customClasses": "cart-table__column-image",
         "key": "image",
         "label": "",
       },
       Object {
         "content": [Function],
-        "customClasses": "cart-table--column-title",
+        "customClasses": "cart-table__column-title",
         "label": "Title",
         "path": "title",
       },
       Object {
         "content": [Function],
-        "customClasses": "cart-table--column-details",
+        "customClasses": "cart-table__column-details",
         "label": "Details",
         "path": "description",
       },
       Object {
         "content": [Function],
-        "customClasses": "cart-table--column-quantity",
+        "customClasses": "cart-table__column-quantity",
         "key": "quantity",
         "label": "Quantity",
       },
       Object {
         "content": [Function],
-        "customClasses": "text-center cart-table--column-cost",
+        "customClasses": "cart-table__column-cost",
         "label": "Cost",
         "path": "cost",
       },
       Object {
         "content": [Function],
-        "customClasses": "cart-table--column-delete",
+        "customClasses": "cart-table__column-delete",
         "key": "deleteFromCart",
       },
     ]

@@ -1,17 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Order /> renders properly with default props 1`] = `
-<Fragment>
+<div
+  className="order"
+>
   <h1
-    className="text-center m-3"
+    className="order__header"
   >
     Please check your order
   </h1>
   <div
-    className="row m-2"
+    className="order__content"
   >
     <div
-      className="col-md-6"
+      className="order__summary"
     >
       <OrderTable
         isCurrencyLoading={true}
@@ -30,12 +32,12 @@ exports[`<Order /> renders properly with default props 1`] = `
         sortColumn="title"
       />
       <TotalCost
-        customClasses="float-right"
+        customClasses="order-total-cost"
         total={10}
       />
     </div>
     <div
-      className="col-md-5 offset-md-1"
+      className="order-form"
     >
       <OrderForm
         currentUser={Object {}}
@@ -43,5 +45,5 @@ exports[`<Order /> renders properly with default props 1`] = `
       />
     </div>
   </div>
-</Fragment>
+</div>
 `;

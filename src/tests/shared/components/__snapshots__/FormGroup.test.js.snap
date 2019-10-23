@@ -2,10 +2,10 @@
 
 exports[`<FormGroup /> renders properly with default props 1`] = `
 <div
-  className="form-group "
+  className="formgroup "
 >
   <label
-    className=""
+    className="formgroup__label "
     htmlFor="testname"
   >
     Test label
@@ -18,10 +18,10 @@ exports[`<FormGroup /> renders properly with default props 1`] = `
 
 exports[`<FormGroup /> renders properly with error 1`] = `
 <div
-  className="form-group "
+  className="formgroup "
 >
   <label
-    className=""
+    className="formgroup__label "
     htmlFor="testname"
   >
     Test label
@@ -30,7 +30,7 @@ exports[`<FormGroup /> renders properly with error 1`] = `
     test child
   </span>
   <div
-    className="alert alert-danger"
+    className="formgroup__error"
   >
     test error
   </div>
@@ -39,10 +39,10 @@ exports[`<FormGroup /> renders properly with error 1`] = `
 
 exports[`<FormGroup /> renders properly with groupClasses 1`] = `
 <div
-  className="form-group testgroupclass"
+  className="formgroup testgroupclass"
 >
   <label
-    className=""
+    className="formgroup__label "
     htmlFor="testname"
   >
     Test label
@@ -55,10 +55,10 @@ exports[`<FormGroup /> renders properly with groupClasses 1`] = `
 
 exports[`<FormGroup /> renders properly with labelClasses 1`] = `
 <div
-  className="form-group "
+  className="formgroup "
 >
   <label
-    className="testlabelclass"
+    className="formgroup__label testlabelclass"
     htmlFor="testname"
   >
     Test label

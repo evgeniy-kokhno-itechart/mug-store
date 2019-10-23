@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProfileForm /> renders properly with default props 1`] = `
-<Fragment>
+<div
+  className="profile-form"
+>
   <h1
-    className="text-center m-3"
+    className="profile-form__header"
   >
     Register
   </h1>
   <form
-    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+    className="profile-form__content"
     onSubmit={[Function]}
   >
     <Input
@@ -354,7 +356,7 @@ exports[`<ProfileForm /> renders properly with default props 1`] = `
       value=""
     />
     <button
-      className="btn btn-secondary w-100"
+      className="button button-solid profile-form-button"
       disabled={
         Object {
           "address": "Address is a required field",
@@ -372,18 +374,20 @@ exports[`<ProfileForm /> renders properly with default props 1`] = `
       Save
     </button>
   </form>
-</Fragment>
+</div>
 `;
 
 exports[`<ProfileForm /> renders properly with user data provided 1`] = `
-<Fragment>
+<div
+  className="profile-form"
+>
   <h1
-    className="text-center m-3"
+    className="profile-form__header"
   >
     Edit profile
   </h1>
   <form
-    className="col-10 col-md-8 col-lg-7 col-xl-5 mx-auto"
+    className="profile-form__content"
     onSubmit={[Function]}
   >
     <Input
@@ -729,7 +733,7 @@ exports[`<ProfileForm /> renders properly with user data provided 1`] = `
       value=""
     />
     <button
-      className="btn btn-secondary w-100"
+      className="button button-solid profile-form-button"
       disabled={
         Object {
           "confirmPassword": "Confirm Password must be at least 5 characters",
@@ -741,5 +745,5 @@ exports[`<ProfileForm /> renders properly with user data provided 1`] = `
       Save
     </button>
   </form>
-</Fragment>
+</div>
 `;

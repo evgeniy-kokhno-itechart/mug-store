@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import PaginationButton from '../../../app/shared/components/controls/PaginationButton';
+import PaginationButton from '../../../app/shared/components/controls/PaginationButton/PaginationButton';
 
 configure({ adapter: new Adapter() });
 

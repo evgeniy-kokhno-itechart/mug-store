@@ -2,10 +2,13 @@
 
 exports[`<OrderForm /> renders properly with currentUser provided 1`] = `
 <Fragment>
-  <p>
+  <h2
+    className="order-form__message"
+  >
     Please fill out the form to continue
-  </p>
+  </h2>
   <form
+    className="order-form__form"
     onSubmit={[Function]}
   >
     <Input
@@ -250,7 +253,7 @@ exports[`<OrderForm /> renders properly with currentUser provided 1`] = `
       value=""
     />
     <button
-      className="btn btn-secondary d-block mx-auto mx-md-0"
+      className="button button-solid orderform-button"
       disabled={null}
       type="submit"
     >
@@ -262,10 +265,13 @@ exports[`<OrderForm /> renders properly with currentUser provided 1`] = `
 
 exports[`<OrderForm /> renders properly with default props 1`] = `
 <Fragment>
-  <p>
+  <h2
+    className="order-form__message"
+  >
     Please fill out the form to continue
-  </p>
+  </h2>
   <form
+    className="order-form__form"
     onSubmit={[Function]}
   >
     <Input
@@ -510,7 +516,7 @@ exports[`<OrderForm /> renders properly with default props 1`] = `
       value=""
     />
     <button
-      className="btn btn-secondary d-block mx-auto mx-md-0"
+      className="button button-solid orderform-button"
       disabled={
         Object {
           "address": "Address is a required field",

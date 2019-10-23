@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import Rate from '../../../app/shared/components/markup/Rate';
+import Rate from '../../../app/shared/components/markup/Rate/Rate';
 
 configure({ adapter: new Adapter() });
 

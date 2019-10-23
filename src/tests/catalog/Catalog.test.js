@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { Catalog } from '../../app/catalog/containers/Catalog';
+import { Catalog } from '../../app/catalog/containers/Catalog/Catalog';
 
 configure({ adapter: new Adapter() });
 

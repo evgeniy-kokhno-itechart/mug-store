@@ -2,7 +2,7 @@
 
 exports[`<ListGroupItem /> renders properly with default props provided 1`] = `
 <li
-  className="list-group-item list-group-item-action list-group-item-secondary clickable p-2 p-sm-2 px-md-3 px-lg-4 text-center text-sm-left "
+  className="group-item clickable "
   key="1"
   onClick={[Function]}
   onKeyUp={[Function]}
@@ -15,7 +15,7 @@ exports[`<ListGroupItem /> renders properly with default props provided 1`] = `
 
 exports[`<ListGroupItem /> renders within active class if current item is selected item 1`] = `
 <li
-  className="list-group-item list-group-item-action list-group-item-secondary clickable p-2 p-sm-2 px-md-3 px-lg-4 text-center text-sm-left active"
+  className="group-item clickable group-item--active"
   key="1"
   onClick={[Function]}
   onKeyUp={[Function]}

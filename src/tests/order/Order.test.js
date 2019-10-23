@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { Order } from '../../app/order/containers/Order';
+import { Order } from '../../app/order/containers/Order/Order';
 
 configure({ adapter: new Adapter() });
 

@@ -2,16 +2,17 @@
 
 .cart-table {
   margin: 0 1.5rem 1.5rem 1.5rem;
-  &--column-image {
+  &__column-image {
     width: 12%;
   }
 
-  &--column-title {
+  &__column-title {
     width: 10%;
   }
 
-  &--column-details {
+  &__column-details {
     width: 58%;
+
     @include respond(tab-portrait) {
       width: 30%;
     }
@@ -21,15 +22,16 @@
     }
   }
 
-  &--column-quantity {
+  &__column-quantity {
     width: 7%;
   }
 
-  &--column-cost {
+  &__column-cost {
     width: 7%;
+    text-align: center;
   }
 
-  &--column-delete {
+  &__column-delete {
     width: 5%;
   }
 }

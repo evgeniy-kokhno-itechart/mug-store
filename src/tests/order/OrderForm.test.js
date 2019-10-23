@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import OrderForm from '../../app/order/components/OrderForm';
+import OrderForm from '../../app/order/components/OrderForm/OrderForm';
 
 configure({ adapter: new Adapter() });
 

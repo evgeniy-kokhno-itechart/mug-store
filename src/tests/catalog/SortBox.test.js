@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import SortBox from '../../app/catalog/components/SortBox';
+import SortBox from '../../app/catalog/components/SortBox/SortBox';
 
 configure({ adapter: new Adapter() });
 

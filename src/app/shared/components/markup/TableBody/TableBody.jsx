@@ -17,7 +17,7 @@ class TableBody extends Component {
   render() {
     const { items, columns } = this.props;
     return (
-      <tbody className="infotable__body">
+      <tbody className="info-table__body">
         {items.map(item => (
           <tr className="body-row" key={item.id}>
             {columns.map(column => (

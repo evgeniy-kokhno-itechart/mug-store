@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import './TableHeader.scss';
 
 const TableHeader = ({ columns }) => (
-  <thead className="infotable__header">
+  <thead className="info-table__header">
     <tr className="header-row">
       {columns.map(column => (
         <th
