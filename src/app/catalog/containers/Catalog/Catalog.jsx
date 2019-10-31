@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { categoryActions } from '../../CategoryActions';
-import paginate from '../../Paginate';
 import CatalogTable from '../../components/CatalogTable/CatalogTable';
 import CatalogTableHeader from '../../components/CatalogTableHeader/CatalogTableHeader';
 import CatalogTableFooter from '../../components/CatalogTableFooter/CatalogTableFooter';
-import { ListGroup, ErrorMessage, Spinner } from '../../../shared';
+import {
+  ListGroup, ErrorMessage, Spinner, paginate,
+} from '../../../shared';
 import { productsPricesSelector, productsActions } from '../../../product';
 import { cartActions } from '../../../cart';
 import './Catalog.scss';
@@ -38,24 +39,26 @@ export class Catalog extends Component {
     this.props.getProducts();
   }
 
-  displayIsLoading = () => {
+  isLoading() {
     const { products, category } = this.props;
-    if (products.catalogProductsStatus.isInProcess || category.loadingStatus.isInProcess || products.productDeletingStatus.isInProcess) {
-      return <Spinner spinnerClasses="spinner--big" wrapperClasses="catalog-page__spinner" />;
-    }
-    return null;
+    return (products.catalogProductsStatus.isInProcess || category.loadingStatus.isInProcess || products.productDeletingStatus.isInProcess);
   }
 
-  displayGotError = () => {
+  hasError() {
     const { products, category } = this.props;
-    if (products.catalogProductsStatus.hasFailed || category.loadingStatus.hasFailed || products.productDeletingStatus.hasFailed) {
-      return (
-        <ErrorMessage message={products.catalogProductsStatus.error || category.loadingStatus.error || category.loadingStatus.error} />
-      );
-    }
-    return null;
+    return (products.catalogProductsStatus.hasFailed || category.loadingStatus.hasFailed || products.productDeletingStatus.hasFailed);
   }
 
+  renderSpinner() {
+    return <Spinner spinnerClasses="spinner--big" wrapperClasses="catalog-page__spinner" />;
+  }
+
+  renderErrorMessage() {
+    const { products, category } = this.props;
+    return <ErrorMessage message={products.catalogProductsStatus.error || category.loadingStatus.error || category.loadingStatus.error} />;
+  }
+
+  // eslint-disable-next-line react/sort-comp
   displayPagedDataOrEmpty = () => {
     const { totalCount, productsOnPage } = this.getPagedData();
     return productsOnPage.length
@@ -128,7 +131,7 @@ export class Catalog extends Component {
       There are no products in the catalog
       </h1>
       <div className="empty-message__redirect-button">
-        <Link className="button button-solid" to="/">
+        <Link className="button button--solid" to="/">
           To Main Page
         </Link>
       </div>
@@ -188,7 +191,12 @@ export class Catalog extends Component {
 
   render() {
     return (
-      this.displayIsLoading() || this.displayGotError() || this.displayPagedDataOrEmpty()
+      // eslint-disable-next-line no-nested-ternary
+      this.isLoading()
+        ? this.renderSpinner()
+        : this.hasError()
+          ? this.renderErrorMessage()
+          : this.displayPagedDataOrEmpty()
     );
   }
 }

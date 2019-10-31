@@ -354,7 +354,7 @@ exports[`<ProductForm /> renders empty form with default props 1`] = `
       value={0}
     />
     <button
-      className="button button-solid prod-form-button"
+      className="button button--solid prod-form-button"
       disabled={
         Object {
           "categoryId": "Please choose category",
@@ -727,7 +727,7 @@ exports[`<ProductForm /> renders not empty fields with product data provided 1`]
       value="5"
     />
     <button
-      className="button button-solid prod-form-button"
+      className="button button--solid prod-form-button"
       disabled={
         Object {
           "imageURL": "Image URL must be at least 5 characters",

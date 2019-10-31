@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import MainPage from './Main/Main';
-import About from './About/About';
-import { CatalogConnected } from '../../catalog';
-import { NotFound, ProtectedRouteConnected } from '../../shared';
-import { ProductFormConnected, ProductDetailsConnected } from '../../product';
-import { LoginFormConnected, ProfileFormConnected } from '../../user';
-import { CartConnected } from '../../cart';
-import { OrderConnected, OrderConfirmation } from '../../order';
+import MainPage from './components/Main/Main';
+import About from './components/About/About';
+import { CatalogConnected } from '../catalog';
+import { NotFound, ProtectedRouteConnected } from '../shared';
+import { ProductFormConnected, ProductDetailsConnected } from '../product';
+import { LoginFormConnected, ProfileFormConnected } from '../user';
+import { CartConnected } from '../cart';
+import { OrderConnected, OrderConfirmation } from '../order';
 
 const Routes = () => (
   <Switch>

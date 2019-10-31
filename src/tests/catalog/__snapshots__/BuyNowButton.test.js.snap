@@ -2,7 +2,7 @@
 
 exports[`<BuyNowButton /> renders with customClasses = testclass provided 1`] = `
 <button
-  className="button button-solid buy-now-button focusable testclass"
+  className="button button--solid buy-now-button focusable testclass"
   onClick={[Function]}
   type="button"
 >
@@ -29,7 +29,7 @@ exports[`<BuyNowButton /> renders with customClasses = testclass provided 1`] = 
 
 exports[`<BuyNowButton /> renders without customClasses provided 1`] = `
 <button
-  className="button button-solid buy-now-button focusable "
+  className="button button--solid buy-now-button focusable "
   onClick={[Function]}
   type="button"
 >

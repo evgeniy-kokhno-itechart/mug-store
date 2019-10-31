@@ -38,7 +38,7 @@ exports[`<Cart /> renders properly with cart array not empty 1`] = `
       total={15}
     />
     <Link
-      className="button button-solid cart-footer__order-button"
+      className="button button--solid cart-footer__order-button"
       to="/order"
     >
       Order Now!
@@ -89,7 +89,7 @@ exports[`<Cart /> renders properly with not empty cart and currentUserName provi
       total={5}
     />
     <Link
-      className="button button-solid cart-footer__order-button"
+      className="button button--solid cart-footer__order-button"
       to="/order/mycart"
     >
       Order Now!

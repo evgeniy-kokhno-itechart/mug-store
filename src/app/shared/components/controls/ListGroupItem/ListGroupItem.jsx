@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import './ListGroupItem.scss';
 
 class ListGroupItem extends Component {
-  getClasses = (item, selectedItem) => (item.id === selectedItem.id ? 'group-item--active' : '');
+  getClasses = (item, selectedItem) => (item.id === selectedItem.id ? 'group-list__item--active' : '');
 
   handleSelect = () => {
     const { item, handleItemSelect } = this.props;
@@ -17,7 +17,7 @@ class ListGroupItem extends Component {
         key={item.id}
         role="menuitem"
         tabIndex={index + 1} // 1 is added to avoid 0 in tabindex and prevent inconsistent iteration
-        className={`group-item clickable ${this.getClasses(item, selectedItem)}`}
+        className={`group-list__item clickable ${this.getClasses(item, selectedItem)}`}
         onClick={this.handleSelect}
         onKeyUp={this.handleSelect}
       >

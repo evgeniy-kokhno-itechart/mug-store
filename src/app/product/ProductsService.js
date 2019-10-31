@@ -25,4 +25,8 @@ export default class ProductsService {
     const response = applicationApi.delete(`/products/${id}`);
     return response;
   }
+
+  static calculateCurrentCurrencyPrice(basePrice, currencyRate, discount) {
+    return +(basePrice * currencyRate * (1 - discount / 100)).toFixed(1);
+  }
 }

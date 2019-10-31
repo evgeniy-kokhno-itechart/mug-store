@@ -72,7 +72,7 @@ exports[`<CatalogTableHeader /> render AddNewProduct button with currentUserRole
     />
   </div>
   <Link
-    className="button button-solid catalog-add-product-btn"
+    className="button button--solid catalog-add-product-btn"
     to="/edit/products/new"
   >
     Add New Product

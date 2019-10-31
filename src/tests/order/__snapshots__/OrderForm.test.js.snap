@@ -253,7 +253,7 @@ exports[`<OrderForm /> renders properly with currentUser provided 1`] = `
       value=""
     />
     <button
-      className="button button-solid orderform-button"
+      className="button button--solid orderform-button"
       disabled={null}
       type="submit"
     >
@@ -516,7 +516,7 @@ exports[`<OrderForm /> renders properly with default props 1`] = `
       value=""
     />
     <button
-      className="button button-solid orderform-button"
+      className="button button--solid orderform-button"
       disabled={
         Object {
           "address": "Address is a required field",

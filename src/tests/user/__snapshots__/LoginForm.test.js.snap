@@ -92,7 +92,7 @@ exports[`<LoginForm /> renders properly with default props 1`] = `
       value=""
     />
     <button
-      className="button button-solid login-form-button"
+      className="button button--solid login-form-button"
       disabled={
         Object {
           "password": "Password is a required field",

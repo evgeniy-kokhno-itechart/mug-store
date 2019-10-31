@@ -15,3 +15,5 @@ export const currencyApi = Axios.create({
     Accept: 'application/json',
   },
 });
+
+export const orderConfirmedAddress = '/orderconfirm';

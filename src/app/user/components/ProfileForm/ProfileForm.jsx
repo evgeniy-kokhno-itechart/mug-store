@@ -170,7 +170,7 @@ class ProfileForm extends FormBase {
           <button
             type="submit"
             disabled={this.validateForm(this.profileObjectSchema, data)}
-            className="button button-solid profile-form-button"
+            className="button button--solid profile-form-button"
           >
             Save
           </button>

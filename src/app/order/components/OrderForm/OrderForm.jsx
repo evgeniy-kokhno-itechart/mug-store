@@ -119,7 +119,7 @@ class OrderForm extends FormBase {
             onChange={this.handleControlChange}
           />
 
-          <button type="submit" disabled={this.validateForm(this.orderFormSchema)} className="button button-solid orderform-button">
+          <button type="submit" disabled={this.validateForm(this.orderFormSchema)} className="button button--solid orderform-button">
             Submit Order
           </button>
         </form>

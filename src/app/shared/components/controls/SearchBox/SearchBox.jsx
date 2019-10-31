@@ -26,7 +26,7 @@ class SearchBox extends PureComponent {
           onChange={this.handleChange}
         />
 
-        <button type="submit" className="button button-outline focusable search-form__btn">
+        <button type="submit" className="button button--outline focusable search-form__btn">
           <FontAwesomeIcon icon="search" />
         </button>
       </form>

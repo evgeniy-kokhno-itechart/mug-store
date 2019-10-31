@@ -2,7 +2,7 @@
 
 exports[`<ToCatalogButton /> check render with customClasses = testclass provided 1`] = `
 <Link
-  className="button button-solid testclass"
+  className="button button--solid testclass"
   to="/catalog"
 >
   Back To Catalog
@@ -11,7 +11,7 @@ exports[`<ToCatalogButton /> check render with customClasses = testclass provide
 
 exports[`<ToCatalogButton /> check render without customClasses provided 1`] = `
 <Link
-  className="button button-solid "
+  className="button button--solid "
   to="/catalog"
 >
   Back To Catalog

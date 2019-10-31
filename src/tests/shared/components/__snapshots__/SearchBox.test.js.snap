@@ -14,7 +14,7 @@ exports[`<SearchBox /> renders with default props with Search... text in the inp
     value="Search..."
   />
   <button
-    className="button button-outline focusable search-form__btn"
+    className="button button--outline focusable search-form__btn"
     type="submit"
   >
     <FontAwesomeIcon
@@ -53,7 +53,7 @@ exports[`<SearchBox /> renders with value = test search in the input 1`] = `
     value="test search"
   />
   <button
-    className="button button-outline focusable search-form__btn"
+    className="button button--outline focusable search-form__btn"
     type="submit"
   >
     <FontAwesomeIcon

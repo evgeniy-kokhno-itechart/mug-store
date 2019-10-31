@@ -4,7 +4,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { Navbar } from '../../app/root/containers/Navbar/Navbar';
+import Navbar from '../../app/layout/components/Navbar/Navbar';
 
 configure({ adapter: new Adapter() });
 

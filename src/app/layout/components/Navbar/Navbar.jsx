@@ -1,15 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { currencyActions, CurrenciesDropdown } from '../../../currency';
-import { userActions } from '../../../user';
+import { CurrenciesDropdown } from '../../../currency';
 import { CartService } from '../../../cart';
-import LoginLogoutBar from '../../components/LoginLogoutBar';
+import { LoginLogoutBar } from '../../../shared';
 import './Navbar.scss';
 
-export const Navbar = ({
+const Navbar = ({
   currentUserName,
   currencyState,
   cart,
@@ -88,18 +86,4 @@ Navbar.defaultProps = {
   cart: [],
 };
 
-const mapStateToProps = state => ({
-  cart: state.cart.cart,
-  currencyState: state.currency,
-  currentUserName: state.user.currentUser.name,
-});
-
-const mapDispatchToProps = {
-  changeCurrency: currencyActions.ChangeCurrency,
-  logoutUser: userActions.Logout.InitiateApiCall,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Navbar);
+export default Navbar;

@@ -3,7 +3,7 @@
 exports[`<DeleteProductButton /> check render properly 1`] = `
 <Fragment>
   <button
-    className="button button-solid button-danger focusable"
+    className="button button--solid button--danger focusable"
     onClick={[Function]}
     type="button"
   >

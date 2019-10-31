@@ -2,7 +2,23 @@
 
 exports[`<App /> renders properly with default props 1`] = `
 <Fragment>
-  <Connect(Navbar) />
+  <Navbar
+    cart={Array []}
+    currencyState={
+      Object {
+        "currencies": Array [],
+        "currenciesStatus": Object {
+          "error": "",
+          "hasFailed": false,
+          "isInProcess": true,
+        },
+        "currentCurrency": Object {
+          "id": "0",
+        },
+      }
+    }
+    currentUserName=""
+  />
   <div
     className="content-wrap"
   >

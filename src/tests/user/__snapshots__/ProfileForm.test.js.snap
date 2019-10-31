@@ -356,7 +356,7 @@ exports[`<ProfileForm /> renders properly with default props 1`] = `
       value=""
     />
     <button
-      className="button button-solid profile-form-button"
+      className="button button--solid profile-form-button"
       disabled={
         Object {
           "address": "Address is a required field",
@@ -733,7 +733,7 @@ exports[`<ProfileForm /> renders properly with user data provided 1`] = `
       value=""
     />
     <button
-      className="button button-solid profile-form-button"
+      className="button button--solid profile-form-button"
       disabled={
         Object {
           "confirmPassword": "Confirm Password must be at least 5 characters",

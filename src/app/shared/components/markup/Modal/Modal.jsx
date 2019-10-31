@@ -14,10 +14,10 @@ const Modal = ({
         {text}
       </div>
       <div className="modal-page__buttons">
-        <button type="button" className={`button button-solid ${closeBtnClasses}`} onClick={onClose}>
+        <button type="button" className={`button button--solid ${closeBtnClasses}`} onClick={onClose}>
           {textAbort}
         </button>
-        <button type="button" className={`button button-solid ${confirmBtnClasses}`} onClick={onConfirm}>
+        <button type="button" className={`button button--solid ${confirmBtnClasses}`} onClick={onConfirm}>
           {textConfirm}
         </button>
       </div>

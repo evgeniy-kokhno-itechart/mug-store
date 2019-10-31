@@ -23,7 +23,7 @@ class DeleteProductButton extends Component {
     const { productTitle } = this.props;
     return (
       <React.Fragment>
-        <button type="button" className="button button-solid button-danger focusable" onClick={this.handleOpenModal}>
+        <button type="button" className="button button--solid button--danger focusable" onClick={this.handleOpenModal}>
           <FontAwesomeIcon icon="times" />
         </button>
         { this.state.isModalOpened

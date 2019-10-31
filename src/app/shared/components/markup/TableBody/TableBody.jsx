@@ -19,11 +19,11 @@ class TableBody extends Component {
     return (
       <tbody className="info-table__body">
         {items.map(item => (
-          <tr className="body-row" key={item.id}>
+          <tr className="info-table__row" key={item.id}>
             {columns.map(column => (
               <td
                 key={this.createKey(item, column)}
-                className={`body-row__cell ${column.customClasses || ''}`}
+                className={`info-table__cell ${column.customClasses || ''}`}
               >
                 {this.renderCell(item, column)}
               </td>

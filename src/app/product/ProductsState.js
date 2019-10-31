@@ -11,10 +11,26 @@ const initialProductsState = {
     producer: '',
     rate: '',
   },
-  catalogProductsStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
-  currentProductStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
-  savingStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
-  deletingStatus: { isInProcess: false, hasFailed: false, error: 'Not started yet' },
+  catalogProductsStatus: {
+    isInProcess: false,
+    hasFailed: false,
+    error: 'Not started yet',
+  },
+  currentProductStatus: {
+    isInProcess: false,
+    hasFailed: false,
+    error: 'Not started yet',
+  },
+  savingStatus: {
+    isInProcess: false,
+    hasFailed: false,
+    error: 'Not started yet',
+  },
+  deletingStatus: {
+    isInProcess: false,
+    hasFailed: false,
+    error: 'Not started yet',
+  },
 };
 
 export default initialProductsState;

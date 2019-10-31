@@ -1737,7 +1737,7 @@ exports[`<Catalog /> renders with default props 1`] = `
     className="empty-message__redirect-button"
   >
     <Link
-      className="button button-solid"
+      className="button button--solid"
       to="/"
     >
       To Main Page

@@ -21,14 +21,14 @@ exports[`<Modal /> check Modal renders properly with default props 1`] = `
       className="modal-page__buttons"
     >
       <button
-        className="button button-solid "
+        className="button button--solid "
         onClick={[MockFunction]}
         type="button"
       >
         Test Abort
       </button>
       <button
-        className="button button-solid "
+        className="button button--solid "
         onClick={[MockFunction]}
         type="button"
       >

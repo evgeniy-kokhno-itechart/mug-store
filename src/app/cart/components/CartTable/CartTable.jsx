@@ -67,7 +67,7 @@ class CartTable extends Component {
     {
       key: 'deleteFromCart',
       content: product => (
-        <button type="button" id={product.id} className="button button-solid" onClick={this.handleDeleteProductFromCart}>
+        <button type="button" id={product.id} className="button button--solid" onClick={this.handleDeleteProductFromCart}>
           <FontAwesomeIcon icon="trash" />
         </button>
       ),

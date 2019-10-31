@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import ProductsService from './ProductsService';
 
 const productsinCatalogSelector = state => state.products.products;
 
@@ -9,7 +10,7 @@ const currencyRateSelector = state => state.currency.currentCurrency.rate;
 export const productCostSelector = createSelector(
   [currentProductSelector, currencyRateSelector],
   (currentProduct, rate) => {
-    const currentCurrencyPrice = +(currentProduct.basePrice * rate * (1 - currentProduct.discount / 100)).toFixed(1);
+    const currentCurrencyPrice = ProductsService.calculateCurrentCurrencyPrice(currentProduct.basePrice, rate, currentProduct.discount);
     const newProduct = { ...currentProduct, currentCurrencyPrice };
     return newProduct;
   },
@@ -20,7 +21,7 @@ export const productsPricesSelector = createSelector(
   [productsinCatalogSelector, currencyRateSelector],
   (products, rate) => {
     const newProducts = products.map((product) => {
-      const currentCurrencyPrice = +(product.basePrice * rate * (1 - product.discount / 100)).toFixed(1);
+      const currentCurrencyPrice = ProductsService.calculateCurrentCurrencyPrice(product.basePrice, rate, product.discount);
       const newProduct = { ...product, currentCurrencyPrice };
       return newProduct;
     });

@@ -55,7 +55,7 @@ export class LoginForm extends FormBase {
           <button
             type="submit"
             disabled={this.validateForm(this.loginObjectSchema, data)}
-            className="button button-solid login-form-button"
+            className="button button--solid login-form-button"
           >
             Login
           </button>

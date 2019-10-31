@@ -13,7 +13,7 @@ const CatalogTableHeader = ({
       <SearchBox value={searchQuery} onSearchSubmit={handleSearch} key={searchQuery} />
     </div>
     {currentUserRoles.includes('admin') && (
-      <Link to="/edit/products/new" className="button button-solid catalog-add-product-btn">
+      <Link to="/edit/products/new" className="button button--solid catalog-add-product-btn">
         Add New Product
       </Link>
     )}

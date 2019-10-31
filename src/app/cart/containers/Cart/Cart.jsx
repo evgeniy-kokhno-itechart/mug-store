@@ -24,7 +24,7 @@ export class Cart extends Component {
         />
         <div className="cart-footer">
           <TotalCost total={cart.totalCost} customClasses="cart-footer__total" />
-          <Link className="button button-solid cart-footer__order-button" to={currentUserName ? '/order/mycart' : '/order'}>
+          <Link className="button button--solid cart-footer__order-button" to={currentUserName ? '/order/mycart' : '/order'}>
             Order Now!
           </Link>
         </div>

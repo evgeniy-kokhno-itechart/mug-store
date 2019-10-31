@@ -1,11 +1,13 @@
 @import "Variables";
 
-.body-row {
-    &:not(:last-child) {
-        border-bottom: 1px solid $color-gray-light-2;
-    }
-    &:hover {
-        background-color: $color-gray-light-3;
+.info-table {
+    &__row {
+        &:not(:last-child) {
+            border-bottom: 1px solid $color-gray-light-2;
+        }
+        &:hover {
+            background-color: $color-gray-light-3;
+        }
     }
 
     &__cell {

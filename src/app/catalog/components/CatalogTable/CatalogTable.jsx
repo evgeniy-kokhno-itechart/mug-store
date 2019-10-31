@@ -69,7 +69,7 @@ class CatalogTable extends Component {
       key: 'edit',
       content: product => (
         <Link to={`/edit/products/${product.id}`}>
-          <button type="button" className="button button-solid button-warning focusable">
+          <button type="button" className="button button--solid button--warning focusable">
             <FontAwesomeIcon icon="pen" />
           </button>
         </Link>

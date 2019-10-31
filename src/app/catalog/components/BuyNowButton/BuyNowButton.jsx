@@ -12,7 +12,7 @@ class BuyNowButton extends Component {
   render() {
     const { customClasses } = this.props;
     return (
-      <button type="button" className={`button button-solid buy-now-button focusable ${customClasses}`} onClick={this.handleButtonClick}>
+      <button type="button" className={`button button--solid buy-now-button focusable ${customClasses}`} onClick={this.handleButtonClick}>
         <FontAwesomeIcon icon="cart-arrow-down" />
       </button>
     );

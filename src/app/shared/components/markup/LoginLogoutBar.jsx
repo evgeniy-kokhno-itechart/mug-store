@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { NameLogoutButtons, LoginRegisterButtons } from '../../shared';
+import NameLogoutButtons from './NameLogoutButtons/NameLogoutButtons';
+import LoginRegisterButtons from './LoginRegisterButtons/LoginRegisterButtons';
 
 const LoginLogoutBar = ({ currentUserName, logoutUser }) => (
   currentUserName
