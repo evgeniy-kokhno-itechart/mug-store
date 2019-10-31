@@ -29,3 +29,5 @@ export { default as IconService } from './services/IconService';
 export * from './services/ApiService';
 export { default as createHttpAction } from './services/ActionsService';
 export { default as paginate } from './services/Paginate';
+
+export * from './Endpoints';

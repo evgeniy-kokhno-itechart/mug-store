@@ -4,12 +4,12 @@ import { PropTypes } from 'prop-types';
 import OrderTable from '../../components/OrderTable/OrderTable';
 import OrderForm from '../../components/OrderForm/OrderForm';
 import { TotalCost, cartActions, cartCostsSelector } from '../../../cart';
-import { orderConfirmedAddress } from '../../../shared';
+import { ORDER_CONFIRMED_URL } from '../../../shared';
 import './Order.scss';
 
 export class Order extends Component {
   submitOrder = () => {
-    this.props.submitCartOrder(orderConfirmedAddress);
+    this.props.submitCartOrder(ORDER_CONFIRMED_URL);
   }
 
   render() {

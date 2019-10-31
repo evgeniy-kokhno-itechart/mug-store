@@ -1,7 +1,8 @@
 import Axios from 'axios';
+import * as Endpoints from '../Endpoints';
 
 export const applicationApi = Axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: Endpoints.BASE_API_URL,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     Accept: 'application/json',
@@ -9,11 +10,9 @@ export const applicationApi = Axios.create({
 });
 
 export const currencyApi = Axios.create({
-  baseURL: process.env.REACT_APP_CURRENCY_API_URL,
+  baseURL: Endpoints.CURRENCY_API_URL,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     Accept: 'application/json',
   },
 });
-
-export const orderConfirmedAddress = '/orderconfirm';
